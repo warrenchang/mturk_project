@@ -6,7 +6,7 @@ from django.db import models as djmodels
 from otree.models import Participant
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from radiogrid import RadioGridField
+# from radiogrid import RadioGridField
 
 author = 'Essi Kujansuu - Philipp Chapkovski - Nicolas Gruyer/Economics Games'
 
