@@ -8,6 +8,9 @@ import math
 class PaymentAdjustment(Page):
     timeout_seconds = 0
 
+    def is_displayed(self):
+        return not self.participant.vars['qualified']
+
     def before_next_page(self):
         if not self.participant.vars['qualified']:
             self.participant.payoff -= (self.session.config['participation_fee']

@@ -100,7 +100,7 @@ class SomeUnderstandingQuestions(UnderstandingQuestionsPage):
                 {
                     'question': 'At the start of a round, you and the other participant each receive 10 points. Suppose both of you keep these 10 points for yourselves (that is, \(x_1=x_2=0, y_1=y_2=0\)). Your final earnings is',
                     'options': ['10','20','40','100'],
-                    'correct': '10',
+                    'correct': '40',
                 },
                 {
                     'question': "At the start of a round, you and the other participant each receive 10 points. Suppose both of you put all the 10 points in the Investment Account (that is, \(x_1=x_2=10, y_1=y_2=0\)). What is the total return from the Investment Account?",

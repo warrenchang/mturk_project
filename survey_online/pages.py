@@ -11,7 +11,7 @@ class StartPage(CustomMturkPage):
         if self.round_number == 1:
             print('This is the start of PD survey')
         print(self.participant.vars)
-        return self.participant.vars['qualified'] and self.round_number == 1 and (not self.session.config['debug'])
+        return self.participant.vars['qualified'] and self.round_number == 1 # and (not self.session.config['debug'])
 
 
 # class SurveyIntro(Page):
@@ -38,7 +38,7 @@ survey_pages = [
 setup_survey_pages(models.Player, survey_pages)
 
 page_sequence = [
-    StartPage,
+    # StartPage,
     # SurveyIntro,
 ]
 
