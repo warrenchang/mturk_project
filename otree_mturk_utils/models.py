@@ -25,7 +25,7 @@ class Mturk(djmodels.Model):
 
 class CommonRecord(djmodels.Model):
     mturker = djmodels.ForeignKey(Mturk, on_delete=djmodels.CASCADE)
-    app = models.CharField()
+    app = models.StringField()
     page_index = models.IntegerField()
 
     class Meta:

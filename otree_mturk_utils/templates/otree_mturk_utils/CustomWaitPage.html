@@ -1,5 +1,5 @@
 {% extends 'otree_mturk_utils/GenericExtendedWaitPage.html' %}
-{% load staticfiles otree_tags %}
+{% load staticfiles otree %}
 {% block title %}{% endblock %}
 {% block styles %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.css"
@@ -83,12 +83,12 @@
 </script>
 <script type="text/javascript">
 
-    {#        $('div#otree-timeout').show();#}
+    {#        $('div.otree-timer').show();#}
     var currentDate = new Date();
     var milliseconds = Math.floor({{ time_left|json }} * 1000
     )
     ;
-    $('div#otree-timeout-warning').show();
+    $('div.otree-timer-warning').show();
     $('span#otree-timer__time-left').countdown(currentDate.valueOf() + milliseconds)
         .on('update.countdown', function (event) {
             // %-N is "Total count of minutes till the end, non-padded"
@@ -99,13 +99,13 @@
 
             if (event.strftime('%-M') > 30) {
                 // Do not show if max waiting time is above 30 minutes
-                $('div#otree-timeout-warning').filter(":visible").hide(duration = 0);
+                $('div.otree-timer-warning').filter(":visible").hide(duration = 0);
             }
             ;
 
         })
         .on('finish.countdown', function (event) {
-            $('div#otree-timeout-warning').hide(duration = 0);
+            $('div.otree-timer-warning').hide(duration = 0);
             $('#finish_study').show();
         });
 </script>
