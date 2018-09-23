@@ -30,29 +30,29 @@ class Constants(BaseConstants):
 
     players_per_group = 2
 
-
-    # interactions = [
-    #     1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    #     2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    # ]
-    # round_in_interactions = [
-    #     1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-    #     1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-    # ]
-    # interaction_length = [10, 10]
-    interaction_length = [10, 10]
     A_values = [0,60]
 
     interactions = [
-        1, 1, 1,
-        2, 2, 2,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
     ]
     round_in_interactions = [
-        1, 2, 3,
-        1, 2, 3,
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
     ]
+    interaction_length = [10, 10]
 
-    interaction_length = [3, 3]
+
+    # interactions = [
+    #     1, 1, 1,
+    #     2, 2, 2,
+    # ]
+    # round_in_interactions = [
+    #     1, 2, 3,
+    #     1, 2, 3,
+    # ]
+    #
+    # interaction_length = [3, 3]
 
     num_rounds = sum(interaction_length) # change num_rounds for testing purpose, but need to make sure that number_sequence
 
