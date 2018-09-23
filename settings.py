@@ -164,24 +164,6 @@ SESSION_CONFIG_DEFAULTS = {
 
 SESSION_CONFIGS = [
     {
-        'name': 'test',
-        'display_name': "testing indep. app",
-        'num_demo_participants': 6,
-        'app_sequence': ['testapp'],
-    },
-    {
-        'name': 'test2',
-        'display_name': "Testing timeout on waiting page",
-        'num_demo_participants': 9,
-        'app_sequence': ['testapp2'],
-    },
-    {
-        'name': 'testboth',
-        'display_name': "Testing both in a row",
-        'num_demo_participants': 12,
-        'app_sequence': ['testapp2', 'testapp'],
-    },
-    {
         'name': 'coopetition_mturk_det0_60',
         'display_name': "Coopetition Det0_60",
         'num_demo_participants': 4,
