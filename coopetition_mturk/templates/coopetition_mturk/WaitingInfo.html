@@ -1,0 +1,61 @@
+{% load staticfiles otree %}
+
+{% block content %}
+<style>
+    td {
+        border: 1px solid #ddd;
+        text-align: center;
+        padding: 8px;
+        font-size: 10pt;
+    }
+    th {
+        border: 1px solid #ddd;
+        text-align: center;
+        padding: 5px;
+        font-size: 10pt;
+    }
+    tr:nth-child(even){background-color: #f2f2f2;}
+    tr:hover {background-color: #ddd;}
+
+    table {
+        margin: auto;
+    }
+</style>
+
+<hr>
+<p style="font-size:16px">
+While you are waiting, below is some information about the experiment that you can review.
+</p>
+<p>
+    During your interaction with the other participant, the following experimental interface will be
+    shown for you to submit your decisions.
+</p>
+
+<p style="text-align: center">
+    <img src="{% static "coopetition_mturk/decision_screen.jpg" %}"  width="780"/>
+</p>
+
+<p style="font-size:16px">
+    Note:
+    The experiment proceeds as fast as the slower participant, so please submit your decisions in a prompt manner.
+    For the first 5 rounds, you have 1 minutes to reach your decision; after Round 5, you have 30 seconds to reach your decision.
+    <strong>If you do not submit your answer within the allocated time, the computer will randomly choose answers for you, and
+        you will not get paid for that round.</strong> If you fail to submit your decisions too many times, you will be
+    able to receive your experimental payment.
+</p>
+<p style="text-align:center">
+    <strong>Remember to submit once you reach your decision.
+        Your decision is submitted only after you click "Submit".</strong>
+</p>
+
+
+<hr>
+
+<div class="card bg-light instructions">
+    <div class="card-body">
+        {% include Constants.instructions_template %}
+    </div>
+</div>
+{% endblock %}
+
+

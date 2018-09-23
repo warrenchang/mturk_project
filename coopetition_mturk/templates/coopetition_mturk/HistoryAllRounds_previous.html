@@ -1,0 +1,51 @@
+{% load otree staticfiles %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>MathJax example</title>
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML" async>
+    </script>
+</head>
+
+
+{% if player.interaction_number != 1 %}
+<h5 style="text-align:center">
+    History for Part 1
+</h5>
+<table class="table" style="text-align:center">
+    <tr>
+        <th></th>
+        <th style="text-align:center" colspan="5">You</th>
+        <th style="text-align:center" colspan="5">Other</th>
+    </tr>
+    <tr>
+        <th>Round</th>
+        <th style="text-align:center">\(x_1\)</th>
+        <th style="text-align:center">\(y_1\)</th>
+        <th style="text-align:center">Kept</th>
+        <th style="text-align:center">Earnings</th>
+        <th style="text-align:center">Total Earnings</th>
+        <th style="text-align:center">\(x_2\)</th>
+        <th style="text-align:center">\(y_2\)</th>
+        <th style="text-align:center">Kept</th>
+        <th style="text-align:center">Earnings</th>
+    </tr>
+    {% for p in player.in_previous_rounds %}
+    {% if p.interaction_number != player.interaction_number %}
+    <tr>
+        <td>{{ p.round_in_interaction}}</td>
+        <td>{{ p.a1 }}</td>
+        <td>{{ p.a2 }}</td>
+        <td>{{ p.a3 }}</td>
+        <td>{{ p.payoff}}</td>
+        <td>{{ p.cum_payoff}}</td>
+        <td>{{ p.other_a1 }}</td>
+        <td>{{ p.other_a2 }}</td>
+        <td>{{ p.other_a3 }}</td>
+        <td>{{ p.other_payoff }}</td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+</table>

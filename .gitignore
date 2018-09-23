@@ -1,0 +1,12 @@
+venv
+*.pyc
+.DS_Store
+staticfiles
+_static_root/
+./db.sqlite3
+.idea
+*~
+*.sqlite3
+_coverage_results/
+
+__temp*

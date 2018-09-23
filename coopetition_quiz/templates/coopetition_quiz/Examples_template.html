@@ -1,0 +1,618 @@
+{% load staticfiles otree %}
+
+{% block styles %}
+{% endblock %}
+
+{% block content %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>MathJax example</title>
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML" async>
+    </script>
+</head>
+
+
+{% if player.treatment == "Det0_60" %}
+<div>
+    <p>
+        <strong><u>Example 1:</u></strong> If both of you invest all 10 points in the Investment Account (\(x_1=x_2=10\)),
+        this will generate a total return of 10×10=100 points.
+        Because both of you invest 0 point in the Rationing Account (\(y_1=y_2=0\)), the profit is evenly split between you two
+        (each of you has 0.5 of the total return).
+        Therefore, each of you receives 50 points.
+        This can be illustrated by the following table.
+    </p>
+    <table>
+        <tr>
+            <th></th>
+            <th>Investment Account</th><th>Rationing Account</th><th>Kept to self</th>
+            <th>Total Return</th><th>Share of Total Return</th><th>Final Earnings</th>
+        </tr>
+        <tr>
+            <th>You</th><td>\(x_1=10\)</td><td>\(y_1=0\)</td><td>\(0\)</td>
+            <td rowspan="2">\(x_1x_2=100\)</td><td> \(0.5\)</td><td>\(0.5\times 100 + 0 = 50\)</td>
+        </tr>
+        <tr>
+            <th>Other</th><td>\(x_2=10\)</td><td>\(y_2=0\)</td><td>\(0\)</td>
+            <td>\(0.5 \)</td><td>\(0.5 \times 100 +0 = 50\)</td>
+        </tr>
+    </table>
+
+    <br/>
+    <br/>
+    <p>
+        <strong><u>Example 2:</u></strong> If both of you keep all 10 points to yourselves,
+        you each receive these 10 points as your earnings because the total return from the investment is 0.
+        This can be illustrated by the following table.
+    </p>
+    <table>
+        <tr>
+            <th></th>
+            <th>Investment Account</th><th>Rationing Account</th><th>Kept to self</th>
+            <th>Total Return</th><th>Share of Total Return</th><th>Final Earnings</th>
+        </tr>
+        <tr>
+            <th>You</th><td>\(x_1=0\)</td><td>\(y_1=0\)</td><td>\(10\)</td>
+            <td rowspan="2">\(x_1x_2=0\)</td><td> \(0.5 \)</td><td>\(0.5 \times 0 +10 = 10\)</td>
+        </tr>
+        <tr>
+            <th>Other</th><td>\(x_2=0\)</td><td>\(y_2=0\)</td><td>\(10\)</td>
+            <td>\(0.5\)</td><td>\(0.5 \times 0 +10 = 10\)</td>
+        </tr>
+    </table>
+
+    <br/>
+    <br/>
+    <p>
+        <strong><u>Example 3:</u></strong> In the following situation, the total return is 5x5=25 points.
+    </p>
+    <table>
+        <tr>
+            <th></th>
+            <th>Investment Account</th><th>Rationing Account</th><th>Kept to self</th>
+            <th>Total Return</th><th>Share of Total Return</th><th>Final Earnings</th>
+        </tr>
+        <tr>
+            <th>You</th><td>\(x_1=5\)</td><td>\(y_1=3\)</td><td>\(2\)</td>
+            <td rowspan="2">\(x_1x_2=25\)</td>
+            <td>\(\frac{y_1}{y_1 + y_2} =\frac{3}{3+2} = 0.6\)</td>
+            <td>\(0.6 \times 25 + 2 = 17\)</td>
+        </tr>
+        <tr>
+            <th>Other</th><td>\(x_2=5\)</td><td>\(y_2=2\)</td><td>\(3\)</td>
+            <td>\(\frac{y_2}{y_1 + y_2} =\frac{2}{3+2} = 0.4\)</td>
+            <td>\(0.4 \times 25 + 3 = 13\)</td>
+        </tr>
+    </table>
+
+    <!--<br/>-->
+    <!--<br/>-->
+    <!--<p>-->
+    <!--<strong><u>Example 4:</u></strong>-->
+    <!--</p>-->
+    <!--<table>-->
+    <!--<tr>-->
+    <!--<th></th>-->
+    <!--<th>Investment Account</th><th>Rationing Account</th><th>Kept to self</th>-->
+    <!--<th>Total Return</th><th>Share of Total Return</th><th>Final Earnings</th>-->
+    <!--</tr>-->
+    <!--<tr>-->
+    <!--<th>You</th><td>\(x_1=5\)</td><td>\(y_1=4\)</td><td>\(1\)</td>-->
+    <!--<td rowspan="2">\(x_1x_2=35\)</td>-->
+    <!--<td>\(\frac{y_1}{y_1 + y_2} =\frac{4}{4+1} = 0.8\)</td>-->
+    <!--<td>\(0.8 \times 35 + 1 = 29\)</td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+    <!--<th>Other</th><td>\(x_2=7\)</td><td>\(y_2=1\)</td><td>\(2\)</td>-->
+    <!--<td>\(\frac{y_2}{y_1 + y_2} =\frac{1}{4+1} = 0.2\)</td>-->
+    <!--<td>\(0.2 \times 35 + 2 = 9\)</td>-->
+    <!--</tr>-->
+    <!--</table>-->
+</div>
+{% endif %}
+{% if player.treatment == "Det60_0" %}
+<div>
+    <p>
+        <strong><u>Example 1:</u></strong> Suppose both of you invest all 10 points in the Investment Account (\(x_1=x_2=10\)),
+        this will generate a total return of 10×10+60=160 points.
+        Because both of you invest 0 point in the Rationing Account (\(y_1=y_2=0\)), the profit is evenly split between you two.
+        Therefore, each of you receives 50 points.
+        This can be illustrated by the following table.
+    </p>
+    <table>
+        <tr>
+            <th></th>
+            <th>Investment Account</th><th>Rationing Account</th><th>Kept to self</th>
+            <th>Total Return</th><th>Share of Total Return</th><th>Final Earnings</th>
+        </tr>
+        <tr>
+            <th>You</th><td>\(x_1=10\)</td><td>\(y_1=0\)</td><td>\(0\)</td>
+            <td rowspan="2">\(x_1x_2+60=160\)</td><td> \(0.5 \)</td><td>\(0.5\times 160 + 0 = 80\)</td>
+        </tr>
+        <tr>
+            <th>Other</th><td>\(x_2=10\)</td><td>\(y_2=0\)</td><td>\(0\)</td>
+            <td>\(0.5 \)</td><td>\(0.5\times 160 +0 = 80\)</td>
+        </tr>
+    </table>
+
+    <br/>
+    <br/>
+    <p>
+        <strong><u>Example 2:</u></strong> If both of you keep all 10 points to yourselves,
+        you each receive these 10 points as your earnings. Because both of you invest 0 point in the Rationing Account,
+        the total return 60 points is evenly split between you two. Therefore, each of you receives 60/2+10 = 40 points.
+        This can be illustrated in the following table.
+    </p>
+    <table>
+        <tr>
+            <th></th>
+            <th>Investment Account</th><th>Rationing Account</th><th>Kept to self</th>
+            <th>Total Return</th><th>Share of Total Return</th><th>Final Earnings</th>
+        </tr>
+        <tr>
+            <th>You</th><td>\(x_1=0\)</td><td>\(y_1=0\)</td><td>\(10\)</td>
+            <td rowspan="2">\(x_1x_2+60=60\)</td><td> \(0.5 \)</td><td>\(0.5\times 60 +10 = 40\)</td>
+        </tr>
+        <tr>
+            <th>Other</th><td>\(x_2=0\)</td><td>\(y_2=0\)</td><td>\(10\)</td>
+            <td>\(0.5 \)</td><td>\(0.5\times 60 +10 = 40\)</td>
+        </tr>
+    </table>
+
+    <br/>
+    <br/>
+    <p>
+        <strong><u>Example 3:</u></strong> In the following situation, the total return is 5x5+60=85 points.
+    </p>
+    <table>
+        <tr>
+            <th></th>
+            <th>Investment Account</th><th>Rationing Account</th><th>Kept to self</th>
+            <th>Total Return</th><th>Share of Total Return</th><th>Final Earnings</th>
+        </tr>
+        <tr>
+            <th>You</th><td>\(x_1=5\)</td><td>\(y_1=3\)</td><td>\(2\)</td>
+            <td rowspan="2">\(x_1x_2+60=85\)</td>
+            <td>\(\frac{y_1}{y_1 + y_2} =\frac{3}{3+2} = 0.6\)</td>
+            <td>\(0.6 \times 85 + 2 = 70\)</td>
+        </tr>
+        <tr>
+            <th>Other</th><td>\(x_2=5\)</td><td>\(y_2=2\)</td><td>\(3\)</td>
+            <td>\(\frac{y_2}{y_1 + y_2} =\frac{2}{3+2} = 0.4\)</td>
+            <td>\(0.4 \times 85 + 3 = 37\)</td>
+        </tr>
+    </table>
+
+    <!--<br/>-->
+    <!--<br/>-->
+    <!--<p>-->
+    <!--<strong><u>Example 4:</u></strong>-->
+    <!--</p>-->
+    <!--<table>-->
+    <!--<tr>-->
+    <!--<th></th>-->
+    <!--<th>Investment Account</th><th>Rationing Account</th><th>Kept to self</th>-->
+    <!--<th>Total Return</th><th>Share of Total Return</th><th>Final Earnings</th>-->
+    <!--</tr>-->
+    <!--<tr>-->
+    <!--<th>You</th><td>\(x_1=5\)</td><td>\(y_1=4\)</td><td>\(1\)</td>-->
+    <!--<td rowspan="2">\(x_1x_2+60=95\)</td>-->
+    <!--<td>\(\frac{y_1}{y_1 + y_2} =\frac{4}{4+1} = 0.8\)</td>-->
+    <!--<td>\(0.8 \times 95 + 1 = 77\)</td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+    <!--<th>Other</th><td>\(x_2=7\)</td><td>\(y_2=1\)</td><td>\(2\)</td>-->
+    <!--<td>\(\frac{y_2}{y_1 + y_2} =\frac{1}{4+1} = 0.2\)</td>-->
+    <!--<td>\(0.2 \times 95 + 2 = 21\)</td>-->
+    <!--</tr>-->
+    <!--</table>-->
+</div>
+{% endif %}
+
+{% if player.treatment == "Fix0_60" %}
+<div>
+    <p>
+        <strong><u>Example 1:</u></strong> Suppose both of you invest all 10 points in the Investment Account (\(x_1=x_2=10\)),
+        this will generate a total return of 2x10x10=200 points if the investment is a success, and 0 point if the investment is a failure.
+        Because both of you invest 0 point in the Rationing Account (\(y_1=y_2=0\)), the profit is evenly split between you two.
+        This can be illustrated by the following table.
+    </p>
+    <table>
+        <tr>
+            <th rowspan="2"></th>
+            <th rowspan="2">Investment Account</th><th rowspan="2">Rationing Account</th>
+            <th rowspan="2">Kept to self</th>
+            <th rowspan="2">Share of Total Return</th>
+            <th colspan="2">Successful (\(rand \le 100\))</th>
+            <th colspan="2">Unsuccessful (\(rand > 100\))</th>
+        </tr>
+        <tr>
+            <th>Total Return</th><th>Final Earnings</th>
+            <th>Total Return</th><th>Final Earnings</th>
+        </tr>
+        <tr>
+            <th>You</th><td>\(x_1=10\)</td><td>\(y_1=0\)</td><td>\(0\)</td><td>\(0.5 \)</td>
+            <td rowspan="2">\(200\)</td><td>\(0.5\times 200 + 0 = 100\)</td>
+            <td rowspan="2">\(0\)</td><td>\(0.5\times 0 + 0 = 0\)</td>
+        </tr>
+        <tr>
+            <th>Other</th><td>\(x_2=10\)</td><td>\(y_2=0\)</td><td>\(0\)</td><td>\(0.5 \)</td>
+            <td>\(0.5\times 200 +0 = 100\)</td>
+            <td>\(0.5\times 0 +0 = 0\)</td>
+        </tr>
+    </table>
+
+    <br/>
+    <br/>
+    <p>
+        <strong><u>Example 2:</u></strong>
+        If both of you keep all 10 points to yourselves (that is, \(x_1=x_2=0,y_1=y_2=0\)),
+        you each receive these 10 points as your earnings.
+        Because \(x_1=x_2=0\), the total return is 0 regardless of the random number.
+
+    </p>
+    <table>
+        <tr>
+            <th rowspan="2"></th>
+            <th rowspan="2">Investment Account</th><th rowspan="2">Rationing Account</th>
+            <th rowspan="2">Kept to self</th>
+            <th rowspan="2">Share of Total Return</th>
+            <th colspan="2">Successful (\(rand \le 100\))</th>
+            <th colspan="2">Unsuccessful (\(rand > 100\))</th>
+        </tr>
+        <tr>
+            <th>Total Return</th><th>Final Earnings</th>
+            <th>Total Return</th><th>Final Earnings</th>
+        </tr>
+        <tr>
+            <th>You</th><td>\(x_1=0\)</td><td>\(y_1=0\)</td><td>\(10\)</td><td>\(0.5\)</td>
+            <td rowspan="2">\(0\)</td><td>\(0.5\times 0 + 10 = 10\)</td>
+            <td rowspan="2">\(0\)</td><td>\(0.5\times 0 + 10 = 10\)</td>
+        </tr>
+        <tr>
+            <th>Other</th><td>\(x_2=0\)</td><td>\(y_2=0\)</td><td>\(10\)</td><td>\(0.5\)</td>
+            <td>\(0.5\times 0 + 10 = 10\)</td>
+            <td>\(0.5\times 0 + 10 = 10\)</td>
+        </tr>
+    </table>
+
+    <br/>
+    <br/>
+    <p>
+        <strong><u>Example 3:</u></strong> In the following situation, the total return is 2x5x5=50 points
+        if the investment is a success and 0 point if the investment is a failure.
+    </p>
+    <table>
+        <tr>
+            <th rowspan="2"></th>
+            <th rowspan="2">Investment Account</th><th rowspan="2">Rationing Account</th>
+            <th rowspan="2">Kept to self</th>
+            <th rowspan="2">Share of Total Return</th>
+            <th colspan="2">Successful (\(rand \le 100\))</th>
+            <th colspan="2">Unsuccessful (\(rand > 100\))</th>
+        </tr>
+        <tr>
+            <th>Total Return</th><th>Final Earnings</th>
+            <th>Total Return</th><th>Final Earnings</th>
+        </tr>
+        <tr>
+            <th>You</th><td>\(x_1=5\)</td><td>\(y_1=3\)</td><td>\(2\)</td>
+            <td> \(\frac{y_1}{y_1 + y_2}\ = \frac{3}{3+2} =0.6\)</td>
+            <td rowspan="2">\(50\)</td><td>\(0.6\times 50 + 2 = 32\)</td>
+            <td rowspan="2">\(0\)</td><td>\(0.6\times 0 + 2 = 2\)</td>
+        </tr>
+        <tr>
+            <th>Other</th><td>\(x_2=5\)</td><td>\(y_2=2\)</td><td>\(3\)</td>
+            <td> \(\frac{y_2}{y_1 + y_2}\ = \frac{2}{3+2} =0.4\)</td>
+            <td>\(0.4\times 50 + 3 = 23\)</td>
+            <td>\(0.4\times 0 + 3 = 3\)</td>
+        </tr>
+    </table>
+
+</div>
+{% endif %}
+{% if player.treatment == "Fix60_0" %}
+<div>
+    <p>
+        <strong><u>Example 1:</u></strong> Suppose both of you invest all 10 points in the Investment Account (\(x_1=x_2=10\)),
+        this will generate a total return of 2x10x10+60=260 points if the investment is a success, and 60 point if the investment is a failure.
+        Because both of you invest 0 point in the Rationing Account (\(y_1=y_2=0\)), the profit is evenly split between you two.
+        This can be illustrated by the following table.
+    </p>
+    <table>
+        <tr>
+            <th rowspan="2"></th>
+            <th rowspan="2">Investment Account</th><th rowspan="2">Rationing Account</th>
+            <th rowspan="2">Kept to self</th>
+            <th rowspan="2">Share of Total Return</th>
+            <th colspan="2">Successful (\(rand \le 100\))</th>
+            <th colspan="2">Unsuccessful (\(rand > 100\))</th>
+        </tr>
+        <tr>
+            <th>Total Return</th><th>Final Earnings</th>
+            <th>Total Return</th><th>Final Earnings</th>
+        </tr>
+        <tr>
+            <th>You</th><td>\(x_1=10\)</td><td>\(y_1=0\)</td><td>\(0\)</td><td>\(0.5 \)</td>
+            <td rowspan="2">\(260\)</td><td>\(0.5\times 260 + 0 = 130\)</td>
+            <td rowspan="2">\(60\)</td><td>\(0.5\times 60 + 0 = 30\)</td>
+        </tr>
+        <tr>
+            <th>Other</th><td>\(x_2=10\)</td><td>\(y_2=0\)</td><td>\(0\)</td><td>\(0.5 \)</td>
+            <td>\(0.5\times 260 +0 = 130\)</td>
+            <td>\(0.5\times 60 +0 = 30\)</td>
+        </tr>
+    </table>
+
+    <br/>
+    <br/>
+    <p>
+        <strong><u>Example 2:</u></strong>
+        If both of you keep all 10 points to yourselves (that is, \(x_1=x_2=0,y_1=y_2=0\)),
+        you each receive these 10 points as your earnings.
+        Because \(x_1=x_2=0\), the total return is 60 points regardless of the random number.
+        Because \(y_1=y_2=0\), the total return is evenly split between you and the other participant.
+        Therefore, each of you receives 0.5x60+10=40 points.
+
+    </p>
+    <table>
+        <tr>
+            <th rowspan="2"></th>
+            <th rowspan="2">Investment Account</th><th rowspan="2">Rationing Account</th>
+            <th rowspan="2">Kept to self</th>
+            <th rowspan="2">Share of Total Return</th>
+            <th colspan="2">Successful (\(rand \le 100\))</th>
+            <th colspan="2">Unsuccessful (\(rand > 100\))</th>
+        </tr>
+        <tr>
+            <th>Total Return</th><th>Final Earnings</th>
+            <th>Total Return</th><th>Final Earnings</th>
+        </tr>
+        <tr>
+            <th>You</th><td>\(x_1=0\)</td><td>\(y_1=0\)</td><td>\(10\)</td><td>\(0.5\)</td>
+            <td rowspan="2">\(0+60\)</td><td>\(0.5\times 60 + 10 = 40\)</td>
+            <td rowspan="2">\(60\)</td><td>\(0.5\times 60 + 10 = 40\)</td>
+        </tr>
+        <tr>
+            <th>Other</th><td>\(x_2=0\)</td><td>\(y_2=0\)</td><td>\(10\)</td><td>\(0.5\)</td>
+            <td>\(0.5\times 60 + 10 = 40\)</td>
+            <td>\(0.5\times 60 + 10 = 40\)</td>
+        </tr>
+    </table>
+
+    <br/>
+    <br/>
+    <p>
+        <strong><u>Example 3:</u></strong> In the following situation, the total return is 2x5x5+60=110 points if the investment
+        is a success and only 60 points if the investment is a failure.
+    </p>
+    <table>
+        <tr>
+            <th rowspan="2"></th>
+            <th rowspan="2">Investment Account</th><th rowspan="2">Rationing Account</th>
+            <th rowspan="2">Kept to self</th>
+            <th rowspan="2">Share of Total Return</th>
+            <th colspan="2">Successful (\(rand \le 100\))</th>
+            <th colspan="2">Unsuccessful (\(rand > 100\))</th>
+        </tr>
+        <tr>
+            <th>Total Return</th><th>Final Earnings</th>
+            <th>Total Return</th><th>Final Earnings</th>
+        </tr>
+        <tr>
+            <th>You</th><td>\(x_1=5\)</td><td>\(y_1=3\)</td><td>\(2\)</td>
+            <td> \(\frac{y_1}{y_1 + y_2}\ = \frac{3}{3+2} =0.6\)</td>
+            <td rowspan="2">\(110\)</td><td>\(0.6\times 110 + 2 = 68\)</td>
+            <td rowspan="2">\(60\)</td><td>\(0.6\times 60 + 2 = 38\)</td>
+        </tr>
+        <tr>
+            <th>Other</th><td>\(x_2=5\)</td><td>\(y_2=2\)</td><td>\(3\)</td>
+            <td> \(\frac{y_2}{y_1 + y_2}\ = \frac{2}{3+2} =0.4\)</td>
+            <td>\(0.4\times 110 + 3 = 47\)</td>
+            <td>\(0.4\times 60 + 3 = 27\)</td>
+        </tr>
+    </table>
+
+</div>
+{% endif %}
+
+{% if player.treatment == "Var0_60" %}
+<div>
+    <p>
+        <strong><u>Example 1:</u></strong> Suppose both of you invest all 10 points in the Investment Account (\(x_1=x_2=10\)).
+        The investment is a success if the random number is no greater than \(x_1x_2=100\).
+        Because both of you invest 0 point in the Rationing Account (\(y_1=y_2=0\)), the profit is evenly split between you two.
+        This can be illustrated by the following table.
+    </p>
+    <table>
+        <tr>
+            <th rowspan="2"></th>
+            <th rowspan="2">Investment Account</th><th rowspan="2">Rationing Account</th>
+            <th rowspan="2">Kept to self</th>
+            <th rowspan="2">Share of Total Return</th>
+            <th colspan="2">Successful (\(rand \le 100\))</th>
+            <th colspan="2">Unsuccessful (\(rand > 100\))</th>
+        </tr>
+        <tr>
+            <th>Total Return</th><th>Final Earnings</th>
+            <th>Total Return</th><th>Final Earnings</th>
+        </tr>
+        <tr>
+            <th>You</th><td>\(x_1=10\)</td><td>\(y_1=0\)</td><td>\(0\)</td><td>\(0.5 \)</td>
+            <td rowspan="2">\(200\)</td><td>\(0.5\times 200 + 0 = 100\)</td>
+            <td rowspan="2">\(0\)</td><td>\(0.5\times 0 + 0 = 0\)</td>
+        </tr>
+        <tr>
+            <th>Other</th><td>\(x_2=10\)</td><td>\(y_2=0\)</td><td>\(0\)</td><td>\(0.5 \)</td>
+            <td>\(0.5\times 200 +0 = 100\)</td>
+            <td>\(0.5\times 0 +0 = 0\)</td>
+        </tr>
+    </table>
+
+    <br/>
+    <br/>
+    <p>
+        <strong><u>Example 2:</u></strong>
+        If both of you keep all 10 points to yourselves (that is, \(x_1=x_2=0,y_1=y_2=0\)),
+        you each receive these 10 points as your earnings.
+        Because \(x_1=x_2=0\), any random number is greater than \(x_1x_2=0\), so the investment is always unsuccessful.
+    </p>
+    <table>
+        <tr>
+            <th rowspan="2"></th>
+            <th rowspan="2">Investment Account</th><th rowspan="2">Rationing Account</th>
+            <th rowspan="2">Kept to self</th>
+            <th rowspan="2">Share of Total Return</th>
+            <th colspan="2">Always unsuccessful (\(rand > 0\))</th>
+        </tr>
+        <tr>
+            <th>Total Return</th><th>Final Earnings</th>
+        </tr>
+        <tr>
+            <th>You</th><td>\(x_1=0\)</td><td>\(y_1=0\)</td><td>\(10\)</td><td>\(0.5\)</td>
+            <td rowspan="2">\(0\)</td><td>\(0.5\times 0 + 10 = 10\)</td>
+        </tr>
+        <tr>
+            <th>Other</th><td>\(x_2=0\)</td><td>\(y_2=0\)</td><td>\(10\)</td><td>\(0.5\)</td>
+            <td>\(0.5\times 0 + 10 = 10\)</td>
+        </tr>
+    </table>
+
+    <br/>
+    <br/>
+    <p>
+        <strong><u>Example 3:</u></strong> In the following situation, the investment is a success (and the total return is 200 points)
+        if the random number is no greater than \(x_1x_2=25\).
+    </p>
+    <table>
+        <tr>
+            <th rowspan="2"></th>
+            <th rowspan="2">Investment Account</th><th rowspan="2">Rationing Account</th>
+            <th rowspan="2">Kept to self</th>
+            <th rowspan="2">Share of Total Return</th>
+            <th colspan="2">Successful (\(rand \le 25\))</th>
+            <th colspan="2">Unsuccessful (\(rand > 25\))</th>
+        </tr>
+        <tr>
+            <th>Total Return</th><th>Final Earnings</th>
+            <th>Total Return</th><th>Final Earnings</th>
+        </tr>
+        <tr>
+            <th>You</th><td>\(x_1=5\)</td><td>\(y_1=3\)</td><td>\(2\)</td>
+            <td> \(\frac{y_1}{y_1 + y_2}\ = \frac{3}{3+2} =0.6\)</td>
+            <td rowspan="2">\(200\)</td><td>\(0.6\times 200 + 2 = 122\)</td>
+            <td rowspan="2">\(0\)</td><td>\(0.6\times 0 + 2 = 2\)</td>
+        </tr>
+        <tr>
+            <th>Other</th><td>\(x_2=5\)</td><td>\(y_2=2\)</td><td>\(3\)</td>
+            <td> \(\frac{y_2}{y_1 + y_2}\ = \frac{2}{3+2} =0.4\)</td>
+            <td>\(0.4\times 200 + 3 = 83\)</td>
+            <td>\(0.4\times 0 + 3 = 3\)</td>
+        </tr>
+    </table>
+
+</div>
+{% endif %}
+
+{% if player.treatment == "Var60_0" %}
+<div>
+    <p>
+        <strong><u>Example 1:</u></strong> Suppose both of you invest all 10 points in the Investment Account (\(x_1=x_2=10\)).
+        The investment is a success if the random number is no greater than \(x_1x_2=100\).
+        Because both of you invest 0 point in the Rationing Account (\(y_1=y_2=0\)), the profit is evenly split between you two.
+        This can be illustrated by the following table.
+    </p>
+    <table>
+        <tr>
+            <th rowspan="2"></th>
+            <th rowspan="2">Investment Account</th><th rowspan="2">Rationing Account</th>
+            <th rowspan="2">Kept to self</th>
+            <th rowspan="2">Share of Total Return</th>
+            <th colspan="2">Successful (\(rand \le 100\))</th>
+            <th colspan="2">Unsuccessful (\(rand > 100\))</th>
+        </tr>
+        <tr>
+            <th>Total Return</th><th>Final Earnings</th>
+            <th>Total Return</th><th>Final Earnings</th>
+        </tr>
+        <tr>
+            <th>You</th><td>\(x_1=10\)</td><td>\(y_1=0\)</td><td>\(0\)</td><td>\(0.5 \)</td>
+            <td rowspan="2">\(260\)</td><td>\(0.5\times 260 + 0 = 130\)</td>
+            <td rowspan="2">\(60\)</td><td>\(0.5\times 60 + 0 = 30\)</td>
+        </tr>
+        <tr>
+            <th>Other</th><td>\(x_2=10\)</td><td>\(y_2=0\)</td><td>\(0\)</td><td>\(0.5 \)</td>
+            <td>\(0.5\times 260 +0 = 130\)</td>
+            <td>\(0.5\times 60 +0 = 30\)</td>
+        </tr>
+    </table>
+
+    <br/>
+    <br/>
+    <p>
+        <strong><u>Example 2:</u></strong>
+        If both of you keep all 10 points to yourselves (that is, \(x_1=x_2=0,y_1=y_2=0\)),
+        you each receive these 10 points as your earnings.
+        Because \(x_1=x_2=0\), any random number is greater than \(x_1x_2\)=0, so the investment is always unsuccessful.
+    </p>
+    <table>
+        <tr>
+            <th rowspan="2"></th>
+            <th rowspan="2">Investment Account</th><th rowspan="2">Rationing Account</th>
+            <th rowspan="2">Kept to self</th>
+            <th rowspan="2">Share of Total Return</th>
+            <th colspan="2">Always unsuccessful (\(rand > 0\))</th>
+        </tr>
+        <tr>
+            <th>Total Return</th><th>Final Earnings</th>
+        </tr>
+        <tr>
+            <th>You</th><td>\(x_1=0\)</td><td>\(y_1=0\)</td><td>\(10\)</td><td>\(0.5\)</td>
+            <td rowspan="2">\(60\)</td><td>\(0.5\times 60 + 10 = 40\)</td>
+        </tr>
+        <tr>
+            <th>Other</th><td>\(x_2=0\)</td><td>\(y_2=0\)</td><td>\(10\)</td><td>\(0.5\)</td>
+            <td>\(0.5\times 60 + 10 = 40\)</td>
+        </tr>
+    </table>
+
+    <br/>
+    <br/>
+    <p>
+        <strong><u>Example 3:</u></strong> In the following situation, the investment is a success (and the total return is 260 points)
+        if the random number is no greater than \(x_1x_2=25\).
+    </p>
+    <table>
+        <tr>
+            <th rowspan="2"></th>
+            <th rowspan="2">Investment Account</th><th rowspan="2">Rationing Account</th>
+            <th rowspan="2">Kept to self</th>
+            <th rowspan="2">Share of Total Return</th>
+            <th colspan="2">Successful (\(rand \le 25\))</th>
+            <th colspan="2">Unsuccessful (\(rand > 25\))</th>
+        </tr>
+        <tr>
+            <th>Total Return</th><th>Final Earnings</th>
+            <th>Total Return</th><th>Final Earnings</th>
+        </tr>
+        <tr>
+            <th>You</th><td>\(x_1=5\)</td><td>\(y_1=3\)</td><td>\(2\)</td>
+            <td> \(\frac{y_1}{y_1 + y_2}\ = \frac{3}{3+2} =0.6\)</td>
+            <td rowspan="2">\(260\)</td><td>\(0.6\times 260 + 2 = 158\)</td>
+            <td rowspan="2">\(60\)</td><td>\(0.6\times 60 + 2 = 38\)</td>
+        </tr>
+        <tr>
+            <th>Other</th><td>\(x_2=5\)</td><td>\(y_2=2\)</td><td>\(3\)</td>
+            <td> \(\frac{y_2}{y_1 + y_2}\ = \frac{2}{3+2} =0.4\)</td>
+            <td>\(0.4\times 260 + 3 = 107\)</td>
+            <td>\(0.4\times 60 + 3 = 27\)</td>
+        </tr>
+    </table>
+
+</div>
+{% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+<div>
+    <p style="text-align:center">
+       <strong>
+           You have just been matched with another participant, and you will start to interact with this participant to earn bonus.
+       </strong>
+    </p>
+
+    <p style="font-size:16px">
+        Note: The experiment proceeds as fast as the slower participant.
+        If both participants make prompt decisions quickly, the experiment can be finished quickly.
+        Therefore, please keep focused and submit your decisions in a timely manner.
+    </p>
+
+    <p>
+        In order to make sure that the experiment does not take forever, we impose some time limit for the decision-making.
+        For the first 5 rounds, you have 1 minutes to reach your decision; after Round 5, you have 30 seconds to reach your decision.
+        <strong>If you do not submit your answer within the allocated time, the computer will randomly choose answers for you, and
+            you will not get paid for that round.</strong>
+    </p>
+    <p style="text-align:center">
+        <strong>Remember to submit once you reach your decision.
+            Your decision is submitted only after you click "Submit".</strong>
+    </p>
+
+</div>
+<br/>
+<div style="text-align:right">
+    <button class="otree-btn-next btn btn-primary">Continue</button>
+</div>
+
+
+{% include Constants.instructions_template %}
+
+
+
+{% endblock %}

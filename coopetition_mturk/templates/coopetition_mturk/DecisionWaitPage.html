@@ -1,0 +1,67 @@
+{% extends 'otree/WaitPage.html' %}
+{% load staticfiles otree %}
+{% block title %} {% endblock %}
+
+{% block content %}
+
+<style>
+    #width50 {
+        width: 50%;
+    }
+
+    td {
+        border: 1px solid #ddd;
+        text-align: center;
+        padding: 8px;
+        font-size: 10pt;
+    }
+    th {
+        border: 1px solid #ddd;
+        text-align: center;
+        padding: 5px;
+        font-size: 10pt;
+    }
+    tr:nth-child(even){background-color: #f2f2f2;}
+    tr:hover {background-color: #ddd;}
+
+    table {
+        margin: auto;
+    }
+</style>
+
+<p style="font-size:16px">Round {{ player.round_in_interaction }} </p>
+
+<p style="text-align:center; font-size:18px">
+You have made the following allocation:
+</p>
+<table class="table" style="text-align:center">
+    <tr>
+        <td>Investment Account (\(x_1\)): {{ player.a1 }}</td>
+    </tr>
+    <tr>
+        <td>Rationing Account  (\(y_1\)): {{ player.a2 }}</td>
+    </tr>
+    <tr>
+        <td>Kept to oneself: {{ player.a3 }}</td>
+    </tr>
+</table>
+
+<div style="font-size:16px;text-align:center">
+    <p>
+        Please wait for the other participant to reach decision.
+    </p>
+</div>
+
+<br/>
+{% include Constants.history_template %}
+
+<br/>
+<div class="card bg-light instructions">
+    <div class="card-body">
+        {% include Constants.instructions_template %}
+    </div>
+</div>
+
+<br/>
+{% include Constants.history_previous_template %}
+{% endblock %}

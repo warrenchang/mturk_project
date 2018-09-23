@@ -1,0 +1,26 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+   Payment Information
+{% endblock %}
+
+{% block content %}
+
+{% if qualified %}
+<p>This is the end of the experiment. Thank you for your participation.</p>
+<p>Your flat payment fee is {{participation_fee}}.</p>
+<p>You bonus earnings in the experiment is {{experiment_payoff}}, which is {{payment}}.</p>
+<p><strong> You final payment of the experiment is  {{final_payment}}.</strong> </p>
+{% else %}
+<p>This is the end of the experiment. </p>
+{% endif %}
+
+<div style="text-align:right">
+    {% next_button %}
+</div>
+{% endblock %}
+
+{% block form %}
+
+{% endblock %}

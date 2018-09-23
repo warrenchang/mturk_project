@@ -1,0 +1,66 @@
+{% extends extended_page_tpl %}
+
+{% load staticfiles otree_tags %}
+
+{% block app_styles %}
+<link href="{% static 'otreeutils/understanding.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block app_scripts %}
+<script src="{% static 'otreeutils/understanding.js' %}"></script>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>MathJax example</title>
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML" async>
+    </script>
+</head>
+{% endblock %}
+
+
+{% block title %}
+{{ page_title }}
+{% endblock %}
+
+{% block content %}
+
+<div class="card bg-light instructions">
+    <div class="card-body">
+        {% if quiz_info != '' %}
+        {% include quiz_info  %}
+        {% endif %}
+    </div>
+</div>
+
+<br/>
+<ul class="questions">
+    {{ questions_form.as_ul }}
+</ul>
+
+<div style="display: none">
+    {% next_button %}
+</div>
+
+<div class="fake-next">
+    <input class="btn btn-primary btn-large btn-primary" type="button" value="Check my answers"
+           onclick="checkUnderstandingQuestionsForm()">
+</div>
+
+<br/>
+<div class="card bg-light instructions">
+    <div class="card-body">
+        {% if extra_template != '' %}
+        {% include extra_template  %}
+        {% endif %}
+    </div>
+</div>
+
+<script>
+    $(function() {
+        setupUnderstandingQuestionsForm({{ n_questions }}, "{{ hint_empty }}", "{{ form_field_n_wrong_attempts }}", {{ set_correct_answers }});
+    });
+</script>
+{% endblock %}
+
+
