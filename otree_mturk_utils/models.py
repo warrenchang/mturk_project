@@ -79,5 +79,6 @@ VALUES = (
 class BigFiveData(djmodels.Model):
     Participant = djmodels.OneToOneField(Participant, on_delete=djmodels.CASCADE,
                                          primary_key=True, related_name="asdf", )
-    bigfive = RadioGridField(rows=ROWS, values=VALUES,
-                             verbose_name='I see myself as', )
+    bigfive = models.IntegerField()
+    # bigfive = RadioGridField(rows=ROWS, values=VALUES,
+    #                          verbose_name='I see myself as', )
