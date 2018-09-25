@@ -160,12 +160,12 @@ mturk_hit_settings = {
         { # Worker_​NumberHITsApproved
             'QualificationTypeId': "00000000000000000040",
             'Comparator': "GreaterThan",
-            'IntegerValue': [100]
+            'IntegerValues': [100]
         },
         { # Worker_​NumberHITsApproved
             'QualificationTypeId': "000000000000000000L0",
             'Comparator': "GreaterThan",
-            'IntegerValue': [80]
+            'IntegerValues': [80]
         },
         # qualification.LocaleRequirement("EqualTo", "US"),
         # qualification.PercentAssignmentsApprovedRequirement("GreaterThanOrEqualTo", 50),
