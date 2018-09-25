@@ -20,7 +20,7 @@ class AllGroupsWaitPage(WaitPage):
     wait_for_all_groups = True
 
 
-class ExtendedPage(CustomMturkPage):
+class ExtendedPage(Page):
     """Base page class with extended functionality."""
     page_title = ''
     quiz_info = ''

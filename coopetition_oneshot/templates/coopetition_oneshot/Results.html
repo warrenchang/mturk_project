@@ -1,0 +1,20 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+Results
+{% endblock %}
+
+
+{% block content %}
+
+
+<p>Based on the your and another participant's decision, your earnings for the game is  {{player.payoff}}.</p>
+
+<div style="text-align:right">
+    {% next_button %}
+</div>
+
+
+
+{% endblock %}

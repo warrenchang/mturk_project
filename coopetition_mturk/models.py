@@ -71,8 +71,12 @@ class Subsession(BaseSubsession):
             p.round_in_interaction = round_in_interaction
             p.treatment = treatment
             p.condition = p.treatment[:3]
-            ## a random number between 1 and 200 (inclusive)
-            p.rand_num = int(math.ceil(random.random()*200))
+            if p.treatment=='Fix':
+                ## a random number between 1 and 200 (inclusive)
+                p.rand_num = int(math.ceil(random.random()*200))
+                ## a random number between 1 and 110 (inclusive)
+            elif p.treatment=='Var':
+                p.rand_num = int(math.ceil(random.random()*110))
 
             if p.treatment[3] == '0':
                 p.A = Constants.A_values[p.interaction_number-1]
@@ -113,7 +117,7 @@ class Group(BaseGroup):
             p1.successful = p1.rand_num <= p1.a1*p2.a1
             p2.successful = p1.successful
             if p1.successful: # investment is a success
-                p1.pie = 200 + p1.A
+                p1.pie = 110 + p1.A
                 p2.pie = p1.pie
             else:
                 p1.pie = p1.A

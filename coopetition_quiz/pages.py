@@ -214,8 +214,8 @@ class SomeUnderstandingQuestions(UnderstandingQuestionsPage):
                 },
                 {
                     'question': "What is the total return of the investment if it is a success?",
-                    'options': ['10', '20', '100', '200'],
-                    'correct': '200',
+                    'options': ['10', '20', '100', '110'],
+                    'correct': '110',
                 },
                 # {
                 #     'question': "What is the total return of the investment if it is a failure?",
@@ -225,10 +225,10 @@ class SomeUnderstandingQuestions(UnderstandingQuestionsPage):
                 {
                     'question': 'At the start of a round, you and the other participant each receive 10 points. Suppose both of you keep these 10 points for yourselves (that is, \(x_1=x_2=0, y_1=y_2=0)\). Your final earnings is',
                     'options': ['10','20','40','100'],
-                    'correct': '40',
+                    'correct': '10',
                 },
                 {
-                    'question': "At the start of a round, you and the other participant each receive 10 points. Suppose both of you put all the 10 points in the Investment Account (\(x_1=x_2=10\)). In order for the investment to be a success, the random number must be no greater than",
+                    'question': "At the start of a round, you and the other participant each receive 10 points. Suppose both of you put all the 10 points in the Investment Account (\(x_1=x_2=10\)). In order for the investment to be a success, the random number must be NO greater than",
                     'options': ['10','20','100','200'],
                     'correct': '100',
                 },
@@ -255,8 +255,8 @@ class SomeUnderstandingQuestions(UnderstandingQuestionsPage):
                 },
                 {
                     'question': "What is the total return of the investment if it is a success?",
-                    'options': ['10', '20', '100', '260'],
-                    'correct': '260',
+                    'options': ['10', '20', '100', '170'],
+                    'correct': '170',
                 },
                 {
                     'question': 'At the start of a round, you and the other participant each receive 10 points. Suppose both of you keep these 10 points for yourselves (that is, \(x_1=x_2=0, y_1=y_2=0\)). Your final earnings is',
@@ -264,7 +264,7 @@ class SomeUnderstandingQuestions(UnderstandingQuestionsPage):
                     'correct': '40',
                 },
                 {
-                    'question': "At the start of a round, you and the other participant each receive 10 points. Suppose both of you put all the 10 points in the Investment Account (\(x_1=x_2=10\)). In order for the investment to be a success, the random number must be no greater than",
+                    'question': "At the start of a round, you and the other participant each receive 10 points. Suppose both of you put all the 10 points in the Investment Account (\(x_1=x_2=10\)). In order for the investment to be a success, the random number must be NO greater than",
                     'options': ['10','20','100','200'],
                     'correct': '100',
                 },
@@ -278,6 +278,9 @@ class SomeUnderstandingQuestions(UnderstandingQuestionsPage):
         return questions
 
     def before_next_page(self):
+        ## the variable matched is used to determine whether the participant will play a one-shot game
+        ## in case matching is not reached
+        self.participant.vars['matched'] = False
         if self.timeout_happened:
             self.participant.vars['qualified'] = False
         else:

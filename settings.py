@@ -71,7 +71,7 @@ REAL_WORLD_CURRENCY_CODE = 'RMB '
 REAL_WORLD_CURRENCY_CODE = '$'
 USE_POINTS = True
 # POINTS_CUSTOM_NAME = 'tokens'
-REAL_WORLD_CURRENCY_DECIMAL_PLACES = 1
+REAL_WORLD_CURRENCY_DECIMAL_PLACES = 2
 POINTS_DECIMAL_PLACES = 1
 
 # e.g. en, de, fr, it, ja, zh-hans
@@ -79,9 +79,10 @@ POINTS_DECIMAL_PLACES = 1
 LANGUAGE_CODE = 'en'
 
 # if an app is included in SESSION_CONFIGS, you don't need to list it here
-INSTALLED_APPS = ['otree','otreeutils','otree_mturk_utils',]
+INSTALLED_APPS = ['otree','otreeutils','otree_mturk_utils', 'otree_tools',]
 EXTENSION_APPS  = [
     'otree_mturk_utils',
+    'otree_tools',
 ]
 
 # SENTRY_DSN = ''
@@ -134,20 +135,41 @@ ROOMS = [
 mturk_hit_settings = {
     'keywords': ['bonus', 'choice', 'study'],
     'title': 'experiment on decision-making',
-    'description': 'Description for your experiment',
+    'description': 'interaction with other MTurk workers',
     'frame_height': 500,
     'preview_template': 'global/MTurkPreview.html',
     'minutes_allotted_per_assignment': 60,
-    'expiration_hours': 1*12, # 7 days
+    'expiration_hours': 1, # 7 days
     #'grant_qualification_id': 'YOUR_QUALIFICATION_ID_HERE',# to prevent retakes
-
     'qualification_requirements': [
+        # { # to prevent retakes
+        #     'QualificationTypeId': "YOUR_QUALIFICATION_ID_HERE",
+        #     'Comparator': "DoesNotExist",
+        # }
+        { #Worker_Locale
+            'QualificationTypeId': "00000000000000000071",
+            'Comparator': "EqualTo",
+            'LocaleValues': [{'Country': "US"}]
+        },
+
+        { # Worker_​NumberHITsApproved
+            'QualificationTypeId': "00000000000000000040",
+            'Comparator': "GreaterThan",
+            'IntegerValue': [100]
+        },
+        { # Worker_​NumberHITsApproved
+            'QualificationTypeId': "000000000000000000L0",
+            'Comparator': "GreaterThan",
+            'IntegerValue': [80]
+        },
         # qualification.LocaleRequirement("EqualTo", "US"),
         # qualification.PercentAssignmentsApprovedRequirement("GreaterThanOrEqualTo", 50),
         # qualification.NumberHitsApprovedRequirement("GreaterThanOrEqualTo", 5),
         # qualification.Requirement('YOUR_QUALIFICATION_ID_HERE', 'DoesNotExist')
     ]
 }
+
+# MTURK_NUM_PARTICIPANTS_MULTIPLE = 3
 
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
@@ -168,72 +190,78 @@ SESSION_CONFIGS = [
         'name': 'coopetition_mturk_det0_60',
         'display_name': "Coopetition Det0_60",
         'num_demo_participants': 4,
-        'real_world_currency_per_point': 1 / 500,
+        'real_world_currency_per_point': 1 / 250,
         'participation_fee': 1,
         'max_payment': 5,
         'treatment' : 'Det0_60',
         # 'debug': False,
-        'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'survey_online','risk_preferences', 'payment_online'
+        'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
+                         'survey_online','risk_preferences', 'payment_online'
                          ],
     },
     {
         'name': 'coopetition_mturk_det60_0',
         'display_name': "Coopetition Det60_0",
         'num_demo_participants': 4,
-        'real_world_currency_per_point': 1 / 500,
+        'real_world_currency_per_point': 1 / 250,
         'participation_fee': 1,
         'max_payment': 5,
         'treatment': 'Det60_0',
         # 'debug': False,
-        'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'survey_online','risk_preferences', 'payment_online'
+        'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
+                         'survey_online','risk_preferences', 'payment_online'
                          ],
     },
     {
         'name': 'coopetition_mturk_fix0_60',
         'display_name': "Coopetition Fix0_60",
         'num_demo_participants': 4,
-        'real_world_currency_per_point': 1 / 500,
+        'real_world_currency_per_point': 1 / 250,
         'participation_fee': 1,
         'max_payment': 5,
         'treatment': 'Fix0_60',
         # 'debug': False,
-        'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'survey_online','risk_preferences', 'payment_online'
+        'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
+                         'survey_online','risk_preferences', 'payment_online'
                          ],
     },
     {
         'name': 'coopetition_mturk_fix60_0',
         'display_name': "Coopetition Fix60_0",
         'num_demo_participants': 4,
-        'real_world_currency_per_point': 1 / 500,
+        'real_world_currency_per_point': 1 / 250,
         'participation_fee': 1,
         'max_payment': 5,
         'treatment': 'Fix60_0',
         # 'debug': False,
-        'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'survey_online','risk_preferences', 'payment_online'
+        'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
+                         'survey_online','risk_preferences', 'payment_online'
                          ],
     },
     {
         'name': 'coopetition_mturk_var0_60',
         'display_name': "Coopetition Var0_60",
         'num_demo_participants': 4,
-        'real_world_currency_per_point': 1 / 500,
+        'real_world_currency_per_point': 1 / 250,
         'participation_fee': 1,
         'max_payment': 5,
         'treatment': 'Var0_60',
         # 'debug': False,
-        'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'survey_online','risk_preferences', 'payment_online'
+        'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
+                         'survey_online','risk_preferences', 'payment_online'
                          ],
     },
     {
         'name': 'coopetition_mturk_var60_0',
         'display_name': "Coopetition Var60_0",
         'num_demo_participants': 4,
-        'real_world_currency_per_point': 1 / 500,
+        'real_world_currency_per_point': 1 / 250,
         'participation_fee': 1,
         'max_payment': 5,
         'treatment': 'Var60_0',
         # 'debug': False,
-        'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'survey_online', 'risk_preferences', 'payment_online'
+        'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
+                         'survey_online','risk_preferences', 'payment_online'
                          ],
     },
 ]

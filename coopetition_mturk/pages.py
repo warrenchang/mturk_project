@@ -48,6 +48,10 @@ class StartPage(BasePage):
         return (self.participant.vars['qualified'] and
                 self.player.round_number == 1)
 
+    def before_next_page(self):
+        ## the variable "matched" is true only if the player is successfully matched.
+        self.participant.vars['matched'] = True
+
 
 class Introduction(BasePage):
     timeout_seconds = 90

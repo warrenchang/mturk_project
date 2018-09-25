@@ -1,0 +1,54 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+
+
+<p style="font-size:16px">
+    Although the system could not match you with another participant in real time,
+    you can still make your allocation decision for the investment game.
+    <strong> The system will match your decision with the decision that was made by one participant
+        in a previous experimental session.
+        </strong>
+
+    Your earnings will be based on your decision and the decision of this participant.
+</p>
+
+
+<p style="font-size:16px">
+    Out of the 10 points you have, please indicate the number of points you want to allocate to the
+    <i>Investment Account</i> and the <i>Rationing Account</i>.
+    The rest of the points are kept to yourself.
+</p>
+
+<div class="container" style="alignment:center">
+    <div class="row">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-4">
+            <b>Investment Account (\(x_1\))</b>  {{ form.a1 }}
+        </div>
+        <div class="col-sm-4">
+            <b>Rationing Account (\(y_1\)) </b>  {{ form.a2 }}
+        </div>
+        <div class="col-sm-2">
+        </div>
+    </div>
+</div>
+
+<div style="text-align:right">
+    <button class="otree-btn-next btn btn-primary">Submit</button>
+</div>
+
+<br/>
+<div class="card bg-light instructions">
+    <div class="card-body">
+        {% include Constants.instructions_template %}
+    </div>
+</div>
+
+{% endblock %}
+

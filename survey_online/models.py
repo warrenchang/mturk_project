@@ -65,6 +65,16 @@ SURVEY_DEFINITIONS = (
                          [5, '5. Very difficult']
                      ]),
              }),
+            ('participate_again',
+             {  # field name (which will also end up in your "Player" class and hence in your output data)
+                 'text': 'Would you like to participate in similar experiments in the future?',
+                 'field': models.IntegerField(
+                     choices=[
+                         [2, 'Yes'],
+                         [1, 'Maybe'],
+                         [0, 'No'],
+                     ]),
+             }),
             ('experiment_comments', {  # field name (which will also end up in your "Player" class and hence in your output data)
                 'text': 'Any comments about the experiment? (What you like/dislike about the experiment? Which part is hard to follow?)',
                 'field': models.TextField(blank=True),
