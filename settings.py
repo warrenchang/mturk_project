@@ -79,10 +79,15 @@ POINTS_DECIMAL_PLACES = 1
 LANGUAGE_CODE = 'en'
 
 # if an app is included in SESSION_CONFIGS, you don't need to list it here
-INSTALLED_APPS = ['otree','otreeutils','otree_mturk_utils', 'otree_tools',]
+INSTALLED_APPS = [
+    'otree',
+    'otreeutils',
+    'otree_mturk_utils',
+    # 'otree_tools',
+]
 EXTENSION_APPS  = [
     'otree_mturk_utils',
-    'otree_tools',
+    # 'otree_tools',
 ]
 
 # SENTRY_DSN = ''
