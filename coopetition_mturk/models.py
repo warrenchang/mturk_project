@@ -71,13 +71,12 @@ class Subsession(BaseSubsession):
             p.round_in_interaction = round_in_interaction
             p.treatment = treatment
             p.condition = p.treatment[:3]
-            if p.treatment=='Fix':
+            if p.condition=='Fix':
                 ## a random number between 1 and 200 (inclusive)
                 p.rand_num = int(math.ceil(random.random()*200))
+            elif p.condition=='Var':
                 ## a random number between 1 and 110 (inclusive)
-            elif p.treatment=='Var':
                 p.rand_num = int(math.ceil(random.random()*110))
-
             if p.treatment[3] == '0':
                 p.A = Constants.A_values[p.interaction_number-1]
             else:

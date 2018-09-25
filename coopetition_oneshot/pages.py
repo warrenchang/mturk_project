@@ -4,6 +4,7 @@ from otree.api import Currency as c, currency_range
 from otree_mturk_utils.pages import CustomMturkPage, CustomMturkWaitPage
 from .models import Constants
 import random
+import math
 
 
 def get_share(p1,p2):
@@ -34,7 +35,12 @@ class Decision(Page):
         p = self.player
         p.a3 = 10 - p.a1 - p.a2
 
-        rand_num = 10
+        if p.condition == 'Fix':
+            ## a random number between 1 and 200 (inclusive)
+            rand_num = int(math.ceil(random.random() * 200))
+            ## a random number between 1 and 110 (inclusive)
+        elif p.condition == 'Var':
+            rand_num = int(math.ceil(random.random() * 110))
 
         if p.condition =='Det':
             pie = p.a1*a1 + p.A
@@ -64,5 +70,5 @@ class Results(Page):
 
 page_sequence = [
     Decision,
-    Results,
+    # Results,
 ]

@@ -116,7 +116,7 @@ Results
     </table>
 
     <br/>
-    {% if player.rand_num <= 100 %}
+    {% if not player.successful and player.rand_num <= 100 %}
     <p>
         With the random number greater than \(x_1x_2 \), the investment is not successful. Note that if you and the other
         participant increase the points in the <i>Investment Account</i>, the investment could have been successful

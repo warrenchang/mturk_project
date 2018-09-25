@@ -22,8 +22,9 @@ class StartPage(CustomMturkPage):
 
 class SurveyPage1(SurveyPage):
     timeout_seconds = 90
-    def is_displayed(self):
-        return self.participant.vars['qualified']
+
+    # def is_displayed(self):
+    #     return self.participant.vars['qualified']
 
 
 # Create a list of survey pages.

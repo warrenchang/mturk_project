@@ -149,7 +149,7 @@ class SomeUnderstandingQuestions(UnderstandingQuestionsPage):
                 {
                     'question': "At the start of a round, you and the other participant each receive 10 points. Suppose both of you put 5 points in the Investment Account (that is, \(x_1=x_2=5\)). What is the total return from the Investment Account if the investment is a success?",
                     'options': ['5','10','25','50'],
-                    'correct': '25',
+                    'correct': '50',
                 },
                 {
                     'question': "Suppose you put 3 points in the Rationing Account  (\(y_1 = 3\)), and the other participant put 2 points in the Rationing Account (\(y_2 = 2\)). What is your share of the total return from the Investment Account? ",
@@ -182,8 +182,8 @@ class SomeUnderstandingQuestions(UnderstandingQuestionsPage):
                 },
                 {
                     'question': "At the start of a round, you and the other participant each receive 10 points. Suppose both of you put all the 10 points in the Investment Account (that is, \(x_1=x_2=10, y_1=y_2=0)\). What is the total return from the Investment Account if the investment is a success?",
-                    'options': ['10','20','100','200'],
-                    'correct': '200',
+                    'options': ['10','20','100','260'],
+                    'correct': '260',
                 },
                 {
                     'question': "At the start of a round, you and the other participant each receive 10 points. Suppose both of you put 5 points in the Investment Account (that is, \(x_1=x_2=5\)). What is the total return from the Investment Account if the investment is a success?",
