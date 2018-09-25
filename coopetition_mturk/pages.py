@@ -83,8 +83,8 @@ class Decision(BasePage):
 
     def before_next_page(self):
         if self.timeout_happened:
-            self.player.a1 = int(math.ceil(random.random()*5))
-            self.player.a2 = int(math.ceil(random.random()*5))
+            self.player.a1 = int(math.ceil(random.random()*10))
+            self.player.a2 = int(math.ceil(random.random()*(10-self.player.a1)))
             self.player.timed_out = True
         else:
             self.player.timed_out = False
