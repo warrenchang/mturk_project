@@ -34,7 +34,7 @@ class PaymentAdjustment(Page):
 
 
 class PaymentInfo(Page):
-    timeout_seconds = 30
+    timeout_seconds = 300
     def vars_for_template(self):
         print(self.participant.vars)
         return {
