@@ -145,12 +145,17 @@ mturk_hit_settings = {
     'preview_template': 'global/MTurkPreview.html',
     'minutes_allotted_per_assignment': 60,
     'expiration_hours': 1, # 7 days
+    'grant_qualification_id': '38TZ8V8N0DM053SXV290O3KU9JSIPY',
     #'grant_qualification_id': 'YOUR_QUALIFICATION_ID_HERE',# to prevent retakes
     'qualification_requirements': [
         # { # to prevent retakes
         #     'QualificationTypeId': "YOUR_QUALIFICATION_ID_HERE",
         #     'Comparator': "DoesNotExist",
-        # }
+        # },
+        { # to prevent retakes
+            'QualificationTypeId': '38TZ8V8N0DM053SXV290O3KU9JSIPY',
+            'Comparator': "DoesNotExist",
+        },
         { #Worker_Locale
             'QualificationTypeId': "00000000000000000071",
             'Comparator': "EqualTo",
@@ -174,7 +179,7 @@ mturk_hit_settings = {
     ]
 }
 
-# MTURK_NUM_PARTICIPANTS_MULTIPLE = 3
+MTURK_NUM_PARTICIPANTS_MULTIPLE = 3
 
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
@@ -195,7 +200,7 @@ SESSION_CONFIGS = [
         'name': 'coopetition_mturk_det0_60',
         'display_name': "Coopetition Det0_60",
         'num_demo_participants': 4,
-        'real_world_currency_per_point': 1 / 250,
+        'real_world_currency_per_point': 1 / 300,
         'participation_fee': 1,
         'max_payment': 5,
         'treatment' : 'Det0_60',
@@ -208,7 +213,7 @@ SESSION_CONFIGS = [
         'name': 'coopetition_mturk_det60_0',
         'display_name': "Coopetition Det60_0",
         'num_demo_participants': 4,
-        'real_world_currency_per_point': 1 / 250,
+        'real_world_currency_per_point': 1 / 300,
         'participation_fee': 1,
         'max_payment': 5,
         'treatment': 'Det60_0',
@@ -221,7 +226,7 @@ SESSION_CONFIGS = [
         'name': 'coopetition_mturk_fix0_60',
         'display_name': "Coopetition Fix0_60",
         'num_demo_participants': 4,
-        'real_world_currency_per_point': 1 / 250,
+        'real_world_currency_per_point': 1 / 300,
         'participation_fee': 1,
         'max_payment': 5,
         'treatment': 'Fix0_60',
@@ -234,7 +239,7 @@ SESSION_CONFIGS = [
         'name': 'coopetition_mturk_fix60_0',
         'display_name': "Coopetition Fix60_0",
         'num_demo_participants': 4,
-        'real_world_currency_per_point': 1 / 250,
+        'real_world_currency_per_point': 1 / 300,
         'participation_fee': 1,
         'max_payment': 5,
         'treatment': 'Fix60_0',
@@ -247,7 +252,7 @@ SESSION_CONFIGS = [
         'name': 'coopetition_mturk_var0_60',
         'display_name': "Coopetition Var0_60",
         'num_demo_participants': 4,
-        'real_world_currency_per_point': 1 / 250,
+        'real_world_currency_per_point': 1 / 300,
         'participation_fee': 1,
         'max_payment': 5,
         'treatment': 'Var0_60',
@@ -260,7 +265,7 @@ SESSION_CONFIGS = [
         'name': 'coopetition_mturk_var60_0',
         'display_name': "Coopetition Var60_0",
         'num_demo_participants': 4,
-        'real_world_currency_per_point': 1 / 250,
+        'real_world_currency_per_point': 1 / 300,
         'participation_fee': 1,
         'max_payment': 5,
         'treatment': 'Var60_0',
