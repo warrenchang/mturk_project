@@ -21,15 +21,16 @@
     </p>
 </div>
 
-{% if player.treatment == "Det0_60" or player.treatment == "Det60_0" %}
+
+{% if player.condition == "Det" %}
 <div>
     <p>
         Your final earnings can be expressed as
-        {% if player.treatment == "Det0_60" %}
+        {% if player.A == 0 %}
         $$\text{Final Earnings} =  \underbrace{\frac{y_1}{y_1 + y_2}x_1 x_2}_{\text{earnings from the investment}} +
         \underbrace{10-x_1-y_1}_{\text{points kept for oneself}}$$
         {% endif %}
-        {% if player.treatment == "Det60_0" %}
+        {% if player.A == 60 %}
         $$\text{Final Earnings} =  \underbrace{\frac{y_1}{y_1 + y_2}(x_1 x_2+60)}_{\text{earnings from the investment}} +
         \underbrace{10-x_1-y_1}_{\text{points kept for oneself}}$$
         {% endif %}
@@ -42,7 +43,7 @@
 {% endif %}
 
 
-{% if player.treatment == "Fix0_60" or player.treatment == "Fix60_0" %}
+{% if player.condition == "Fix"  %}
 <div>
     <p>
         Your final earnings can be expressed as
@@ -53,7 +54,7 @@
         The Total Return depends on whether the investment is successful, and the points put in the Investment Account.
     </p>
 
-    {% if player.treatment == "Fix0_60" %}
+    {% if player.A == 0 %}
     $$   \text{Total Return} =
     \begin{cases}
     2x_1x_2, & \text{if successful (with probability 0.5)} \\
@@ -61,7 +62,7 @@
     \end{cases} $$
     {% endif %}
 
-    {% if player.treatment == "Fix60_0" %}
+    {% if player.A == 60 %}
     $$   \text{Total Return} =
     \begin{cases}
     2x_1x_2+60, & \text{if successful (with probability 0.5)} \\
@@ -79,7 +80,7 @@
 </div>
 {% endif %}
 
-{% if player.treatment == "Var0_60" or player.treatment == "Var60_0" %}
+{% if player.condition == "Var" %}
 <div>
     <p>
         The computer randomly generates <strong>an integer between 1 and 110 </strong> (inclusive)
@@ -89,7 +90,7 @@
         The Total Return depends on whether the investment is successful.
     </p>
 
-    {% if player.treatment == "Var0_60" %}
+    {% if player.A == 0 %}
     $$   \text{Total Return} =
     \begin{cases}
     110, & \text{if random number} \le 100 \\
@@ -97,7 +98,7 @@
     \end{cases} $$
     {% endif %}
 
-    {% if player.treatment == "Var60_0" %}
+    {% if player.A == 60 %}
     $$   \text{Total Return} =
     \begin{cases}
     170, & \text{if random number} \le 100 \\
@@ -116,6 +117,5 @@
     </p>
 </div>
 {% endif %}
-
 
 {% endblock %}
