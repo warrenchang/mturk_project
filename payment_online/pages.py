@@ -39,6 +39,9 @@ class PaymentInfo(Page):
     form_model = 'player'
     form_fields = ['Workerid']
 
+    def is_displayed(self):
+        return self.participant.vars['qualified']
+
     def vars_for_template(self):
         print(self.participant.vars)
         return {
@@ -50,6 +53,13 @@ class PaymentInfo(Page):
         }
 
 
+class EndInfo(Page):
+    timeout_seconds = 300
+
+
+
 page_sequence = [
     PaymentAdjustment,
-    PaymentInfo]
+    PaymentInfo,
+    EndInfo,
+]
