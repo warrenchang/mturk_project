@@ -137,6 +137,11 @@ class SomeUnderstandingQuestions(UnderstandingQuestionsPage):
                     'correct': 'True',
                 },
                 {
+                    'question': '[True/False] The investment is successful with probability 0.5.',
+                    'options': ['True', 'False'],
+                    'correct': 'True',
+                },
+                {
                     'question': 'At the start of a round, you and the other participant each receive 10 points. Suppose you put 10 points in the Investment Account, while the other keeps these 10 points for himself (\(x_1=10, y_1=0\) and \(x_2=0, y_2=0\)). What is the total return from the Investment Account if the investment is successful?',
                     'options': ['0','10','20','100'],
                     'correct': '0',

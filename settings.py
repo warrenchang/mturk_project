@@ -188,7 +188,7 @@ MTURK_NUM_PARTICIPANTS_MULTIPLE = 3
 # e.g. self.session.config['participation_fee']
 
 SESSION_CONFIG_DEFAULTS = {
-    'real_world_currency_per_point': 1 / 350,
+    'real_world_currency_per_point': 1 / 400,
     'participation_fee': 0,
     'debug': DEBUG,
     'doc': "",
