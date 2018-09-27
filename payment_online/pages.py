@@ -30,11 +30,15 @@ class PaymentAdjustment(Page):
                 self.participant.payoff = c(0.1/self.session.config['real_world_currency_per_point'])
 
         self.player.final_payment = float(self.participant.payoff_plus_participation_fee())
+        self.player.Bonus = self.player.final_payment - float(self.session.config['participation_fee'])
         self.participant.vars['experiment_payment'] = self.player.final_payment - self.session.config['participation_fee']
 
 
 class PaymentInfo(Page):
     timeout_seconds = 300
+    form_model = 'player'
+    form_fields = ['Workerid']
+
     def vars_for_template(self):
         print(self.participant.vars)
         return {

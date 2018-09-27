@@ -31,4 +31,9 @@ class Group(BaseGroup):
 class Player(BasePlayer):
     final_payment  = models.FloatField()
 
+    # the following are used for paying MTurk workers bonuses
+    Bonus  = models.FloatField()
+    Workerid  = models.StringField()
+
+
 
