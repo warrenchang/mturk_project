@@ -86,15 +86,15 @@ Instructions: Part 1
 </div>
 <br/>
 <p>Your earnings is calculated as follows.</p>
-{% if player.treatment == "Det0_60" or player.treatment == "Det60_0" %}
+{% if player.condition == "Det" %}
 <div>
     <ul>
         <li>
             The total return from the investment depends on the points put in the Investment Account by you and the other
-            {% if player.treatment == "Det0_60" %}
+            {% if player.A == 0 %}
             $$ \text{Total investment return} = x_1 x_2 $$
             {% endif %}
-            {% if player.treatment == "Det60_0" %}
+            {% if player.A == 60 %}
             $$ \text{Total investment return} = x_1 x_2 + 60 $$
             {% endif %}
         </li>
@@ -112,11 +112,11 @@ Instructions: Part 1
         </li>
         <li> Your final earnings can be expressed as
 
-            {% if player.treatment == "Det0_60" %}
+            {% if player.A == 0 %}
             $$\text{Final Earnings} =  \underbrace{\frac{y_1}{y_1 + y_2}x_1 x_2}_{\text{earnings from the investment}} +
             \underbrace{10-x_1-y_1}_{\text{points kept for oneself}}$$
             {% endif %}
-            {% if player.treatment == "Det60_0" %}
+            {% if player.A == 60 %}
             $$\text{Final Earnings} =  \underbrace{\frac{y_1}{y_1 + y_2}(x_1 x_2+60)}_{\text{earnings from the investment}} +
             \underbrace{10-x_1-y_1}_{\text{points kept for oneself}}$$
             {% endif %}
@@ -129,12 +129,12 @@ Instructions: Part 1
 </div>
 {% endif %}
 
-{% if player.treatment == "Fix0_60" or player.treatment == "Fix60_0" %}
+{% if player.condition == "Fix" %}
 <div>
     <ul>
         <li>
             The investment can be either success or unsuccessful, which are equally likely.
-            {% if player.treatment == "Fix0_60" %}
+            {% if player.A == 0 %}
             If it is successful, the total return is \(2x_1x_2\) points; if it is unsuccessful, the total return is 0 points.
             $$   \text{Total Return} =
             \begin{cases}
@@ -143,7 +143,7 @@ Instructions: Part 1
             \end{cases} $$
             {% endif %}
 
-            {% if player.treatment == "Fix60_0" %}
+            {% if player.A == 60 %}
             If it is successful, the total return is \(2x_1x_2+60\) points; if it is unsuccessful, the total return is 60 points.
             $$   \text{Total Return} =
             \begin{cases}
@@ -184,149 +184,66 @@ Instructions: Part 1
 {% endif %}
 
 
-{% if player.treatment == "Var60_0" %}
+{% if player.condition == "Var" %}
 <div>
-    <ul>
-        <li>
-            Points you kept for yourself are counted directly as part of your earnings.
-        </li>
-        <li>
-            Points in the <i>Investment Account</i> can generate appreciable return,
-            which is shared between you and the other participant.
-        </li>
-        <li>
-            The investment can be either a success or a failure.
-            If it is the success, the total return is 170 points;
-            if it is a failure, the total return is 60 points.
-        </li>
-        <li>
+        <ul>
+            <li>
+                The investment can be either successful or unsuccessful.
+                {% if player.A == 0 %}
+                If it is successful, the total return is 110 points;
+                if it is unsuccessful, the total return is 0 points.
+                {% endif %}
+                {% if player.A == 60 %}
+                If it is successful, the total return is 170 points;
+                if it is unsuccessful, the total return is 60 points.
+                {% endif %}
+            </li>
+            <li>
             In each round, to determine whether the investment is a success,
             the computer randomly generates <strong>an integer between 1 and 110 </strong> (inclusive) with equal probability.
             If the number is less than or equal to \(x_1 x_2\), the investment is a success; if the number is greater than \(x_1 x_2\),
-            the investment is unsuccessful. Therefore
+            the investment is unsuccessful.
+                {% if player.A == 0 %}
             $$   \text{Total return} =
             \begin{cases}
-            170, & \text{if random number} \leq x_1x_2\\
-            60, & \text{if random number} > x_1x_2
+            110, & \text{if random number} \leq x_1x_2\\
+            0, & \text{if random number} > x_1x_2
             \end{cases} $$
+                {% endif %}
+                {% if player.A == 60 %}
+                $$   \text{Total return} =
+                \begin{cases}
+                170, & \text{if random number} \leq x_1x_2\\
+                60, & \text{if random number} > x_1x_2
+                \end{cases} $$
+                {% endif %}
         </li>
-        <li>
-            Your share of the total return is determined by the points you and the other participant put into the <i>Rationing Account</i>:
+        <li> Your share of the total return is determined by your share of points in the <i>Rationing Account</i>:
             $$ \text{Your share of the total return} =  \frac{y_1}{y_1 + y_2} $$
-
+            <p>
+                For example, if you put 6 points in the Rationing Account while the other puts 4 points (\(y_1=6,y_2=4\)), because 60% of all the points
+                are yours, you will receive 60% of the Total Return. If you put 5 points and the other also put 5 points in the Rationing Account (\(y_1=5,y_2=5\)), then
+                you receive 50% of the Total Return.
+            </p>
             <p>
                 In case both of you put 0 points in the Rationing Account, the total return will be evenly split between you two.
             </p>
         </li>
         <li>
             Your final earnings can be expressed as
-            $$\text{Final Earnings} =  \underbrace{\frac{y_1}{y_1 + y_2}(\overbrace{110}^{rand \le x_1x_2} + 60)}_{\text{earnings from the investment}} +
+            $$\text{Final Earnings} =  \underbrace{\frac{y_1}{y_1 + y_2} \text{Total Return}   }_{\text{earnings from the investment}} +
             \underbrace{10-x_1-y_1}_{\text{points kept for oneself}}$$
-
-            Here \(\overbrace{110}^{rand \le x_1x_2}\)
-            means that 110 is part of the return only if the random number generated by the computer is less than or equal to \(x_1x_2\).
         </li>
     </ul>
+
     <p>
         In general, putting more points in the <i>Investment Account</i> (a higher \(x_1\))
         <strong>makes it more likely to receive a successful investment and a higher total return</strong>
         , while putting more points in the <i>Rationing Account</i> (a higher \(y_1\))  <strong>increases your share of the total return</strong>.
     </p>
-    <!--<p>-->
-    <!--In summary, your and the other participant’s earnings can be broken down as follows:-->
-    <!--</p>-->
-    <!--<table>-->
-    <!--<tr>-->
-    <!--<th></th>-->
-    <!--<th>Investment Account</th><th>Rationing Account</th><th>Kept to oneself</th>-->
-    <!--<th>Total Return</th><th>Share of Total Return</th><th>Final Earnings</th>-->
-    <!--</tr>-->
-    <!--<tr>-->
-    <!--<th>You</th><td>\(x_1\)</td><td>\(y_1\)</td><td>\(10-x_1-y_1\)</td>-->
-    <!--<td rowspan="2">\(\overbrace{200}^{rand \le x_1x_2}+60\)</td><td> \(\displaystyle \frac{y_1}{y_1 + y_2} \)</td>-->
-    <!--<td>\(\displaystyle \frac{y_1}{y_1 + y_2}(\overbrace{200}^{rand \le x_1x_2}+ 60)+10-x_1-y_1\)</td>-->
-    <!--</tr>-->
-    <!--<tr>-->
-    <!--<th>Other</th><td>\(x_2\)</td><td>\(y_2\)</td><td>\(10-x_2-y_2\)</td>-->
-    <!--<td>\(\displaystyle \frac{y_2}{y_1 + y_2} \)</td>-->
-    <!--<td>\(\displaystyle \frac{y_1}{y_1 + y_2}(\overbrace{200}^{rand \le x_1x_2} + 60)+10-x_1-y_1\)</td>-->
-    <!--</tr>-->
-    <!--</table>-->
 </div>
 {% endif %}
 
-{% if player.treatment == "Var0_60" %}
-<div>
-    <ul>
-        <li>
-            Points you kept for yourself are counted directly as part of your earnings.
-        </li>
-        <li>
-            Points in the <i>Investment Account</i> can generate appreciable return,
-            which is shared between you and the other participant.
-        </li>
-        <li>
-            The investment can be either a success or a failure.
-            If it is the success, the total return is 110 points;
-            if it is a failure, the total return is 0 point.
-        </li>
-        <li>
-            In each round, to determine whether the investment is a success,
-            the computer randomly generates <strong>an integer between 1 and 110 </strong> (inclusive) with equal probability.
-            If the number is less than or equal to \(x_1 x_2\), the investment is a success; if the number is greater than \(x_1 x_2\),
-            the investment is a failure. Therefore
-            $$   \text{Total return} =
-            \begin{cases}
-            110, & \text{if random number} \leq x_1x_2\\
-            0, & \text{if random number} > x_1x_2
-            \end{cases} $$
-        </li>
-        <li>
-            Your share of the total return is determined by the points you and the other participant put into the <i>Rationing Account</i>:
-            $$ \text{Your share of the total return} =  \frac{y_1}{y_1 + y_2} $$
-
-            In case both of you put 0 points in the Rationing Account, the total return will be evenly split between you two.
-        </li>
-        <li>
-            Your final earnings can be expressed as
-            $$\text{Final Earnings} =  \underbrace{\frac{y_1}{y_1 + y_2}\overbrace{110}^{rand \le x_1x_2}}_{\text{earnings from the investment}} +
-            \underbrace{10-x_1-y_1}_{\text{points kept for oneself}}$$
-
-            Here \(\overbrace{110}^{rand \le x_1x_2}\)
-            means that 110 is part of the return only if the random number generated by the computer is less than or equal to \(x_1x_2\).
-        </li>
-    </ul>
-    <p>
-        In general, putting more points in the <i>Investment Account</i> (a higher \(x_1\))
-        <strong>makes it more likely to receive a successful investment and a higher total return</strong>
-        , while putting more points in the <i>Rationing Account</i> (a higher \(y_1\))  <strong>increases your share of the total return</strong>.
-    </p>
-    <!--<p>-->
-    <!--In summary, your and the other participant’s earnings can be broken down as follows:-->
-    <!--</p>-->
-    <!--<table>-->
-    <!--<tr>-->
-    <!--<th></th>-->
-    <!--<th>Investment Account</th><th>Rationing Account</th><th>Kept to oneself</th>-->
-    <!--<th>Total Return</th><th>Share of Total Return</th><th>Final Earnings</th>-->
-    <!--</tr>-->
-    <!--<tr>-->
-    <!--<th>You</th><td>\(x_1\)</td><td>\(y_1\)</td><td>\(10-x_1-y_1\)</td>-->
-    <!--<td rowspan="2">\(\overbrace{200}^{rand \le x_1x_2}\)</td><td> \(\displaystyle \frac{y_1}{y_1 + y_2} \)</td>-->
-    <!--<td>\(\displaystyle \frac{y_1}{y_1 + y_2}\overbrace{200}^{rand \le x_1x_2}+10-x_1-y_1\)</td>-->
-    <!--</tr>-->
-    <!--<tr>-->
-    <!--<th>Other</th><td>\(x_2\)</td><td>\(y_2\)</td><td>\(10-x_2-y_2\)</td>-->
-    <!--<td>\(\displaystyle \frac{y_2}{y_1 + y_2} \)</td>-->
-    <!--<td>\(\displaystyle \frac{y_1}{y_1 + y_2}\overbrace{200}^{rand \le x_1x_2}+10-x_1-y_1\)</td>-->
-    <!--</tr>-->
-    <!--</table>-->
-</div>
-{% endif %}
-
-<!--<br/>-->
-<!--<p>To help you understand the experiment, we will go through some examples.</p>-->
-<!--<br/>-->
 <div style="text-align:right">
     {% next_button %}
 </div>
