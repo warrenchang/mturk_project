@@ -138,19 +138,18 @@ class SomeUnderstandingQuestions(UnderstandingQuestionsPage):
                 },
                 {
                     'question': "Suppose both players put all points in the Investment Account (\(x_A=20, x_B=10, y_A=y_B=0\)). What is the total return from the Investment Account?",
-                    'options': ['10', '20', '100', '160'],
+                    'options': ['10', '20', '100', '150'],
                     'correct': '100',
+                },
+                {
+                    'question': "Suppose both players put 10 points in the Investment Account (\(x_A=x_B=10\)). What is the total return from the Investment Account?",
+                    'options': ['10', '20', '50', '100'],
+                    'correct': '50',
                 },
                 {
                     'question': 'Suppose you put 10 points in the Investment Account, while the other put 0 point. What is the total return from the Investment Account?',
                     'options': ['0', '10', '20', '50'],
                     'correct': '0',
-                },
-
-                {
-                    'question': "Suppose both of you put 10 points in the Investment Account (\(x_A=x_B=10\)). What is the total return from the Investment Account?",
-                    'options': ['10', '20', '50', '100'],
-                    'correct': '50',
                 },
                 {
                     'question': "Suppose you put 3 points in the Rationing Account, and the other participant put 2 points in the Rationing Account. What is your share of the total return from the Investment Account?",
@@ -182,15 +181,14 @@ class SomeUnderstandingQuestions(UnderstandingQuestionsPage):
                     'correct': '160',
                 },
                 {
+                    'question': "Suppose both players put 10 points in the Investment Account (\(x_A=x_B=10\)). What is the total return from the Investment Account?",
+                    'options': ['10','20','50','110'],
+                    'correct': '110',
+                },
+                {
                     'question': 'Suppose you put 10 points in the Investment Account, while the other put 0 point. What is the total return from the Investment Account?',
                     'options': ['0','10','20','60'],
                     'correct': '60',
-                },
-
-                {
-                    'question': "Suppose both of you put 10 points in the Investment Account (\(x_A=x_B=10\)). What is the total return from the Investment Account?",
-                    'options': ['10','20','50','110'],
-                    'correct': '110',
                 },
                 {
                     'question': "Suppose you put 3 points in the Rationing Account, and the other participant put 2 points in the Rationing Account. What is your share of the total return from the Investment Account?",

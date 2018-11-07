@@ -45,13 +45,17 @@
 <form action="" method="post" role="form" class="form">
     {% csrf_token %}
     <div>
-        <button class="btn btn-primary" id='finish_study'
+        <button class="btn btn-primary"
                 style="display: none;"
-                name="endofgame" value="{{ player.pk }}">
+                name="endofgame" value="{{ player.pk }}" id='finish_study'>
             Exit the study
         </button>
     </div>
     <br>
+    <p style="display: none;" id="finish_text">
+        If you decide to exit the study by clicking the above button, it may take up to 30 seconds to direct
+        to the payment page, and the webpage may be temporarily down. It is normal. Please be patient.
+    </p>
 </form>
 
 {% if extra_template != '' %}
@@ -107,6 +111,7 @@
         .on('finish.countdown', function (event) {
             $('div.otree-timer-warning').hide(duration = 0);
             $('#finish_study').show();
+            $('#finish_text').show();
         });
 </script>
 
