@@ -95,7 +95,7 @@ class Subsession(BaseSubsession):
 
 class Group(BaseGroup):
     def interact(self):
-        ## note that Group.get_players() get all the players in the group, ordered by id_in_group
+        ## note that group.get_players() get all the players in the group, ordered by id_in_group
         p1,p2 = self.get_players()
         p1.my_id = p1.participant.id_in_session
         p2.my_id = p2.participant.id_in_session
