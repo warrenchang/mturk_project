@@ -47,3 +47,4 @@ class Player(BasePlayer):
     treatment = models.StringField()
     condition = models.StringField()
     A = models.IntegerField()
+    workerid  = models.StringField()
