@@ -9,7 +9,7 @@ Introduction: Part 2
 
 <p>
     This is the start of Part 2 of the experiment.
-    In this part, there will be 10 rounds of decision-making.
+    In this part, there will be multiple rounds of decision-making.
     You will be matched with <strong>the same participant</strong> as in Part I.
 </p>
 <p>
@@ -32,6 +32,25 @@ The situation in Part 2 is quite similar to Part 1. This part differs from Prat 
     That is, the total return from the investment is 60 points less than before.
 </p>
     {% endif %}
+
+   {% if player.condition == "Asm" and player.A == 60 %}
+<p style="text-align:center">
+    <strong>the total return from the investment now is \(\displaystyle\frac{x_1x_2}{2}+60\),</strong> instead of \(\displaystyle\frac{x_1x_2}{2}\).
+</p>
+<p>
+    That is, the total return from the investment is 60 points more than before.
+</p>
+    {% endif %}
+    {% if player.condition == "Asm" and player.A == 0 %}
+<p style="text-align:center">
+    <strong>the total return from the investment now is \(\displaystyle\frac{x_1x_2}{2}\),</strong> instead of \(\displaystyle\frac{x_1x_2}{2}+60\).
+</p>
+<p>
+    That is, the total return from the investment is 60 points less than before.
+</p>
+    {% endif %}
+
+
 
     {% if player.condition == "Fix" and player.A == 60 %}
 <p style="text-align:center">

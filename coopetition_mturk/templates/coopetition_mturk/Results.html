@@ -9,11 +9,37 @@ Results
 {% block content %}
 <p style="font-size:16px">Round {{ player.round_in_interaction }} </p>
 
-
-
 <h5 style="text-align:center">
     Summary of this round
 </h5>
+
+{% if player.condition == "Asm" %}
+<div>
+    <table>
+        <tr>
+            <th></th>
+            <th>Investment Account</th><th>Rationing Account</th><th>Kept to self</th>
+            <th>Total Return</th><th>Share of Total Return</th><th>Final Earnings</th>
+        </tr>
+        <tr>
+            <th>You</th><td>\(x_1=\){{player.a1}}</td><td>\(y_1=\){{player.a2}}</td><td>{{player.a3}}</td>
+            {% if player.A == 60 %}
+            <td rowspan="2">\(\displaystyle\frac{x_1x_2}{2}+60={{player.pie}}\)</td>
+            {% else %}
+            <td rowspan="2">\(\displaystyle\frac{x_1x_2}{2}={{player.pie}}\)</td>
+            {% endif %}
+
+            <td>\(\displaystyle \frac{y_1}{y_1 + y_2} =\){{player.pie_share}}</td>
+            <td>{{player.pie_share}} \(\times\) {{player.pie}} + {{player.a3}}= {{player.potential_payoff}}</td>
+        </tr>
+        <tr>
+            <th>Other</th><td>\(x_2=\){{player.other_a1}}</td><td>\(y_2=\){{player.other_a2}}</td><td>{{player.other_a3}}</td>
+            <td>\(\displaystyle \frac{y_2}{y_1 + y_2} =\) {{player.other_share}}</td>
+            <td>{{player.other_share}} \(\times\) {{player.pie}} + {{player.other_a3}}= {{player.other_payoff}}</td>
+        </tr>
+    </table>
+</div>
+{% endif %}
 
 {% if player.condition == "Det" %}
 <div>
@@ -42,6 +68,9 @@ Results
     </table>
 </div>
 {% endif %}
+
+
+
 {% if player.condition == "Fix" %}
 <div>
     <table>

@@ -35,7 +35,6 @@ class PaymentAdjustment(Page):
 
 
 class PaymentInfo(Page):
-    timeout_seconds = 300
     form_model = 'player'
     form_fields = ['Workerid']
 
@@ -54,9 +53,18 @@ class PaymentInfo(Page):
 
 
 class EndInfo(Page):
-    timeout_seconds = 300
+    form_model = 'player'
+    form_fields = ['Workerid']
 
-
+    def vars_for_template(self):
+        print(self.participant.vars)
+        return {
+            'qualified': self.participant.vars['qualified'],
+            'participation_fee': self.session.config['participation_fee'],
+            'experiment_payoff': c(self.participant.vars['payoff_points']),
+            'payment': self.participant.vars['experiment_payment'],
+            'final_payment':  self.participant.payoff_plus_participation_fee(),
+        }
 
 page_sequence = [
     PaymentAdjustment,

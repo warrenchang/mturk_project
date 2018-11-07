@@ -19,7 +19,7 @@ def get_share(p1,p2):
 
 class Constants(BaseConstants):
     name_in_url = 'coopetition_mturk'
-    instructions_template = 'coopetition_mturk/Summary_template.html'
+    instructions_template = 'coopetition_mturk/Instructions_template.html'
     breakdowns_template = 'coopetition_mturk/Breakdowns_template.html'
     history_template = 'coopetition_mturk//History.html'
     historyall_template = 'coopetition_mturk//HistoryAllRounds.html'
@@ -42,6 +42,15 @@ class Constants(BaseConstants):
     ]
     interaction_length = [10, 10]
 
+    interactions = [
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    ]
+    round_in_interactions = [
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
+    ]
+    interaction_length = [15, 15]
 
     # interactions = [
     #     1, 1, 1,
@@ -66,6 +75,7 @@ class Subsession(BaseSubsession):
         # set the treatment variable
         treatment = self.session.config['treatment']
 
+
         for p in self.get_players(): # set interaction number and round number
             p.interaction_number = interaction_number
             p.round_in_interaction = round_in_interaction
@@ -85,6 +95,7 @@ class Subsession(BaseSubsession):
 
 class Group(BaseGroup):
     def interact(self):
+        ## note that Group.get_players() get all the players in the group, ordered by id_in_group
         p1,p2 = self.get_players()
         p1.my_id = p1.participant.id_in_session
         p2.my_id = p2.participant.id_in_session
@@ -93,6 +104,8 @@ class Group(BaseGroup):
         p2.rand_num = p1.rand_num
 
         # first calculate payoff
+        p1.other_endowment = p2.endowment
+        p2.other_endowment = p1.endowment
         p1.other_a1 = p2.a1
         p1.other_a2 = p2.a2
         p1.other_a3 = p2.a3
@@ -100,12 +113,16 @@ class Group(BaseGroup):
         p2.other_a2 = p1.a2
         p2.other_a3 = p1.a3
 
+        ## endownment for player 1 is 20 in the asymmetric treatment
         if p1.condition =='Det':
             p1.pie = p1.a1*p2.a1 + p1.A
             p2.pie = p1.a1*p2.a1 + p2.A
+        elif p1.condition =='Asm':
+            p1.pie = p1.a1*p2.a1/2 + p1.A
+            p2.pie = p1.a1*p2.a1/2 + p2.A
         elif p1.condition =='Fix':
-            p1.successful =  p1.rand_num <= 100
-            p2.successful =  p1.successful
+            p1.successful = p1.rand_num <= 100
+            p2.successful = p1.successful
             if p1.successful: # investment is a success
                 p1.pie = 2*p1.a1*p2.a1 + p1.A
                 p2.pie = p1.pie
@@ -153,7 +170,6 @@ class Group(BaseGroup):
 
         # print((p1.participant.id_in_session,p1.action,p1.payoff,p1.signal,p2.participant.id_in_session,p2.action,p2.payoff,p2.signal))
 
-
 class Player(BasePlayer):
     my_id = models.PositiveIntegerField()
     treatment = models.StringField()
@@ -161,11 +177,14 @@ class Player(BasePlayer):
     A = models.IntegerField()
     interaction_number = models.PositiveIntegerField()
     round_in_interaction = models.PositiveIntegerField()
+    ## role for asymmetric treatment. role=1 means endowment = 10 (B player), role=2 means endowment = 20 (A player)
+    role = models.StringField()
 
-    a1 = models.IntegerField(min=0, max=10)
-    a2 = models.IntegerField(min=0, max=10)
-    a3 = models.IntegerField(min=0, max=10)
-    pie = models.IntegerField()
+    endowment = models.IntegerField()
+    a1 = models.IntegerField(min=0, max=20)
+    a2 = models.IntegerField(min=0, max=20)
+    a3 = models.IntegerField(min=0, max=20)
+    pie = models.FloatField()
     pie_share = models.FloatField(min=0, max=1)
     ## here we use potential_payoff to record the payoff, the real payoff will be set to 0 if a time_out happened.
     potential_payoff = models.CurrencyField()
@@ -173,9 +192,10 @@ class Player(BasePlayer):
     cum_payoff = models.CurrencyField()
 
     partner_id = models.PositiveIntegerField()
-    other_a1 = models.IntegerField(min=0, max=10)
-    other_a2 = models.IntegerField(min=0, max=10)
-    other_a3 = models.IntegerField(min=0, max=10)
+    other_endowment = models.IntegerField()
+    other_a1 = models.IntegerField(min=0, max=20)
+    other_a2 = models.IntegerField(min=0, max=20)
+    other_a3 = models.IntegerField(min=0, max=20)
     other_share = models.FloatField(min=0, max=1)
     other_payoff = models.CurrencyField()
     other_cum_payoff = models.CurrencyField()

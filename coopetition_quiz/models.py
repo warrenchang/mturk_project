@@ -16,7 +16,7 @@ class Constants(BaseConstants):
     players_per_group = None
     num_rounds = 1
 
-    summary_template = 'coopetition_quiz/Summary_template.html'
+    summary_template = 'coopetition_quiz/Instructions_template.html'
     examples_template = 'coopetition_quiz/Examples_template.html'
     quiz_info = 'coopetition_quiz/QuizInfo.html'
     extra_info = 'coopetition_quiz/ExtraInfo.html'

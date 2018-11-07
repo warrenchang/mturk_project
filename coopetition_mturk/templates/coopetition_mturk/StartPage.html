@@ -7,9 +7,18 @@
 {% block content %}
 <div>
     <p style="text-align:center">
-       <strong>
-           You have just been matched with another participant.
-       </strong>
+        <strong>
+            You have just been matched with another participant.
+        </strong>
+    </p>
+
+    <p style="text-align:center">
+        <strong>
+            {% if player.condition == "Asm" %}
+            {% if player.id_in_group == 1 %} You are Player A. {% else %} You are Player B. {% endif %}
+            In each round, you receive {{ player.endowment }} points, while the other participant receives {{ player.other_endowment}} points.
+            {% endif %}
+        </strong>
     </p>
 
     <p style="font-size:16px">
@@ -42,7 +51,5 @@
 
 
 {% include Constants.instructions_template %}
-
-
 
 {% endblock %}

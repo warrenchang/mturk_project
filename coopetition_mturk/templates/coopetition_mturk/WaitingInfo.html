@@ -27,13 +27,33 @@
 While you are waiting, below is some information about the experiment that you can review, and you can think about how you
     will make decisions.
 </p>
+
+{% if player.condition == "Asm" %}
+<p style="font-size:16px">
+
+    <ul>
+        <li>
+            After you are matched with another participant, your role as Player A or Player B will be randomly determined.
+        </li>
+        <li> If you are Player A, you will receive 20 points in each round.
+        </li>
+        <li>
+            If you are Player B, you will receive 10 points in each round.
+        </li>
+    <li>
+       You need to decide how to allocate the points you received.
+    </li>
+    </ul>
+</p>
+{% endif %}
+
 <p>
     During your interaction with the other participant, the following experimental interface will be
     shown for you to submit your decisions.
 </p>
 
 <p style="text-align: center">
-    <img src="{% static "coopetition_mturk/decision_screen.jpg" %}"  width="780"/>
+    <img src="{% static "coopetition_mturk/decision_screen.png" %}"  width="780"/>
 </p>
 
 <p style="font-size:16px">
@@ -52,11 +72,7 @@ While you are waiting, below is some information about the experiment that you c
 
 <hr>
 
-<div class="card bg-light instructions">
-    <div class="card-body">
-        {% include Constants.instructions_template %}
-    </div>
-</div>
+
 {% endblock %}
 
 

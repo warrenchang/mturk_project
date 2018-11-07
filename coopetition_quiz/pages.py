@@ -53,37 +53,37 @@ class SomeUnderstandingQuestions(UnderstandingQuestionsPage):
     def get_questions(self):
         if self.session.config['treatment'] == 'Det0_60':
             questions = [
-                    {
-                        'question': '[True/False] The more you and the other participant invest in the Investment Account, the higher the total return.',
-                        'options': ['True', 'False'],
-                        'correct': 'True',
-                    },
-                    {
-                        'question': '[True/False] The more you invest in the Rationing Account, the higher share you can obtain from the total return of the Investment Account',
-                        'options': ['True', 'False'],
-                        'correct': 'True',
-                    },
-                    {
-                        'question': 'At the start of a round, you and the other participant each receive 10 points. Suppose you put 10 points in the Investment Account, while the other keeps these 10 points for himself (\(x_1=10, y_1=0\) and \(x_2=0, y_2=0\)). What is the total return from the Investment Account?',
-                        'options': ['0','10','20','100'],
-                        'correct': '0',
-                    },
-                    {
-                        'question': "At the start of a round, you and the other participant each receive 10 points. Suppose both of you put all the 10 points in the Investment Account (\(x_1=x_2=10\)). What is the total return from the Investment Account?",
-                        'options': ['10','20','100','160'],
-                        'correct': '100',
-                    },
-                    {
-                        'question': "At the start of a round, you and the other participant each receive 10 points. Suppose both of you put 5 points in the Investment Account (\(x_1=x_2=5\)). What is the total return from the Investment Account?",
-                        'options': ['5','10','25','50'],
-                        'correct': '25',
-                    },
-                    {
-                        'question': "Suppose you put 3 points in the Rationing Account (\(y_1 = 3\)), and the other participant put 2 points in the Rationing Account (\(y_2 = 2\)). What is your share of the total return from the Investment Account? ",
-                        'options': ['0.4','0.5','0.6','1'],
-                        'correct': '0.6',
-                    },
-                ]
+                {
+                    'question': '[True/False] The more you and the other participant invest in the Investment Account, the higher the total return.',
+                    'options': ['True', 'False'],
+                    'correct': 'True',
+                },
+                {
+                    'question': '[True/False] The more you invest in the Rationing Account, the higher share you can obtain from the total return of the Investment Account',
+                    'options': ['True', 'False'],
+                    'correct': 'True',
+                },
+                {
+                    'question': 'At the start of a round, you and the other participant each receive 10 points. Suppose you put 10 points in the Investment Account, while the other keeps these 10 points for himself (\(x_1=10, y_1=0\) and \(x_2=0, y_2=0\)). What is the total return from the Investment Account?',
+                    'options': ['0','10','20','100'],
+                    'correct': '0',
+                },
+                {
+                    'question': "At the start of a round, you and the other participant each receive 10 points. Suppose both of you put all the 10 points in the Investment Account (\(x_1=x_2=10\)). What is the total return from the Investment Account?",
+                    'options': ['10','20','100','160'],
+                    'correct': '100',
+                },
+                {
+                    'question': "At the start of a round, you and the other participant each receive 10 points. Suppose both of you put 5 points in the Investment Account (\(x_1=x_2=5\)). What is the total return from the Investment Account?",
+                    'options': ['5','10','25','50'],
+                    'correct': '25',
+                },
+                {
+                    'question': "Suppose you put 3 points in the Rationing Account (\(y_1 = 3\)), and the other participant put 2 points in the Rationing Account (\(y_2 = 2\)). What is your share of the total return from the Investment Account? ",
+                    'options': ['0.4','0.5','0.6','1'],
+                    'correct': '0.6',
+                },
+            ]
 
         elif self.session.config['treatment'] == 'Det60_0':
             questions = [
@@ -114,6 +114,86 @@ class SomeUnderstandingQuestions(UnderstandingQuestionsPage):
                 },
                 {
                     'question': "Suppose you put 3 points in the Rationing Account  (\(y_1 = 3\)), and the other participant put 2 points in the Rationing Account (\(y_2 = 2\)). What is your share of the total return from the Investment Account? ",
+                    'options': ['0.4','0.5','0.6','1'],
+                    'correct': '0.6',
+                },
+            ]
+
+        elif self.session.config['treatment'] == 'Asm0_60':
+            questions = [
+                {
+                    'question': '[True/False] At the start of each round, Player A receives 20 points and Player B receives 10 points.',
+                    'options': ['True', 'False'],
+                    'correct': 'True',
+                },
+                {
+                    'question': '[True/False] The more you and the other participant invest in the Investment Account, the higher the total return.',
+                    'options': ['True', 'False'],
+                    'correct': 'True',
+                },
+                {
+                    'question': '[True/False] The more you invest in the Rationing Account, the higher share you can obtain from the total return of the Investment Account',
+                    'options': ['True', 'False'],
+                    'correct': 'True',
+                },
+                {
+                    'question': "Suppose both players put all points in the Investment Account (\(x_A=20, x_B=10, y_A=y_B=0\)). What is the total return from the Investment Account?",
+                    'options': ['10', '20', '100', '160'],
+                    'correct': '100',
+                },
+                {
+                    'question': 'Suppose you put 10 points in the Investment Account, while the other put 0 point. What is the total return from the Investment Account?',
+                    'options': ['0', '10', '20', '50'],
+                    'correct': '0',
+                },
+
+                {
+                    'question': "Suppose both of you put 10 points in the Investment Account (\(x_A=x_B=10\)). What is the total return from the Investment Account?",
+                    'options': ['10', '20', '50', '100'],
+                    'correct': '50',
+                },
+                {
+                    'question': "Suppose you put 3 points in the Rationing Account, and the other participant put 2 points in the Rationing Account. What is your share of the total return from the Investment Account?",
+                    'options': ['0.4','0.5','0.6','1'],
+                    'correct': '0.6',
+                },
+            ]
+
+        elif self.session.config['treatment'] == 'Asm60_0':
+            questions = [
+                {
+                    'question': '[True/False] At the start of each round, Player A receives 20 points and Player B receives 10 points.',
+                    'options': ['True', 'False'],
+                    'correct': 'True',
+                },
+                {
+                    'question': '[True/False] The more you and the other participant invest in the Investment Account, the higher the total return.',
+                    'options': ['True', 'False'],
+                    'correct': 'True',
+                },
+                {
+                    'question': '[True/False] The more you invest in the Rationing Account, the higher share you can obtain from the total return of the Investment Account',
+                    'options': ['True', 'False'],
+                    'correct': 'True',
+                },
+                {
+                    'question': "Suppose both players put all points in the Investment Account (\(x_A=20, x_B=10, y_A=y_B=0\)). What is the total return from the Investment Account?",
+                    'options': ['10','20','100','160'],
+                    'correct': '160',
+                },
+                {
+                    'question': 'Suppose you put 10 points in the Investment Account, while the other put 0 point. What is the total return from the Investment Account?',
+                    'options': ['0','10','20','60'],
+                    'correct': '60',
+                },
+
+                {
+                    'question': "Suppose both of you put 10 points in the Investment Account (\(x_A=x_B=10\)). What is the total return from the Investment Account?",
+                    'options': ['10','20','50','110'],
+                    'correct': '110',
+                },
+                {
+                    'question': "Suppose you put 3 points in the Rationing Account, and the other participant put 2 points in the Rationing Account. What is your share of the total return from the Investment Account?",
                     'options': ['0.4','0.5','0.6','1'],
                     'correct': '0.6',
                 },
@@ -206,8 +286,6 @@ class SomeUnderstandingQuestions(UnderstandingQuestionsPage):
                     'correct': '0.6',
                 },
             ]
-
-
 
         elif self.session.config['treatment'] == 'Var0_60':
 

@@ -24,8 +24,8 @@ class Decision(Page):
         return self.participant.vars['qualified'] and (not self.participant.vars['matched'])
 
     def error_message(self, values):
-        if values["a1"] + values["a2"] > 10:
-            return 'The sum of the numbers cannot be greater than 10.'
+        if values["a1"] + values["a2"] > self.player.endowment:
+            return 'The sum of the numbers cannot be greater than %d.'%self.player.endowment
 
     def before_next_page(self):
         # calculate the payoff based on the decision of one participant
@@ -33,7 +33,7 @@ class Decision(Page):
         a2 = 5
         a3 = 0
         p = self.player
-        p.a3 = 10 - p.a1 - p.a2
+        p.a3 = p.endowment - p.a1 - p.a2
 
         if p.condition == 'Fix':
             ## a random number between 1 and 200 (inclusive)
@@ -44,6 +44,8 @@ class Decision(Page):
 
         if p.condition =='Det':
             pie = p.a1*a1 + p.A
+        elif p.condition =='Asm':
+            pie = p.a1*a1/2 + p.A
         elif p.condition =='Fix':
             if rand_num <= 100: # investment is a success
                 pie = 2*p.a1*a1 + p.A

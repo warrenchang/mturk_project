@@ -64,6 +64,27 @@ class Introduction(BasePage):
                 self.player.interaction_number == 2)
 
 
+class SettingParameters(BasePage):
+    ## this page is used to set parameters for players
+    timeout_seconds = 0
+
+    def is_displayed(self):
+        return self.participant.vars['qualified']
+
+    def before_next_page(self):
+        ## the variable "matched" is true only if the player is successfully matched.
+        self.player.endowment = 10
+        self.player.other_endowment = 10
+        if self.player.condition == "Asm":
+            if self.player.id_in_group == 1:
+                self.player.endowment = 20
+                self.player.role = 'A'
+            else:
+                self.player.other_endowment = 20
+                self.player.role = 'B'
+
+
+
 class Decision(BasePage):
     form_model = 'player'
     form_fields = ['a1','a2']
@@ -78,18 +99,18 @@ class Decision(BasePage):
         return self.participant.vars['qualified']
 
     def error_message(self, values):
-        if values["a1"] + values["a2"] > 10:
-            return 'The sum of the numbers cannot be greater than 10.'
+        if values["a1"] + values["a2"] > self.player.endowment:
+            return 'The sum of the numbers cannot be greater than %d.'%self.player.endowment
 
     def before_next_page(self):
         if self.timeout_happened:
-            self.player.a1 = int(math.ceil(random.random()*10))
-            self.player.a2 = int(math.ceil(random.random()*(10-self.player.a1)))
+            self.player.a1 = int(math.ceil(random.random()*self.player.endowment))
+            self.player.a2 = int(math.ceil(random.random()*(self.player.endowment-self.player.a1)))
             self.player.timed_out = True
         else:
             self.player.timed_out = False
 
-        self.player.a3 = 10 - self.player.a1 - self.player.a2
+        self.player.a3 = self.player.endowment - self.player.a1 - self.player.a2
 
 
 class DecisionWaitPage(BaseWaitPage):
@@ -136,6 +157,7 @@ class InteractionWaitPage(BaseWaitPage):
 
 page_sequence = [
     MatchingWaitPage,
+    SettingParameters,
     StartPage,
     Introduction,
     Decision,

@@ -3,7 +3,6 @@ from otree.api import (
     Currency as c, currency_range
 )
 import random
-
 author = 'Huanren Zhang'
 
 doc = """
@@ -18,7 +17,7 @@ def get_share(p1,p2):
 
 class Constants(BaseConstants):
     name_in_url = 'coopetition_oneshot'
-    instructions_template = 'coopetition_mturk/Summary_template.html'
+    instructions_template = 'coopetition_mturk/Instructions_template.html'
 
     players_per_group = None
 
@@ -37,6 +36,18 @@ class Subsession(BaseSubsession):
                 p.A = Constants.A_values[0]
             else:
                 p.A = Constants.A_values[1]
+            if random.random() > 0.5:
+                p.role = "A"
+            else:
+                p.role = "B"
+            p.endowment = 10
+            p.other_endowment = 10
+
+            if p.condition == "Asm":
+                if p.role == "A":
+                    p.endowment = 20
+                else:
+                    p.other_endowment = 20
 
 
 class Group(BaseGroup):
@@ -48,7 +59,11 @@ class Player(BasePlayer):
     condition = models.StringField()
     A = models.IntegerField()
 
-    a1 = models.IntegerField(min=0, max=10)
-    a2 = models.IntegerField(min=0, max=10)
-    a3 = models.IntegerField(min=0, max=10)
+    endowment = models.IntegerField()
+    other_endowment = models.IntegerField()
+    role = models.StringField()
+
+    a1 = models.IntegerField(min=0, max=20)
+    a2 = models.IntegerField(min=0, max=20)
+    a3 = models.IntegerField(min=0, max=20)
 

@@ -13,6 +13,36 @@
 <p style="text-align: center" style="font-size:16px">
     <strong><u>Summary of the Situation</u></strong>
 </p>
+
+
+{% if player.condition == "Asm" %}
+<div>
+    <p>
+        In each round, Player A receives 20 points, and Player B receives 10 points.
+        You need to decide the number of points put into an <strong>Investment Account</strong> (\(x\)) and a <strong>Rationing Account</strong> (\(y\)).
+        The rest of the points are kept to yourself.
+    </p>
+    <p>
+        {% if player.A == 0 %}
+        $$\text{A's Final Earnings} =  \underbrace{\frac{y_A}{y_A + y_B} \frac{x_A x_B}{2}}_{\text{earnings from the investment}} +
+        \underbrace{20-x_A-y_A}_{\text{points kept for oneself}}$$
+        $$\text{B's Final Earnings} =  \underbrace{\frac{y_B}{y_A + y_B} \frac{x_A x_B}{2}}_{\text{earnings from the investment}} +
+        \underbrace{10-x_B-y_B}_{\text{points kept for oneself}}$$
+        {% endif %}
+        {% if player.A == 60 %}
+        $$\text{A's Final Earnings} =  \underbrace{\frac{y_A}{y_A + y_B}(\frac{x_A x_B}{2}+60)}_{\text{earnings from the investment}} +
+        \underbrace{20-x_A-y_A}_{\text{points kept for oneself}}$$
+        $$\text{B's Final Earnings} =  \underbrace{\frac{y_B}{y_A + y_B}(\frac{x_A x_B}{2}+60)}_{\text{earnings from the investment}} +
+        \underbrace{10-x_B-y_B}_{\text{points kept for oneself}}$$
+        {% endif %}
+    </p>
+    <p>
+        In general, putting more points in the <i>Investment Account</i> (a higher \(x\))  <strong>generates a higher total return</strong>
+        , while putting more points in the <i>Rationing Account</i> (a higher \(y\)) <strong>increases your share of the total return</strong>.
+    </p>
+</div>
+{% else %}
+
 <div>
     <p>
         In each round, you receive 10 points.
@@ -117,5 +147,5 @@
     </p>
 </div>
 {% endif %}
-
+{% endif %}
 {% endblock %}

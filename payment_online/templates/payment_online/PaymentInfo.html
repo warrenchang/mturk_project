@@ -2,12 +2,15 @@
 {% load staticfiles otree %}
 
 {% block title %}
-   Payment Information
 {% endblock %}
 
 {% block content %}
 
 {% if qualified %}
+<p> <strong>
+    Payment Information
+</strong> </p>
+
 <p>This is the end of the experiment. Thank you for your participation.</p>
 <p>Your flat payment fee is {{participation_fee}}.</p>
 <p>You bonus earnings in the experiment is {{experiment_payoff}}, which is {{payment}}.</p>
@@ -15,8 +18,11 @@
 
 
 {% formfield player.Workerid label="To facilitate payment, please paste your MTurk Worker ID:" %}
+<div >
+    <button class="otree-btn-next btn btn-primary">Submit</button>
+</div>
 
-
+</br>
 <p><strong>IMPORTANT:</strong> Please provide the following participation code to the MTurk HIT in order to receive credit for
 taking the experiment. </p>
 <p style="text-align:center"> <strong> Your participation code: {{participant.code}}</strong> </p>
@@ -25,9 +31,6 @@ taking the experiment. </p>
 <p>This is the end of the experiment. </p>
 {% endif %}
 
-<div style="text-align:right">
-    {% next_button %}
-</div>
 {% endblock %}
 
 {% block form %}

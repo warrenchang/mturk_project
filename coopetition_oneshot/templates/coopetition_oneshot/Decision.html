@@ -17,9 +17,13 @@
     Your earnings will be based on your decision and the decision of this participant.
 </p>
 
-
+<div class="card bg-light instructions">
+    <div class="card-body">
+        {% include Constants.instructions_template %}
+    </div>
+</div>
 <p style="font-size:16px">
-    Out of the 10 points you have, please indicate the number of points you want to allocate to the
+    Out of the {{ player.endowment }} points you have, please indicate the number of points you want to allocate to the
     <i>Investment Account</i> and the <i>Rationing Account</i>.
     The rest of the points are kept to yourself.
 </p>
@@ -43,12 +47,7 @@
     <button class="otree-btn-next btn btn-primary">Submit</button>
 </div>
 
-<br/>
-<div class="card bg-light instructions">
-    <div class="card-body">
-        {% include Constants.instructions_template %}
-    </div>
-</div>
+
 
 {% endblock %}
 

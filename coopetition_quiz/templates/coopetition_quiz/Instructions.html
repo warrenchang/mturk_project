@@ -23,11 +23,138 @@ Instructions: Part 1
             src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML" async>
     </script>
 </head>
-
+{% if player.condition == "Asm" %}
 <div>
     <p>
-        In this part, there will be 10 rounds of decision-making. You will be matched with another participant to play
-        an investment game. You will play with the same participant for all 10 rounds.
+        In this part, there will be <strong>multiple</strong> rounds of decision-making.
+
+    <ul>
+        <li>
+            You will be matched with another participant to play an investment game. You will play with the same participant for all rounds.
+        </li>
+        <li>
+            There are two types of players: player A and player B.
+        </li>
+        <li>
+            Player A receives 20 points in each round,
+            while player B receives 10 points in each round.
+        </li>
+        <li>
+            <strong>Your type will be randomly determined after you are matched
+                with another participant and will remain the same throughout the experiment.</strong>
+        </li>
+    </ul>
+
+
+    </p>
+    <p>
+    </p>
+
+
+    <p style="text-align: center">
+        <strong><u>Your decision</u></strong>
+    </p>
+
+    <p>
+    <ul>
+        <li>
+            You can use your points make a joint investment with the other participant.
+        </li>
+        <li>
+            You can invest these points to an <strong>Investment Account</strong> and a <strong>Rationing Account</strong>,
+            or keep these points to yourself.
+        </li>
+    </ul>
+
+    <p style="text-align: center">
+        <strong><u>Your earnings</u></strong>
+    </p>
+
+    <ul>
+        <li>
+            Points in the <strong>Investment Account</strong> determine the size of the total return from the investment. More points
+            means larger returns.
+        </li>
+        <li>
+            The total return from the investment is shared by you and the other participant.
+        </li>
+        <li>
+            Points in the <strong>Rationing Account</strong> determine your share of the total return. More points means bigger shares.
+        </li>
+        <li>
+            You can also keep the points for yourself, which directly counts are part of your earnings.
+        </li>
+    </ul>
+
+    <p>
+        Specifically, suppose the two players (you and the other participant) have the following allocation of the points:
+    </p>
+    <table id="width50">
+        <tr>
+            <th></th>
+            <th>Investment Account</th><th>Rationing Account</th><th>Kept to oneself</th>
+        </tr>
+        <tr>
+            <th>Player A</th><td>\(x_A\)</td><td>\(y_A\)</td><td>\(20-x_A-y_B\)</td>
+        </tr>
+        <tr>
+            <th>Player B</th><td>\(x_B\)</td><td>\(y_B\)</td><td>\(10-x_A-y_B\)</td>
+        </tr>
+    </table>
+</div>
+<br/>
+<p>The earnings are calculated as follows.</p>
+<div>
+    <ul>
+        <li>
+            The total return from the investment depends on the points put in the Investment Account
+            {% if player.A == 0 %}
+            $$ \text{Total investment return} = \frac{1}{2} x_A x_B $$
+            {% endif %}
+            {% if player.A == 60 %}
+            $$ \text{Total investment return} = \frac{1}{2} x_A x_B + 60 $$
+            {% endif %}
+        </li>
+        <li>
+            The share of the total return is determined by a player's share of points in the <i>Rationing Account</i>:
+            $$ \text{A's share of the total return} =  \frac{y_A}{y_A + y_B} $$
+            $$ \text{B's share of the total return} =  \frac{y_B}{y_A + y_B} $$
+            <p>
+                For example, if A puts 6 points in the Rationing Account while B puts 4 points (\(y_A=6,y_B=4\)), because 60% of all the points
+                are from A, A receives 60% of the Total Return. If A puts 5 points and B also puts 5 points in the Rationing Account (\(y_A=5,y_B=5\)), then
+                A receives 50% of the Total Return.
+            </p>
+            <p>
+                In case both players put 0 points in the Rationing Account (\(y_A=y_B=0\)), the total return will be evenly split between the two.
+            </p>
+        </li>
+        <li> The final earnings can be expressed as
+
+            {% if player.A == 0 %}
+            $$\text{A's Final Earnings} =  \underbrace{\frac{y_A}{y_A + y_B} \frac{x_A x_B}{2}}_{\text{earnings from the investment}} +
+            \underbrace{20-x_A-y_A}_{\text{points kept for oneself}}$$
+            $$\text{B's Final Earnings} =  \underbrace{\frac{y_B}{y_A + y_B} \frac{x_A x_B}{2}}_{\text{earnings from the investment}} +
+            \underbrace{10-x_B-y_B}_{\text{points kept for oneself}}$$
+            {% endif %}
+            {% if player.A == 60 %}
+            $$\text{A's Final Earnings} =  \underbrace{\frac{y_A}{y_A + y_B}(\frac{x_A x_B}{2}+60)}_{\text{earnings from the investment}} +
+            \underbrace{20-x_A-y_A}_{\text{points kept for oneself}}$$
+            $$\text{B's Final Earnings} =  \underbrace{\frac{y_B}{y_A + y_B}(\frac{x_A x_B}{2}+60)}_{\text{earnings from the investment}} +
+            \underbrace{10-x_B-y_B}_{\text{points kept for oneself}}$$
+            {% endif %}
+        </li>
+    </ul>
+    <p>
+        In general, putting more points in the <i>Investment Account</i> (a higher \(x\))  <strong>generates a higher total return</strong>
+        , while putting more points in the <i>Rationing Account</i> (a higher \(y\)) <strong>increases your share of the total return</strong>.
+    </p>
+</div>
+</div>
+{% else %}
+<div>
+    <p>
+        In this part, there will be <strong>multiple</strong> rounds of decision-making. You will be matched with another participant to play
+        an investment game. You will play with the same participant for all rounds.
     </p>
 
     <p style="text-align: center">
@@ -107,7 +234,7 @@ Instructions: Part 1
                 you receive 50% of the Total Return.
             </p>
             <p>
-            In case both of you put 0 points in the Rationing Account (\(y_1=y_2=0\)), the total return will be evenly split between you two.
+                In case both of you put 0 points in the Rationing Account (\(y_1=y_2=0\)), the total return will be evenly split between you two.
             </p>
         </li>
         <li> Your final earnings can be expressed as
@@ -186,37 +313,37 @@ Instructions: Part 1
 
 {% if player.condition == "Var" %}
 <div>
-        <ul>
-            <li>
-                The investment can be either successful or unsuccessful.
-                {% if player.A == 0 %}
-                If it is successful, the total return is 110 points;
-                if it is unsuccessful, the total return is 0 points.
-                {% endif %}
-                {% if player.A == 60 %}
-                If it is successful, the total return is 170 points;
-                if it is unsuccessful, the total return is 60 points.
-                {% endif %}
-            </li>
-            <li>
+    <ul>
+        <li>
+            The investment can be either successful or unsuccessful.
+            {% if player.A == 0 %}
+            If it is successful, the total return is 110 points;
+            if it is unsuccessful, the total return is 0 points.
+            {% endif %}
+            {% if player.A == 60 %}
+            If it is successful, the total return is 170 points;
+            if it is unsuccessful, the total return is 60 points.
+            {% endif %}
+        </li>
+        <li>
             In each round, to determine whether the investment is a success,
             the computer randomly generates <strong>an integer between 1 and 110 </strong> (inclusive) with equal probability.
             If the number is less than or equal to \(x_1 x_2\), the investment is a success; if the number is greater than \(x_1 x_2\),
             the investment is unsuccessful.
-                {% if player.A == 0 %}
+            {% if player.A == 0 %}
             $$   \text{Total return} =
             \begin{cases}
             110, & \text{if random number} \leq x_1x_2\\
             0, & \text{if random number} > x_1x_2
             \end{cases} $$
-                {% endif %}
-                {% if player.A == 60 %}
-                $$   \text{Total return} =
-                \begin{cases}
-                170, & \text{if random number} \leq x_1x_2\\
-                60, & \text{if random number} > x_1x_2
-                \end{cases} $$
-                {% endif %}
+            {% endif %}
+            {% if player.A == 60 %}
+            $$   \text{Total return} =
+            \begin{cases}
+            170, & \text{if random number} \leq x_1x_2\\
+            60, & \text{if random number} > x_1x_2
+            \end{cases} $$
+            {% endif %}
         </li>
         <li> Your share of the total return is determined by your share of points in the <i>Rationing Account</i>:
             $$ \text{Your share of the total return} =  \frac{y_1}{y_1 + y_2} $$
@@ -242,6 +369,9 @@ Instructions: Part 1
         , while putting more points in the <i>Rationing Account</i> (a higher \(y_1\))  <strong>increases your share of the total return</strong>.
     </p>
 </div>
+{% endif %}
+
+
 {% endif %}
 
 <div style="text-align:right">
