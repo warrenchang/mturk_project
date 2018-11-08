@@ -34,6 +34,8 @@ class PaymentAdjustment(Page):
         self.participant.vars['experiment_payment'] = self.player.final_payment - self.session.config['participation_fee']
         if 'workerid' in self.participant.vars:
             self.player.workerid = self.participant.vars['workerid']
+        if 'matched' in self.participant.vars:
+            self.player.matched = self.participant.vars['matched']
 
 
 

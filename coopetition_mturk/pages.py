@@ -128,7 +128,7 @@ class DecisionWaitPage(BaseWaitPage):
 
 
 class Results(BasePage):
-    timeout_seconds = 30
+    timeout_seconds = 20
 
     def extra_vars_for_template(self):
         return {'x1x2': self.player.a1*self.player.other_a1}

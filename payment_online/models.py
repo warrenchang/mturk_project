@@ -34,6 +34,7 @@ class Player(BasePlayer):
     # the following are used for paying MTurk workers bonuses
     bonus  = models.FloatField()
     workerid  = models.StringField()
+    matched  = models.BooleanField()
 
 
 

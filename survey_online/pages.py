@@ -7,11 +7,9 @@ from otreeutils.surveys import SurveyPage, setup_survey_pages
 
 
 class StartPage(CustomMturkPage):
+    timeout_seconds = 10
     def is_displayed(self):
-        if self.round_number == 1:
-            print('This is the start of PD survey')
-        print(self.participant.vars)
-        return self.participant.vars['qualified'] and self.round_number == 1 # and (not self.session.config['debug'])
+        return self.participant.vars['qualified'] and self.participant.vars['matched']
 
 
 # class SurveyIntro(Page):
@@ -21,11 +19,17 @@ class StartPage(CustomMturkPage):
 # unfortunately, it's not possible to create them dynamically
 
 class SurveyPage1(SurveyPage):
-    timeout_seconds = 90
+    timeout_seconds = 120
 
     def is_displayed(self):
-        return self.participant.vars['qualified']
+        return self.participant.vars['qualified'] and self.participant.vars['matched']
 
+
+class SurveyPage2(SurveyPage):
+    timeout_seconds = 120
+
+    def is_displayed(self):
+        return self.participant.vars['qualified'] and not self.participant.vars['matched']
 
 # Create a list of survey pages.
 # The order is important! The survey questions are taken in the same order
@@ -33,13 +37,14 @@ class SurveyPage1(SurveyPage):
 
 survey_pages = [
     SurveyPage1,
+    # SurveyPage2,
 ]
 
 # Common setup for all pages (will set the questions per page)
 setup_survey_pages(models.Player, survey_pages)
 
 page_sequence = [
-    # StartPage,
+    StartPage,
     # SurveyIntro,
 ]
 

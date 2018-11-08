@@ -203,11 +203,13 @@ SESSION_CONFIGS = [
         'participation_fee': 1,
         'max_payment': 5,
         'treatment': 'Asm0_60',
+        'real_world_currency_per_point': 1 / 450,
         # 'debug': False,
         'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
                          'survey_online', 'payment_online'
                          ],
     },
+
     {
         'name': 'coopetition_mturk_asym60_0',
         'display_name': "Coopetition Asym60_0",
@@ -215,6 +217,7 @@ SESSION_CONFIGS = [
         'participation_fee': 1,
         'max_payment': 5,
         'treatment': 'Asm60_0',
+        'real_world_currency_per_point': 1 / 450,
         # 'debug': False,
         'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
                          'survey_online', 'payment_online'
@@ -227,6 +230,7 @@ SESSION_CONFIGS = [
         'participation_fee': 1,
         'max_payment': 5,
         'treatment' : 'Det0_60',
+        'real_world_currency_per_point': 1 / 450,
         # 'debug': False,
         'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
                          'survey_online','risk_preferences', 'payment_online'
@@ -239,6 +243,7 @@ SESSION_CONFIGS = [
         'participation_fee': 1,
         'max_payment': 5,
         'treatment': 'Det60_0',
+        'real_world_currency_per_point': 1 / 450,
         # 'debug': False,
         'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
                          'survey_online','risk_preferences', 'payment_online'
@@ -251,6 +256,7 @@ SESSION_CONFIGS = [
         'participation_fee': 1,
         'max_payment': 5,
         'treatment': 'Fix0_60',
+        'real_world_currency_per_point': 1 / 450,
         # 'debug': False,
         'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
                          'survey_online','risk_preferences', 'payment_online'
@@ -263,6 +269,7 @@ SESSION_CONFIGS = [
         'participation_fee': 1,
         'max_payment': 5,
         'treatment': 'Fix60_0',
+        'real_world_currency_per_point': 1 / 450,
         # 'debug': False,
         'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
                          'survey_online','risk_preferences', 'payment_online'
@@ -275,6 +282,7 @@ SESSION_CONFIGS = [
         'participation_fee': 1,
         'max_payment': 5,
         'treatment': 'Var0_60',
+        'real_world_currency_per_point': 1 / 450,
         # 'debug': False,
         'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
                          'survey_online','risk_preferences', 'payment_online'
@@ -287,6 +295,7 @@ SESSION_CONFIGS = [
         'participation_fee': 1,
         'max_payment': 5,
         'treatment': 'Var60_0',
+        'real_world_currency_per_point': 1 / 450,
         # 'debug': False,
         'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
                          'survey_online','risk_preferences', 'payment_online'

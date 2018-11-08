@@ -18,6 +18,7 @@ class StartPage(Page):
     def vars_for_template(self):
         return {
             'exchange_rate': int(round(1/self.session.config['real_world_currency_per_point'])),
+            'max_payment': self.session.config['max_payment'],
         }
 
 
@@ -48,7 +49,7 @@ class SomeUnderstandingQuestions(UnderstandingQuestionsPage):
     # set_correct_answers = False  # do not fill out the correct answers in advance (this is for fast skipping through pages)
     form_model = 'player'
     form_field_n_wrong_attempts = 'wrong_attempts'
-    timeout_seconds = 600
+    timeout_seconds = 480
 
     def get_questions(self):
         if self.session.config['treatment'] == 'Det0_60':
@@ -378,7 +379,8 @@ class QuizResults(Page):
 
     def vars_for_template(self):
         return {
-            'qualified': self.participant.vars['qualified']
+            'qualified': self.participant.vars['qualified'],
+            'max_payment': self.session.config['max_payment'],
         }
 
 class WorkerID(Page):
