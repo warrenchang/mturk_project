@@ -197,43 +197,15 @@ SESSION_CONFIG_DEFAULTS = {
 
 SESSION_CONFIGS = [
     {
-        'name': 'coopetition_mturk_asym0_60',
-        'display_name': "Coopetition Asm0_60",
-        'num_demo_participants': 4,
-        'participation_fee': 1,
-        'max_payment': 5,
-        'treatment': 'Asm0_60',
-        'real_world_currency_per_point': 1 / 450,
-        # 'debug': False,
-        'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
-                         'survey_online', 'payment_online'
-                         ],
-    },
-
-    {
-        'name': 'coopetition_mturk_asym60_0',
-        'display_name': "Coopetition Asym60_0",
-        'num_demo_participants': 4,
-        'participation_fee': 1,
-        'max_payment': 5,
-        'treatment': 'Asm60_0',
-        'real_world_currency_per_point': 1 / 450,
-        # 'debug': False,
-        'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
-                         'survey_online', 'payment_online'
-                         ],
-    },
-    {
         'name': 'coopetition_mturk_det0_60',
         'display_name': "Coopetition Det0_60",
         'num_demo_participants': 4,
         'participation_fee': 1,
-        'max_payment': 5,
+        'max_payment': 6,
         'treatment' : 'Det0_60',
-        'real_world_currency_per_point': 1 / 450,
         # 'debug': False,
         'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
-                         'survey_online','risk_preferences', 'payment_online'
+                         'survey_online', 'payment_online'
                          ],
     },
     {
@@ -241,12 +213,36 @@ SESSION_CONFIGS = [
         'display_name': "Coopetition Det60_0",
         'num_demo_participants': 4,
         'participation_fee': 1,
-        'max_payment': 5,
+        'max_payment': 6,
         'treatment': 'Det60_0',
+        # 'debug': False,
+        'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
+                         'survey_online', 'payment_online'
+                         ],
+    },
+    {
+        'name': 'coopetition_mturk_asym0_60',
+        'display_name': "Coopetition Asm0_60",
+        'num_demo_participants': 4,
+        'participation_fee': 1,
+        'max_payment': 6,
+        'treatment': 'Asm0_60',
         'real_world_currency_per_point': 1 / 450,
         # 'debug': False,
         'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
-                         'survey_online','risk_preferences', 'payment_online'
+                         'survey_online', 'payment_online'
+                         ],
+    },
+    {
+        'name': 'coopetition_mturk_asym60_0',
+        'display_name': "Coopetition Asym60_0",
+        'num_demo_participants': 4,
+        'participation_fee': 1,
+        'max_payment': 6,
+        'treatment': 'Asm60_0',
+        # 'debug': False,
+        'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
+                         'survey_online', 'payment_online'
                          ],
     },
     {
@@ -254,9 +250,8 @@ SESSION_CONFIGS = [
         'display_name': "Coopetition Fix0_60",
         'num_demo_participants': 4,
         'participation_fee': 1,
-        'max_payment': 5,
+        'max_payment': 6,
         'treatment': 'Fix0_60',
-        'real_world_currency_per_point': 1 / 450,
         # 'debug': False,
         'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
                          'survey_online','risk_preferences', 'payment_online'
@@ -267,9 +262,8 @@ SESSION_CONFIGS = [
         'display_name': "Coopetition Fix60_0",
         'num_demo_participants': 4,
         'participation_fee': 1,
-        'max_payment': 5,
+        'max_payment': 6,
         'treatment': 'Fix60_0',
-        'real_world_currency_per_point': 1 / 450,
         # 'debug': False,
         'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
                          'survey_online','risk_preferences', 'payment_online'
@@ -280,9 +274,8 @@ SESSION_CONFIGS = [
         'display_name': "Coopetition Var0_60",
         'num_demo_participants': 4,
         'participation_fee': 1,
-        'max_payment': 5,
+        'max_payment': 6,
         'treatment': 'Var0_60',
-        'real_world_currency_per_point': 1 / 450,
         # 'debug': False,
         'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
                          'survey_online','risk_preferences', 'payment_online'
@@ -293,14 +286,14 @@ SESSION_CONFIGS = [
         'display_name': "Coopetition Var60_0",
         'num_demo_participants': 4,
         'participation_fee': 1,
-        'max_payment': 5,
+        'max_payment': 6,
         'treatment': 'Var60_0',
-        'real_world_currency_per_point': 1 / 450,
         # 'debug': False,
         'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
                          'survey_online','risk_preferences', 'payment_online'
                          ],
     },
+
 ]
 
 # anything you put after the below line will override

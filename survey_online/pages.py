@@ -37,7 +37,7 @@ class SurveyPage2(SurveyPage):
 
 survey_pages = [
     SurveyPage1,
-    # SurveyPage2,
+    SurveyPage2,
 ]
 
 # Common setup for all pages (will set the questions per page)
