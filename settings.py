@@ -227,7 +227,6 @@ SESSION_CONFIGS = [
         'participation_fee': 1,
         'max_payment': 6,
         'treatment': 'Asm0_60',
-        'real_world_currency_per_point': 1 / 450,
         # 'debug': False,
         'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
                          'survey_online', 'payment_online'
