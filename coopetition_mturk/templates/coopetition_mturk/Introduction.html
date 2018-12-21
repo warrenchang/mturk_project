@@ -9,7 +9,7 @@ Introduction: Part 2
 
 <p>
     This is the start of Part 2 of the experiment.
-    In this part, there will be multiple rounds of decision-making.
+    There will be <strong>{{ Constants.interaction_length.1 }}</strong>   rounds of decision-making.
     You will be matched with <strong>the same participant</strong> as in Part I.
 </p>
 <p>
@@ -85,10 +85,10 @@ The situation in Part 2 is quite similar to Part 1. This part differs from Prat 
 
 <p style="text-align:center">
     <strong>the total return from the investment now is
-        \(\overbrace{110}^{rand \le x_1x_2}+60\),
+        \(\overbrace{ {{Constants.var_max}} }^{rand \le x_1x_2}+60\),
     </strong>
     instead of
-    \(\overbrace{110}^{rand \le x_1x_2}\).
+    \(\overbrace{ {{ Constants.var_max }}}^{rand \le x_1x_2}\).
 </p>
 <p>
     That is, the total return is 170 points if the investment is a success, and 60 points if the investment is a failure.
@@ -101,12 +101,12 @@ The situation in Part 2 is quite similar to Part 1. This part differs from Prat 
     {% if player.condition == "Var" and player.A == 0 %}
 <p style="text-align:center">
     <strong>the total return from the investment now is
-        \(\overbrace{110}^{rand \le x_1x_2}\),
+        \(\overbrace{ {{Constants.var_max}} }^{rand \le x_1x_2}\),
     </strong> instead of
-    \(\overbrace{110}^{rand \le x_1x_2}+60\).
+    \(\overbrace{ {{Constants.var_max}}}^{rand \le x_1x_2}+60\).
 </p>
 <p>
-    That is, the total return is 110 points if the investment is a success, and 0 point if the investment is a failure.
+    That is, the total return is {{Constants.var_max}} points if the investment is a success, and 0 point if the investment is a failure.
 </p>
 <p>
     The total return from the investment is therefore 60 points less than before, whether the investment is a success or not.

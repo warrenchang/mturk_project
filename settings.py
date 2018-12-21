@@ -205,7 +205,7 @@ SESSION_CONFIGS = [
         'treatment' : 'Det0_60',
         # 'debug': False,
         'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
-                         'survey_online', 'payment_online'
+                         'survey_online','risk_preferences', 'payment_online'
                          ],
     },
     {
@@ -217,31 +217,7 @@ SESSION_CONFIGS = [
         'treatment': 'Det60_0',
         # 'debug': False,
         'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
-                         'survey_online', 'payment_online'
-                         ],
-    },
-    {
-        'name': 'coopetition_mturk_asym0_60',
-        'display_name': "Coopetition Asm0_60",
-        'num_demo_participants': 4,
-        'participation_fee': 1,
-        'max_payment': 6,
-        'treatment': 'Asm0_60',
-        # 'debug': False,
-        'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
-                         'survey_online', 'payment_online'
-                         ],
-    },
-    {
-        'name': 'coopetition_mturk_asym60_0',
-        'display_name': "Coopetition Asym60_0",
-        'num_demo_participants': 4,
-        'participation_fee': 1,
-        'max_payment': 6,
-        'treatment': 'Asm60_0',
-        # 'debug': False,
-        'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
-                         'survey_online', 'payment_online'
+                         'survey_online','risk_preferences', 'payment_online'
                          ],
     },
     {
@@ -290,6 +266,31 @@ SESSION_CONFIGS = [
         # 'debug': False,
         'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
                          'survey_online','risk_preferences', 'payment_online'
+                         ],
+    },
+
+    {
+        'name': 'coopetition_mturk_asym0_60',
+        'display_name': "Coopetition Asm0_60",
+        'num_demo_participants': 4,
+        'participation_fee': 1,
+        'max_payment': 6,
+        'treatment': 'Asm0_60',
+        # 'debug': False,
+        'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
+                         'survey_online', 'payment_online'
+                         ],
+    },
+    {
+        'name': 'coopetition_mturk_asym60_0',
+        'display_name': "Coopetition Asym60_0",
+        'num_demo_participants': 4,
+        'participation_fee': 1,
+        'max_payment': 6,
+        'treatment': 'Asm60_0',
+        # 'debug': False,
+        'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
+                         'survey_online', 'payment_online'
                          ],
     },
 

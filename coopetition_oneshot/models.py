@@ -23,6 +23,7 @@ class Constants(BaseConstants):
 
     A_values = [0,60]
     num_rounds = 1
+    var_max = 105 ## maximal value for Var treatment
 
 
 class Subsession(BaseSubsession):

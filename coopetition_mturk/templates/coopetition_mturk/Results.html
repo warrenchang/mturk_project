@@ -129,9 +129,9 @@ Results
             <td rowspan="2">{{ player.rand_num}}</td>
             <td rowspan="2">
                 {% if player.successful %}
-                Yes <br/> ({{player.rand_num}} \(\le x_1x_2\))
+                Yes <br/> ( \(x_1x_2 \ge\) {{player.rand_num}})
                 {% else %}
-                No <br/> ({{player.rand_num}} \(> x_1x_2\))
+                No <br/> (\(x_1x_2 <\) {{player.rand_num}} )
                 {% endif%}
             </td>
             <td rowspan="2"> {{ player.pie}}</td>

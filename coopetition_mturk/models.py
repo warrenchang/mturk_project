@@ -76,6 +76,7 @@ class Constants(BaseConstants):
     # interaction_length = [3, 3]
 
     num_rounds = sum(interaction_length) # change num_rounds for testing purpose, but need to make sure that number_sequence
+    var_max = 110 ## maximal value for Var treatment
 
 
 class Subsession(BaseSubsession):
@@ -97,8 +98,8 @@ class Subsession(BaseSubsession):
                 ## a random number between 1 and 200 (inclusive)
                 p.rand_num = int(math.ceil(random.random()*200))
             elif p.condition=='Var':
-                ## a random number between 1 and 110 (inclusive)
-                p.rand_num = int(math.ceil(random.random()*110))
+                ## a random number between 1 and var_max (inclusive)
+                p.rand_num = int(math.ceil(random.random()*Constants.var_max))
             if p.treatment[3] == '0':
                 p.A = Constants.A_values[p.interaction_number-1]
             else:
@@ -145,7 +146,7 @@ class Group(BaseGroup):
             p1.successful = p1.rand_num <= p1.a1*p2.a1
             p2.successful = p1.successful
             if p1.successful: # investment is a success
-                p1.pie = 110 + p1.A
+                p1.pie = Constants.var_max + p1.A
                 p2.pie = p1.pie
             else:
                 p1.pie = p1.A

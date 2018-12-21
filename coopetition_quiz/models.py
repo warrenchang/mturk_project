@@ -15,6 +15,7 @@ class Constants(BaseConstants):
     name_in_url = 'quiz'
     players_per_group = None
     num_rounds = 1
+    var_max = 110 ## maximal value for Var treatment
 
     summary_template = 'coopetition_quiz/Instructions_template.html'
     examples_template = 'coopetition_quiz/Examples_template.html'
