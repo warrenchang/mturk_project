@@ -31,3 +31,4 @@ class Group(BaseGroup):
 class Player(BasePlayer):
     choice = models.PositiveIntegerField(choices=[1,2,3,4,5,6,7], widget=widgets.RadioSelectHorizontal())
     rand_number = models.PositiveIntegerField()
+    ## it may be helpful to define treatment variable, making it easier for data analysis later

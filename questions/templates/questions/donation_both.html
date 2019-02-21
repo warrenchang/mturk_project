@@ -1,0 +1,26 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+{% endblock %}
+
+
+{% block content %}
+<hr>
+Dolphins in many breeding locations are threatened by pollution, which is expected to result in a decline of the dolphin population.
+A special fund supported by private contributions has been set up to provide pollution-free breeding locations for dolphins.
+How much (DKK) would you contribute to this fund?
+{% formfield player.donation1 label="" %}
+<hr>
+    Farmworkers, who are exposed to the sun for many hours, have a higher rate of skin cancer than the general population.
+    Frequent medical check-ups can reduce the risk. A fund will be set up to support medical check-ups for threatened groups.
+    How much (DKK) would you contribute to this fund?
+{% formfield player.donation2 label="" %}
+<hr>
+
+
+<div style="text-align:right">
+    {% next_button %}
+</div>
+
+{% endblock %}

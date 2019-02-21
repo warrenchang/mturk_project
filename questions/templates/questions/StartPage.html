@@ -1,0 +1,20 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Questionnaire
+{% endblock %}
+
+{% block content %}
+
+<p style="font-size:16px">
+    Before getting paid, please finish the following questionnaire. When you are done with the questionnaire,
+    let the experimenter know so that you will get paid privately.
+ </p>
+
+
+    <div style="text-align:right">
+    {% next_button %}
+    </div>
+
+{% endblock %}

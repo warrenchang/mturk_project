@@ -1,0 +1,33 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+{% endblock %}
+
+
+{% block content %}
+<p>
+    Please answer the following questions.
+</p>
+
+<hr>
+<div class="container" style="alignment:center">
+    {% for field in form %}
+    <div class="row">
+        <div class="col-sm-10">
+            {{ field.label_tag }}
+        </div>
+        <div class="col-sm-2">
+            {{ field }}
+        </div>
+    </div>
+    <hr>
+    {% endfor %}
+</div>
+
+
+<div style="text-align:right">
+    {% next_button %}
+</div>
+
+{% endblock %}
