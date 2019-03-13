@@ -69,7 +69,7 @@ AWS_SECRET_ACCESS_KEY = environ.get('AWS_SECRET_ACCESS_KEY')
 REAL_WORLD_CURRENCY_CODE = 'AED '
 REAL_WORLD_CURRENCY_CODE = 'RMB '
 REAL_WORLD_CURRENCY_CODE = '$'
-USE_POINTS = True
+USE_POINTS = False
 # POINTS_CUSTOM_NAME = 'tokens'
 REAL_WORLD_CURRENCY_DECIMAL_PLACES = 2
 POINTS_DECIMAL_PLACES = 1
@@ -210,10 +210,10 @@ SESSION_CONFIGS = [
         'name': 'risk_preferences',
         'display_name': "risk preferences",
         'num_demo_participants': 6,
-        'real_world_currency_per_point': 1 / 8,
+        'real_world_currency_per_point': 1,
         'participation_fee': 0,
         'debug': False,
-        'app_sequence': ['bret', 'risk_preferences',
+        'app_sequence': ['bret', 'risk_preferences', 'russian_roulette'
                          ],
     },
     {

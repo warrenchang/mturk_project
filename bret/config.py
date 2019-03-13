@@ -18,12 +18,12 @@ class Constants(BaseConstants):
     # if the bomb is not collected, player's payoff per round is determined by <box_value> times <boxes_collected>
     # note that the currency of any earnings is determined by the oTree settings in settings.py
     # if you set this to a decimal number, you must set POINTS_DECIMAL_PLACES in settings.py
-    box_value = Currency(1)
+    box_value = Currency(10)
 
     # number of rows and columns
     # i.e. the total number of boxes is determined by <num_rows> times <num_cols>
-    num_rows = 10
-    num_cols = 10
+    num_rows = 8
+    num_cols = 8
 
     # box height and box width in pixels
     # make sure that the size of the boxes fits the screen of the device
@@ -32,7 +32,7 @@ class Constants(BaseConstants):
     box_width = '50px'
 
     # number of rounds to be played
-    num_rounds = 1
+    num_rounds = 3
 
     # determines whether all rounds played are payed-off or whether one round is randomly chosen for payment
     # if <random_payoff = True>, one round is randomly determined for payment
@@ -68,7 +68,7 @@ class Constants(BaseConstants):
 
     # time interval between single boxes being collected (in seconds)
     # note that this only affects game play if <dynamic = True>
-    time_interval = 1.00
+    time_interval = .5
 
     # collect boxes randomly or systematically
     # if <random = False>, boxes are collected row-wise one-by-one, starting in the top-left corner
@@ -80,7 +80,7 @@ class Constants(BaseConstants):
     # if <devils_game = True>, game play is similar to Slovic (1965), i.e. boxes are collected by subjects
     # if <devils_game = False>, subjects enter the number of boxes they want to collect
     # note that this only affects game play if <dynamic = False>
-    devils_game = False
+    devils_game = True
 
     # determine whether boxes can be toggled only once or as often as clicked
     # if <undoable = True> boxes can be selected and de-selected indefinitely often

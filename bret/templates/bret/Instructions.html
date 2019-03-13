@@ -61,6 +61,10 @@
             {% endblocktrans %}
         </p>
 
+{% if Constants.num_rounds > 1 %}
+        You will play {{ Constants.num_rounds }} times (rounds), and the computer will randomly select one of these three decision outcomes
+        to determine your payoff for this part.
+{% endif %}
     </div>
 
      {% next_button %}
