@@ -212,6 +212,16 @@ SESSION_CONFIGS = [
                          ],
     },
     {
+        'name': 'russian',
+        'display_name': "russian",
+        'num_demo_participants': 6,
+        'real_world_currency_per_point': 1,
+        'participation_fee': 0,
+        'debug': False,
+        'app_sequence': ['russian_roulette'
+                         ],
+    },
+    {
         'name': 'coopetition_mturk_det0_60',
         'display_name': "Coopetition Det0_60",
         'num_demo_participants': 4,

@@ -18,12 +18,15 @@ class Decision(CustomMturkPage):
     def before_next_page(self):
         p = self.player
 
-        if p.rand_number <= p.choice:
+        if p.price <= p.choice: #pay to remove one bullet
             p.payoff = Constants.bonus - p.choice
             p.bullets -= 1
+        else:
+            p.payoff = Constants.bonus
 
-        if p.rand_number < p.bullets/6:
-            p.payoff = 0
+
+        if p.rand_number < p.bullets/6: ## bullet shot
+            p.payoff -= Constants.bonus
 
         if self.timeout_happened:
             p.payoff = 0
