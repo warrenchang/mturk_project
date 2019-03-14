@@ -114,11 +114,6 @@ DEMO_PAGE_INTRO_TEXT = """
 
 ROOMS = [
     {
-        'name': 'ssel_b_side',
-        'display_name': 'SSEL B01 - B24',
-        'participant_label_file': '_rooms/ssel_b_side.txt',
-    },
-    {
         'name': '1',
         'display_name': 'Room 1',
         'participant_label_file': '_rooms/room1.txt',

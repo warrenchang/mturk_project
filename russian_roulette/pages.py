@@ -38,7 +38,8 @@ class Results(CustomMturkPage):
             return True
 
 class EndInfo(Page):
-    pass
+    def is_displayed(self):
+        return self.round_number == Constants.num_rounds
 
 
 page_sequence = [
