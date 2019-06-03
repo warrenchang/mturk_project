@@ -232,19 +232,6 @@ SESSION_CONFIGS = [
         'display_name': "Coopetition lab Det0_60",
         'num_demo_participants': 4,
         'participation_fee': 0,
-        'real_world_currency_per_point': 1/300,
-        'treatment': 'Asm0_60',
-        'language': 'CN',  # language can be EN, CN, or empty string (both)
-        # 'debug': False,
-        'app_sequence': ['coopetition_lab_quiz', 'coopetition_lab',
-                         'payment_online',
-                         ],
-    },
-    {
-        'name': 'coopetition_lab_det0_60',
-        'display_name': "Coopetition lab Det0_60",
-        'num_demo_participants': 4,
-        'participation_fee': 0,
         'max_payment': 130,
         'treatment': 'Det0_60',
         'language' : 'CN', # language can be EN, CN, or empty string (both)
