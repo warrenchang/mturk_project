@@ -33,7 +33,6 @@ class BaseWaitPage(WaitPage):
 class MatchingWaitPage(WaitPage):
     template_name = 'coopetition_lab/MatchingWaitPage.html'
     group_by_arrival_time = True
-    extra_template = Constants.extra_info
 
     def is_displayed(self):
         return (self.participant.vars['qualified'] and (self.round_number == 1))
