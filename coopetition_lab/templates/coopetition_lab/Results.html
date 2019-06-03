@@ -7,12 +7,16 @@ Results 结果
 
 
 {% block content %}
-<p style="font-size:16px">Round {{ player.round_in_interaction }} </p>
 <p style="font-size:16px">第 {{ player.round_in_interaction }} 期</p>
-
 <h5 style="text-align:center">
-    Summary of this round 本期概要
+    本期概要
 </h5>
+
+<p style="font-size:16px">Round {{ player.round_in_interaction }} </p>
+<h5 style="text-align:center">
+    Summary of this round
+</h5>
+
 
 {% if player.condition == "Asm" %}
 <div>

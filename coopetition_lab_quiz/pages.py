@@ -245,18 +245,6 @@ class QuizResults(Page):
             'max_payment': self.session.config['max_payment'],
         }
 
-class WorkerID(Page):
-    timeout_seconds = 60
-
-    form_model = 'player'
-    form_fields = ['workerid']
-
-    def is_displayed(self):
-        return self.participant.vars['qualified']
-
-    def before_next_page(self):
-        self.participant.vars['workerid'] = self.player.workerid
-
 
 page_sequence = [
     StartPage,
@@ -264,5 +252,4 @@ page_sequence = [
     Examples,
     SomeUnderstandingQuestions,
     QuizResults,
-    WorkerID,
 ]

@@ -1,0 +1,32 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+   Quiz results
+{% endblock %}
+
+{% block content %}
+
+{% if player.language != "CN"  %}
+    <div style="text-align:center;font-size:18px">
+    <p>You have finished the quiz questions.
+       Click "Next", and you will be matched with another participant to continue with the experiment.
+    </p>
+    </div>
+{% endif %}
+{% if player.language != "EN"  %}
+    <div style="text-align:center;font-size:18px">
+    <p>你完成了测验题目。
+        点击"Next", 你将与其他参与这匹配进行实验。
+    </p>
+    </div>
+{% endif %}
+
+    <br/>
+        <div style="text-align:right">
+            {% next_button %}
+        </div>
+
+{% endblock %}
+
+

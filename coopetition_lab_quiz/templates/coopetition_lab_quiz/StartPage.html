@@ -6,6 +6,7 @@
 
 {% block content %}
 
+{% if player.language != "EN"  %}
 <p style="font-size:16px">
     欢迎参加本决策实验。
 </p>
@@ -30,7 +31,9 @@
         实验结束后，你至少能够获得30元的回报。取决于你和其他参与者的决策，你最终的回报最高可达{{ max_payment }}元。
     </p>
 
+{% endif %}
 
+{% if player.language != "CN"  %}
 <p style="font-size:16px">
     Welcome to the experiment of decision-making.
 </p>
@@ -64,8 +67,9 @@
         Depending on your and the other participant's decision, you can also earn up to RMB {{ max_payment }}.
     </p>
 
+
+{% endif %}
     <div style="text-align:right">
     {% next_button %}
     </div>
-
 {% endblock %}

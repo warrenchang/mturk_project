@@ -10,6 +10,8 @@
     </script>
 </head>
 
+{% if player.language != "EN"  %}
+<div>
 <p style="text-align: center" style="font-size:16px">
     <strong><u>情境描述</u></strong>
 </p>
@@ -62,8 +64,11 @@
 </div>
 {% endif %}
 {% endif %}
+</div>
+{% endif %}
 
-
+{% if player.language != "CN"  %}
+<div>
 <p style="text-align: center" style="font-size:16px">
     <strong><u>Summary of the Situation</u></strong>
 </p>
@@ -121,4 +126,8 @@
 </div>
 {% endif %}
 {% endif %}
+</div>
+{% endif %}
+
+
 {% endblock %}

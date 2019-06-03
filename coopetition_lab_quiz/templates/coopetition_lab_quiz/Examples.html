@@ -1,0 +1,45 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+{% if player.language != "EN"  %}
+示例
+{% endif %}
+{% if player.language != "CN"  %}
+Examples
+{% endif %}
+{% endblock %}
+
+
+{% block content %}
+<div class="card bg-light instructions">
+    <div class="card-body">
+        {% include Constants.summary_template %}
+    </div>
+</div>
+<br/>
+<p>
+    {% if player.language != "EN"  %}
+    以下举例帮助你更好的理解本实验。
+{% endif %}
+{% if player.language != "CN"  %}
+    Below are some examples to help you understand the experiment.
+{% endif %}
+</p>
+{% include Constants.examples_template %}
+
+<br/>
+<p>
+{% if player.language != "EN"  %}
+点击"Next"开始回答小测验。
+{% endif %}
+{% if player.language != "CN"  %}
+Click "Next" to answer the quiz questions.
+{% endif %}
+</p>
+
+<div style="text-align:right">
+    {% next_button %}
+</div>
+
+{% endblock %}
