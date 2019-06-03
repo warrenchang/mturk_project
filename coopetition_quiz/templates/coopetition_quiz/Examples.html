@@ -1,29 +1,29 @@
-{% extends "global/Page.html" %}
-{% load staticfiles otree %}
-
-{% block title %}
-Examples
-{% endblock %}
-
-
-{% block content %}
-<div class="card bg-light instructions">
-    <div class="card-body">
-        {% include Constants.summary_template %}
-    </div>
-</div>
-<br/>
-<p>Below are some examples to help you understand the experiment. The information on this page, including the examples,
-    will be shown to you while you answer the quiz questions. If you prefer, you can study these examples while answering
-    the quiz questions.
-</p>
-{% include Constants.examples_template %}
-
-<br/>
-<p>Click "Next" to answer the quiz questions. The information on this page will be shown to help you complete the quiz. </p>
-
-<div style="text-align:right">
-    {% next_button %}
-</div>
-
-{% endblock %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1504.83">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 14.0px; font: 12.0px Times; color: #000000; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 14.0px; font: 12.0px Times; color: #000000; -webkit-text-stroke: #000000; min-height: 14.0px}
+    p.p3 {margin: 0.0px 0.0px 12.0px 0.0px; line-height: 14.0px; font: 12.0px Times; color: #000000; -webkit-text-stroke: #000000}
+    p.p4 {margin: 0.0px 0.0px 12.0px 0.0px; line-height: 14.0px; font: 12.0px 'Songti SC'; color: #000000; -webkit-text-stroke: #000000}
+    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; line-height: 14.0px; font: 12.0px Times; color: #000000; -webkit-text-stroke: #000000}
+    span.s1 {font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">{% extends "global/Page.html" %} {% load staticfiles otree %} {% block title %} Examples {% endblock %} {% block content %}</span></p>
+<p class="p1"><span class="s1">{% include Constants.summary_template %}<span class="Apple-converted-space"> </span></span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p3"><span class="s1">Below are some examples to help you understand the experiment. The information on this page, including the examples, will be shown to you while you answer the quiz questions. If you prefer, you can study these examples while answering the quiz questions.<span class="Apple-converted-space"> </span></span></p>
+<p class="p4"><span class="s1">以下举例帮助你更好的理解本实验。本页中的信息（包括例子）在你回答小测验的过程中可见。</span></p>
+<p class="p1"><span class="s1">{% include Constants.examples_template %}<span class="Apple-converted-space"> </span></span></p>
+<p class="p3"><span class="s1">Click "Next" to answer the quiz questions. The information on this page will be shown to help you complete the quiz.<span class="Apple-converted-space"> </span></span></p>
+<p class="p5"><span class="s1">{% next_button %}<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">{% endblock %}<span class="Apple-converted-space"> </span></span></p>
+</body>
+</html>

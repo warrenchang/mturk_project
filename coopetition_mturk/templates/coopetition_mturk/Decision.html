@@ -1,69 +1,52 @@
-{% extends "global/Page.html" %}
-{% load staticfiles otree %}
-
-{% block title %}
-{% endblock %}
-
-{% block content %}
-<p style="font-size:16px">Round {{ player.round_in_interaction }} </p>
-
-
-<p style="font-size:16px">
-    Out of the {{ player.endowment }} points you have, please indicate the number of points you want to allocate to the
-    <i>Investment Account</i> and the <i>Rationing Account</i>.
-    The rest of the points are kept to yourself.
-</p>
-
-<div class="container" style="alignment:center">
-    <div class="row">
-        <div class="col-sm-2">
-        </div>
-        <div class="col-sm-4">
-            <b>Investment Account (\(x_1\))</b>  {{ form.a1 }}
-        </div>
-        <div class="col-sm-4">
-            <b>Rationing Account (\(y_1\)) </b>  {{ form.a2 }}
-        </div>
-        <div class="col-sm-2">
-        </div>
-    </div>
-</div>
-
-<div style="text-align:right">
-    <button class="otree-btn-next btn btn-primary">Submit</button>
-</div>
-
-<br/>
-{% if player.interaction_number == 1 and player.round_number <= 5  %}
-<p style="font-size:16px">
-    Note:
-    {% if player.interaction_number == 1 %}
-    For the first 5 rounds, you have 1 minutes to reach your decision; after Round 5, you have 30 seconds to reach your decision.
-    {% else %}
-    In each round, you have 30 seconds to reach your decision.
-    {% endif%}
-
-    <strong>If you do not submit your answer within the allocated time, the computer will randomly choose answers for you, and
-        you will not get paid for that round.</strong>
-</p>
-<p style="text-align:center">
-    <strong>Remember to submit once you reach your decision.
-        Your decision is submitted only after you click "Submit".</strong>
-</p>
-{% endif%}
-
-<br/>
-{% include Constants.history_template %}
-
-<br/>
-<div class="card bg-light instructions">
-    <div class="card-body">
-        {% include Constants.instructions_template %}
-    </div>
-</div>
-
-<br/>
-{% include Constants.history_previous_template %}
-
-{% endblock %}
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1504.83">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 14.0px; font: 12.0px Times; color: #000000; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 16.0px 0.0px; line-height: 18.0px; font: 16.0px Times; color: #000000; -webkit-text-stroke: #000000}
+    p.p3 {margin: 0.0px 0.0px 16.0px 0.0px; line-height: 22.0px; font: 16.0px Times; color: #000000; -webkit-text-stroke: #000000}
+    p.p4 {margin: 0.0px 0.0px 16.0px 0.0px; line-height: 22.0px; font: 16.0px 'Songti SC'; color: #000000; -webkit-text-stroke: #000000}
+    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 17.0px; font: 12.0px Times; color: #000000; -webkit-text-stroke: #000000}
+    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; line-height: 13.0px; font: 11.0px 'Helvetica Neue'; color: #000000; -webkit-text-stroke: #000000}
+    p.p7 {margin: 0.0px 0.0px 12.0px 0.0px; text-align: center; line-height: 14.0px; font: 12.0px Times; color: #000000; -webkit-text-stroke: #000000}
+    p.p8 {margin: 0.0px 0.0px 12.0px 0.0px; text-align: center; line-height: 17.0px; font: 12.0px 'Songti SC'; color: #000000; -webkit-text-stroke: #000000}
+    span.s1 {font-kerning: none}
+    span.s2 {font: 16.0px 'Songti SC'; font-kerning: none}
+    span.s3 {font: 16.0px Times; font-kerning: none}
+    span.s4 {font: 12.0px 'Songti SC'; font-kerning: none}
+    span.s5 {font-kerning: none; background-color: #c0c0c0}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">{% extends "global/Page.html" %} {% load staticfiles otree %} {% block title %} {% endblock %} {% block content %}</span></p>
+<p class="p2"><span class="s1">Round {{ player.round_in_interaction }}<span class="Apple-converted-space"> </span></span></p>
+<p class="p3"><span class="s2">第</span><span class="s1">{{ player.round_in_interaction }} </span><span class="s2">期</span></p>
+<p class="p2"><span class="s1">Out of the {{ player.endowment }} points you have, please indicate the number of points you want to allocate to the <i>Investment Account</i> and the <i>Rationing Account</i>. The rest of the points are kept to yourself.<span class="Apple-converted-space"> </span></span></p>
+<p class="p4"><span class="s1">在你拥有的</span><span class="s3">{{ player.endowment }}</span><span class="s1">份资源中，请决定你在投资账户和分配账户中资源的份数（请仅输入整数），剩余资源将作为个人留存。</span></p>
+<p class="p1"><span class="s1"><br>
+</span></p>
+<p class="p1"><span class="s1"><b>Investment Account (\(x_1\))</b> {{ form.a1 }}<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><b>Rationing Account (\(y_1\)) </b>{{ form.a2 }}<span class="Apple-converted-space"> </span></span></p>
+<p class="p5"><span class="s4">投资账户</span><span class="s1"><b> (\(x_1\))</b> {{ form.a1 }}<span class="Apple-converted-space"> </span></span></p>
+<p class="p5"><span class="s4">分配账户</span><span class="s1"><b>(\(y_1\)) </b>{{ form.a2 }}<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><br>
+</span></p>
+<p class="p6"><span class="s5">Submit</span></p>
+<p class="p1"><span class="s1">{% if player.interaction_number == 1 and player.round_number &lt;= 5 %}</span></p>
+<p class="p2"><span class="s1">Note: {% if player.interaction_number == 1 %} For the first 5 rounds, you have 1 minutes to reach your decision; after Round 5, you have 30 seconds to reach your decision. {% else %} In each round, you have 30 seconds to reach your decision. {% endif%} <b>If you do not submit your answer within the allocated time, the computer will randomly choose answers for you, and you will not get paid for that round.</b><span class="Apple-converted-space"> </span></span></p>
+<p class="p4"><span class="s1">注意：</span><span class="s3">{% if player.interaction_number == 1 %} </span><span class="s1">在前五期，你每轮有一分钟时间来做决定；五期过后，你每期有30秒来做决定。</span><span class="s3">{% else %}</span><span class="s1">在每一期，你有30秒来做决定。</span><span class="s3">{% endif%} </span><span class="s1">如果你在规定时间内未能填写决定，系统将随机为您做决定，且你将无法获得本期的收益。</span></p>
+<p class="p7"><span class="s1"><b>Remember to submit once you reach your decision. Your decision is submitted only after you click "Submit".</b><span class="Apple-converted-space"> </span></span></p>
+<p class="p8"><span class="s1">在填写决定后，请务必点击“提交”。</span></p>
+<p class="p1"><span class="s1">{% endif%}<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">{% include Constants.history_template %}<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">{% include Constants.instructions_template %}<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><br>
+</span></p>
+<p class="p1"><span class="s1">{% include Constants.history_previous_template %} {% endblock %}<span class="Apple-converted-space"> </span></span></p>
+</body>
+</html>

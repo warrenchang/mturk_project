@@ -256,6 +256,122 @@ Instructions: Part 1
 </div>
 {% endif %}
 
+{% if player.condition == "Fix" %}
+<div>
+    <ul>
+        <li>
+            The investment can be either success or unsuccessful, which are equally likely.
+            {% if player.A == 0 %}
+            If it is successful, the total return is \(2x_1x_2\) points; if it is unsuccessful, the total return is 0 points.
+            $$   \text{Total Return} =
+            \begin{cases}
+            2x_1x_2, & \text{if successful (with probability 0.5)} \\
+            0, & \text{if unsuccessful (with probability 0.5)}
+            \end{cases} $$
+            {% endif %}
+
+            {% if player.A == 60 %}
+            If it is successful, the total return is \(2x_1x_2+60\) points; if it is unsuccessful, the total return is 60 points.
+            $$   \text{Total Return} =
+            \begin{cases}
+            2x_1x_2+60, & \text{if successful (with probability 0.5)} \\
+            60, & \text{if unsuccessful (with probability 0.5)}
+            \end{cases} $$
+            {% endif %}
+        </li>
+        <li> Your share of the total return is determined by your share of points in the <i>Rationing Account</i>:
+            $$ \text{Your share of the total return} =  \frac{y_1}{y_1 + y_2} $$
+            <p>
+                For example, if you put 6 points in the Rationing Account while the other puts 4 points (\(y_1=6,y_2=4\)), because 60% of all the points
+                are yours, you will receive 60% of the Total Return. If you put 5 points and the other also put 5 points in the Rationing Account (\(y_1=5,y_2=5\)), then
+                you receive 50% of the Total Return.
+            </p>
+            <p>
+                In case both of you put 0 points in the Rationing Account, the total return will be evenly split between you two.
+            </p>
+        </li>
+        <li>
+            Your final earnings can be expressed as
+            $$\text{Final Earnings} =  \underbrace{\frac{y_1}{y_1 + y_2} \text{Total Return}   }_{\text{earnings from the investment}} +
+            \underbrace{10-x_1-y_1}_{\text{points kept for oneself}}$$
+        </li>
+    </ul>
+    <p>
+        In general, putting more points in the <i>Investment Account</i> (a higher \(x_1\))  <strong>generates a higher total return</strong>
+        , while putting more points in the <i>Rationing Account</i> (a higher \(y_1\))  <strong>increases your share of the total return</strong>.
+    </p>
+    <p>
+        In each round, to determine whether the investment is a success,
+        the computer randomly generates <strong>an integer between 1 and 200</strong> (inclusive)
+        with equal probability.
+        If the number is less than or equal to 100, the investment is successful;
+        if the number is greater than 100, the investment is unsuccessful.
+    </p>
+</div>
+{% endif %}
+
+
+{% if player.condition == "Var" %}
+<div>
+    <ul>
+        <li>
+            The investment can be either successful or unsuccessful.
+            {% if player.A == 0 %}
+            If it is successful, the total return is 110 points;
+            if it is unsuccessful, the total return is 0 points.
+            {% endif %}
+            {% if player.A == 60 %}
+            If it is successful, the total return is 170 points;
+            if it is unsuccessful, the total return is 60 points.
+            {% endif %}
+        </li>
+        <li>
+            In each round, to determine whether the investment is a success,
+            the computer randomly generates <strong>an integer between 1 and 110 </strong> (inclusive) with equal probability.
+            If the number is less than or equal to \(x_1 x_2\), the investment is a success; if the number is greater than \(x_1 x_2\),
+            the investment is unsuccessful.
+            {% if player.A == 0 %}
+            $$   \text{Total return} =
+            \begin{cases}
+            110, & \text{if random number} \leq x_1x_2\\
+            0, & \text{if random number} > x_1x_2
+            \end{cases} $$
+            {% endif %}
+            {% if player.A == 60 %}
+            $$   \text{Total return} =
+            \begin{cases}
+            170, & \text{if random number} \leq x_1x_2\\
+            60, & \text{if random number} > x_1x_2
+            \end{cases} $$
+            {% endif %}
+        </li>
+        <li> Your share of the total return is determined by your share of points in the <i>Rationing Account</i>:
+            $$ \text{Your share of the total return} =  \frac{y_1}{y_1 + y_2} $$
+            <p>
+                For example, if you put 6 points in the Rationing Account while the other puts 4 points (\(y_1=6,y_2=4\)), because 60% of all the points
+                are yours, you will receive 60% of the Total Return. If you put 5 points and the other also put 5 points in the Rationing Account (\(y_1=5,y_2=5\)), then
+                you receive 50% of the Total Return.
+            </p>
+            <p>
+                In case both of you put 0 points in the Rationing Account, the total return will be evenly split between you two.
+            </p>
+        </li>
+        <li>
+            Your final earnings can be expressed as
+            $$\text{Final Earnings} =  \underbrace{\frac{y_1}{y_1 + y_2} \text{Total Return}   }_{\text{earnings from the investment}} +
+            \underbrace{10-x_1-y_1}_{\text{points kept for oneself}}$$
+        </li>
+    </ul>
+
+    <p>
+        In general, putting more points in the <i>Investment Account</i> (a higher \(x_1\))
+        <strong>makes it more likely to receive a successful investment and a higher total return</strong>
+        , while putting more points in the <i>Rationing Account</i> (a higher \(y_1\))  <strong>increases your share of the total return</strong>.
+    </p>
+</div>
+{% endif %}
+
+
 {% endif %}
 
 <div style="text-align:right">

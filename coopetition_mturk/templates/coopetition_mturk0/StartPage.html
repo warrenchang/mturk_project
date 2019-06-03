@@ -1,0 +1,55 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+<div style="text-align:center">
+    <p >
+        You have just been matched with another participant.
+    </p>
+    <p>
+
+            You will interact with the same participant for <strong>
+            {{ Constants.interaction_length.0 }} rounds
+        </strong> in this part.
+    </p>
+    <p>
+        <strong>
+            {% if player.condition == "Asm" %}
+            {% if player.id_in_group == 1 %} You are Player A. {% else %} You are Player B. {% endif %}
+            In each round, you receive {{ player.endowment }} points, while the other participant receives {{ player.other_endowment}} points.
+            {% endif %}
+        </strong>
+    </p>
+
+    <!--<p style="font-size:16px">-->
+        <!--Note: The experiment proceeds as fast as the slower participant, so remember to submit your decisions in a timely manner.-->
+    <!--</p>-->
+
+    <!--<p>-->
+    <!--In order to make sure that the experiment does not take forever, we impose some time limit for the decision-making.-->
+    <!--For the first 5 rounds, you have 1 minutes to reach your decision; after Round 5, you have 30 seconds to reach your decision.-->
+    <!--If you do not submit your answer within the allocated time, the computer will randomly choose answers for you, and-->
+    <!--you will not get paid for that round.-->
+    <!--</p>-->
+
+    <!--<p>-->
+    <!--<strong>-->
+    <!--NOTE: If the webpage become unresponsive for a long time (more than 3 minutes), the other participant may get disconnected.-->
+    <!--In that case, you can submit the HIT using your MTurk worker ID and inform the requester by email.-->
+    <!--What you have earned so far will be paid to you as bonus.-->
+    <!--</strong>-->
+    <!--</p>-->
+
+</div>
+<br/>
+<div style="text-align:right">
+    <button class="otree-btn-next btn btn-primary">Continue</button>
+</div>
+
+
+{% include Constants.instructions_template %}
+
+{% endblock %}

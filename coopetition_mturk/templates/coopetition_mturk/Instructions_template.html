@@ -1,154 +1,43 @@
-{% load staticfiles otree %}
-
-{% block content %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>MathJax example</title>
-    <script type="text/javascript" async
-            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML" async>
-    </script>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>MathJax example</title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1504.83">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; color: #000000; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 12.0px 0.0px; text-align: center; line-height: 14.0px; font: 12.0px Times; color: #000000; -webkit-text-stroke: #000000}
+    p.p3 {margin: 0.0px 0.0px 12.0px 0.0px; line-height: 14.0px; font: 12.0px Times; color: #000000; -webkit-text-stroke: #000000}
+    p.p4 {margin: 0.0px 0.0px 12.0px 0.0px; line-height: 17.0px; font: 12.0px Times; color: #000000; -webkit-text-stroke: #000000}
+    p.p5 {margin: 0.0px 0.0px 12.0px 0.0px; line-height: 17.0px; font: 12.0px 'Songti SC'; color: #000000; -webkit-text-stroke: #000000}
+    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 14.0px; font: 12.0px Times; color: #000000; -webkit-text-stroke: #000000}
+    span.s1 {font-kerning: none}
+    span.s2 {text-decoration: underline ; font-kerning: none}
+    span.s3 {font: 12.0px 'Songti SC'; font-kerning: none}
+    span.s4 {font: 12.0px Times; font-kerning: none}
+  </style>
 </head>
-
-<p style="text-align: center" style="font-size:16px">
-    <strong><u>Summary of the Situation</u></strong>
-</p>
-
-{% if player.condition == "Asm" %}
-<div>
-    <p>
-        You are Player {{ player.role }}.
-        In each round, you receive {{ player.endowment }} points, and the other player receives {{ player.other_endowment }} points.
-        You need to decide the number of points put into an <strong>Investment Account</strong> (\(x_1\)) and
-        a <strong>Rationing Account</strong> (\(y_1\)).
-        The rest of the points are kept to yourself.
-    </p>
-    <p>
-    Suppose the other player put \(x_2\) points in the  Investment Account and \(y_2\) points in the Rationing Account.
-    </p>
-    <p>
-        {% if player.A == 0 %}
-        $$\text{Your Final Earnings} =  \underbrace{\frac{y_1}{y_1 + y_2} \frac{x_1 x_2}{2}}_{\text{earnings from the investment}} +
-        \underbrace{ {{ player.endowment }} -x_1-y_1}_{\text{points kept for oneself}}$$
-        {% endif %}
-        {% if player.A == 60 %}
-        $$\text{Your Final Earnings} =  \underbrace{\frac{y_1}{y_1 + y_2}(\frac{x_1 x_2}{2}+60)}_{\text{earnings from the investment}} +
-        \underbrace{ {{player.endowment }} -x_2-y_2}_{\text{points kept for oneself}}$$
-        {% endif %}
-    </p>
-    <p>
-        In general, putting more points in the <i>Investment Account</i> (a higher \(x_1\))  <strong>generates a higher total return</strong>
-        , while putting more points in the <i>Rationing Account</i> (a higher \(y_1\)) <strong>increases your share of the total return</strong>.
-    </p>
-</div>
-
-{% else %}
-<div>
-    <p>
-        In each round, you receive {{ player.endowment }} points.
-        You need to decide the number of points put into an <strong>Investment Account</strong> (\(x_1\)) and a <strong>Rationing Account</strong> (\(y_1\)).
-        The rest of the points (\({{ player.endowment }}-x_1-y_1\)) are kept to yourself.
-    </p>
-</div>
-
-
-
-
-{% if player.condition == "Det" %}
-<div>
-    <p>
-        Your final earnings can be expressed as
-        {% if player.A == 0 %}
-        $$\text{Final Earnings} =  \underbrace{\frac{y_1}{y_1 + y_2}x_1 x_2}_{\text{earnings from the investment}} +
-        \underbrace{10-x_1-y_1}_{\text{points kept for oneself}}$$
-        {% endif %}
-        {% if player.A == 60 %}
-        $$\text{Final Earnings} =  \underbrace{\frac{y_1}{y_1 + y_2}(x_1 x_2+60)}_{\text{earnings from the investment}} +
-        \underbrace{10-x_1-y_1}_{\text{points kept for oneself}}$$
-        {% endif %}
-    </p>
-    <p>
-        In general, putting more points in the <i>Investment Account</i> (a higher \(x_1\))  <strong>generates a higher total return</strong>
-        , while putting more points in the <i>Rationing Account</i> (a higher \(y_1\)) <strong>increases your share of the total return</strong>.
-    </p>
-</div>
-{% endif %}
-
-
-
-{% if player.condition == "Fix"  %}
-<div>
-    <p>
-        Your final earnings can be expressed as
-        $$\text{Final Earnings} =  \underbrace{\frac{y_1}{y_1 + y_2} \text{Total Return} }_{\text{earnings from the investment}} +
-        \underbrace{10-x_1-y_1}_{\text{points kept for oneself}}$$
-    </p>
-    <p>
-        The Total Return depends on whether the investment is successful, and the points put in the Investment Account.
-    </p>
-
-    {% if player.A == 0 %}
-    $$   \text{Total Return} =
-    \begin{cases}
-    2x_1x_2, & \text{if successful (with probability 0.5)} \\
-    0, & \text{if unsuccessful (with probability 0.5)}
-    \end{cases} $$
-    {% endif %}
-
-    {% if player.A == 60 %}
-    $$   \text{Total Return} =
-    \begin{cases}
-    2x_1x_2+60, & \text{if successful (with probability 0.5)} \\
-    60, & \text{if unsuccessful (with probability 0.5)}
-    \end{cases} $$
-    {% endif %}
-    <p>
-        In general, putting more points in the <i>Investment Account</i> (a higher \(x_1\))  <strong>generates a higher total return</strong>
-        , while putting more points in the <i>Rationing Account</i> (a higher \(y_1\))  <strong>increases your share of the total return</strong>.
-    </p>
-    <p>
-        The computer randomly generates <strong>an integer between 1 and 200 </strong> (inclusive)
-        with equal probability to determine whether the investment is a success.
-    </p>
-</div>
-{% endif %}
-
-{% if player.condition == "Var" %}
-<div>
-    <p>
-        The computer randomly generates <strong>an integer between 1 and 110 </strong> (inclusive)
-        with equal probability to determine whether the investment is a success. <br/>
-    </p>
-    <p>
-        The Total Return depends on whether the investment is successful.
-    </p>
-
-    {% if player.A == 0 %}
-    $$   \text{Total Return} =
-    \begin{cases}
-    110, & \text{if random number} \le x_1x_2 \\
-    0, & \text{if random number} > x_1x_2
-    \end{cases} $$
-    {% endif %}
-
-    {% if player.A == 60 %}
-    $$   \text{Total Return} =
-    \begin{cases}
-    170, & \text{if random number} \le x_1x_2 \\
-    60, & \text{if random number} > x_1x_2
-    \end{cases} $$
-    {% endif %}
-    <p>
-        Your final earnings can be expressed as
-        $$\text{Final Earnings} =  \underbrace{\frac{y_1}{y_1 + y_2} \text{Total Return} }_{\text{earnings from the investment}} +
-        \underbrace{10-x_1-y_1}_{\text{points kept for oneself}}$$
-    </p>
-    <p>
-        In general, putting more points in the <i>Investment Account</i> (a higher \(x_1\))
-        <strong>makes it more likely to receive a successful investment and a higher total return</strong>
-        , while putting more points in the <i>Rationing Account</i> (a higher \(y_1\))  <strong>increases your share of the total return</strong>.
-    </p>
-</div>
-{% endif %}
-{% endif %}
-{% endblock %}
+<body>
+<p class="p1"><span class="s1">{% load staticfiles otree %} {% block content %}</span></p>
+<p class="p2"><span class="s2"><b>Summary of the Situation</b></span><span class="s1"> </span><span class="s3">情境描述</span></p>
+<p class="p2"><span class="s1">{% if player.condition == "Asm" %}</span></p>
+<p class="p3"><span class="s1">You are Player {{ player.role }}. In each round, you receive {{ player.endowment }} points, and the other player receives {{ player.other_endowment }} points. You need to decide the number of points put into an <b>Investment Account</b> (\(x_1\)) and a <b>Rationing Account</b> (\(y_1\)). The rest of the points are kept to yourself.<span class="Apple-converted-space"> </span></span></p>
+<p class="p4"><span class="s3">你的角色为玩家</span><span class="s1">{{ player.role }}</span><span class="s3">。每期开始，你将获得</span><span class="s1">{{ player.endowment }} </span><span class="s3">份资源，而另一名玩家（“对方”）将获得</span><span class="s1">{{ player.other_endowment }} </span><span class="s3">份资源。你需要决定将多少份资源置于<b>投资账户</b></span><span class="s1">(\(x_1\))</span><span class="s3">和<b>分配账户</b>中。剩余资源为个人留存。</span></p>
+<p class="p3"><span class="s1">Suppose the other player put \(x_2\) points in the Investment Account and \(y_2\) points in the Rationing Account.<span class="Apple-converted-space"> </span></span></p>
+<p class="p5"><span class="s1">假设对方玩家投入了</span><span class="s4">\(x_2\)</span><span class="s1">份资源在投资账户，</span><span class="s4">\(y_2\) </span><span class="s1">份资源在分配账户。</span></p>
+<p class="p3"><span class="s1">{% if player.A == 0 %} $$\text{Your Final Earnings} = \underbrace{\frac{y_1}{y_1 + y_2} \frac{x_1 x_2}{2}}_{\text{earnings from the investment}} + \underbrace{ {{ player.endowment }} -x_1-y_1}_{\text{points kept for oneself}}$$ {% endif %} {% if player.A == 60 %} $$\text{Your Final Earnings} = \underbrace{\frac{y_1}{y_1 + y_2}(\frac{x_1 x_2}{2}+60)}_{\text{earnings from the investment}} + \underbrace{ {{player.endowment }} -x_2-y_2}_{\text{points kept for oneself}}$$ {% endif %}<span class="Apple-converted-space"> </span></span></p>
+<p class="p3"><span class="s1">In general, putting more points in the <i>Investment Account</i> (a higher \(x_1\)) <b>generates a higher total return</b> , while putting more points in the <i>Rationing Account</i> (a higher \(y_1\)) <b>increases your share of the total return</b>.<span class="Apple-converted-space"> </span></span></p>
+<p class="p5"><span class="s1">总的来说，让更多资源置于投资账户</span><span class="s4">(</span><span class="s1">较高的</span><span class="s4"> \(x_1\))</span><span class="s1">将会带来<b>较高的合作总收益</b>，而让更多的资源置于分配账户</span><span class="s4">(</span><span class="s1">较高的</span><span class="s4"> \(y_1\))</span><span class="s1">将会提升<b>你在总体收益中所占的份额</b>。</span></p>
+<p class="p6"><span class="s1">{% else %}</span></p>
+<p class="p3"><span class="s1">In each round, you receive {{ player.endowment }} points. You need to decide the number of points put into an <b>Investment Account</b> (\(x_1\)) and a <b>Rationing Account</b> (\(y_1\)). The rest of the points (\({{ player.endowment }}-x_1-y_1\)) are kept to yourself.<span class="Apple-converted-space"> </span></span></p>
+<p class="p4"><span class="s3">每期开始，你将获得</span><span class="s1">{{ player.endowment }} </span><span class="s3">份资源。你需要决定将多少份资源置于<b>投资账户</b></span><span class="s1">(\(x_1\))</span><span class="s3">和<b>分配账户</b></span><span class="s1">(\(y_1\))</span><span class="s3">中。剩余</span><span class="s1">\({{ player.endowment }}-x_1-y_1\)) </span><span class="s3">份资源为个人留存。</span></p>
+<p class="p6"><span class="s1">{% if player.condition == "Det" %}</span></p>
+<p class="p3"><span class="s1">Your final earnings can be expressed as {% if player.A == 0 %} $$\text{Final Earnings} = \underbrace{\frac{y_1}{y_1 + y_2}x_1 x_2}_{\text{earnings from the investment}} + \underbrace{10-x_1-y_1}_{\text{points kept for oneself}}$$ {% endif %} {% if player.A == 60 %} $$\text{Final Earnings} = \underbrace{\frac{y_1}{y_1 + y_2}(x_1 x_2+60)}_{\text{earnings from the investment}} + \underbrace{10-x_1-y_1}_{\text{points kept for oneself}}$$ {% endif %}<span class="Apple-converted-space"> </span></span></p>
+<p class="p3"><span class="s1">In general, putting more points in the <i>Investment Account</i> (a higher \(x_1\)) <b>generates a higher total return</b> , while putting more points in the <i>Rationing Account</i> (a higher \(y_1\)) <b>increases your share of the total return</b>.<span class="Apple-converted-space"> </span></span></p>
+<p class="p4"><span class="s3">你的最终个人收益可用公式表达为</span><span class="s1">{% if player.A == 0 %} $$\text{Final Earnings} = \underbrace{\frac{y_1}{y_1 + y_2}x_1 x_2}_{\text{earnings from the investment}} + \underbrace{10-x_1-y_1}_{\text{points kept for oneself}}$$ {% endif %} {% if player.A == 60 %} $$\text{Final Earnings} = \underbrace{\frac{y_1}{y_1 + y_2}(x_1 x_2+60)}_{\text{earnings from the investment}} + \underbrace{10-x_1-y_1}_{\text{points kept for oneself}}$$ {% endif %}<span class="Apple-converted-space"> </span></span></p>
+<p class="p5"><span class="s1">总的来说，让更多资源置于<b>投资账户</b></span><span class="s4">(</span><span class="s1">较高的</span><span class="s4"> \(x_1\))</span><span class="s1">将会<b>带来</b>较高的合作总收益，而让更多的资源置于<b>分配账户</b></span><span class="s4">(</span><span class="s1">较高的</span><span class="s4"> \(y_1\))</span><span class="s1">将会提升<b>你在总体收益中所占的份额</b>。</span></p>
+<p class="p6"><span class="s1">{% endif %} {% endif %} {% endblock %}<span class="Apple-converted-space"> </span></span></p>
+</body>
+</html>

@@ -1,0 +1,44 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+   Welcome to the experiment of decision-making.
+{% endblock %}
+
+{% block content %}
+
+    <p style="font-size:16px">
+        In the experiment, the amount of money you can earn depends on your decisions.
+        Therefore, it is important that you read these instructions carefully.
+    </p>
+
+
+<p style="font-size:16px">
+    You will earn Points throughout the experiment. At the end of the experiment, these Points will be converted into real money at
+    the exchange rate of <strong> {{ exchange_rate }} Points = $1.</strong>
+</p>
+
+
+<p style="font-size:16px">
+        This experiment consists of several part and will take approximately 30 minutes.
+    We will now go through the instructions for Part I.
+    Basic arithmetic and algebra are helpful for you to understand the instructions.
+</p>
+
+<p style="font-size:16px">
+    At the end of these instructions, you will be asked to take a quiz to ensure that you understand the instructions.
+    <strong> You have three chances to answer all the questions correctly. </strong>
+        If it takes you more than 3 attempts to answer all the questions correctly, you will not be allowed to participate in
+        the experiment and will not receive the payment for the HIT.
+    </p>
+
+    <p>
+        If you successfully complete the experiment, you will for sure receive $1 as your payment.
+        Depending on your and the other participant's decision, you can also earn up to ${{ max_payment }} as additional bonus.
+    </p>
+
+    <div style="text-align:right">
+    {% next_button %}
+    </div>
+
+{% endblock %}

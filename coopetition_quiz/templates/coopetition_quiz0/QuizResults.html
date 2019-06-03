@@ -1,0 +1,44 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+   Quiz results
+{% endblock %}
+
+{% block content %}
+
+    <div style="text-align:center;font-size:20px">
+    <p>You had {{ player.wrong_attempts }} wrong attempt(s) before getting all the answers correct.</p>
+    </div>
+
+    {% if qualified  %}
+    <div style="text-align:center;font-size:18px">
+        <p>
+            You are qualified to participate in the experiment.
+        </p>
+    <p>
+        Click "Next", and you will be matched with another participant to continue with the experiment.
+    </p>
+    <p>
+        If you successfully complete the experiment, you will for sure receive $1 as your payment.
+        Depending on your and the other participant's decision, you can also earn up to ${{ max_payment }} as additional bonus.
+    </p>
+    </div>
+    {% else  %}
+    <div style="text-align:center;font-size:16px">
+        <p>Unfortunately, you are qualified to participate in the experiment, either
+            because you have tried too many times to get all the answers correct, or
+            you are unresponsive for too long.
+
+            Click "Next" to exit.</p>
+    </div>
+    {% endif %}
+
+    <br/>
+        <div style="text-align:right">
+            {% next_button %}
+        </div>
+
+{% endblock %}
+
+

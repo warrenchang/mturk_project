@@ -1,55 +1,32 @@
-{% extends "global/Page.html" %}
-{% load staticfiles otree %}
-
-{% block title %}
-{% endblock %}
-
-{% block content %}
-<div style="text-align:center">
-    <p >
-        You have just been matched with another participant.
-    </p>
-    <p>
-
-            You will interact with the same participant for <strong>
-            {{ Constants.interaction_length.0 }} rounds
-        </strong> in this part.
-    </p>
-    <p>
-        <strong>
-            {% if player.condition == "Asm" %}
-            {% if player.id_in_group == 1 %} You are Player A. {% else %} You are Player B. {% endif %}
-            In each round, you receive {{ player.endowment }} points, while the other participant receives {{ player.other_endowment}} points.
-            {% endif %}
-        </strong>
-    </p>
-
-    <!--<p style="font-size:16px">-->
-        <!--Note: The experiment proceeds as fast as the slower participant, so remember to submit your decisions in a timely manner.-->
-    <!--</p>-->
-
-    <!--<p>-->
-    <!--In order to make sure that the experiment does not take forever, we impose some time limit for the decision-making.-->
-    <!--For the first 5 rounds, you have 1 minutes to reach your decision; after Round 5, you have 30 seconds to reach your decision.-->
-    <!--If you do not submit your answer within the allocated time, the computer will randomly choose answers for you, and-->
-    <!--you will not get paid for that round.-->
-    <!--</p>-->
-
-    <!--<p>-->
-    <!--<strong>-->
-    <!--NOTE: If the webpage become unresponsive for a long time (more than 3 minutes), the other participant may get disconnected.-->
-    <!--In that case, you can submit the HIT using your MTurk worker ID and inform the requester by email.-->
-    <!--What you have earned so far will be paid to you as bonus.-->
-    <!--</strong>-->
-    <!--</p>-->
-
-</div>
-<br/>
-<div style="text-align:right">
-    <button class="otree-btn-next btn btn-primary">Continue</button>
-</div>
-
-
-{% include Constants.instructions_template %}
-
-{% endblock %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1504.83">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 14.0px; font: 12.0px Times; color: #000000; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 12.0px 0.0px; text-align: center; line-height: 14.0px; font: 12.0px Times; color: #000000; -webkit-text-stroke: #000000}
+    p.p3 {margin: 0.0px 0.0px 12.0px 0.0px; text-align: center; line-height: 14.0px; font: 12.0px 'Songti SC'; color: #000000; -webkit-text-stroke: #000000}
+    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 14.0px; font: 12.0px Times; color: #000000; -webkit-text-stroke: #000000; min-height: 14.0px}
+    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; line-height: 13.0px; font: 11.0px '.AppleSystemUIFont'; color: #000000; -webkit-text-stroke: #000000}
+    span.s1 {font-kerning: none}
+    span.s2 {font: 12.0px 'Songti SC'; font-kerning: none}
+    span.s3 {font-kerning: none; background-color: #c0c0c0}
+    span.s4 {font: 12.0px Times; font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">{% extends "global/Page.html" %} {% load staticfiles otree %} {% block title %} {% endblock %} {% block content %}</span></p>
+<p class="p2"><span class="s1">You have just been matched with another participant.<span class="Apple-converted-space"> </span></span></p>
+<p class="p3"><span class="s1">你与另一名玩家（“对方”）匹配成功。</span></p>
+<p class="p2"><span class="s1">You will interact with the same participant for <b>{{ Constants.interaction_length.0 }} rounds </b>in this part.<span class="Apple-converted-space"> </span></span></p>
+<p class="p2"><span class="s2">在这部分中，你将与<b>同一名玩家</b>进行</span><span class="s1"> <b>{{ Constants.interaction_length.0 }}</b></span><span class="s2"><b>期的互动决策。</b></span></p>
+<p class="p2"><span class="s1"><b>{% if player.condition == "Asm" %} {% if player.id_in_group == 1 %} You are Player A. {% else %} You are Player B. {% endif %} In each round, you receive {{ player.endowment }} points, while the other participant receives {{ player.other_endowment}} points. {% endif %}<span class="Apple-converted-space"> </span></b></span></p>
+<p class="p4"><span class="s1"></span><br></p>
+<p class="p5"><span class="s3">Continue</span><span class="s4"><span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">{% include Constants.instructions_template %} {% endblock %}<span class="Apple-converted-space"> </span></span></p>
+</body>
+</html>

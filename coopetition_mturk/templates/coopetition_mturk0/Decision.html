@@ -1,0 +1,69 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+<p style="font-size:16px">Round {{ player.round_in_interaction }} </p>
+
+
+<p style="font-size:16px">
+    Out of the {{ player.endowment }} points you have, please indicate the number of points you want to allocate to the
+    <i>Investment Account</i> and the <i>Rationing Account</i>.
+    The rest of the points are kept to yourself.
+</p>
+
+<div class="container" style="alignment:center">
+    <div class="row">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-4">
+            <b>Investment Account (\(x_1\))</b>  {{ form.a1 }}
+        </div>
+        <div class="col-sm-4">
+            <b>Rationing Account (\(y_1\)) </b>  {{ form.a2 }}
+        </div>
+        <div class="col-sm-2">
+        </div>
+    </div>
+</div>
+
+<div style="text-align:right">
+    <button class="otree-btn-next btn btn-primary">Submit</button>
+</div>
+
+<br/>
+{% if player.interaction_number == 1 and player.round_number <= 5  %}
+<p style="font-size:16px">
+    Note:
+    {% if player.interaction_number == 1 %}
+    For the first 5 rounds, you have 1 minutes to reach your decision; after Round 5, you have 30 seconds to reach your decision.
+    {% else %}
+    In each round, you have 30 seconds to reach your decision.
+    {% endif%}
+
+    <strong>If you do not submit your answer within the allocated time, the computer will randomly choose answers for you, and
+        you will not get paid for that round.</strong>
+</p>
+<p style="text-align:center">
+    <strong>Remember to submit once you reach your decision.
+        Your decision is submitted only after you click "Submit".</strong>
+</p>
+{% endif%}
+
+<br/>
+{% include Constants.history_template %}
+
+<br/>
+<div class="card bg-light instructions">
+    <div class="card-body">
+        {% include Constants.instructions_template %}
+    </div>
+</div>
+
+<br/>
+{% include Constants.history_previous_template %}
+
+{% endblock %}
+
