@@ -1,0 +1,55 @@
+{% load otree staticfiles %}
+
+
+<div class="instructions well well-lg">
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'global/matrix.css' %}"/>
+
+    <table class='table table-bordered text-center'
+           style='width: auto; margin: auto'>
+        <tr>
+            <th colspan=2 rowspan=2></th>
+            <th colspan=2>Other participant</th>
+        </tr>
+        <tr>
+            <th style="text-align:center">A</th>
+            <th style="text-align:center">B</th>
+        </tr>
+        <tr>
+            <th rowspan=2><span class="rotate90">You</span></th>
+            <th align ="center">A</th>
+            <td>{{ Constants.R}}, {{ Constants.R}}</td>
+            <td>{{ Constants.S}}, {{ Constants.T}}</td>
+        </tr>
+        <tr>
+            <th align = "center">B</th>
+            <td>{{ Constants.T}}, {{ Constants.S}}</td>
+            <td>{{ Constants.P}}, {{ Constants.P}}</td>
+        </tr>
+    </table>
+
+    <hr>
+    {% if player.treatment == 'fixed' %}
+    <p>
+    You will be playing with <strong> the same </strong>
+        participant in different rounds.
+    <p>
+    {% endif %}
+    {% if player.treatment == 'random' %}
+    <p>
+    You will be <strong> randomly matched </strong> to a participant at the start of each round.
+    <p>
+    {% endif %}
+    {% if player.treatment == 'reputation' %}
+    <p>
+        You will be <strong> randomly matched </strong> to a participant at the start of each round.
+    </p>
+    <p>
+        <strong>
+            In each round after the first round, you will have information on the other participant's past plays.
+            The other participant will also know your past plays.
+        </strong>
+    </p>
+    {% endif %}
+</div>
+

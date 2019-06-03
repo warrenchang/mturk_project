@@ -2,7 +2,7 @@
 {% load staticfiles otree %}
 
 {% block title %}
-第一部分信息 Part 1 Instructions
+Instructions: Part 1
 {% endblock %}
 
 {% block styles %}
@@ -23,232 +23,11 @@
             src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML" async>
     </script>
 </head>
-
-
-{% if player.condition == "Asm" %}
-<div>
-    <p>
-        这一部分有多个决策周期，你需要在每一期做出相应的决策。
-    <ul>
-        <li>
-            你将随机的与另一个参与者匹配投资来进行决策。在剩下的决策周期当中，你会与这位（同一位）参与者交互进行决策。
-        </li>
-        <li>
-            投资决策当中分为两个角色：玩家A和玩家B。
-        </li>
-        <li>
-            玩家A在每期开始拥有20份资源；玩家B在每期开始拥有10份资源。
-        </li>
-        <li>
-            <strong>你的角色会在匹配后随即决定，并且在这个实验过程中保持不变.</strong>
-        </li>
-    </ul>
-    </p>
-    <p>
-    </p>
-
-    <p style="text-align: center">
-        <strong><u>你的决策</u></strong>
-    </p>
-
-    <p>
-    <ul>
-        <li>
-            你可以利用你的资源与对方共同投资。
-        </li>
-        <li>
-            你的资源可以投入到<strong>投资账户</strong>，<strong>分配账户</strong>，或者选择自己留存。
-        </li>
-    </ul>
-
-    <p style="text-align: center">
-        <strong><u>你的收入</u></strong>
-    </p>
-
-    <ul>
-        <li>
-            投入到<strong>投资账户</strong>的资源会决定投资的总收益。投入更多的资源意味着更大的收益。
-        </li>
-        <li>
-            投资总收益将会在你和对方之间分配。
-        </li>
-        <li>
-            你投入到<strong>分配账户</strong>的资源决定投资总收益当中你的份额，投入的越多，你的份额就越大。
-        </li>
-        <li>
-            你可以自己留存你所拥有的资源，每份资源将会转换成$1的收益。
-        </li>
-    </ul>
-
-    <p>
-        具体来说，如果你和对方的投入如下：
-    </p>
-    <table id="width50">
-        <tr>
-            <th></th>
-            <th>投资账户</th><th>分配账户</th><th>个人存留</th>
-        </tr>
-        <tr>
-            <th>玩家 A</th><td>\(x_A\)</td><td>\(y_A\)</td><td>\(20-x_A-y_B\)</td>
-        </tr>
-        <tr>
-            <th>玩家 B</th><td>\(x_B\)</td><td>\(y_B\)</td><td>\(10-x_A-y_B\)</td>
-        </tr>
-    </table>
-</div>
-<br/>
-<p>那么两个玩家的总收入如下:</p>
-<div>
-    <ul>
-        <li>
-            双方的合作总收益取决于双方投入到投资账户中的资源：
-            {% if player.A == 0 %}
-            $$ \text{合作总收益} = \frac{1}{2} x_A x_B $$
-            {% endif %}
-            {% if player.A == 60 %}
-            $$ \text{合作总收益} = \frac{1}{2} x_A x_B + 60 $$
-            {% endif %}
-        </li>
-        <li>
-            玩家得到合作总收益的份额由投入到<i>分配账户</i>的资源决定:
-            $$ \text{A的收益份额} =  \frac{y_A}{y_A + y_B} $$
-            $$ \text{B的收益份额} =  \frac{y_B}{y_A + y_B} $$
-            <p>
-                举例来说，如果A投入6份资源到分配账户，B投入4份资源到分配账户(\(y_A=6,y_B=4\)), 由于分配账户中60%的资源属于A, A将获得60%的合作总收益。
-                如果A投入5份资源，B也投入5份资源到分配账户(\(y_A=5,y_B=5\)), 那么A将获得60%的合作总收益。
-            </p>
-            <p>
-                如果两位玩家都投入0份资源到分配账户(\(y_A=y_B=0\)), 那么两位玩家将平分合作总收益。
-            </p>
-        </li>
-        <li>玩家的最总收益为
-            {% if player.A == 0 %}
-            $$\text{A的最终受益} =  \underbrace{\frac{y_A}{y_A + y_B} \frac{x_A x_B}{2}}_{\text{合作总收益}} +
-            \underbrace{20-x_A-y_A}_{\text{自我存留}$$
-            $$\text{B的最终收益} =  \underbrace{\frac{y_B}{y_A + y_B} \frac{x_A x_B}{2}}_{\text{合作总收益}} +
-            \underbrace{10-x_B-y_B}_{\text{自我存留}}$$
-            {% endif %}
-            {% if player.A == 60 %}
-            $$\text{A的最终收益} =  \underbrace{\frac{y_A}{y_A + y_B}(\frac{x_A x_B}{2}+60)}_{\text{合作总收益}}} +
-            \underbrace{20-x_A-y_A}_{\text{自我存留}$$
-            $$\text{B的最终收益} =  \underbrace{\frac{y_B}{y_A + y_B}(\frac{x_A x_B}{2}+60)}_{\text{合作总收益}}} +
-            \underbrace{10-x_B-y_B}_{\text{自我存留}}$$
-            {% endif %}
-        </li>
-    </ul>
-    <p>
-        总体来说，投入到<i>投资账户</i>中的资源越多 (\(x\)越大)， <strong>合作总收益就越高</strong>;
-        投入到<i>分配账户</i>中的资源越多 (\(y\)越大)， <strong>得到的合作总收益的份额就越高</strong>。
-    </p>
-</div>
-</div>
-{% else %}
-<div>
-    <p>
-        这一部分有多个决策周期，你需要在每一期做出相应的决策。你将随机的与另一个参与者匹配投资来进行决策。
-        在剩下的决策周期当中，你都与这位（同一位）参与者交互进行决策。
-    </p>
-
-    <p style="text-align: center">
-        <strong><u>你的决策</u></strong>
-    </p>
-
-    <p>
-    <ul>
-        <li>
-            在每期开始，你拥有10份资源。
-        </li>
-        <li>
-            你可以利用你的资源与对方共同投资。
-        </li>
-        <li>
-            你的资源可以投入到<strong>投资账户</strong>，<strong>分配账户</strong>，或者选择自己留存。
-        </li>
-    </ul>
-
-    <p style="text-align: center">
-        <strong><u>你的收入</u></strong>
-    </p>
-
-    <ul>
-        <li>
-            投入到<strong>投资账户</strong>的资源会决定投资的总收益。投入更多的资源意味着更大的收益。
-        </li>
-        <li>
-            投资总收益将会在你和对方之间分配。
-        </li>
-        <li>
-            你投入到<strong>分配账户</strong>的资源决定投资总收益当中你的份额，投入的越多，你的份额就越大。
-        </li>
-        <li>
-            你可以自己留存你所拥有的资源，每份资源将会转换成$1的收益。
-        </li>
-    </ul>
-
-    <p>
-        具体来说，如果你和对方的投入如下：
-    </p>
-    <table id="width50">
-        <tr>
-            <th></th>
-            <th>投资账户</th><th>分配账户</th><th>个人存留</th>
-        </tr>
-        <tr>
-            <th>你</th><td>\(x_1\)</td><td>\(y_1\)</td><td>\(10-x_1-y_1\)</td>
-        </tr>
-        <tr>
-            <th>对方</th><td>\(x_2\)</td><td>\(y_2\)</td><td>\(10-x_2-y_2\)</td>
-        </tr>
-    </table>
-</div>
-<br/>
-<p>那么两个玩家的总收入如下:</p>
-{% if player.condition == "Det" %}
-<div>
-    <ul>
-        <li>
-            双方的合作总收益取决于双方投入到投资账户中的资源：
-            {% if player.A == 0 %}
-            $$ \text{合作总收益} = x_1 x_2 $$
-            {% endif %}
-            {% if player.A == 60 %}
-            $$ \text{合作总收益} = x_1 x_2 + 60 $$
-            {% endif %}
-        </li>
-        <li>
-            玩家得到合作总收益的份额由投入到<i>分配账户</i>的资源决定:
-            $$ \text{你所得到的合作总收益的份额} = \frac{y_1}{y_1 + y_2} $$
-            <p>
-                举例来说，如果你投入6份资源到分配账户，对方投入4份资源到分配账户(\(y_1=6,y_2=4\)), 由于分配账户中60%的资源属于你, 你将获得60%的合作总收益。
-                如果你投入5份资源，你也投入5份资源到分配账户(\(y_1=5,y_2=5\)), 那么你将获得60%的合作总收益。如果你和对方都投入0份资源到分配账户(\(y_A=y_B=0\)), 那么两位玩家将平分合作总收益。
-            </p>
-
-        </li>
-
-        <li>你的最总收益为
-            {% if player.A == 0 %}
-            $$\text{最总收益} =  \underbrace{\frac{y_1}{y_1 + y_2}x_1 x_2}_{\text{合作总收益}} +
-            \underbrace{10-x_1-y_1}_{\text{自我存留}}$$
-            {% endif %}
-            {% if player.A == 60 %}
-            $$\text{最总收益} =  \underbrace{\frac{y_1}{y_1 + y_2}(x_1 x_2+60)}_{\text{合作总收益}} +
-            \underbrace{10-x_1-y_1}_{\text{自我存留}}$$
-            {% endif %}
-        </li>
-    </ul>
-    <p>
-        总体来说，投入到<i>投资账户</i>中的资源越多 (\(x_1\)越大)， <strong>合作总收益就越高</strong>;
-        投入到<i>分配账户</i>中的资源越多 (\(y_1\)越大)， <strong>得到的合作总收益的份额就越高</strong>。
-    </p>
-</div>
-{% endif %}
-
-{% endif %}
-
 {% if player.condition == "Asm" %}
 <div>
     <p>
         In this part, there will be <strong>multiple</strong> rounds of decision-making.
+
     <ul>
         <li>
             You will be matched with another participant to play an investment game. You will play with the same participant for all rounds.
@@ -265,6 +44,8 @@
                 with another participant and will remain the same throughout the experiment.</strong>
         </li>
     </ul>
+
+
     </p>
     <p>
     </p>
@@ -474,6 +255,122 @@
     </p>
 </div>
 {% endif %}
+
+{% if player.condition == "Fix" %}
+<div>
+    <ul>
+        <li>
+            The investment can be either success or unsuccessful, which are equally likely.
+            {% if player.A == 0 %}
+            If it is successful, the total return is \(2x_1x_2\) points; if it is unsuccessful, the total return is 0 points.
+            $$   \text{Total Return} =
+            \begin{cases}
+            2x_1x_2, & \text{if successful (with probability 0.5)} \\
+            0, & \text{if unsuccessful (with probability 0.5)}
+            \end{cases} $$
+            {% endif %}
+
+            {% if player.A == 60 %}
+            If it is successful, the total return is \(2x_1x_2+60\) points; if it is unsuccessful, the total return is 60 points.
+            $$   \text{Total Return} =
+            \begin{cases}
+            2x_1x_2+60, & \text{if successful (with probability 0.5)} \\
+            60, & \text{if unsuccessful (with probability 0.5)}
+            \end{cases} $$
+            {% endif %}
+        </li>
+        <li> Your share of the total return is determined by your share of points in the <i>Rationing Account</i>:
+            $$ \text{Your share of the total return} =  \frac{y_1}{y_1 + y_2} $$
+            <p>
+                For example, if you put 6 points in the Rationing Account while the other puts 4 points (\(y_1=6,y_2=4\)), because 60% of all the points
+                are yours, you will receive 60% of the Total Return. If you put 5 points and the other also put 5 points in the Rationing Account (\(y_1=5,y_2=5\)), then
+                you receive 50% of the Total Return.
+            </p>
+            <p>
+                In case both of you put 0 points in the Rationing Account, the total return will be evenly split between you two.
+            </p>
+        </li>
+        <li>
+            Your final earnings can be expressed as
+            $$\text{Final Earnings} =  \underbrace{\frac{y_1}{y_1 + y_2} \text{Total Return}   }_{\text{earnings from the investment}} +
+            \underbrace{10-x_1-y_1}_{\text{points kept for oneself}}$$
+        </li>
+    </ul>
+    <p>
+        In general, putting more points in the <i>Investment Account</i> (a higher \(x_1\))  <strong>generates a higher total return</strong>
+        , while putting more points in the <i>Rationing Account</i> (a higher \(y_1\))  <strong>increases your share of the total return</strong>.
+    </p>
+    <p>
+        In each round, to determine whether the investment is a success,
+        the computer randomly generates <strong>an integer between 1 and 200</strong> (inclusive)
+        with equal probability.
+        If the number is less than or equal to 100, the investment is successful;
+        if the number is greater than 100, the investment is unsuccessful.
+    </p>
+</div>
+{% endif %}
+
+
+{% if player.condition == "Var" %}
+<div>
+    <ul>
+        <li>
+            The investment can be either successful or unsuccessful.
+            {% if player.A == 0 %}
+            If it is successful, the total return is 110 points;
+            if it is unsuccessful, the total return is 0 points.
+            {% endif %}
+            {% if player.A == 60 %}
+            If it is successful, the total return is 170 points;
+            if it is unsuccessful, the total return is 60 points.
+            {% endif %}
+        </li>
+        <li>
+            In each round, to determine whether the investment is a success,
+            the computer randomly generates <strong>an integer between 1 and 110 </strong> (inclusive) with equal probability.
+            If the number is less than or equal to \(x_1 x_2\), the investment is a success; if the number is greater than \(x_1 x_2\),
+            the investment is unsuccessful.
+            {% if player.A == 0 %}
+            $$   \text{Total return} =
+            \begin{cases}
+            110, & \text{if random number} \leq x_1x_2\\
+            0, & \text{if random number} > x_1x_2
+            \end{cases} $$
+            {% endif %}
+            {% if player.A == 60 %}
+            $$   \text{Total return} =
+            \begin{cases}
+            170, & \text{if random number} \leq x_1x_2\\
+            60, & \text{if random number} > x_1x_2
+            \end{cases} $$
+            {% endif %}
+        </li>
+        <li> Your share of the total return is determined by your share of points in the <i>Rationing Account</i>:
+            $$ \text{Your share of the total return} =  \frac{y_1}{y_1 + y_2} $$
+            <p>
+                For example, if you put 6 points in the Rationing Account while the other puts 4 points (\(y_1=6,y_2=4\)), because 60% of all the points
+                are yours, you will receive 60% of the Total Return. If you put 5 points and the other also put 5 points in the Rationing Account (\(y_1=5,y_2=5\)), then
+                you receive 50% of the Total Return.
+            </p>
+            <p>
+                In case both of you put 0 points in the Rationing Account, the total return will be evenly split between you two.
+            </p>
+        </li>
+        <li>
+            Your final earnings can be expressed as
+            $$\text{Final Earnings} =  \underbrace{\frac{y_1}{y_1 + y_2} \text{Total Return}   }_{\text{earnings from the investment}} +
+            \underbrace{10-x_1-y_1}_{\text{points kept for oneself}}$$
+        </li>
+    </ul>
+
+    <p>
+        In general, putting more points in the <i>Investment Account</i> (a higher \(x_1\))
+        <strong>makes it more likely to receive a successful investment and a higher total return</strong>
+        , while putting more points in the <i>Rationing Account</i> (a higher \(y_1\))  <strong>increases your share of the total return</strong>.
+    </p>
+</div>
+{% endif %}
+
 
 {% endif %}
 

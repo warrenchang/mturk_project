@@ -9,22 +9,17 @@
     <p >
         You have just been matched with another participant.
     </p>
-    <p >
-    你与另一名玩家（“对方”）匹配成功。
-    </p>
     <p>
-        You will interact with the same participant for <strong> {{ Constants.interaction_length.0 }} rounds
+
+            You will interact with the same participant for <strong>
+            {{ Constants.interaction_length.0 }} rounds
         </strong> in this part.
-    </p>
-    <p>
-        在这部分中，你将与<strong>同一名玩家</strong>进行  {{ Constants.interaction_length.0 }} 期的互动决策。
     </p>
     <p>
         <strong>
             {% if player.condition == "Asm" %}
-            {% if player.id_in_group == 1 %} You are Player A. 你是玩家A {% else %} You are Player B. 你是玩家B {% endif %}
+            {% if player.id_in_group == 1 %} You are Player A. {% else %} You are Player B. {% endif %}
             In each round, you receive {{ player.endowment }} points, while the other participant receives {{ player.other_endowment}} points.
-            在每一次，你将拥有  {{ player.endowment }} 份资源，而对方将拥有  {{ player.other_endowment}} 份资源。
             {% endif %}
         </strong>
     </p>
@@ -58,5 +53,3 @@
 {% include Constants.instructions_template %}
 
 {% endblock %}
-
-

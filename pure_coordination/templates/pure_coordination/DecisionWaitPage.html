@@ -1,0 +1,20 @@
+{% extends 'otree/WaitPage.html' %}
+{% load staticfiles otree %}
+{% block title %} {% endblock %}
+
+{% block content %}
+    {#    {{ body_text }}#}
+
+
+        <hr>
+  <div style="text-align:center">
+        <p style="font-size:16px">
+            You have chosen {{ player.choice }}.
+        </p>
+
+          <p style="font-size:16px">Please wait for the other participants to reach decision. </p>
+    </div>
+
+    <p></p>
+
+{% endblock %}

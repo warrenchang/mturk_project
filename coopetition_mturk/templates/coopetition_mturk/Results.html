@@ -2,16 +2,15 @@
 {% load staticfiles otree %}
 
 {% block title %}
-Results 结果
+Results
 {% endblock %}
 
 
 {% block content %}
 <p style="font-size:16px">Round {{ player.round_in_interaction }} </p>
-<p style="font-size:16px">第 {{ player.round_in_interaction }} 期</p>
 
 <h5 style="text-align:center">
-    Summary of this round 本期概要
+    Summary of this round
 </h5>
 
 {% if player.condition == "Asm" %}
@@ -19,11 +18,11 @@ Results 结果
     <table>
         <tr>
             <th></th>
-            <th>Investment Account 投资账户</th><th>Rationing Account 分配账户</th><th>Kept to self 个人存留</th>
-            <th>Total Return 合作总收益</th><th>Share of Total Return 总收益中的个人份额</th><th>Final Earnings 最终收益</th>
+            <th>Investment Account</th><th>Rationing Account</th><th>Kept to self</th>
+            <th>Total Return</th><th>Share of Total Return</th><th>Final Earnings</th>
         </tr>
         <tr>
-            <th>You 你</th><td>\(x_1=\){{player.a1}}</td><td>\(y_1=\){{player.a2}}</td><td>{{player.a3}}</td>
+            <th>You</th><td>\(x_1=\){{player.a1}}</td><td>\(y_1=\){{player.a2}}</td><td>{{player.a3}}</td>
             {% if player.A == 60 %}
             <td rowspan="2">\(\displaystyle\frac{x_1x_2}{2}+60={{player.pie}}\)</td>
             {% else %}
@@ -34,7 +33,7 @@ Results 结果
             <td>{{player.pie_share}} \(\times\) {{player.pie}} + {{player.a3}}= {{player.potential_payoff}}</td>
         </tr>
         <tr>
-            <th>Other 对方</th><td>\(x_2=\){{player.other_a1}}</td><td>\(y_2=\){{player.other_a2}}</td><td>{{player.other_a3}}</td>
+            <th>Other</th><td>\(x_2=\){{player.other_a1}}</td><td>\(y_2=\){{player.other_a2}}</td><td>{{player.other_a3}}</td>
             <td>\(\displaystyle \frac{y_2}{y_1 + y_2} =\) {{player.other_share}}</td>
             <td>{{player.other_share}} \(\times\) {{player.pie}} + {{player.other_a3}}= {{player.other_payoff}}</td>
         </tr>
@@ -49,10 +48,6 @@ Results 结果
             <th></th>
             <th>Investment Account</th><th>Rationing Account</th><th>Kept to self</th>
             <th>Total Return</th><th>Share of Total Return</th><th>Final Earnings</th>
-        </tr>
-        <tr>
-        <th>投资账户</th><th>分配账户</th><th>个人存留</th>
-        <th>合作总收益</th><th>总收益中的个人份额</th><th>最终收益</th>
         </tr>
         <tr>
             <th>You</th><td>\(x_1=\){{player.a1}}</td><td>\(y_1=\){{player.a2}}</td><td>{{player.a3}}</td>
@@ -71,6 +66,93 @@ Results 结果
             <td>{{player.other_share}} \(\times\) {{player.pie}} + {{player.other_a3}}= {{player.other_payoff}}</td>
         </tr>
     </table>
+</div>
+{% endif %}
+
+
+
+{% if player.condition == "Fix" %}
+<div>
+    <table>
+        <tr>
+            <th></th>
+            <th>Investment Account</th><th>Rationing Account</th> <th>Kept to self</th>
+            <th>Share of Total Return</th>
+            <th>Random number</th><th>Successful investment?</th>
+            <th>Total Return</th>
+            <th>Final Earnings</th>
+        </tr>
+        <tr>
+            <th>You</th><td>\(x_1=\){{player.a1}}</td><td>\(y_1=\){{player.a2}}</td><td>{{player.a3}}</td>
+            <td>\(\displaystyle\frac{y_1}{y_1 + y_2} =\){{player.pie_share}}</td>
+            <td rowspan="2">{{ player.rand_num}}</td>
+            {% if player.successful %}
+                <td rowspan="2">
+                    Yes <br/> ({{player.rand_num}} \(\le\)100)
+                </td>
+                <td rowspan="2">
+                    {% if player.A == 60 %} \(2x_1x_2 +60 = {{ player.pie }}\) {% else %} \(2x_1x_2 = {{ player.pie }}\) {% endif%}
+                </td>
+            {% else %}
+                <td rowspan="2">
+                    No <br/> ({{player.rand_num}} >100)
+                </td>
+                <td rowspan="2">
+                    {% if player.A == 60 %} \({{ player.pie }}\) {% else %} \({{ player.pie }}\) {% endif%}
+                </td>
+            {% endif%}
+            <td>{{ player.pie_share }} \(\times\) {{player.pie}} + {{player.a3}}= {{player.potential_payoff}}</td>
+        </tr>
+        <tr>
+            <th>Other</th><td>\(x_2=\){{player.other_a1}}</td><td>\(y_2=\){{player.other_a2}}</td><td>{{player.other_a3}}</td>
+            <td>\(\displaystyle\frac{y_2}{y_1 + y_2} =\){{player.other_share}}</td>
+            <td>{{player.other_share}} \(\times\) {{player.pie}} + {{player.other_a3}}= {{player.other_payoff}}</td>
+        </tr>
+    </table>
+</div>
+{% endif %}
+{% if player.condition == "Var" %}
+<div>
+    <table>
+        <tr>
+            <th></th>
+            <th>Investment Account</th><th>Rationing Account</th> <th>Kept to self</th>
+            <th>Share of Total Return</th>
+            <th>Random number</th>
+            <th>Successful investment?</th>
+            <th>Total Return</th>
+            <th>Final Earnings</th>
+        </tr>
+        <tr>
+            <th>You</th><td>\(x_1=\){{player.a1}}</td><td>\(y_1=\){{player.a2}}</td><td>{{player.a3}}</td>
+            <td>\(\displaystyle\frac{y_1}{y_1 + y_2} =\){{player.pie_share}}</td>
+            <td rowspan="2">{{ player.rand_num}}</td>
+            <td rowspan="2">
+                {% if player.successful %}
+                Yes <br/> ( \(x_1x_2 \ge\) {{player.rand_num}})
+                {% else %}
+                No <br/> (\(x_1x_2 <\) {{player.rand_num}} )
+                {% endif%}
+            </td>
+            <td rowspan="2"> {{ player.pie}}</td>
+            <td>{{player.pie_share}} \(\times\) {{player.pie}} + {{player.a3}}= {{player.potential_payoff}}</td>
+        </tr>
+        <tr>
+            <th>Other</th><td>\(x_2=\){{player.other_a1}}</td><td>\(y_2=\){{player.other_a2}}</td><td>{{player.other_a3}}</td>
+            <td>\(\displaystyle\frac{y_2}{y_1 + y_2} =\){{player.other_share}}</td>
+            <td>{{player.other_share}} \(\times\) {{player.pie}} + {{player.other_a3}}= {{player.other_payoff}}</td>
+        </tr>
+    </table>
+
+    <br/>
+    {% if not player.successful and player.rand_num <= 100 %}
+    <p>
+        With the random number greater than \(x_1x_2 \), the investment is not successful. Note that if you and the other
+        participant increase the points in the <i>Investment Account</i>, the investment could have been successful
+        (if \(x_1x_2 \ge {{player.rand_num}}\)).
+    </p>
+    {% endif %}
+
 </div>
 {% endif %}
 
@@ -98,5 +180,3 @@ Please submit your decision before time runs out in each round in order to recei
 {% include Constants.historyall_previous_template %}
 
 {% endblock %}
-
-

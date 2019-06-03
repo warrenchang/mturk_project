@@ -1,0 +1,53 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+Results
+{% endblock %}
+
+
+{% block content %}
+
+{% include Constants.instructions_template %}
+<p style="font-size:16px">Round {{ player.round_number }} </p>
+
+<div style="font-size:16px">
+    <p style="text-align:center">Summary of this round</p>
+
+    <p align="Center">Below are all the numbers guessed in this round, listed in ascending order:</p>
+    <p align="Center">
+        {{ sorted_guesses }}
+    </p>
+
+    <table class="table-condensed" style="margin:auto; width:500px; margin-top:20px;">
+        <tr><td>The average:</td><td>{{ group.average}}</td></tr>
+        <tr><td>The target of the guess:</td><td>{{ group.correct_number }}</td></tr>
+        <tr><td>The closest guess:</td><td>{{ group.best_guess}}</td></tr>
+        <tr><td>The number of winners:</td><td>{{ group.num_winners}}</td></tr>
+        <tr><td>Your guess:</td><td>{{ player.guess}}</td></tr>
+    </table>
+    <p></p>
+    <p align="Center">
+        {% if player.is_winner %}
+           {% if group.num_winners > 1 %}
+              Therefore, you are one of the {{ group.num_winners }} winners
+              who tied for the best guess.
+           {% else %}
+              Therefore, you won!
+           {% endif %}
+        {% else %}
+            Therefore, you did not win.
+        {% endif %}
+    </p>
+    <p></p>
+<hr/>
+</div>
+
+    <div style="text-align:right">
+        <br/>
+    {% next_button %}
+    </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% load otree staticfiles %}
+
+
+<div class="instructions well well-lg">
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'global/matrix.css' %}"/>
+
+    <table class='table table-bordered text-center'
+           style='width: auto; margin: auto'>
+        <tr>
+            <th colspan=2 rowspan=2></th>
+            <th colspan=2>Other participant</th>
+        </tr>
+        <tr>
+            <th style="text-align:center">X</th>
+            <th style="text-align:center">Y</th>
+        </tr>
+        <tr>
+            <th rowspan=2><span class="rotate90">You</span></th>
+            <th align ="center">X</th>
+                <td>{{ p11}}, {{ p11 }}</td>
+                <td>{{ p12}}, {{ p21 }}</td>
+            </tr>
+            <tr>
+                <th align = "center">Y</th>
+                <td>{{ p21 }}, {{ p12 }}</td>
+                <td>{{ p22 }}, {{ p22 }}</td>
+        </tr>
+    </table>
+
+    <hr>
+    {% if player.treatment == 'fixed' %}
+    <p>
+    You will be playing with <strong> the same </strong>
+        participant in different rounds.
+    <p>
+    {% endif %}
+    {% if player.treatment == 'random' %}
+    <p>
+    You will be <strong> randomly matched </strong> to a participant at the start of each round.
+    <p>
+    {% endif %}
+</div>
+

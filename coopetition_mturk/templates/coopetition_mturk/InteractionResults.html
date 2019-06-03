@@ -2,7 +2,7 @@
 {% load staticfiles otree %}
 
 {% block title %}
-Results 结果
+Results
 {% endblock %}
 
 
@@ -11,13 +11,13 @@ Results 结果
 <div style="text-align:center;font-size:16px">
     <p>
         <strong>
-            This is the end of this part of the experiment. 本部分实验结束。
+            This is the end of this part of the experiment.
         </strong>
     </p>
 
     <p>
         <strong>
-            Your earnings for this part is 你在这部分的收益为 {{ player.cum_payoff }}.
+            Your earnings for this part is {{ player.cum_payoff }}.
         </strong>
     </p>
 </div>

@@ -1,0 +1,39 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+Results
+{% endblock %}
+
+{% block content %}
+
+<div style="text-align:center;font-size:16px">
+    <p>
+        <br/>
+        <strong></strong>
+        You have chosen to meet at <strong> {{ player.place }} </strong> at <strong> {{ player.time }} </strong>.
+        <br/>
+        The participant you are matched with has chosen to meet
+        at <strong> {{ player.other_place }} </strong> at <strong> {{ player.other_time }} </strong>.
+        <br/>
+    <p>
+        {% if player.payoff != 0 %}
+        Your choices are the same.
+        <br/>
+        Both of you receive a payment of RMB 2 for this part of experiment.
+        {% else %}
+        Your choices are the different.
+        <br/>
+        Neither of you receives any payment for this part of experiment.
+        {% endif %}
+    </p>
+</div>
+
+<div style="text-align:right">
+    {% next_button %}
+</div>
+
+
+{% endblock %}
+
+

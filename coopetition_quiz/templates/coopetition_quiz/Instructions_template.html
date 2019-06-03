@@ -11,62 +11,10 @@
 </head>
 
 <p style="text-align: center" style="font-size:16px">
-    <strong><u>情境描述</u></strong>
-</p>
-{% if player.condition == "Asm" %}
-<div>
-    <p>
-        每期开始，玩家A获得20份资源，玩家B获得10份资源。你需要决定在<b>投资账户</b>(\(x\))和<b>分配账户</b>\(y\))中投入的资源。剩余资源作为个人留存。
-    </p>
-    <p>玩家的最总收益为
-        {% if player.A == 0 %}
-        $$\text{A的最终受益} =  \underbrace{\frac{y_A}{y_A + y_B} \frac{x_A x_B}{2}}_{\text{合作总收益}} +
-        \underbrace{20-x_A-y_A}_{\text{自我存留}$$
-        $$\text{B的最终收益} =  \underbrace{\frac{y_B}{y_A + y_B} \frac{x_A x_B}{2}}_{\text{合作总收益}} +
-        \underbrace{10-x_B-y_B}_{\text{自我存留}}$$
-        {% endif %}
-        {% if player.A == 60 %}
-        $$\text{A的最终收益} =  \underbrace{\frac{y_A}{y_A + y_B}(\frac{x_A x_B}{2}+60)}_{\text{合作总收益}}} +
-        \underbrace{20-x_A-y_A}_{\text{自我存留}$$
-        $$\text{B的最终收益} =  \underbrace{\frac{y_B}{y_A + y_B}(\frac{x_A x_B}{2}+60)}_{\text{合作总收益}}} +
-        \underbrace{10-x_B-y_B}_{\text{自我存留}}$$
-        {% endif %}
-    </p>
-    <p>
-        总体来说，投入到<i>投资账户</i>中的资源越多 (\(x\)越大)， <strong>合作总收益就越高</strong>;
-        投入到<i>分配账户</i>中的资源越多 (\(y\)越大)， <strong>得到的合作总收益的份额就越高</strong>。
-    </p>
-</div>
-{% else %}
-<div>
-    <p>
-        每期开始，你将获得20份资源. 你需要决定在<b>投资账户</b>(\(x\))和<b>分配账户</b>(\(y\))中投入的资源。剩余资源(\(10-x_1-y_1\))作为个人留存。
-    </p>
-</div>
-{% if player.condition == "Det" %}
-<div>
-    <p>你的最总收益为
-                {% if player.A == 0 %}
-            $$\text{最总收益} =  \underbrace{\frac{y_1}{y_1 + y_2}x_1 x_2}_{\text{合作总收益}} +
-            \underbrace{10-x_1-y_1}_{\text{自我存留}}$$
-            {% endif %}
-            {% if player.A == 60 %}
-            $$\text{最总收益} =  \underbrace{\frac{y_1}{y_1 + y_2}(x_1 x_2+60)}_{\text{合作总收益}} +
-            \underbrace{10-x_1-y_1}_{\text{自我存留}}$$
-            {% endif %}
-    </p>
-    <p>
-        总体来说，投入到<i>投资账户</i>中的资源越多 (\(x_1\)越大)， <strong>合作总收益就越高</strong>;
-        投入到<i>分配账户</i>中的资源越多 (\(y_1\)越大)， <strong>得到的合作总收益的份额就越高</strong>。
-    </p>
-</div>
-{% endif %}
-{% endif %}
-
-
-<p style="text-align: center" style="font-size:16px">
     <strong><u>Summary of the Situation</u></strong>
 </p>
+
+
 {% if player.condition == "Asm" %}
 <div>
     <p>
@@ -94,6 +42,7 @@
     </p>
 </div>
 {% else %}
+
 <div>
     <p>
         In each round, you receive 10 points.
@@ -101,6 +50,8 @@
         The rest of the points (\(10-x_1-y_1\)) are kept to yourself.
     </p>
 </div>
+
+
 {% if player.condition == "Det" %}
 <div>
     <p>
@@ -117,6 +68,82 @@
     <p>
         In general, putting more points in the <i>Investment Account</i> (a higher \(x_1\))  <strong>generates a higher total return</strong>
         , while putting more points in the <i>Rationing Account</i> (a higher \(y_1\)) <strong>increases your share of the total return</strong>.
+    </p>
+</div>
+{% endif %}
+
+
+{% if player.condition == "Fix"  %}
+<div>
+    <p>
+        Your final earnings can be expressed as
+        $$\text{Final Earnings} =  \underbrace{\frac{y_1}{y_1 + y_2} \text{Total Return} }_{\text{earnings from the investment}} +
+        \underbrace{10-x_1-y_1}_{\text{points kept for oneself}}$$
+    </p>
+    <p>
+        The Total Return depends on whether the investment is successful, and the points put in the Investment Account.
+    </p>
+
+    {% if player.A == 0 %}
+    $$   \text{Total Return} =
+    \begin{cases}
+    2x_1x_2, & \text{if successful (with probability 0.5)} \\
+    0, & \text{if unsuccessful (with probability 0.5)}
+    \end{cases} $$
+    {% endif %}
+
+    {% if player.A == 60 %}
+    $$   \text{Total Return} =
+    \begin{cases}
+    2x_1x_2+60, & \text{if successful (with probability 0.5)} \\
+    60, & \text{if unsuccessful (with probability 0.5)}
+    \end{cases} $$
+    {% endif %}
+    <p>
+        In general, putting more points in the <i>Investment Account</i> (a higher \(x_1\))  <strong>generates a higher total return</strong>
+        , while putting more points in the <i>Rationing Account</i> (a higher \(y_1\))  <strong>increases your share of the total return</strong>.
+    </p>
+    <p>
+        The computer randomly generates <strong>an integer between 1 and 200 </strong> (inclusive)
+        with equal probability to determine whether the investment is a success.
+    </p>
+</div>
+{% endif %}
+
+{% if player.condition == "Var" %}
+<div>
+    <p>
+        The computer randomly generates <strong>an integer between 1 and 110 </strong> (inclusive)
+        with equal probability to determine whether the investment is a success. <br/>
+    </p>
+    <p>
+        The Total Return depends on whether the investment is successful.
+    </p>
+
+    {% if player.A == 0 %}
+    $$   \text{Total Return} =
+    \begin{cases}
+    110, & \text{if random number} \le 100 \\
+    0, & \text{if random number} > 100
+    \end{cases} $$
+    {% endif %}
+
+    {% if player.A == 60 %}
+    $$   \text{Total Return} =
+    \begin{cases}
+    170, & \text{if random number} \le 100 \\
+    60, & \text{if random number} > 100
+    \end{cases} $$
+    {% endif %}
+    <p>
+        Your final earnings can be expressed as
+        $$\text{Final Earnings} =  \underbrace{\frac{y_1}{y_1 + y_2} \text{Total Return} }_{\text{earnings from the investment}} +
+        \underbrace{10-x_1-y_1}_{\text{points kept for oneself}}$$
+    </p>
+    <p>
+        In general, putting more points in the <i>Investment Account</i> (a higher \(x_1\))
+        <strong>makes it more likely to receive a successful investment and a higher total return</strong>
+        , while putting more points in the <i>Rationing Account</i> (a higher \(y_1\))  <strong>increases your share of the total return</strong>.
     </p>
 </div>
 {% endif %}

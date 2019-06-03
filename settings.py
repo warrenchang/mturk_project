@@ -69,8 +69,8 @@ AWS_SECRET_ACCESS_KEY = environ.get('AWS_SECRET_ACCESS_KEY')
 REAL_WORLD_CURRENCY_CODE = 'AED '
 REAL_WORLD_CURRENCY_CODE = '$'
 REAL_WORLD_CURRENCY_CODE = 'RMB '
-USE_POINTS = False
-# POINTS_CUSTOM_NAME = 'tokens'
+USE_POINTS = True
+POINTS_CUSTOM_NAME = ''
 REAL_WORLD_CURRENCY_DECIMAL_PLACES = 2
 POINTS_DECIMAL_PLACES = 1
 
@@ -192,10 +192,59 @@ SESSION_CONFIG_DEFAULTS = {
 
 SESSION_CONFIGS = [
     {
+        'name': 'in_class',
+        'display_name': "In class experiment ",
+        'num_demo_participants': 4,
+        'real_world_currency_per_point': 1/7,
+        'participation_fee': 0,
+        'app_sequence': ['pure_coordination','meeting_place','guess_number','repeated_game_PD','repeated_game_randpay',
+                         'simple_survey','payment_simple'
+                         ],
+    },
+    {
+        'name': 'coopetition_inclass_det0_60',
+        'display_name': "Coopetition inclass Det0_60",
+        'num_demo_participants': 4,
+        'participation_fee': 0,
+        'real_world_currency_per_point': 1/150,
+        'treatment': 'Det0_60',
+        'language': 'EN',  # language can be EN, CN, or empty string (both)
+        # 'debug': False,
+        'app_sequence': ['coopetition_inclass_quiz', 'coopetition_inclass',
+                         'payment_online',
+                         ],
+    },
+    {
+        'name': 'coopetition_inclass_asm0_60',
+        'display_name': "Coopetition inclass Asm0_60",
+        'num_demo_participants': 4,
+        'participation_fee': 0,
+        'real_world_currency_per_point': 1 /150,
+        'treatment': 'Asm0_60',
+        'language': 'EN',  # language can be EN, CN, or empty string (both)
+        # 'debug': False,
+        'app_sequence': ['coopetition_inclass_quiz', 'coopetition_inclass',
+                         'payment_online',
+                         ],
+    },
+    {
         'name': 'coopetition_lab_det0_60',
         'display_name': "Coopetition lab Det0_60",
         'num_demo_participants': 4,
-        'participation_fee': 1,
+        'participation_fee': 0,
+        'real_world_currency_per_point': 1/300,
+        'treatment': 'Asm0_60',
+        'language': 'CN',  # language can be EN, CN, or empty string (both)
+        # 'debug': False,
+        'app_sequence': ['coopetition_lab_quiz', 'coopetition_lab',
+                         'payment_online',
+                         ],
+    },
+    {
+        'name': 'coopetition_lab_det0_60',
+        'display_name': "Coopetition lab Det0_60",
+        'num_demo_participants': 4,
+        'participation_fee': 0,
         'max_payment': 130,
         'treatment': 'Det0_60',
         'language' : 'CN', # language can be EN, CN, or empty string (both)
@@ -208,7 +257,7 @@ SESSION_CONFIGS = [
         'name': 'coopetition_lab_det60_0',
         'display_name': "Coopetition lab Det60_0",
         'num_demo_participants': 4,
-        'participation_fee': 1,
+        'participation_fee': 0,
         'max_payment': 130,
         'treatment': 'Det60_0',
         'language' : 'CN', # language can be EN, CN, or empty string (both)
@@ -221,7 +270,7 @@ SESSION_CONFIGS = [
         'name': 'coopetition_lab_asm0_60',
         'display_name': "Coopetition lab Asm0_60",
         'num_demo_participants': 4,
-        'participation_fee': 1,
+        'participation_fee': 0,
         'max_payment': 130,
         'treatment': 'Asm0_60',
         'language' : 'CN', # language can be EN, CN, or empty string (both)
@@ -234,7 +283,7 @@ SESSION_CONFIGS = [
         'name': 'coopetition_lab_asm60_0',
         'display_name': "Coopetition lab Asm60_0",
         'num_demo_participants': 4,
-        'participation_fee': 1,
+        'participation_fee': 0,
         'max_payment': 130,
         'treatment': 'Asm60_0',
         'language' : 'CN', # language can be EN, CN, or empty string (both)

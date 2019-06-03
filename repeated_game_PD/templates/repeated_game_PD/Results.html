@@ -1,0 +1,35 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+
+{% block content %}
+<p style="font-size:16px"> Round {{ player.round_in_interaction }} of {{ num_rounds}} </p>
+
+{% include Constants.instructions_template %}
+
+{% if player.treatment == 'reputation' %}
+{% include Constants.otherhistory_template %}
+{% endif %}
+
+    <table class="table-condensed" style="margin:auto; width:500px; margin-top:20px;text-align:center">
+        <tr><td>Your choice:</td><td>{{ player.action}}</td></tr>
+        <tr><td>Other's choice:</td><td>{{ player.other_action}}</td></tr>
+        <tr><td>Your earnings:</td><td>{{ player.payoff}}</td></tr>
+        <tr><td>Other's earnings:</td><td>{{ player.other_payoff}}</td></tr>
+        <tr><td colspan="2"><hr/></td></tr>
+    </table>
+
+          <div style="text-align:right">
+            {% next_button %}
+        </div>
+
+    <hr>
+
+    {% include Constants.historyall_template %}
+
+
+{% endblock %}

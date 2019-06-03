@@ -1,0 +1,26 @@
+{% load otree staticfiles %}
+
+{% if player.round_in_interaction != 1 %}
+
+
+<h5 style="text-align:center">
+     Past behavior of the other participant that you are matched with in this round
+</h5>
+<table class="table" style="text-align:center">
+    <tr>
+        <th style="text-align:center">Round</th>
+        <th style="text-align:center">The other participant's action</th>
+        <th style="text-align:center">His/Her matched participant'action</th>
+    </tr>
+    {% for p in other_player.in_previous_rounds %}
+        {% if p.interaction_number == other_player.interaction_number %}
+    <tr>
+        <td>{{ p.round_in_interaction}}</td>
+        <td>{{ p.action}}</td>
+        <td>{{ p.other_action}}</td>
+    </tr>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+</table>
+<hr>

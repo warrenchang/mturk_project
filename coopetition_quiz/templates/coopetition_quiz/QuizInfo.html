@@ -1,26 +1,24 @@
 {% load staticfiles otree %}
 {% block content %}
 
-
-<p>
-    请完成下面有关实验信息的测试题。当你正确的回答所有问题后,实验才会继续。
-</p>
-<p>
-    当你回答完所有问题后，点击 "Check my answers"提交答案. 如果你没有正确回答所有问题，错误的回答将会被标注成红色. 你可以检查你的答案并重新提交答案。
-</p>
-<p>你可以在屏幕下方看到实验的相关信息帮助你答题。</p>
-
-
 <p>
 Please complete the following quiz questions based on the above information.
-    You have to correctly answer all the questions before you can continue with the experiment.
+You have three chances to answer all the questions correctly.
+If it takes you more than 3 attempts, you will not be allowed to participate in
+the experiment and will not receive any payment for the HIT.
 </p>
+
 <p>
     Please provide your answers before clicking "Check my answers", then the answers that are incorrect will be marked in red.
     Check and correct the wrong answers before checking your answers again.
+    Note that <strong>each time you click "Check my answer" would count as one of your attempts.</strong>
 </p>
 <p>The information and examples of the experiment are shown below to help you complete the quiz.</p>
 
+<p>
+<strong>You have at most 8 minutes to finish the quiz.</strong> You will not be able to participate in the experiment if you
+    do not get all the answers correct in 8 minutes.
+</p>
 {% endblock %}
 
 

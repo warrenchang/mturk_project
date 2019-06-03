@@ -5,16 +5,10 @@
 {% endblock %}
 
 {% block content %}
+{% if player.language != "EN"  %}
 <div style="text-align:center">
     <p >
-        You have just been matched with another participant.
-    </p>
-    <p >
     你与另一名玩家（“对方”）匹配成功。
-    </p>
-    <p>
-        You will interact with the same participant for <strong> {{ Constants.interaction_length.0 }} rounds
-        </strong> in this part.
     </p>
     <p>
         在这部分中，你将与<strong>同一名玩家</strong>进行  {{ Constants.interaction_length.0 }} 期的互动决策。
@@ -22,13 +16,32 @@
     <p>
         <strong>
             {% if player.condition == "Asm" %}
-            {% if player.id_in_group == 1 %} You are Player A. 你是玩家A {% else %} You are Player B. 你是玩家B {% endif %}
-            In each round, you receive {{ player.endowment }} points, while the other participant receives {{ player.other_endowment}} points.
-            在每一次，你将拥有  {{ player.endowment }} 份资源，而对方将拥有  {{ player.other_endowment}} 份资源。
+            {% if player.id_in_group == 1 %}  你是玩家A。 {% else %} 你是玩家B。 {% endif %}
+            在每一期，你将拥有  {{ player.endowment }} 份资源，而对方将拥有  {{ player.other_endowment}} 份资源。
             {% endif %}
         </strong>
     </p>
-
+</div>
+{% endif %}
+{% if player.language != "CN"  %}
+<div style="text-align:center">
+    <p >
+        You have just been matched with another participant.
+    </p>
+    <p>
+        You will interact with the same participant for <strong> {{ Constants.interaction_length.0 }} rounds
+        </strong> in this part.
+    </p>
+    <p>
+        <strong>
+            {% if player.condition == "Asm" %}
+            {% if player.id_in_group == 1 %} You are Player A. {% else %} You are Player B. {% endif %}
+            In each round, you receive {{ player.endowment }} points, while the other participant receives {{ player.other_endowment}} points.
+            {% endif %}
+        </strong>
+    </p>
+</div>
+{% endif %}
     <!--<p style="font-size:16px">-->
         <!--Note: The experiment proceeds as fast as the slower participant, so remember to submit your decisions in a timely manner.-->
     <!--</p>-->
@@ -47,15 +60,18 @@
     <!--What you have earned so far will be paid to you as bonus.-->
     <!--</strong>-->
     <!--</p>-->
-
-</div>
 <br/>
 <div style="text-align:right">
     <button class="otree-btn-next btn btn-primary">Continue</button>
 </div>
 
+<br/>
 
-{% include Constants.instructions_template %}
+<div class="card bg-light instructions">
+    <div class="card-body">
+        {% include Constants.instructions_template %}
+    </div>
+</div>
 
 {% endblock %}
 

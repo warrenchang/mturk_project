@@ -1,0 +1,37 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+Results
+{% endblock %}
+
+{% block content %}
+
+<div style="text-align:center;font-size:16px">
+    <p>
+        <br/>
+        You have chosen {{ player.choice }}.
+        <br/>
+        The participant you are matched with has chosen {{ player.other_choice }}.
+        <br/>
+    <p>
+        {% if player.choice == player.other_choice %}
+        Your choices are the same.
+        <br/>
+        Both of you receive a payment of RMB 2 for this part of experiment.
+        {% else %}
+        Your choices are the different.
+        <br/>
+        Neither of you receives any payment for this part of experiment.
+        {% endif %}
+    </p>
+</div>
+
+<div style="text-align:right">
+    {% next_button %}
+</div>
+
+
+{% endblock %}
+
+

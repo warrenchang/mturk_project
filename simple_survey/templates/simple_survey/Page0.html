@@ -1,0 +1,20 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+{% endblock %}
+
+
+{% block content %}
+
+    <hr>
+
+    {% formfield player.gender label="What is your gender?" %}
+
+    <hr/>
+
+    <div style="text-align:right">
+        {% next_button %}
+    </div>
+
+{% endblock %}

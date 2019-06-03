@@ -20,7 +20,7 @@ def get_share(p1,p2):
 class Constants(BaseConstants):
     name_in_url = 'coopetition_lab'
     instructions_template = 'coopetition_lab/Instructions_template.html'
-    breakdowns_template = 'coopetition_lab/Breakdowns_template.html'
+    breakdowns_template = 'coopetition_lab_quiz/Instructions_template.html'
     history_template = 'coopetition_lab//History.html'
     historyall_template = 'coopetition_lab//HistoryAllRounds.html'
     history_previous_template = 'coopetition_lab//History_previous.html'
