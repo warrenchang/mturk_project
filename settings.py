@@ -208,7 +208,7 @@ SESSION_CONFIGS = [
         'participation_fee': 0,
         'real_world_currency_per_point': 1/150,
         'treatment': 'Det0_60',
-        'language': 'EN',  # language can be EN, CN, or empty string (both)
+        'language': 'CN',  # language can be EN, CN, or empty string (both)
         # 'debug': False,
         'app_sequence': ['coopetition_inclass_quiz', 'coopetition_inclass',
                          'payment_online',
@@ -221,7 +221,7 @@ SESSION_CONFIGS = [
         'participation_fee': 0,
         'real_world_currency_per_point': 1 /150,
         'treatment': 'Asm0_60',
-        'language': 'EN',  # language can be EN, CN, or empty string (both)
+        'language': 'CN',  # language can be EN, CN, or empty string (both)
         # 'debug': False,
         'app_sequence': ['coopetition_inclass_quiz', 'coopetition_inclass',
                          'payment_online',
