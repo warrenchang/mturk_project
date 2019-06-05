@@ -13,89 +13,89 @@
 {% if player.language != "EN" %}
 <div>
     <p style="font-size:16px">
-        请决定你在你拥有的{{ player.endowment }}份资源中，投入多少到<i>投资账户</i>和<i>分配账户</i>中(仅限整数). 剩余资源将作为个人留存。
-</p>
+        请决定你在你拥有的{{ player.endowment }}份资源中，投入多少到<i>投资账户</i>和<i>分配账户</i>中. 剩余资源将作为个人留存。
+    </p>
 
-<div class="container" style="alignment:center">
-    <div class="row">
-        <div class="col-sm-2">
-        </div>
-        <div class="col-sm-4">
-            <b>投资账户(\(x_1\))</b> {{ form.a1 }}
-        </div>
-        <div class="col-sm-4">
-            <b>分配账户(\(y_1\)) </b> {{ form.a2 }}
-        </div>
-        <div class="col-sm-2">
+    <div class="container" style="alignment:center">
+        <div class="row">
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-4">
+                <b>投资账户(\(x_1\))</b> {{ form.a1 }}
+            </div>
+            <div class="col-sm-4">
+                <b>分配账户(\(y_1\)) </b> {{ form.a2 }}
+            </div>
+            <div class="col-sm-2">
+            </div>
         </div>
     </div>
-</div>
 
-<div style="text-align:right">
-    <button class="otree-btn-next btn btn-primary">Submit</button>
-</div>
+    <div style="text-align:right">
+        <button class="otree-btn-next btn btn-primary">Submit</button>
+    </div>
 
-<br/>
-{% if player.interaction_number == 1 and player.round_number <= 5  %}
-<p style="font-size:16px">
+    <br/>
+    {% if player.interaction_number == 1 and player.round_number <= 5  %}
+    <p style="font-size:16px">
 
-    注意：
-    {% if player.interaction_number == 1 %}
-    在前五期，你每期有一分钟时间来做决定；五期过后，你每期有30秒来做决定。
-    {% else %}在每一期，你有30秒来做决定。{% endif%}
-    <strong>如果你在规定时间内未能填写决定，系统将随机为您做决定，且你将无法获得本期的收益。</strong>
-</p>
-<p style="text-align:center">
-    <strong>请在你决定之后点击"Submit"提交你的决策。</strong>
-</p>
-{% endif%}
+        注意：
+        {% if player.interaction_number == 1 %}
+        在前五期，你每期有一分钟时间来做决定；五期过后，你每期有{{decision_time}}秒来做决定。
+        {% else %}在每一期，你有{{decision_time}}秒来做决定。{% endif%}
+        <strong>如果你在规定时间内未能填写决定，系统将随机为您做决定，且你将无法获得本期的收益。</strong>
+    </p>
+    <p style="text-align:center">
+        <strong>请在你决定之后点击"Submit"提交你的决策。</strong>
+    </p>
+    {% endif%}
 </div>
 {% endif %}
 {% if player.language != "CN" %}
 <div>
-<p style="font-size:16px">
-    Out of the {{ player.endowment }} points you have, please indicate the number of points you want to allocate to the
-    <i>Investment Account</i> and the <i>Rationing Account</i>.
-    The rest of the points are kept to yourself.
-</p>
+    <p style="font-size:16px">
+        Out of the {{ player.endowment }} points you have, please indicate the number of points you want to allocate to the
+        <i>Investment Account</i> and the <i>Rationing Account</i>.
+        The rest of the points are kept to yourself.
+    </p>
 
-<div class="container" style="alignment:center">
-    <div class="row">
-        <div class="col-sm-2">
-        </div>
-        <div class="col-sm-4">
-            <b>Investment Account (\(x_1\))</b>  {{ form.a1 }}
-        </div>
-        <div class="col-sm-4">
-            <b>Rationing Account (\(y_1\)) </b>  {{ form.a2 }}
-        </div>
-        <div class="col-sm-2">
+    <div class="container" style="alignment:center">
+        <div class="row">
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-4">
+                <b>Investment Account (\(x_1\))</b>  {{ form.a1 }}
+            </div>
+            <div class="col-sm-4">
+                <b>Rationing Account (\(y_1\)) </b>  {{ form.a2 }}
+            </div>
+            <div class="col-sm-2">
+            </div>
         </div>
     </div>
-</div>
 
-<div style="text-align:right">
-    <button class="otree-btn-next btn btn-primary">Submit</button>
-</div>
+    <div style="text-align:right">
+        <button class="otree-btn-next btn btn-primary">Submit</button>
+    </div>
 
-<br/>
-{% if player.interaction_number == 1 and player.round_number <= 5  %}
-<p style="font-size:16px">
-    Note:
-    {% if player.interaction_number == 1 %}
-    For the first 5 rounds, you have 1 minutes to reach your decision; after Round 5, you have 30 seconds to reach your decision.
-    {% else %}
-    In each round, you have 30 seconds to reach your decision.
+    <br/>
+    {% if player.interaction_number == 1 and player.round_number <= 5  %}
+    <p style="font-size:16px">
+        Note:
+        {% if player.interaction_number == 1 %}
+        For the first 5 rounds, you have 1 minutes to reach your decision; after Round 5, you have {{decision_time}} seconds to reach your decision.
+        {% else %}
+        In each round, you have {{decision_time}} seconds to reach your decision.
+        {% endif%}
+
+        <strong>If you do not submit your answer within the allocated time, the computer will randomly choose answers for you, and
+            you will not get paid for that round.</strong>
+    </p>
+    <p style="text-align:center">
+        <strong>Remember to submit once you reach your decision.
+            Your decision is submitted only after you click "Submit".</strong>
+    </p>
     {% endif%}
-
-    <strong>If you do not submit your answer within the allocated time, the computer will randomly choose answers for you, and
-        you will not get paid for that round.</strong>
-</p>
-<p style="text-align:center">
-    <strong>Remember to submit once you reach your decision.
-        Your decision is submitted only after you click "Submit".</strong>
-</p>
-{% endif%}
 </div>
 {% endif %}
 

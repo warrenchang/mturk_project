@@ -27,7 +27,7 @@
 {% if player.language != "EN"  %}
 <div>
 <p style="font-size:16px">
-    实验即将继续，请稍作等待。在等待时，下面是有关本实验的一些信息供你参考。同时，你也可以思考你随后的决策策略。
+    正在等待其他参与者完成测试题，请稍作等待。在等待时，下面是有关本实验的一些信息供你参考。同时，你也可以思考你随后的决策策略。
 </p>
 
 {% if player.condition == "Asm" %}
@@ -37,23 +37,21 @@
         当你和对方配对后，你的角色（"玩家A"或者"玩家B"）就会被随机决定。
     </li>
     <li>
-        当你是“玩家A”时，你每轮起始获得20份资源。
+        如果你是“玩家A”，你每轮起始获得20份资源。
     </li>
     <li>
-        当你是“玩家B”时，你每轮起始获得10份资源。
-    </li>
-    <li>
-        当你与“对方”进行互动决策时，你将看到如下界面供你填写你的决策。
+        如果你是“玩家B”时，你每轮起始获得10份资源。
     </li>
 </ul>
 </p>
 {% endif %}
 
 <p>
-    注意：实验的进程取决于决策较慢的玩家，因此，请尽快填写并提交你的决定。在前五期中，你各有1分钟来做出你的决定。五期过后，每期你将有30秒做出你的决定。如果未能在指定时间内填写并提交你的决定，电脑将随机为你填写，你也无法获得当期的收益。如果你多次未能提交你的决定，你将无法获得整个实验的收益。
+    注意：实验的进程取决于决策较慢的玩家，因此，请尽快填写并提交你的决定。在前五期中，你各有1分钟来做出你的决定。
+    五期过后，每期你将有{{decision_time}}秒做出你的决定。<strong>如果未能在指定时间内填写并提交你的决定，电脑将随机为你填写，你也无法获得当期的收益。</strong>
 </p>
 <p style="text-align:center">
-        在每一期决策填写完毕后，请点击“Submit”，否则实验无法继续。
+        <!--在每一期决策填写完毕后，请点击“Submit”，否则实验无法继续。-->
 </p>
     </div>
 {% endif %}
@@ -61,7 +59,7 @@
 <div>
 <hr>
 <p style="font-size:16px">
-    Please wait for the experiment to contitnue.
+    Please wait for other participants to finish their quiz.
     While you are waiting, below is some information about the experiment that you can review, and you can think about how you
     will make decisions.
 </p>
@@ -93,13 +91,12 @@
 <p style="font-size:16px">
     Note:
     The experiment proceeds as fast as the slower participant, so please submit your decisions in a prompt manner.
-    For the first 5 rounds, you have 1 minutes to reach your decision; after Round 5, you have 30 seconds to reach your decision.
+    For the first 5 rounds, you have 1 minutes to reach your decision; after Round 5, you have {{decision_time}} seconds to reach your decision.
     <strong>If you do not submit your answer within the allocated time, the computer will randomly choose answers for you, and
-        you will not get paid for that round.</strong> If you fail to submit your decisions too many times, you will be
-    able to receive your experimental payment.
+        you will not get paid for that round.</strong>
 </p>
 <p style="text-align:center">
-    Remember to submit once you reach your decision in each round. Your decision is submitted only after you click "Submit".
+    <!--Remember to submit once you reach your decision in each round. Your decision is submitted only after you click "Submit".-->
 </p>
 </div>
 {% endif %}
@@ -107,6 +104,11 @@
 
 <hr>
 
+<div class="card bg-light instructions">
+    <div class="card-body">
+        {% include Constants.instructions_template %}
+    </div>
+</div>
 
 {% endblock %}
 

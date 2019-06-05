@@ -13,6 +13,7 @@
     {% if player.language != "EN" %}历史数据{% endif %}
     {% if player.language != "CN" %}History{% endif %}
 </h5>
+
 <table class="table" style="text-align:center">
     {% if player.language != "EN" %}
     <tr>
@@ -33,7 +34,7 @@
         <th style="text-align:center">收益</th>
     </tr>
     {% endif %}
-     {% if player.language != "CN" %}
+    {% if player.language != "CN" %}
     <tr>
         <th></th>
         <th style="text-align:center" colspan="5">You</th>
@@ -68,11 +69,11 @@
     </tr>
     {% endif %}
     {% endfor %}
-    <p>
-        {% if player.language != "EN" %}注意：如果你能够在规定的时间内做出决策，那么你在那一期的收益是0.{% endif %}
-        {% if player.language != "CN" %} Note: if you do not submit your decision within the time limit, your earnings for that round is 0.
-        {% endif %}
-       </p>
-    {% endif %}
 </table>
+
+    <p>
+        {% if player.language != "EN" %}注意：如果你未能在规定的时间内做出决策，那么你在那一期的收益是0.{% endif %}
+        {% if player.language != "CN" %}Note: if you do not submit your decision within the time limit, your earnings for that round is 0. {% endif %}
+    </p>
+    {% endif %}
 

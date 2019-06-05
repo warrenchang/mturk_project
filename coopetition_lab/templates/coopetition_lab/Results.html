@@ -68,6 +68,8 @@
     </table>
 </div>
 {% endif %}
+<br/>
+<p></p>
 {% if player.timed_out %}
 由于你没能够在规定的时间内作出决策，电脑为你随机的做出了决策。所以，你本期收益是0。为了能够得到每期的收益，请在规定时间内作出决策。
 {% endif %}
@@ -133,7 +135,7 @@
 {% endif %}
 
 <br/>
-
+<p></p>
 {% if player.timed_out %}
 <p>
 Because you did not submit your decision within the time limit, the computer has made a choice for you. Therefore,
@@ -151,15 +153,15 @@ Please submit your decision before time runs out in each round in order to recei
     {% next_button %}
 </div>
 
-
+<br/>
+{% include Constants.historyall_template %}
 <div class="card bg-light instructions">
     <div class="card-body">
         {% include Constants.breakdowns_template %}
     </div>
 </div>
 
-<br/>
-{% include Constants.historyall_template %}
+
 <br/>
 {% include Constants.historyall_previous_template %}
 

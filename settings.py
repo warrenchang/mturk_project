@@ -70,7 +70,7 @@ REAL_WORLD_CURRENCY_CODE = 'AED '
 REAL_WORLD_CURRENCY_CODE = '$'
 REAL_WORLD_CURRENCY_CODE = 'RMB '
 USE_POINTS = True
-POINTS_CUSTOM_NAME = ''
+POINTS_CUSTOM_NAME = '$'
 REAL_WORLD_CURRENCY_DECIMAL_PLACES = 2
 POINTS_DECIMAL_PLACES = 1
 
@@ -183,7 +183,7 @@ MTURK_NUM_PARTICIPANTS_MULTIPLE = 3
 # e.g. self.session.config['participation_fee']
 
 SESSION_CONFIG_DEFAULTS = {
-    'real_world_currency_per_point': 1 / 15,
+    'real_world_currency_per_point': 1 / 18,
     'participation_fee': 0,
     'debug': DEBUG,
     'doc': "",
@@ -191,6 +191,67 @@ SESSION_CONFIG_DEFAULTS = {
 }
 
 SESSION_CONFIGS = [
+
+    {
+        'name': 'coopetition_lab_det0_60',
+        'display_name': "Coopetition lab Det0_60",
+        'num_demo_participants': 4,
+        'participation_fee': 0,
+        'min_payment': 30,
+        'max_payment': 100,
+        'decision_time': 45,
+        'treatment': 'Det0_60',
+        'language': 'CN',  # language can be EN, CN, or empty string (both)
+        # 'debug': False,
+        'app_sequence': ['coopetition_lab_quiz', 'coopetition_lab',
+                         'coopetition_lab_survey', 'coopetition_lab_payment',
+                         ],
+    },
+    {
+        'name': 'coopetition_lab_det60_0',
+        'display_name': "Coopetition lab Det60_0",
+        'num_demo_participants': 4,
+        'participation_fee': 0,
+        'min_payment': 30,
+        'max_payment': 100,
+        'decision_time': 45,
+        'treatment': 'Det60_0',
+        'language': 'CN',  # language can be EN, CN, or empty string (both)
+        # 'debug': False,
+        'app_sequence': ['coopetition_lab_quiz', 'coopetition_lab',
+                         'coopetition_lab_survey', 'coopetition_lab_payment'
+                         ],
+    },
+    {
+        'name': 'coopetition_lab_asm0_60',
+        'display_name': "Coopetition lab Asm0_60",
+        'num_demo_participants': 4,
+        'participation_fee': 0,
+        'min_payment': 30,
+        'max_payment': 100,
+        'decision_time': 45,
+        'treatment': 'Asm0_60',
+        'language': 'CN',  # language can be EN, CN, or empty string (both)
+        # 'debug': False,
+        'app_sequence': ['coopetition_lab_quiz', 'coopetition_lab',
+                         'coopetition_lab_survey', 'coopetition_lab_payment'
+                         ],
+    },
+    {
+        'name': 'coopetition_lab_asm60_0',
+        'display_name': "Coopetition lab Asm60_0",
+        'num_demo_participants': 4,
+        'participation_fee': 0,
+        'min_payment': 30,
+        'max_payment': 100,
+        'decision_time': 45,
+        'treatment': 'Asm60_0',
+        'language': 'CN',  # language can be EN, CN, or empty string (both)
+        # 'debug': False,
+        'app_sequence': ['coopetition_lab_quiz', 'coopetition_lab',
+                         'coopetition_lab_survey', 'coopetition_lab_payment'
+                         ],
+    },
     {
         'name': 'in_class',
         'display_name': "In class experiment ",
@@ -227,58 +288,7 @@ SESSION_CONFIGS = [
                          'payment_online',
                          ],
     },
-    {
-        'name': 'coopetition_lab_det0_60',
-        'display_name': "Coopetition lab Det0_60",
-        'num_demo_participants': 4,
-        'participation_fee': 0,
-        'max_payment': 130,
-        'treatment': 'Det0_60',
-        'language' : 'CN', # language can be EN, CN, or empty string (both)
-        # 'debug': False,
-        'app_sequence': ['coopetition_lab_quiz', 'coopetition_lab',
-                         'survey_online', 'payment_online',
-                         ],
-    },
-    {
-        'name': 'coopetition_lab_det60_0',
-        'display_name': "Coopetition lab Det60_0",
-        'num_demo_participants': 4,
-        'participation_fee': 0,
-        'max_payment': 130,
-        'treatment': 'Det60_0',
-        'language' : 'CN', # language can be EN, CN, or empty string (both)
-        # 'debug': False,
-        'app_sequence': ['coopetition_lab_quiz', 'coopetition_lab',
-                         'survey_online', 'payment_online'
-                         ],
-    },
-    {
-        'name': 'coopetition_lab_asm0_60',
-        'display_name': "Coopetition lab Asm0_60",
-        'num_demo_participants': 4,
-        'participation_fee': 0,
-        'max_payment': 130,
-        'treatment': 'Asm0_60',
-        'language' : 'CN', # language can be EN, CN, or empty string (both)
-        # 'debug': False,
-        'app_sequence': ['coopetition_lab_quiz', 'coopetition_lab',
-                         'survey_online', 'payment_online'
-                         ],
-    },
-    {
-        'name': 'coopetition_lab_asm60_0',
-        'display_name': "Coopetition lab Asm60_0",
-        'num_demo_participants': 4,
-        'participation_fee': 0,
-        'max_payment': 130,
-        'treatment': 'Asm60_0',
-        'language' : 'CN', # language can be EN, CN, or empty string (both)
-        # 'debug': False,
-        'app_sequence': ['coopetition_lab_quiz', 'coopetition_lab',
-                         'survey_online', 'payment_online'
-                         ],
-    },
+
     {
         'name': 'coopetition_mturk_det0_60',
         'display_name': "Coopetition Det0_60",

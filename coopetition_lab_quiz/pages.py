@@ -19,6 +19,7 @@ class StartPage(Page):
         return {
             'exchange_rate': int(round(1/self.session.config['real_world_currency_per_point'])),
             'max_payment': self.session.config['max_payment'],
+            'min_payment': self.session.config['min_payment'],
         }
 
 

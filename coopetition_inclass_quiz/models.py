@@ -39,8 +39,6 @@ class Subsession(BaseSubsession):
             else:
                 p.A = 60
 
-
-
 class Group(BaseGroup):
     pass
 

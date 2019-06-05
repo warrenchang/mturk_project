@@ -10,6 +10,7 @@ class BasePage(Page):
     def vars_for_template(self):
         v =  {
             'other_player': self.player.get_partner(),
+            'decision_time': self.session.config['decision_time'],
         }
         v.update(self.extra_vars_for_template())
         return v
@@ -22,6 +23,7 @@ class BaseWaitPage(WaitPage):
     def vars_for_template(self):
         v =  {
             'other_player': self.player.get_partner(),
+            'decision_time': self.session.config['decision_time'],
         }
         v.update(self.extra_vars_for_template())
         return v
@@ -30,16 +32,25 @@ class BaseWaitPage(WaitPage):
         return {}
 
 
-class MatchingWaitPage(WaitPage):
+class MatchingWaitPage(BaseWaitPage):
     template_name = 'coopetition_lab/MatchingWaitPage.html'
+    # wait_for_all_groups = True
     group_by_arrival_time = True
 
     def is_displayed(self):
         return (self.participant.vars['qualified'] and (self.round_number == 1))
 
 
+class PostMatchingWaitPage(BaseWaitPage):
+    template_name = 'coopetition_lab/MatchingWaitPage.html'
+    wait_for_all_groups = True
+
+    def is_displayed(self):
+        return (self.participant.vars['qualified'] and (self.round_number == 1))
+
+
 class StartPage(BasePage):
-    timeout_seconds = 90
+    timeout_seconds = 30
 
     def is_displayed(self):
         return (self.participant.vars['qualified'] and
@@ -90,7 +101,7 @@ class Decision(BasePage):
         if (self.round_number <= 5) and (self.player.interaction_number == 1):
             return 60
         else:
-            return 30
+            return self.session.config['decision_time']
 
     def is_displayed(self):
         return self.participant.vars['qualified']
@@ -142,18 +153,25 @@ class InteractionResults(BasePage):
     timeout_seconds = 10
 
     def is_displayed(self):
-        return self.participant.vars['qualified'] and self.player.round_in_interaction == Constants.interaction_length[self.player.interaction_number-1]
+        return self.player.round_in_interaction == Constants.interaction_length[self.player.interaction_number-1]
 
 
-class InteractionWaitPage(BaseWaitPage):
+class InteractionWaitPage1(BaseWaitPage):
+    template_name = 'coopetition_lab/InteractionWaitPage.html'
+    wait_for_all_groups = True
+
+    def is_displayed(self):
+        return (self.player.round_in_interaction == Constants.interaction_length[self.player.interaction_number-1]) and not (self.player.round_number == Constants.num_rounds)
+
+class InteractionWaitPage2(BaseWaitPage):
     template_name = 'coopetition_lab/InteractionWaitPage.html'
 
     def is_displayed(self):
-        return self.participant.vars['qualified'] and self.player.round_in_interaction == Constants.interaction_length[self.player.interaction_number-1]
-
+        return self.player.round_number == Constants.num_rounds
 
 page_sequence = [
     MatchingWaitPage,
+    PostMatchingWaitPage,
     SettingParameters,
     StartPage,
     Introduction,
@@ -161,5 +179,6 @@ page_sequence = [
     DecisionWaitPage,
     Results,
     InteractionResults,
-    InteractionWaitPage,
+    InteractionWaitPage1,
+    InteractionWaitPage2,
 ]
