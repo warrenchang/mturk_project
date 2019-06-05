@@ -116,7 +116,6 @@ SURVEY_DEFINITIONS = (
     #
     #     ]
     # },
-
     {
         'page_title': '',
         'survey_fields': [
@@ -167,5 +166,4 @@ SURVEY_DEFINITIONS = (
     },
 )
 
-# now dynamically create the Player class from the survey definitions
-Player = create_player_model_for_survey('survey_online.models', SURVEY_DEFINITIONS)
+Player = create_player_model_for_survey('coopetition_lab_survey.models', SURVEY_DEFINITIONS)

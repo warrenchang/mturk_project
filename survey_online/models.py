@@ -42,7 +42,6 @@ YESNO_CHOICES = (
 # for each page define a page title and a list of questions
 # the questions have a field name, a question text (input label), and a field type (model field class)
 SURVEY_DEFINITIONS = (
-
     {
         'page_title': 'Survey Questions',
         'survey_fields': [
