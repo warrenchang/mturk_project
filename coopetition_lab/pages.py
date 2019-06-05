@@ -101,7 +101,8 @@ class Decision(BasePage):
         if (self.round_number <= 5) and (self.player.interaction_number == 1):
             return 60
         else:
-            return self.session.config['decision_time']
+            return 45
+            # return self.session.config['decision_time']
 
     def is_displayed(self):
         return self.participant.vars['qualified']
