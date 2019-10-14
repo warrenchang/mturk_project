@@ -99,7 +99,7 @@ class ResultsWaitPage(WaitPage):
 
 
 class InteractionResults(BasePage):
-    timeout_seconds = 30
+    timeout_seconds = 20
 
     def is_displayed(self):
         return self.player.round_in_interaction == Constants.interaction_length[self.player.interaction_number-1]

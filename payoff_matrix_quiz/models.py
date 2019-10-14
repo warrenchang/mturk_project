@@ -7,7 +7,7 @@ from otree.api import (
 author = 'Huanren Zhang'
 
 doc = """
-Quiz questions that test the understanding of PD with private monitoring and communication
+Instructions on how to read payoff matrices, with quiz questions testing understanding.
 """
 
 

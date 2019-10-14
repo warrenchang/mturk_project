@@ -67,11 +67,11 @@ AWS_SECRET_ACCESS_KEY = environ.get('AWS_SECRET_ACCESS_KEY')
 
 # e.g. EUR, CAD, GBP, CHF, CNY, JPY
 REAL_WORLD_CURRENCY_CODE = 'AED '
-REAL_WORLD_CURRENCY_CODE = 'RMB '
 REAL_WORLD_CURRENCY_CODE = '$'
+REAL_WORLD_CURRENCY_CODE = 'RMB '
 USE_POINTS = True
 # POINTS_CUSTOM_NAME = '$'
-REAL_WORLD_CURRENCY_DECIMAL_PLACES = 2
+REAL_WORLD_CURRENCY_DECIMAL_PLACES = 0
 POINTS_DECIMAL_PLACES = 0
 
 # e.g. en, de, fr, it, ja, zh-hans
@@ -195,16 +195,13 @@ SESSION_CONFIGS = [
         'name': 'innovation_mamagement',
         'display_name': "Innovation Managment in-class experiment",
         'num_demo_participants': 4,
+        'total_payment': 200,  ## total payment received by participants
+        'num_payment': 10,  ## the number of participants receiving payment
+        'treatment': 'Det0_60',
+        'language': 'EN',  # language can be EN, CN, or empty string (both)
+        'real_world_currency_per_point': 1,
         'participation_fee': 0,
         'decision_time': 45,
-        'treatment': 'Det0_60',
-        'interaction_length': 10,
-        'real_world_currency_per_point': 1,
-        'debug': False,
-        'total_payment': 150,  ## total payment received by participants
-        'num_payment': 5,  ## the number of participants receiving payment
-        'language': 'EN',  # language can be EN, CN, or empty string (both)
-        # 'debug': False,
         'app_sequence': [
             'payoff_matrix_quiz',
             'repeated_game_PD',

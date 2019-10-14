@@ -64,16 +64,16 @@ class Constants(BaseConstants):
     # interaction_length = [20, 20]
 
 
-    interactions = [
-        1, 1, 1,
-        2, 2, 2,
-    ]
-    round_in_interactions = [
-        1, 2, 3,
-        1, 2, 3,
-    ]
-
-    interaction_length = [3, 3]
+    # interactions = [
+    #     1, 1, 1,
+    #     2, 2, 2,
+    # ]
+    # round_in_interactions = [
+    #     1, 2, 3,
+    #     1, 2, 3,
+    # ]
+    #
+    # interaction_length = [3, 3]
 
     num_rounds = sum(interaction_length) # change num_rounds for testing purpose, but need to make sure that number_sequence
     var_max = 110 ## maximal value for Var treatment

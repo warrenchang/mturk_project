@@ -7,8 +7,7 @@ import random
 author = 'Huanren Zhang'
 
 doc = """
-Finitely repeated "Prisoner's Dilemma", 3 different treatments: random matching, fixed matching, random matching
- with past behavior available.
+Finitely repeated "Prisoner's Dilemma".  
 """
 
 
@@ -16,42 +15,59 @@ class Constants(BaseConstants):
     name_in_url = 'repeated_game_PD'
     players_per_group = 2
 
+    # interactions = [
+    #     1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    #     2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    #     3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+    #     4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
+    #     5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
+    # ]
+    # round_in_interactions = [
+    #     1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+    #     1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+    #     1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+    #     1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+    #     1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+    # ]
+    #
+    # interaction_length = [10, 10, 10, 10, 10]
+
     interactions = [
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-        2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-        3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
-        4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
-        5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
+        1, 1, 1, 1, 1, 1, 1, 1,
+        2, 2, 2, 2, 2, 2, 2, 2,
+        3, 3, 3, 3, 3, 3, 3, 3,
+        4, 4, 4, 4, 4, 4, 4, 4,
+        5, 5, 5, 5, 5, 5, 5, 5,
     ]
     round_in_interactions = [
-        1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-        1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-        1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-        1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-        1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+        1, 2, 3, 4, 5, 6, 7, 8,
+        1, 2, 3, 4, 5, 6, 7, 8,
+        1, 2, 3, 4, 5, 6, 7, 8,
+        1, 2, 3, 4, 5, 6, 7, 8,
+        1, 2, 3, 4, 5, 6, 7, 8,
     ]
 
-    interaction_length = [10, 10, 10, 10, 10]
+    interaction_length = [8, 8, 8, 8, 8]
 
     treatments = [ 'fixed', 'fixed', 'fixed','fixed','fixed' ]
 
 
-    interactions = [
-        1, 1, 1,
-        2, 2, 2,
-        3, 3, 3,
-        4, 4, 4,
-        5, 5, 5,
-    ]
-    round_in_interactions = [
-        1, 2, 3,
-        1, 2, 3,
-        1, 2, 3,
-        1, 2, 3,
-        1, 2, 3,
-    ]
-
-    interaction_length = [3, 3, 3, 3, 3]
+    # interactions = [
+    #     1, 1, 1,
+    #     2, 2, 2,
+    #     3, 3, 3,
+    #     4, 4, 4,
+    #     5, 5, 5,
+    # ]
+    # round_in_interactions = [
+    #     1, 2, 3,
+    #     1, 2, 3,
+    #     1, 2, 3,
+    #     1, 2, 3,
+    #     1, 2, 3,
+    # ]
+    #
+    # interaction_length = [3, 3, 3, 3, 3]
 
 
     num_rounds = sum(interaction_length) # change num_rounds for testing purpose, but need to make sure that number_sequence
