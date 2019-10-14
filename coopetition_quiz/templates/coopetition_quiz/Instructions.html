@@ -26,7 +26,7 @@ Instructions: Part 1
 {% if player.condition == "Asm" %}
 <div>
     <p>
-        In this part, there will be <strong>multiple</strong> rounds of decision-making.
+        In this part, there will be <strong>{{ player.interaction_length }}</strong> rounds of decision-making.
 
     <ul>
         <li>
@@ -153,9 +153,10 @@ Instructions: Part 1
 {% else %}
 <div>
     <p>
-        In this part, there will be <strong>multiple</strong> rounds of decision-making. You will be matched with another participant to play
+        In this part, there will be <strong>{{ player.interaction_length }}</strong> rounds of decision-making. You will be matched with another participant to play
         an investment game. You will play with the same participant for all rounds.
     </p>
+
 
     <p style="text-align: center">
         <strong><u>Your decision</u></strong>

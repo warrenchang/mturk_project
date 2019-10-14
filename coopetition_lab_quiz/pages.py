@@ -44,8 +44,8 @@ class Examples(Page):
 class SomeUnderstandingQuestions(UnderstandingQuestionsPage):
     page_title = ''
     # extra_template = ''
-    extra_template = Constants.extra_info
-    quiz_info = Constants.quiz_info
+    quiz_info = Constants.quiz_info  # information before the quiz questions
+    extra_template = Constants.extra_info  # information after the quiz questions
     set_correct_answers = APPS_DEBUG    # this is the default setting
     # set_correct_answers = False  # do not fill out the correct answers in advance (this is for fast skipping through pages)
     form_model = 'player'

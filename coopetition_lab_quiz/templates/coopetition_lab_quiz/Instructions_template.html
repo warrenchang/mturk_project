@@ -23,16 +23,12 @@
         </p>
         <p>玩家的最总收益为
             {% if player.A == 0 %}
-            $$\text{A的最终受益} =  \underbrace{\frac{y_A}{y_A + y_B} \frac{x_A x_B}{2}}_{\text{合作总收益}} +
-            \underbrace{20-x_A-y_A}_{\text{自我存留}}$$
-            $$\text{B的最终收益} =  \underbrace{\frac{y_B}{y_A + y_B} \frac{x_A x_B}{2}}_{\text{合作总收益}} +
-            \underbrace{10-x_B-y_B}_{\text{自我存留}}$$
+            $$\text{A的最终受益} =  \frac{y_A}{y_A + y_B} \frac{x_A x_B}{2}+ \underbrace{20-x_A-y_A}_{\text{自我存留}}$$
+            $$\text{B的最终收益} =  \frac{y_B}{y_A + y_B} \frac{x_A x_B}{2}+ \underbrace{10-x_B-y_B}_{\text{自我存留}}$$
             {% endif %}
             {% if player.A == 60 %}
-            $$\text{A的最终收益} =  \underbrace{\frac{y_A}{y_A + y_B}(\frac{x_A x_B}{2}+60)}_{\text{合作总收益}} +
-            \underbrace{20-x_A-y_A}_{\text{自我存留}}$$
-            $$\text{B的最终收益} =  \underbrace{\frac{y_B}{y_A + y_B}(\frac{x_A x_B}{2}+60)}_{\text{合作总收益}} +
-            \underbrace{10-x_B-y_B}_{\text{自我存留}}$$
+            $$\text{A的最终收益} =  \frac{y_A}{y_A + y_B}(\frac{x_A x_B}{2}+60)+ \underbrace{20-x_A-y_A}_{\text{自我存留}}$$
+            $$\text{B的最终收益} =  \frac{y_B}{y_A + y_B}(\frac{x_A x_B}{2}+60)+ \underbrace{10-x_B-y_B}_{\text{自我存留}}$$
             {% endif %}
         </p>
         <p>
@@ -50,12 +46,10 @@
     <div>
         <p>你的最总收益为
             {% if player.A == 0 %}
-            $$\text{最总收益} =  \underbrace{\frac{y_1}{y_1 + y_2}x_1 x_2}_{\text{合作总收益}} +
-            \underbrace{10-x_1-y_1}_{\text{自我存留}}$$
+            $$\text{最总收益} =  \frac{y_1}{y_1 + y_2}x_1 x_2+ \underbrace{10-x_1-y_1}_{\text{自我存留}}$$
             {% endif %}
             {% if player.A == 60 %}
-            $$\text{最总收益} =  \underbrace{\frac{y_1}{y_1 + y_2}(x_1 x_2+60)}_{\text{合作总收益}} +
-            \underbrace{10-x_1-y_1}_{\text{自我存留}}$$
+            $$\text{最总收益} =  \frac{y_1}{y_1 + y_2}(x_1 x_2+60)+ \underbrace{10-x_1-y_1}_{\text{自我存留}}$$
             {% endif %}
         </p>
         <p>

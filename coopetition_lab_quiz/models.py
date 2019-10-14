@@ -19,8 +19,8 @@ class Constants(BaseConstants):
 
     summary_template = 'coopetition_lab_quiz/Instructions_template.html'
     examples_template = 'coopetition_lab_quiz/Examples_template.html'
-    quiz_info = 'coopetition_lab_quiz/QuizInfo.html'
-    extra_info = 'coopetition_lab_quiz/ExtraInfo.html'
+    quiz_info = 'coopetition_lab_quiz/QuizInfo.html'    # information before the quiz questions
+    extra_info = 'coopetition_lab_quiz/ExtraInfo.html'  # information after the quiz questions
 
 
 class Subsession(BaseSubsession):

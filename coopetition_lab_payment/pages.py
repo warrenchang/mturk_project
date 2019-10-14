@@ -10,6 +10,7 @@ class EndInfo(Page):
     def vars_for_template(self):
         print(self.participant.vars)
         final_payment = self.participant.payoff_plus_participation_fee()
+        self.player.final_payment = final_payment
         if final_payment < 30:
             final_payment = 30
         return {

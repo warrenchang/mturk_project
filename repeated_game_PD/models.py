@@ -20,61 +20,174 @@ class Constants(BaseConstants):
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
         2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
         3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+        4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
+        5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
     ]
     round_in_interactions = [
         1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
         1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
         1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
     ]
-    interaction_length = [10, 10, 10]
 
-    treatments = ['random', 'fixed', 'reputation']
+    interaction_length = [10, 10, 10, 10, 10]
+
+    treatments = [ 'fixed', 'fixed', 'fixed','fixed','fixed' ]
 
 
     interactions = [
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-        2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+        1, 1, 1,
+        2, 2, 2,
+        3, 3, 3,
+        4, 4, 4,
+        5, 5, 5,
     ]
     round_in_interactions = [
-        1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-        1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+        1, 2, 3,
+        1, 2, 3,
+        1, 2, 3,
+        1, 2, 3,
+        1, 2, 3,
     ]
-    interaction_length = [10, 10]
 
-    treatments = ['random', 'fixed']
+    interaction_length = [3, 3, 3, 3, 3]
 
-
-    # interactions = [
-    #     1, 1, 1,
-    #     2, 2, 2,
-    #     3, 3, 3,
-    # ]
-    # round_in_interactions = [
-    #     1, 2, 3,
-    #     1, 2, 3,
-    #     1, 2, 3,
-    # ]
-    # interaction_length = [3, 3, 3]
 
     num_rounds = sum(interaction_length) # change num_rounds for testing purpose, but need to make sure that number_sequence
 
-    # payoff for the prisoner's dilemma
-    R = 4
-    S = 0
-    T = 6
-    P = 2
-
+    # payoff matrix for each interaction
     payoff_matrix = {
-        'A':
-            {
-                'A': R,
-                'B': S
+        1: {
+            1: {
+                'A':
+                    {
+                        'A': 2,
+                        'B': -4
+                    },
+                'B':
+                    {
+                        'A': 4,
+                        'B': -2
+                    },
             },
-        'B':
-            {
-                'A': T,
-                'B': P
-            }
+            2: {
+                'A':
+                    {
+                        'A': 2,
+                        'B': -4
+                    },
+                'B':
+                    {
+                        'A': 4,
+                        'B': -2
+                    },
+            },
+        },
+        2: {
+            1: {
+                'A':
+                    {
+                        'A': 5,
+                        'B': -1
+                    },
+                'B':
+                    {
+                        'A': 7,
+                        'B': 1
+                    },
+            },
+            2: {
+                'A':
+                    {
+                        'A': 5,
+                        'B': -1
+                    },
+                'B':
+                    {
+                        'A': 7,
+                        'B': 1
+                    },
+            },
+        },
+        3: {
+            1: {
+                'A':
+                    {
+                        'A': 8,
+                        'B': 1
+                    },
+                'B':
+                    {
+                        'A': 10,
+                        'B': 4
+                    },
+            },
+            2: {
+                'A':
+                    {
+                        'A': 8,
+                        'B': 1
+                    },
+                'B':
+                    {
+                        'A': 10,
+                        'B': 4
+                    },
+            },
+        },
+        4: {
+            1: {
+                'A':
+                    {
+                        'A': 2,
+                        'B': -4
+                    },
+                'B':
+                    {
+                        'A': 4,
+                        'B': -2
+                    },
+            },
+            2: {
+                'A':
+                    {
+                        'A': 5,
+                        'B': -1
+                    },
+                'B':
+                    {
+                        'A': 7,
+                        'B': 1
+                    },
+            },
+        },
+        5: {
+            1: {
+                'A':
+                    {
+                        'A': 5,
+                        'B': -1
+                    },
+                'B':
+                    {
+                        'A': 7,
+                        'B': 1
+                    },
+            },
+            2: {
+                'A':
+                    {
+                        'A': 8,
+                        'B': 1
+                    },
+                'B':
+                    {
+                        'A': 10,
+                        'B': 4
+                    },
+            },
+        },
     }
 
     instructions_template = 'repeated_game_PD/Instructions.html'
@@ -118,8 +231,8 @@ class Group(BaseGroup):
         # first calculate payoff
         p1.other_action = p2.action
         p2.other_action = p1.action
-        p1.payoff = (Constants.payoff_matrix[p1.action][p1.other_action])
-        p2.payoff = (Constants.payoff_matrix[p2.action][p2.other_action])
+        p1.payoff = (Constants.payoff_matrix[p1.interaction_number][1][p1.action][p1.other_action])
+        p2.payoff = (Constants.payoff_matrix[p2.interaction_number][2][p2.action][p2.other_action])
         p1.other_payoff = p2.payoff
         p2.other_payoff = p1.payoff
 

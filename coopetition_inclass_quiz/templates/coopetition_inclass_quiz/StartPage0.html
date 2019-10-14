@@ -1,0 +1,64 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+
+{% if player.language != "EN"  %}
+<p style="font-size:16px">
+    欢迎参加本决策实验。
+</p>
+<p style="font-size:16px">
+    你在本实验获得的报酬取决于你的决策。因此，请仔细阅读并理解实验信息。
+</p>
+<p style="font-size:16px">
+    实验当中电脑会随机将你与另外一个参与者进行匹配。你将与其他参与者在匿名的状态下互动进行决策，而你的最终的收益将取决于你和另一个参与者的决策。
+</p>
+<p style="font-size:16px">
+    实验过程当中请不要与其他参与者交流。如果你在实验过程当中有任何问题，请举手示意，实验工作人员会前来，私下回答你的问题。
+</p>
+    <p style="font-size:16px">
+        你在实验当中将赚取实验货币$。实验结束后，实验货币$将按照如下转换率转换成真实货币：<strong>{{exchange_rate}}$ = 1 元</strong>
+    </p>
+<p style="font-size:16px">
+本实验将会分为几个部分，并将持续大概30分钟。现在我们会介绍第一部分的相关信息。
+</p>
+
+<p style="font-size:16px">
+    实验信息之后将会有一些测试题来检测你对实验的理解。只有在你正确的回答全部问题之后，实验才会继续。如果你对测试题有任何问题，可以举手示意实验工作人员寻求帮助。
+    </p>
+
+{% endif %}
+
+{% if player.language != "CN"  %}
+<p style="font-size:16px">
+    Welcome to the experiment of decision-making.
+</p>
+<p style="font-size:16px">
+        In the experiment, the amount of money you can earn depends on your decisions.
+        Therefore, it is important that you read these instructions carefully.
+    </p>
+<p style="font-size:16px">
+    Earnings in the experiment are denominated by experimental dollar $. You will earn $ throughout the experiment. At the end of the experiment, these dollars will be converted into real money at
+    the exchange rate of <strong>{{ exchange_rate }} $ = RMB 1.</strong>
+</p>
+
+<p style="font-size:16px">
+    This experiment consists of several parts and will take approximately 30 minutes.
+    We will now go through the instructions for Part I.
+</p>
+
+<p style="font-size:16px">
+    At the end of these instructions, you will be asked to take a quiz to ensure that you understand the instructions. You can only
+    start the experiment after you successfully answer all the questions. You can ask the experimenter for help if you have questions
+    about the quiz. The experiment continues only after you have correctly answered all the quiz questions.
+    </p>
+
+
+{% endif %}
+    <div style="text-align:right">
+    {% next_button %}
+    </div>
+{% endblock %}

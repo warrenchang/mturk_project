@@ -1,6 +1,5 @@
 {% load otree staticfiles %}
 
-
 <div class="instructions well well-lg">
     <link rel="stylesheet" type="text/css"
           href="{% static 'global/matrix.css' %}"/>
@@ -12,33 +11,34 @@
             <th colspan=2>Other participant</th>
         </tr>
         <tr>
-            <th style="text-align:center">X</th>
-            <th style="text-align:center">Y</th>
+            <th style="text-align:center;color:red;">X</th>
+            <th style="text-align:center;color:red;">Y</th>
         </tr>
         <tr>
             <th rowspan=2><span class="rotate90">You</span></th>
-            <th align ="center">X</th>
-                <td>{{ p11}}, {{ p11 }}</td>
-                <td>{{ p12}}, {{ p21 }}</td>
-            </tr>
-            <tr>
-                <th align = "center">Y</th>
-                <td>{{ p21 }}, {{ p12 }}</td>
-                <td>{{ p22 }}, {{ p22 }}</td>
+            <th align ="center" style="color:blue;">X</th>
+            <td><span style="color:blue;">{{ p11}}</span>, <span style="color:red;">{{ p11o }}</span></td>
+            <td><span style="color:blue;">{{ p12}}</span>, <span style="color:red;">{{ p21o }}</span></td>
+        </tr>
+        <tr>
+            <th align = "center" style="color:blue;">Y</th>
+            <td><span style="color:blue;">{{ p21 }}</span>, <span style="color:red;">{{ p12o }}</span></td>
+            <td><span style="color:blue;">{{ p22 }}</span>, <span style="color:red;">{{ p22o }}</span></td>
         </tr>
     </table>
 
     <hr>
     {% if player.treatment == 'fixed' %}
     <p>
-    You will be playing with <strong> the same </strong>
+        You will be playing with <strong> the same </strong>
         participant in different rounds.
     <p>
-    {% endif %}
-    {% if player.treatment == 'random' %}
+        {% endif %}
+        {% if player.treatment == 'random' %}
     <p>
-    You will be <strong> randomly matched </strong> to a participant at the start of each round.
+        You will be <strong> randomly matched to a different participant</strong> at the start of each round.
+
     <p>
-    {% endif %}
+        {% endif %}
 </div>
 

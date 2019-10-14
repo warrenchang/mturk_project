@@ -2,7 +2,6 @@
 {% load staticfiles otree %}
 
 {% block title %}
-    Results
 {% endblock %}
 
 
@@ -32,30 +31,24 @@
     table {
         margin: auto;
     }
-</style>
-    <div style="text-align:center;font-size:16px">
-        <p>
-            <strong>
-                This is the end of this part of the experiment.
-            </strong>
-        </p>
-        <p>
-            <strong>
-               本部分实验结束。
-            </strong>
-        </p>
 
-        <p>
-            <strong>
-        Your current total earnings is {{ player.cum_payoff }}.
-            </strong>
-        </p>
-        <p>
-            <strong>
-                你目前的总收益为 {{ player.cum_payoff }}.
-            </strong>
-        </p>
-    </div>
+
+</style>
+
+{% if player.language != "EN" %}
+<div style="text-align:center;font-size:16px">
+    <p> <strong> 本部分实验结束。 </strong> </p>
+    <p> <strong> 你在这部分的收益为 {{ player.cum_payoff }}. </strong> </p>
+    <p> 请等待其他参与者完成决策后开始下一部分实验。 </p>
+</div>
+{% endif %}
+{% if player.language != "CN" %}
+<div style="text-align:center;font-size:16px">
+    <p> <strong> This is the end of this part of the experiment. </strong> </p>
+    <p> <strong> Your earnings for this part is {{ player.cum_payoff }}. </strong> </p>
+    <p> Please wait for the other participants to finish their decisions in order to start the next part of the experiment. </p>
+</div>
+{% endif %}
 
     <hr>
 

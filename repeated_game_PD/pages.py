@@ -10,7 +10,16 @@ class BasePage(Page):
         v =  {
             # 'treatment': self.session.config['treatment'],
             'other_player': self.player.get_partner(),
-            'num_rounds': Constants.interaction_length[0],
+            'num_rounds': Constants.interaction_length[self.player.interaction_number-1],
+            'p11': Constants.payoff_matrix[self.player.interaction_number][self.player.id_in_group]['A']['A'],
+            'p12': Constants.payoff_matrix[self.player.interaction_number][self.player.id_in_group]['A']['B'],
+            'p21': Constants.payoff_matrix[self.player.interaction_number][self.player.id_in_group]['B']['A'],
+            'p22': Constants.payoff_matrix[self.player.interaction_number][self.player.id_in_group]['B']['B'],
+
+            'p11o': Constants.payoff_matrix[self.player.interaction_number][3-self.player.id_in_group]['A']['A'],
+            'p12o': Constants.payoff_matrix[self.player.interaction_number][3-self.player.id_in_group]['A']['B'],
+            'p21o': Constants.payoff_matrix[self.player.interaction_number][3-self.player.id_in_group]['B']['A'],
+            'p22o': Constants.payoff_matrix[self.player.interaction_number][3-self.player.id_in_group]['B']['B'],
         }
         v.update(self.extra_vars_for_template())
         return v
@@ -21,10 +30,19 @@ class BasePage(Page):
 
 class BaseWaitPage(WaitPage):
     def vars_for_template(self):
-        v = {
+        v =  {
             # 'treatment': self.session.config['treatment'],
             'other_player': self.player.get_partner(),
-            'num_rounds': Constants.interaction_length[0],
+            'num_rounds': Constants.interaction_length[self.player.interaction_number-1],
+            'p11': Constants.payoff_matrix[self.player.interaction_number][self.player.id_in_group]['A']['A'],
+            'p12': Constants.payoff_matrix[self.player.interaction_number][self.player.id_in_group]['A']['B'],
+            'p21': Constants.payoff_matrix[self.player.interaction_number][self.player.id_in_group]['B']['A'],
+            'p22': Constants.payoff_matrix[self.player.interaction_number][self.player.id_in_group]['B']['B'],
+
+            'p11o': Constants.payoff_matrix[self.player.interaction_number][3-self.player.id_in_group]['A']['A'],
+            'p12o': Constants.payoff_matrix[self.player.interaction_number][3-self.player.id_in_group]['A']['B'],
+            'p21o': Constants.payoff_matrix[self.player.interaction_number][3-self.player.id_in_group]['B']['A'],
+            'p22o': Constants.payoff_matrix[self.player.interaction_number][3-self.player.id_in_group]['B']['B'],
         }
         v.update(self.extra_vars_for_template())
         return v
@@ -43,7 +61,7 @@ class Introduction(BasePage):
 
 
 class Decision(BasePage):
-    # timeout_seconds = 30
+    timeout_seconds = 32
     form_model = 'player'
     form_fields = ['action']
 

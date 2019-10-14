@@ -7,9 +7,7 @@
 {% block content %}
 
 {% if qualified %}
-<p> <strong>
-    Payment Information
-</strong> </p>
+<p> <strong> Payment Information </strong> </p>
 
 <p>This is the end of the experiment. Thank you for your participation.</p>
 <!--<p>Your flat payment fee is {{participation_fee}}.</p>-->
@@ -18,13 +16,12 @@
 
 <!--<p>Your MTurk Woker ID is  {{ player.workerid }}.</p>-->
 
-
 <!--</br> <p><strong>IMPORTANT:</strong> Please provide the following participation code to the MTurk HIT in order to receive credit for-->
 <!--taking the experiment. </p>-->
 <!--<p style="text-align:center"> <strong> Your participation code: {{participant.code}}</strong> </p>-->
 
-<!--{% else %}-->
-<!--<p>This is the end of the experiment. </p>-->
+{% else %}
+<p>This is the end of the experiment. </p>
 {% endif %}
 
 {% endblock %}

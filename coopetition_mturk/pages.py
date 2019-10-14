@@ -41,6 +41,27 @@ class MatchingWaitPage(CustomMturkWaitPage):
         return (self.participant.vars['qualified'] and (self.round_number == 1))
 
 
+class SettingParameters(BasePage):
+    ## this page is used to set parameters for players
+    timeout_seconds = 0
+
+    def is_displayed(self):
+        return self.participant.vars['qualified']
+
+    def before_next_page(self):
+        ## the variable "matched" is true only if the player is successfully matched.
+        self.player.endowment = 10
+        self.player.other_endowment = 10
+        if self.player.condition == "Asm":
+            if self.player.id_in_group == 1:
+                self.player.endowment = 20
+                self.player.role = 'A'
+            else:
+                self.player.other_endowment = 20
+                self.player.role = 'B'
+
+
+
 class StartPage(BasePage):
     timeout_seconds = 90
 
@@ -62,26 +83,6 @@ class Introduction(BasePage):
         return (self.participant.vars['qualified'] and
                 self.player.round_in_interaction == 1 and
                 self.player.interaction_number == 2)
-
-
-class SettingParameters(BasePage):
-    ## this page is used to set parameters for players
-    timeout_seconds = 0
-
-    def is_displayed(self):
-        return self.participant.vars['qualified']
-
-    def before_next_page(self):
-        ## the variable "matched" is true only if the player is successfully matched.
-        self.player.endowment = 10
-        self.player.other_endowment = 10
-        if self.player.condition == "Asm":
-            if self.player.id_in_group == 1:
-                self.player.endowment = 20
-                self.player.role = 'A'
-            else:
-                self.player.other_endowment = 20
-                self.player.role = 'B'
 
 
 

@@ -20,7 +20,7 @@ class Constants(BaseConstants):
 
     # number of rounds in each interaction randomly selected for payments
     # set to non-positive number if all rounds are chosen for payments
-    num_paying_rounds = 1
+    num_paying_rounds = 2
 
     players_per_group = 2
 
@@ -29,85 +29,171 @@ class Constants(BaseConstants):
         2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
         3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
         4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
+        5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
     ]
     round_in_interactions = [
         1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
         1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
         1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
         1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
     ]
 
-    interaction_length = [10, 10, 10, 10]
-    treatments = ['random', 'random', 'random', 'random']
+    interaction_length = [10, 10, 10, 10, 10]
+    treatments = ['random', 'random', 'random', 'random', 'random']
 
 
     interactions = [
-        1, 1, 1, 1, 1,
-        2, 2, 2, 2, 2,
-        3, 3, 3, 3, 3,
-        4, 4, 4, 4, 4,
+        1, 1, 1,
+        2, 2, 2,
+        3, 3, 3,
+        4, 4, 4,
+        5, 5, 5,
     ]
     round_in_interactions = [
-        1, 2, 3, 4, 5,
-        1, 2, 3, 4, 5,
-        1, 2, 3, 4, 5,
-        1, 2, 3, 4, 5,
+        1, 2, 3,
+        1, 2, 3,
+        1, 2, 3,
+        1, 2, 3,
+        1, 2, 3,
     ]
 
-    interaction_length = [5, 5, 5, 5]
+    interaction_length = [3, 3, 3, 3, 3]
 
     num_rounds = sum(interaction_length) # change num_rounds for testing purpose, but need to make sure that number_sequence
 
     # payoff matrices for different rounds
     payoff_matrix = {
-        '1': {
-            'X':
-                {
-                    'X': 10,
-                    'Y': 10
-                },
-            'Y':
-                {
-                    'X': 0,
-                    'Y': 15
-                }
-        },
-        '2': {
-            'X':
-                {
-                    'X': 0,
-                    'Y': 18
-                },
-            'Y':
-                {
-                    'X': 12,
-                    'Y': 0
-                }
-        },
-        '3':{
-        'X':
-            {
-                'X': 15,
-                'Y': 0
+        1: {
+            1: {
+                'X':
+                    {
+                        'X': 10,
+                        'Y': 0
+                    },
+                'Y':
+                    {
+                        'X': 7,
+                        'Y': 7
+                    },
             },
-        'Y':
-            {
-                'X': 8,
-                'Y': 8
-            }
-    },
-        '4': {
-            'X':
-                {
-                    'X': 15,
-                    'Y': 8
-                },
-            'Y':
-                {
-                    'X': 30,
-                    'Y': 0
-                }
-        }
+            2: {
+                'X':
+                    {
+                        'X': 10,
+                        'Y': 0
+                    },
+                'Y':
+                    {
+                        'X': 7,
+                        'Y': 7
+                    },
+            },
+        },
+        2: {
+            1: {
+                'X':
+                    {
+                        'X': 12,
+                        'Y': 2
+                    },
+                'Y':
+                    {
+                        'X': 9,
+                        'Y': 9
+                    },
+            },
+            2: {
+                'X':
+                    {
+                        'X': 12,
+                        'Y': 2
+                    },
+                'Y':
+                    {
+                        'X': 9,
+                        'Y': 9
+                    },
+            },
+        },
+        3: {
+            1: {
+                'X':
+                    {
+                        'X': 8,
+                        'Y': -2
+                    },
+                'Y':
+                    {
+                        'X': 5,
+                        'Y': 5
+                    },
+            },
+            2: {
+                'X':
+                    {
+                        'X': 8,
+                        'Y': -2
+                    },
+                'Y':
+                    {
+                        'X': 5,
+                        'Y': 5
+                    },
+            },
+        },
+        4: {
+            1: {
+                'X':
+                    {
+                        'X': 10,
+                        'Y': 0
+                    },
+                'Y':
+                    {
+                        'X': 7,
+                        'Y': 7
+                    },
+            },
+            2: {
+                'X':
+                    {
+                        'X': 10,
+                        'Y': 0
+                    },
+                'Y':
+                    {
+                        'X': 8,
+                        'Y': 8
+                    },
+            },
+        },
+        5: {
+            1: {
+                'X':
+                    {
+                        'X': 11,
+                        'Y': 0
+                    },
+                'Y':
+                    {
+                        'X': 7,
+                        'Y': 7
+                    },
+            },
+            2: {
+                'X':
+                    {
+                        'X': 10,
+                        'Y': 0
+                    },
+                'Y':
+                    {
+                        'X': 7,
+                        'Y': 7
+                    },
+            },
+        },
     }
 
 
@@ -127,7 +213,7 @@ class Subsession(BaseSubsession):
             if round_in_interaction == 1:
                 self.session.vars['paying_rounds'] = random.sample(
                     range(1,Constants.interaction_length[interaction_number-1]+1),
-                                              Constants.num_paying_rounds)
+                    Constants.num_paying_rounds)
 
         for p in self.get_players(): # set interaction number and round number
             p.interaction_number = interaction_number
@@ -159,8 +245,8 @@ class Group(BaseGroup):
         # first calculate payoff
         p1.other_action = p2.action
         p2.other_action = p1.action
-        p1.potential_payoff = (Constants.payoff_matrix[str(p1.interaction_number)][p1.action][p1.other_action])
-        p2.potential_payoff = (Constants.payoff_matrix[str(p2.interaction_number)][p2.action][p2.other_action])
+        p1.potential_payoff = (Constants.payoff_matrix[p1.interaction_number][p1.id_in_group][p1.action][p1.other_action])
+        p2.potential_payoff = (Constants.payoff_matrix[p2.interaction_number][p2.id_in_group][p2.action][p2.other_action])
         p1.other_payoff = p2.potential_payoff
         p2.other_payoff = p1.potential_payoff
 

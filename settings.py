@@ -67,12 +67,12 @@ AWS_SECRET_ACCESS_KEY = environ.get('AWS_SECRET_ACCESS_KEY')
 
 # e.g. EUR, CAD, GBP, CHF, CNY, JPY
 REAL_WORLD_CURRENCY_CODE = 'AED '
-REAL_WORLD_CURRENCY_CODE = '$'
 REAL_WORLD_CURRENCY_CODE = 'RMB '
+REAL_WORLD_CURRENCY_CODE = '$'
 USE_POINTS = True
-POINTS_CUSTOM_NAME = '$'
+# POINTS_CUSTOM_NAME = '$'
 REAL_WORLD_CURRENCY_DECIMAL_PLACES = 2
-POINTS_DECIMAL_PLACES = 1
+POINTS_DECIMAL_PLACES = 0
 
 # e.g. en, de, fr, it, ja, zh-hans
 # see: https://docs.djangoproject.com/en/1.9/topics/i18n/#term-language-code
@@ -183,7 +183,7 @@ MTURK_NUM_PARTICIPANTS_MULTIPLE = 3
 # e.g. self.session.config['participation_fee']
 
 SESSION_CONFIG_DEFAULTS = {
-    'real_world_currency_per_point': 1 / 18,
+    'real_world_currency_per_point': 1 / 300,
     'participation_fee': 0,
     'debug': DEBUG,
     'doc': "",
@@ -191,7 +191,29 @@ SESSION_CONFIG_DEFAULTS = {
 }
 
 SESSION_CONFIGS = [
-
+    {
+        'name': 'innovation_mamagement',
+        'display_name': "Innovation Managment in-class experiment",
+        'num_demo_participants': 4,
+        'participation_fee': 0,
+        'decision_time': 45,
+        'treatment': 'Det0_60',
+        'interaction_length': 10,
+        'real_world_currency_per_point': 1,
+        'debug': False,
+        'total_payment': 150,  ## total payment received by participants
+        'num_payment': 5,  ## the number of participants receiving payment
+        'language': 'EN',  # language can be EN, CN, or empty string (both)
+        # 'debug': False,
+        'app_sequence': [
+            'payoff_matrix_quiz',
+            'repeated_game_PD',
+            'repeated_game_randpay',
+            'coopetition_inclass_quiz',
+            'coopetition_inclass',
+            'payment_inclass',
+                         ],
+    },
     {
         'name': 'coopetition_lab_det0_60',
         'display_name': "Coopetition lab Det0_60",
@@ -201,6 +223,7 @@ SESSION_CONFIGS = [
         'max_payment': 100,
         'decision_time': 45,
         'treatment': 'Det0_60',
+        'interaction_length': 15,
         'language': 'CN',  # language can be EN, CN, or empty string (both)
         # 'debug': False,
         'app_sequence': ['coopetition_lab_quiz', 'coopetition_lab',
@@ -216,6 +239,7 @@ SESSION_CONFIGS = [
         'max_payment': 100,
         'decision_time': 45,
         'treatment': 'Det60_0',
+        'interaction_length': 15,
         'language': 'CN',  # language can be EN, CN, or empty string (both)
         # 'debug': False,
         'app_sequence': ['coopetition_lab_quiz', 'coopetition_lab',
@@ -231,6 +255,7 @@ SESSION_CONFIGS = [
         'max_payment': 100,
         'decision_time': 45,
         'treatment': 'Asm0_60',
+        'interaction_length': 15,
         'language': 'CN',  # language can be EN, CN, or empty string (both)
         # 'debug': False,
         'app_sequence': ['coopetition_lab_quiz', 'coopetition_lab',
@@ -246,6 +271,7 @@ SESSION_CONFIGS = [
         'max_payment': 100,
         'decision_time': 45,
         'treatment': 'Asm60_0',
+        'interaction_length': 15,
         'language': 'CN',  # language can be EN, CN, or empty string (both)
         # 'debug': False,
         'app_sequence': ['coopetition_lab_quiz', 'coopetition_lab',
@@ -269,6 +295,7 @@ SESSION_CONFIGS = [
         'participation_fee': 0,
         'real_world_currency_per_point': 1/150,
         'treatment': 'Det0_60',
+        'interaction_length': 15,
         'language': 'CN',  # language can be EN, CN, or empty string (both)
         # 'debug': False,
         'app_sequence': ['coopetition_inclass_quiz', 'coopetition_inclass',
@@ -282,6 +309,7 @@ SESSION_CONFIGS = [
         'participation_fee': 0,
         'real_world_currency_per_point': 1 /150,
         'treatment': 'Asm0_60',
+        'interaction_length': 15,
         'language': 'CN',  # language can be EN, CN, or empty string (both)
         # 'debug': False,
         'app_sequence': ['coopetition_inclass_quiz', 'coopetition_inclass',
@@ -292,10 +320,11 @@ SESSION_CONFIGS = [
     {
         'name': 'coopetition_mturk_det0_60',
         'display_name': "Coopetition Det0_60",
-        'num_demo_participants': 4,
+        'num_demo_participants': 2,
         'participation_fee': 1,
-        'max_payment': 130,
+        'max_payment': 6,
         'treatment' : 'Det0_60',
+        'interaction_length': 15,
         # 'debug': False,
         'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
                          'risk_preferences','survey_online', 'payment_online',
@@ -304,10 +333,11 @@ SESSION_CONFIGS = [
     {
         'name': 'coopetition_mturk_det60_0',
         'display_name': "Coopetition Det60_0",
-        'num_demo_participants': 4,
+        'num_demo_participants': 2,
         'participation_fee': 1,
-        'max_payment': 130,
+        'max_payment': 6,
         'treatment': 'Det60_0',
+        'interaction_length': 15,
         # 'debug': False,
         'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
                      'risk_preferences','survey_online', 'payment_online'
@@ -318,8 +348,9 @@ SESSION_CONFIGS = [
         'display_name': "Coopetition Asm0_60",
         'num_demo_participants': 4,
         'participation_fee': 1,
-        'max_payment': 130,
+        'max_payment': 6,
         'treatment': 'Asm0_60',
+            'interaction_length': 15,
         # 'debug': False,
         'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
                          'survey_online', 'payment_online'
@@ -330,8 +361,9 @@ SESSION_CONFIGS = [
         'display_name': "Coopetition Asm60_0",
         'num_demo_participants': 4,
         'participation_fee': 1,
-        'max_payment': 130,
+        'max_payment': 6,
         'treatment': 'Asm60_0',
+        'interaction_length': 15,
         # 'debug': False,
         'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
                          'survey_online', 'payment_online'
@@ -339,7 +371,7 @@ SESSION_CONFIGS = [
     },
         {
         'name': 'behavioral_econ_experiment',
-        'display_name': "In-class experiment",
+        'display_name': "Behavioral Econ Experiment",
         'num_demo_participants': 4,
         'real_world_currency_per_point': 1,
         'participation_fee': 0,

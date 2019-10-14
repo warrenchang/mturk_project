@@ -1,0 +1,27 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+Quiz results
+{% endblock %}
+
+{% block content %}
+
+<div style="text-align:center;font-size:18px">
+    <p>
+        You have finished the quiz questions.
+    </p>
+    <p>
+        Click "Next", and you will be matched with another participant to continue with the experiment.
+    </p>
+</div>
+
+<br/>
+
+<div style="text-align:right">
+    {% next_button %}
+</div>
+
+{% endblock %}
+
+

@@ -2,11 +2,25 @@
 {% load staticfiles otree %}
 
 {% block title %}
-Introduction
+Instruction for the next part
 {% endblock %}
 
 {% block content %}
+<p>
+    In this part of the experiment, you will be randomly matched with another participant, and
+    play the following game for {{ num_rounds }} rounds.
+</p>
+<p>
+    You will be randomly matched with <strong>a different participant</strong> at the start of each round.
+</p>
+<p>
+    The computer will <strong> randomly select {{Constants.num_paying_rounds}} rounds </strong> to determine your payoff of this part.
+    {% if player.round_number == 1 %}
+    Because you do not know which rounds will be chosen, you should take each round seriously.
+    {% endif %}
+</p>
+
     {% include Constants.instructions_template %}
 
-
 {% endblock %}
+

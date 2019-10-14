@@ -1,0 +1,24 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+
+    <p style="font-size:18px">
+        This experiment is a study of decision-making. You may earn some amount of money from the experiment, and your
+        earnings depend on the decisions you make.
+
+    </p>
+
+    <p style="font-size:18px">
+        Do not talk or look at other participants' computer screens during the experiment.
+        Click "Next" when you are ready to start the experiment.
+    </p>
+
+    <div style="text-align:right">
+    {% next_button %}
+    </div>
+
+{% endblock %}

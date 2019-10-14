@@ -2,89 +2,116 @@
 {% load staticfiles otree %}
 
 {% block title %}
-Introduction: Part 2
+{% if player.language != "CN"  %}
+Part 2 Instructions
+{% endif %}
+{% if player.language != "EN"  %}
+第二部分信息
+{% endif %}
 {% endblock %}
+
 
 {% block content %}
 
-<p>
-    This is the start of Part 2 of the experiment.
-    There will be <strong>{{ Constants.interaction_length.1 }}</strong>   rounds of decision-making.
-    You will be matched with <strong>the same participant</strong> as in Part I.
-</p>
-
-<p>
-实验的第二部分现在开始。本部分共有<strong>{{ Constants.interaction_length.1 }} </strong> 期决策。你匹配到的“对方”玩家与<b>第一部分相同</b>。
-</p>
-
-<p>
-The situation in Part 2 is quite similar to Part 1. This part differs from Prat 1 only in that
-</p>
-<p>
-本部分实验情境与第一部分相似，不同之处仅在于：
-</p>
+{% if player.language != "EN"  %}
+<div>
+    <p>
+        实验的第二部分现在开始。本部分包含多期决策。你匹配到的“对方”玩家与<b>第一部分相同</b>。
+    </p>
+    <p>
+        本部分实验情境与第一部分相似，不同之处仅在于：
+    </p>
+    </p>
     {% if player.condition == "Det" and player.A == 60 %}
-<p style="text-align:center">
-    <strong>the total return from the investment now is \(x_1x_2+60\),</strong> instead of \(x_1x_2\).
-</p>
-<p style="text-align:center">
-    <strong>合作总收益为\(x_1x_2+60\)</strong>, 而非此前的 \(x_1x_2\).
-</p>
-<p>
-    That is, the total return from the investment is 60 points more than before.
-</p>
-<p>
-    也就是说，合作总收益较之前增加了60。
-</p>
+    <p style="text-align:center">
+        <strong>合作总收益为\(x_1x_2+60\)</strong>, 而非此前的 \(x_1x_2\).
+    </p>
+    <p>
+        也就是说，合作总收益较之前增加了60。
+    </p>
     {% endif %}
     {% if player.condition == "Det" and player.A == 0 %}
-<p style="text-align:center">
-    <strong>the total return from the investment now is \(x_1x_2\),</strong> instead of \(x_1x_2+60\).
-</p>
-<p style="text-align:center">
-    <strong>合作总收益为\(x_1x_2\)</strong>, 而非此前的 \(x_1x_2+60\)
-</p>
-<p>
-    That is, the total return from the investment is 60 points less than before.
-</p>
-<p>
-    也就是说，合作总收益较之前减少了60。
-</p>
+    <p style="text-align:center">
+        <strong>合作总收益为\(x_1x_2\)</strong>, 而非此前的 \(x_1x_2+60\)
+    </p>
+    <p>
+        也就是说，合作总收益较之前减少了60。
+    </p>
     {% endif %}
 
-   {% if player.condition == "Asm" and player.A == 60 %}
-<p style="text-align:center">
-    <strong>the total return from the investment now is \(\displaystyle\frac{x_1x_2}{2}+60\),</strong> instead of \(\displaystyle\frac{x_1x_2}{2}\).
-</p>
-<p style="text-align:center">
-    <strong>合作总收益为\(\displaystyle\frac{x_1x_2}{2}+60\)</strong>, 而非此前的 \(\displaystyle\frac{x_1x_2}{2}\).
-</p>
-<p>
-    That is, the total return from the investment is 60 points more than before.
-</p>
-<p>
-    也就是说，合作总收益较之前增加了60.
-</p>
+    {% if player.condition == "Asm" and player.A == 60 %}
+    <p style="text-align:center">
+        <strong>合作总收益为\(\displaystyle\frac{x_1x_2}{2}+60\)</strong>, 而非此前的 \(\displaystyle\frac{x_1x_2}{2}\).
+    </p>
+    <p>
+        也就是说，合作总收益较之前增加了60.
+    </p>
     {% endif %}
     {% if player.condition == "Asm" and player.A == 0 %}
-<p style="text-align:center">
-    <strong>the total return from the investment now is \(\displaystyle\frac{x_1x_2}{2}\),</strong> instead of \(\displaystyle\frac{x_1x_2}{2}+60\).
-</p>
-<p style="text-align:center">
-    <strong>合作总收益为\(\displaystyle\frac{x_1x_2}{2}\)</strong>, 而非此前的 \(\displaystyle\frac{x_1x_2}{2}+60\).
-</p>
-<p>
-    That is, the total return from the investment is 60 points less than before.
-</p>
-<p>
-    也就是说，合作总收益较之前减少了60.
-</p>
+    <p style="text-align:center">
+        <strong>合作总收益为\(\displaystyle\frac{x_1x_2}{2}\)</strong>, 而非此前的 \(\displaystyle\frac{x_1x_2}{2}+60\).
+    </p>
+    <p>
+        也就是说，合作总收益较之前减少了60.
+    </p>
+    {% endif %}
+</div>
+{% endif %}
+
+{% if player.language != "CN"  %}
+<div>
+    <p>
+        This is the start of Part 2 of the experiment.
+        There will be multiple rounds of decision-making.
+        You will be matched with <strong>the same participant</strong> as in Part I.
+    </p>
+    <p>
+        The situation in Part 2 is quite similar to Part 1. This part differs from Prat 1 only in that
+
+    </p>
+    {% if player.condition == "Det" and player.A == 60 %}
+    <p style="text-align:center">
+        <strong>the total return from the investment now is \(x_1x_2+60\),</strong> instead of \(x_1x_2\).
+    </p>
+    <p>
+        That is, the total return from the investment is 60 points more than before.
+    </p>
+    {% endif %}
+    {% if player.condition == "Det" and player.A == 0 %}
+    <p style="text-align:center">
+        <strong>the total return from the investment now is \(x_1x_2\),</strong> instead of \(x_1x_2+60\).
+    </p>
+    <p>
+        That is, the total return from the investment is 60 points less than before.
+    </p>
     {% endif %}
 
+    {% if player.condition == "Asm" and player.A == 60 %}
+    <p style="text-align:center">
+        <strong>the total return from the investment now is \(\displaystyle\frac{x_1x_2}{2}+60\),</strong> instead of \(\displaystyle\frac{x_1x_2}{2}\).
+    </p>
+    <p>
+        That is, the total return from the investment is 60 points more than before.
+    </p>
+    {% endif %}
+    {% if player.condition == "Asm" and player.A == 0 %}
+    <p style="text-align:center">
+        <strong>the total return from the investment now is \(\displaystyle\frac{x_1x_2}{2}\),</strong> instead of \(\displaystyle\frac{x_1x_2}{2}+60\).
+    </p>
+    <p>
+        That is, the total return from the investment is 60 points less than before.
+    </p>
+    {% endif %}
+
+</div>
+{% endif %}
 
 
-
-{% include Constants.instructions_template %}
+<div class="card bg-light instructions">
+    <div class="card-body">
+        {% include Constants.instructions_template %}
+    </div>
+</div>
 
 <br/>
 <div style="text-align:right">

@@ -35,7 +35,7 @@ Part 1 Instructions
     {% if player.condition == "Asm" %}
     <div>
         <p>
-            这一部分有多个决策周期，你需要在每一期做出相应的决策。
+            这一部分有{{ Constants.interaction_length.1 }}个决策周期，你需要在每一期做出相应的决策。
         <ul>
             <li>
                实验开始时，电脑会随机将你与另一个参与者匹配。 在剩下的决策周期当中，你会与<strong>这位(同一位)参与者</strong>交互进行决策。
@@ -130,12 +130,12 @@ Part 1 Instructions
             </li>
             <li>玩家的最终收益为
                 {% if player.A == 0 %}
-                $$\text{A的最终受益} = \underbrace{\frac{y_A}{y_A + y_B} \frac{x_A x_B}{2}}_{\text{合作总收益}} + \underbrace{20-x_A-y_A}_{\text{自我存留}}$$
-                $$\text{B的最终收益} = \underbrace{\frac{y_B}{y_A + y_B} \frac{x_A x_B}{2}}_{\text{合作总收益}} + \underbrace{10-x_B-y_B}_{\text{自我存留}}$$
+                $$\text{A的最终受益} = \frac{y_A}{y_A + y_B} \frac{x_A x_B}{2}+ \underbrace{20-x_A-y_A}_{\text{自我存留}}$$
+                $$\text{B的最终收益} = \frac{y_B}{y_A + y_B} \frac{x_A x_B}{2}+ \underbrace{10-x_B-y_B}_{\text{自我存留}}$$
                 {% endif %}
                 {% if player.A == 60 %}
-                $$\text{A的最终收益} =  \underbrace{\frac{y_A}{y_A + y_B}(\frac{x_A x_B}{2}+60)}_{\text{合作总收益}} + \underbrace{20-x_A-y_A}_{\text{自我存留}}$$
-                $$\text{B的最终收益} =  \underbrace{\frac{y_B}{y_A + y_B}(\frac{x_A x_B}{2}+60)}_{\text{合作总收益}} + \underbrace{10-x_B-y_B}_{\text{自我存留}}$$
+                $$\text{A的最终收益} =  \frac{y_A}{y_A + y_B}(\frac{x_A x_B}{2}+60)+ \underbrace{20-x_A-y_A}_{\text{自我存留}}$$
+                $$\text{B的最终收益} =  \frac{y_B}{y_A + y_B}(\frac{x_A x_B}{2}+60)+ \underbrace{10-x_B-y_B}_{\text{自我存留}}$$
                 {% endif %}
             </li>
         </ul>
@@ -148,7 +148,7 @@ Part 1 Instructions
     {% else %}
     <div>
         <p>
-            这一部分有多个决策周期，你需要在每一期做出相应的决策。实验开始时，电脑会随机将你与另一个参与者匹配。
+            这一部分有{{ Constants.interaction_length.1 }}个决策周期，你需要在每一期做出相应的决策。实验开始时，电脑会随机将你与另一个参与者匹配。
             在剩下的决策周期当中，你将与<strong>这位(同一位)参与者</strong>交互进行决策。
         </p>
 
@@ -230,12 +230,10 @@ Part 1 Instructions
 
             <li>你的最终收益为
                 {% if player.A == 0 %}
-                $$\text{最终收益} =  \underbrace{\frac{y_1}{y_1 + y_2}x_1 x_2}_{\text{合作总收益}} +
-                \underbrace{10-x_1-y_1}_{\text{自我存留}}$$
+                $$\text{最终收益} =  \frac{y_1}{y_1 + y_2}x_1 x_2 + \underbrace{10-x_1-y_1}_{\text{自我存留}}$$
                 {% endif %}
                 {% if player.A == 60 %}
-                $$\text{最终收益} =  \underbrace{\frac{y_1}{y_1 + y_2}(x_1 x_2+60)}_{\text{合作总收益}} +
-                \underbrace{10-x_1-y_1}_{\text{自我存留}}$$
+                $$\text{最终收益} =  \frac{y_1}{y_1 + y_2}(x_1 x_2+60) + \underbrace{10-x_1-y_1}_{\text{自我存留}}$$
                 {% endif %}
             </li>
         </ul>
@@ -255,7 +253,7 @@ Part 1 Instructions
     {% if player.condition == "Asm" %}
     <div>
         <p>
-            In this part, there will be <strong>multiple</strong> rounds of decision-making.
+            In this part, there will be <strong>{{ Constants.interaction_length.1 }}</strong> rounds of decision-making.
         <ul>
             <li>
                 You will be matched with another participant to play an investment game. You will play with the same participant for all rounds.
@@ -378,7 +376,7 @@ Part 1 Instructions
     {% else %}
     <div>
         <p>
-            In this part, there will be <strong>multiple</strong> rounds of decision-making. You will be matched with another participant to play
+            In this part, there will be <strong>{{ Constants.interaction_length.1 }}</strong> rounds of decision-making. You will be matched with another participant to play
             an investment game. You will play with the same participant for all rounds.
         </p>
 

@@ -1,0 +1,93 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+Instructions: Payoff Matrix
+{% endblock %}
+
+{% block content %}
+
+<p>
+    In the following parts of the experiment, you will be randomly matched with another participant. You and the other participants
+    will play an interactive game represented by the following payoff matrix.
+</p>
+
+<div align ="center">
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'global/matrix.css' %}"/>
+
+
+    <table class='table table-bordered text-center'
+           style='width: auto; margin: auto'>
+        <tr>
+            <th colspan=2 rowspan=2></th>
+            <th colspan=2>Other participant</th>
+        </tr>
+        <tr>
+            <th style="text-align:center;color:red;">L</th>
+            <th style="text-align:center;color:red;">R</th>
+        </tr>
+        <tr>
+            <th rowspan=2><span class="rotate90" >You</span></th>
+            <th align ="center" style="color:blue;">U</th>
+            <td><span style="color:blue;">a</span>, <span style="color:red;">e</span></td>
+            <td><span style="color:blue;">b</span>, <span style="color:red;">f</span></td>
+        </tr>
+        <tr>
+            <th align = "center" style="color:blue;">D</th>
+            <td><span style="color:blue;">c</span>, <span style="color:red;">g</span></td>
+            <td><span style="color:blue;">d</span>, <span style="color:red;">h</span></td>
+        </tr>
+    </table>
+</div>
+
+
+<br/>
+<p>
+    As shown in the payoff matrix, you have two possible actions: <span style="color:blue;">U</span> or <span style="color:blue;">D</span>,
+    and the other participant has two possible actions: <span style="color:red;">L</span> or <span style="color:red;">R</span>.
+</p>
+<p>
+    The payoffs corresponding to the chosen actions are shown in each cell: the <span style="color:blue;">blue number</span> represents your payoff,
+    and the <span style="color:red;">red number</span>  represents the other participant's payoff.
+</p>
+
+<p>
+    For example,
+<ul>
+    <li>
+        If you choose <span style="color:blue;">U</span>
+        and the other participants chooses <span style="color:red;">L</span>,
+        then you receive <span style="color:blue;">a</span>,
+        and the other receives <span style="color:red;">e</span>.
+    </li>
+    <li>
+        If you choose <span style="color:blue;">U</span>
+        and the other participants chooses <span style="color:red;">R</span>,
+        then you receive <span style="color:blue;">b</span>,
+        and the other receives <span style="color:red;">f</span>.
+    </li>
+    <li>
+        If you choose <span style="color:blue;">D</span>
+        and the other participants chooses <span style="color:red;">L</span>,
+        then you receive <span style="color:blue;">c</span>,
+        and the other receives <span style="color:red;">g</span>.
+    </li>
+    <li>
+        If you choose <span style="color:blue;">D</span>
+        and the other participants chooses <span style="color:red;">R</span>,
+        then you receive <span style="color:blue;">d</span>,
+        and the other receives <span style="color:red;">h</span>.
+    </li>
+</ul>
+</p>
+
+<p>
+    In the following page, you will be asked several questions to make sure you understand the experiment.
+</p>
+
+<div style="text-align:right">
+    {% next_button %}
+</div>
+
+{% endblock %}

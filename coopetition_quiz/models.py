@@ -32,6 +32,7 @@ class Subsession(BaseSubsession):
         for p in self.get_players(): # set interaction number and round number
             p.treatment = treatment
             p.condition = p.treatment[:3]
+            p.interaction_length = self.session.config['interaction_length']
             if p.treatment[3] == '0':
                 p.A = 0
             else:
@@ -47,5 +48,6 @@ class Player(BasePlayer):
     wrong_attempts = models.PositiveIntegerField()   # number of wrong attempts on understanding questions page
     treatment = models.StringField()
     condition = models.StringField()
+    interaction_length = models.PositiveIntegerField()
     A = models.IntegerField()
     workerid  = models.StringField()

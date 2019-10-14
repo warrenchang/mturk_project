@@ -1,0 +1,46 @@
+{% load staticfiles otree %}
+{% block content %}
+
+
+<p>
+    Please provide your answers before clicking "Check my answers", then the answers that are incorrect will be marked in red.
+    Check and correct the wrong answers before checking your answers again.
+</p>
+
+<p>
+Answer the following question based on the following payoff matrix.
+</p>
+
+
+<div align ="center">
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'global/matrix.css' %}"/>
+
+
+    <table class='table table-bordered text-center'
+           style='width: auto; margin: auto'>
+        <tr>
+            <th colspan=2 rowspan=2></th>
+            <th colspan=2>Other participant</th>
+        </tr>
+        <tr>
+            <th style="text-align:center;color:red;">X</th>
+            <th style="text-align:center;color:red;">Y</th>
+        </tr>
+        <tr>
+            <th rowspan=2><span class="rotate90" >You</span></th>
+            <th align ="center" style="color:blue;">X</th>
+            <td><span style="color:blue;">9</span>, <span style="color:red;">3</span></td>
+            <td><span style="color:blue;">-1</span>, <span style="color:red;">5</span></td>
+        </tr>
+        <tr>
+            <th align = "center" style="color:blue;">Y</th>
+            <td><span style="color:blue;">6</span>, <span style="color:red;">2</span></td>
+            <td><span style="color:blue;">4</span>, <span style="color:red;">8</span></td>
+        </tr>
+    </table>
+</div>
+
+{% endblock %}
+
+

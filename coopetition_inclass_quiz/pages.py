@@ -4,8 +4,6 @@ from ._builtin import Page, WaitPage
 from .models import Constants
 
 from otreeutils.pages import AllGroupsWaitPage, ExtendedPage, UnderstandingQuestionsPage, APPS_DEBUG
-import math
-
 
 class StartPage(Page):
     timeout_seconds = 300

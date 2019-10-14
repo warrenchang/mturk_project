@@ -10,11 +10,16 @@ class BasePage(Page):
         v =  {
             # 'treatment': self.session.config['treatment'],
             'other_player': self.player.get_partner(),
-            'num_rounds': Constants.interaction_length[0],
-            'p11': Constants.payoff_matrix[str(self.player.interaction_number)]['X']['X'],
-            'p12': Constants.payoff_matrix[str(self.player.interaction_number)]['X']['Y'],
-            'p21': Constants.payoff_matrix[str(self.player.interaction_number)]['Y']['X'],
-            'p22': Constants.payoff_matrix[str(self.player.interaction_number)]['Y']['Y'],
+            'num_rounds': Constants.interaction_length[self.player.interaction_number-1],
+            'p11': Constants.payoff_matrix[self.player.interaction_number][self.player.id_in_group]['X']['X'],
+            'p12': Constants.payoff_matrix[self.player.interaction_number][self.player.id_in_group]['X']['Y'],
+            'p21': Constants.payoff_matrix[self.player.interaction_number][self.player.id_in_group]['Y']['X'],
+            'p22': Constants.payoff_matrix[self.player.interaction_number][self.player.id_in_group]['Y']['Y'],
+
+            'p11o': Constants.payoff_matrix[self.player.interaction_number][3-self.player.id_in_group]['X']['X'],
+            'p12o': Constants.payoff_matrix[self.player.interaction_number][3-self.player.id_in_group]['X']['Y'],
+            'p21o': Constants.payoff_matrix[self.player.interaction_number][3-self.player.id_in_group]['Y']['X'],
+            'p22o': Constants.payoff_matrix[self.player.interaction_number][3-self.player.id_in_group]['Y']['Y'],
         }
         v.update(self.extra_vars_for_template())
         return v
@@ -28,11 +33,16 @@ class BaseWaitPage(WaitPage):
         v = {
             # 'treatment': self.session.config['treatment'],
             'other_player': self.player.get_partner(),
-            'num_rounds': Constants.interaction_length[0],
-            'p11': Constants.payoff_matrix[str(self.player.interaction_number)]['X']['X'],
-            'p12': Constants.payoff_matrix[str(self.player.interaction_number)]['X']['Y'],
-            'p21': Constants.payoff_matrix[str(self.player.interaction_number)]['Y']['X'],
-            'p22': Constants.payoff_matrix[str(self.player.interaction_number)]['Y']['Y'],
+            'num_rounds': Constants.interaction_length[self.player.interaction_number-1],
+            'p11': Constants.payoff_matrix[self.player.interaction_number][self.player.id_in_group]['X']['X'],
+            'p12': Constants.payoff_matrix[self.player.interaction_number][self.player.id_in_group]['X']['Y'],
+            'p21': Constants.payoff_matrix[self.player.interaction_number][self.player.id_in_group]['Y']['X'],
+            'p22': Constants.payoff_matrix[self.player.interaction_number][self.player.id_in_group]['Y']['Y'],
+
+            'p11o': Constants.payoff_matrix[self.player.interaction_number][3 - self.player.id_in_group]['X']['X'],
+            'p12o': Constants.payoff_matrix[self.player.interaction_number][3 - self.player.id_in_group]['X']['Y'],
+            'p21o': Constants.payoff_matrix[self.player.interaction_number][3 - self.player.id_in_group]['Y']['X'],
+            'p22o': Constants.payoff_matrix[self.player.interaction_number][3 - self.player.id_in_group]['Y']['Y'],
         }
         v.update(self.extra_vars_for_template())
         return v
@@ -52,7 +62,7 @@ class Introduction(BasePage):
 
 
 class Decision(BasePage):
-    # timeout_seconds = 30
+    timeout_seconds = 32
     form_model = 'player'
     form_fields = ['action']
 
@@ -98,7 +108,7 @@ class InteractionResults(BasePage):
         paying_rounds = [p.round_in_interaction for p in self.player.in_all_rounds()
                          if p.interaction_number == self.player.interaction_number and p.paying_round == 1]
         return {
-            'paying_round': paying_rounds[0],
+            'paying_rounds': paying_rounds,
         }
 
 
@@ -113,7 +123,7 @@ class InteractionWaitPage(BaseWaitPage):
         paying_rounds = [p.round_in_interaction for p in self.player.in_all_rounds()
                          if p.interaction_number == self.player.interaction_number and p.paying_round == 1]
         return {
-            'paying_round': paying_rounds[0],
+            'paying_rounds': paying_rounds,
         }
 
 page_sequence = [

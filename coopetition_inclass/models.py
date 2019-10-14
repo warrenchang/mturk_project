@@ -26,7 +26,7 @@ class Constants(BaseConstants):
     history_previous_template = 'coopetition_inclass//History_previous.html'
     historyall_previous_template = 'coopetition_inclass//HistoryAllRounds_previous.html'
     otherhistory_template = 'coopetition_inclass//OtherHistory.html'
-    extra_info = 'coopetition_inclass//WaitingInfo.html'
+    waiting_info = 'coopetition_inclass//WaitingInfo.html'
 
     players_per_group = 2
 
@@ -64,16 +64,16 @@ class Constants(BaseConstants):
     # interaction_length = [20, 20]
 
 
-    # interactions = [
-    #     1, 1, 1,
-    #     2, 2, 2,
-    # ]
-    # round_in_interactions = [
-    #     1, 2, 3,
-    #     1, 2, 3,
-    # ]
-    #
-    # interaction_length = [3, 3]
+    interactions = [
+        1, 1, 1,
+        2, 2, 2,
+    ]
+    round_in_interactions = [
+        1, 2, 3,
+        1, 2, 3,
+    ]
+
+    interaction_length = [3, 3]
 
     num_rounds = sum(interaction_length) # change num_rounds for testing purpose, but need to make sure that number_sequence
     var_max = 110 ## maximal value for Var treatment
