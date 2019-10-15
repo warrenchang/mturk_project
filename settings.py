@@ -192,6 +192,19 @@ SESSION_CONFIG_DEFAULTS = {
 
 SESSION_CONFIGS = [
     {
+        'name': 'exploration_exploitation',
+        'display_name': "exploration_exploitation",
+        'num_demo_participants': 4,
+        'total_payment': 200,  ## total payment received by participants
+        'num_payment': 10,  ## the number of participants receiving payment
+        'real_world_currency_per_point': 1,
+        'participation_fee': 0,
+        'app_sequence': [
+            'multiarm_bandit',
+            'payment_inclass',
+        ],
+    },
+    {
         'name': 'innovation_mamagement',
         'display_name': "Innovation Managment in-class experiment",
         'num_demo_participants': 4,

@@ -147,9 +147,22 @@ class InteractionResults(BasePage):
 
 class InteractionWaitPage(BaseWaitPage):
     template_name = 'coopetition_lab/InteractionWaitPage.html'
+    wait_for_all_groups = True
 
     def is_displayed(self):
         return self.participant.vars['qualified'] and self.player.round_in_interaction == Constants.interaction_length[self.player.interaction_number-1]
+
+# class InteractionWaitPage1(BaseWaitPage):
+#     template_name = 'coopetition_lab/InteractionWaitPage.html'
+#
+#     def is_displayed(self):
+#         return (self.player.round_in_interaction == Constants.interaction_length[self.player.interaction_number-1]) and not (self.player.round_number == Constants.num_rounds)
+#
+# class InteractionWaitPage2(BaseWaitPage):
+#     template_name = 'coopetition_lab/InteractionWaitPage.html'
+#
+#     def is_displayed(self):
+#         return self.player.round_number == Constants.num_rounds
 
 
 page_sequence = [

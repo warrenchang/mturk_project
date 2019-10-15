@@ -1,0 +1,89 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+Result
+{% endblock %}
+
+{% block content %}
+<p style="font-size:16px"> Round {{ player.round_in_interaction }} of {{ num_rounds}} </p>
+
+<div class="row">
+    <div class="col-sm-1"> </div>
+    <div class="col-sm-2">
+
+        {% if player.choice == 0 %}
+        <button class="btn btn-primary btn-block"> {{ player.payoff }} </button>
+        {% else %}
+        <button type="button" class="btn btn-primary btn-block disabled"> A </button>
+        {% endif %}
+
+    </div>
+    <div class="col-sm-2">
+
+        {% if player.choice == 1 %}
+        <button class="btn btn-primary btn-block"> {{ player.payoff }} </button>
+        {% else %}
+        <button type="button" class="btn btn-primary btn-block disabled"> B </button>
+        {% endif %}
+
+    </div>
+    <div class="col-sm-2">
+
+        {% if player.choice == 2 %}
+        <button class="btn btn-primary btn-block"> {{ player.payoff }} </button>
+        {% else %}
+        <button type="button" class="btn btn-primary btn-block disabled""> C </button>
+        {% endif %}
+
+    </div>
+    <div class="col-sm-2">
+
+        {% if player.choice == 3 %}
+        <button class="btn btn-primary btn-block"> {{ player.payoff }} </button>
+        {% else %}
+        <button type="button" class="btn btn-primary btn-block disabled"> D </button>
+        {% endif %}
+
+    </div>
+    <div class="col-sm-2">
+
+        {% if player.choice == 4 %}
+        <button class="btn btn-primary btn-block"> {{ player.payoff }} </button>
+        {% else %}
+        <button type="button" class="btn btn-primary btn-block disabled""> E </button>
+        {% endif %}
+
+    </div>
+    <div class="col-sm-1"> </div>
+</div>
+
+
+</br>
+</br>
+</br>
+<h5 style="text-align:center">
+    History
+</h5>
+<table class="table" style="text-align:center">
+    <tr>
+        <th style="text-align:center">Round</th>
+        <th style="text-align:center">Your choice</th>
+        <th style="text-align:center">Your payoff</th>
+    </tr>
+    {% for p in all_players %}
+        {% if p.interaction_number == player.interaction_number %}
+    <tr>
+        <td>{{ p.round_in_interaction}}</td>
+        <td>{{ p.get_choice_display }}</td>
+        <td>{{ p.payoff}}</td>
+    </tr>
+        {% endif %}
+    {% endfor %}
+
+</table>
+
+
+{% endblock %}
+
+

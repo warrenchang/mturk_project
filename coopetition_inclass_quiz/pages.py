@@ -11,7 +11,7 @@ class StartPage(Page):
     def is_displayed(self):
         if self.round_number == 1:
             print('This is the start of quiz')
-        return self.round_number == 1 #and (not self.session.config['debug'])
+        return self.round_number == 1 and (not self.session.config['debug'])
 
     def vars_for_template(self):
         return {

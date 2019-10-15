@@ -1,0 +1,79 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+Instructions
+{% endblock %}
+
+{% block content %}
+<p>
+    This part of the experiment consists of {{ num_rounds }} rounds.
+    In each round, you have five investment opportunities (A, B, C, D, E), displayed as follows:
+</p>
+
+<div class="row">
+    <div class="col-sm-1"> </div>
+    <div class="col-sm-2">
+        <button type="button" class="btn btn-primary btn-block">    A    </button>
+    </div>
+    <div class="col-sm-2">
+        <button type="button" class="btn btn-primary btn-block">    B    </button>
+    </div>
+    <div class="col-sm-2">
+        <button type="button" class="btn btn-primary btn-block">    C    </button>
+    </div>
+    <div class="col-sm-2">
+        <button type="button" class="btn btn-primary btn-block">    D    </button>
+    </div>
+    <div class="col-sm-2">
+        <button type="button" class="btn btn-primary btn-block">    E    </button>
+    </div>
+    <div class="col-sm-1"> </div>
+</div>
+
+</br>
+</br>
+<p>
+   You can choose an option by clicking it, then its payoff will be shown. For example, if you
+    choose C and receive 50 points, the following results will be shown:
+</p>
+
+<div class="row">
+    <div class="col-sm-1"> </div>
+    <div class="col-sm-2">
+        <button type="button" class="btn btn-primary btn-block disabled"> A </button>
+    </div>
+    <div class="col-sm-2">
+        <button type="button" class="btn btn-primary btn-block disabled"> B </button>
+    </div>
+    <div class="col-sm-2">
+        <button type="button" class="btn btn-primary btn-block"> 50 points </button>
+    </div>
+    <div class="col-sm-2">
+        <button type="button" class="btn btn-primary btn-block disabled"> D </button>
+    </div>
+    <div class="col-sm-2">
+        <button type="button" class="btn btn-primary btn-block disabled""> E </button>
+    </div>
+    <div class="col-sm-1"> </div>
+</div>
+
+</br>
+<p>
+    You can continue to the next round by clicking the payoff.
+</p>
+</br>
+<p>
+    The return of each investment option follows a certain probabilistic distribution. In each round, you
+    have at most 20 seconds to make your decision. If you fail to reach an decision within the allocated time,
+    the computer will randomly choose an option, and <strong>your payoff for that round will NOT be counted towards your
+    final earnings</strong>.
+    {% if player.round_number == 1 %}
+    {% endif %}
+</p>
+
+<div style="text-align:right">
+    {% next_button %}
+</div>
+{% endblock %}
+
