@@ -6,7 +6,7 @@ import random
 
 
 class Decision(CustomMturkPage):
-    timeout_seconds = 480
+    timeout_seconds = 300
     form_model = 'player'
     form_fields = ['choice']
 

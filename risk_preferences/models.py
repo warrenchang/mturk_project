@@ -15,11 +15,13 @@ class Constants(BaseConstants):
     name_in_url = 'risk_preferences'
     players_per_group = None
     num_rounds = 1
-    # outcomesA = [210,180,150,120,90,60,30]
-    # outcomesB = [210,270,330,390,450,480,495]
+    outcomesA = [420, 360, 300, 240, 180, 120,  60]
+    outcomesB = [420, 540, 660, 780, 900, 960, 990]
 
-    outcomesA = [ 168,144,120,96,72,48,24 ]
-    outcomesB = [ 168,216,264,312,360,384,396]
+    # outcomesA = [ 168, 144, 120,  96,  72,  48,  24]
+    # outcomesB = [ 168, 216, 264, 312, 360, 384, 396]
+
+
 class Subsession(BaseSubsession):
     pass
 

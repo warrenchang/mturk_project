@@ -29,28 +29,9 @@ Make your choice
   </div>
 
 </br>
-</br>
+<p>Choose one of the above options.</p>
 </br>
 {% if player.round_in_interaction != 1 %}
-<h5 style="text-align:center">
-    History
-</h5>
-<table class="table" style="text-align:center">
-    <tr>
-        <th style="text-align:center">Round</th>
-        <th style="text-align:center">Your choice</th>
-        <th style="text-align:center">Your payoff</th>
-    </tr>
-    {% for p in previous_players %}
-        {% if p.interaction_number == player.interaction_number %}
-    <tr>
-        <td>{{ p.round_in_interaction}}</td>
-        <td>{{ p.get_choice_display }}</td>
-        <td>{{ p.payoff}}</td>
-    </tr>
-        {% endif %}
-    {% endfor %}
-
-    {% endif %}
-</table>
+{% include Constants.history_previous_template %}
+{% endif %}
 {% endblock %}

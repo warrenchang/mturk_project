@@ -58,16 +58,18 @@ class Player(BasePlayer):
         # set payoffs if <random_payoff = True> to round_result of randomly chosen round
         # randomly determine round to pay on player level
         if self.subsession.round_number == 1:
-            self.participant.vars['round_to_pay'] = random.randint(1,Constants.num_rounds)
+            self.participant.vars['round_to_pay'] = random.randint(1, Constants.num_rounds)
+
+        # initialize payoff as zero
+        self.pay_this_round = False
+        self.payoff = c(0)
 
         if Constants.random_payoff:
             if self.subsession.round_number == self.participant.vars['round_to_pay']:
                 self.pay_this_round = True
                 self.payoff = self.round_result
-            else:
-                self.pay_this_round = False
-                self.payoff = c(0)
-
         # set payoffs to round_result if <random_payoff = False>
         else:
-            self.payoff = self.round_result
+            if self.subsession.round_number == Constants.num_rounds:
+                self.pay_this_round = True
+                self.payoff = self.round_result

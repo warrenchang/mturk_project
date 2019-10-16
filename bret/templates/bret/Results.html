@@ -56,7 +56,7 @@
     {% else %}
         <div class="card card-info">
             {% blocktrans trimmed with num_rounds=Constants.num_rounds %}
-                The table below summarizes the results of your decisions in the {{ num_rounds }} rounds played.
+                The table below summarizes the results of your decisions.
             {% endblocktrans %}
         </div>
     {% endif %}
@@ -98,17 +98,17 @@
         </div>
 
         <div class="card card-info">
+            <p>
         {% if Constants.random_payoff %}
-                {% blocktrans trimmed %}
                     For your payment, round number {{ round_to_pay }} was randomly chosen. <br/>
                     Thus, your final payoff in this task amounts to {{ total_payoff }}.
-                {% endblocktrans %}
         {% else %}
-                {% blocktrans trimmed %}
-                    Your final payoff is determined by the sum of all payoffs per round
-                    such that you final payoff in this task amounts to {{ total_payoff }}.
-                {% endblocktrans %}
+                    Your final payoff is determined <strong>only by the outcome of Round {{ Constants.num_rounds }}</strong>.
         {% endif %}
+        {% if player.round_number == Constants.num_rounds %}
+            Thus, your final payoff in this task amounts to {{ total_payoff }}.
+        {% endif %}
+            </p>
         </div>
     {% endif %}
 

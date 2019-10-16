@@ -1,0 +1,73 @@
+{% load otree staticfiles %}
+<h5 style="text-align:center">
+    History
+</h5>
+
+
+{% if player.interaction_number == 3 and player.round_in_interaction > Constants.info_round %}
+        {% if player.treatment <= 2 %}
+            <table class="table" style="text-align:center">
+                <tr> <th style="text-align:center">Round</th> <th style="text-align:center">Your choice</th> <th style="text-align:center">Your payoff</th> <th style="text-align:center">Average group payoff</th>  </tr>
+                {% for p in all_players %}
+                {% if p.interaction_number == player.interaction_number  %}
+                <tr>
+                    <td>{{ p.round_in_interaction }}</td>
+                    {% if p.payoff != 0 %}
+                        <td>{{ p.get_choice_display }}</td> <td>{{ p.payoff }}</td>
+                    {% else %}
+                        <td>-</td> <td>-</td>
+                    {% endif %}
+                    {% if p.round_in_interaction > Constants.info_round  %}
+                        <td>{{ p.average_pay }}</td>
+                    {% else %}
+                        <td>-</td>
+                    {% endif %}
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </table>
+        {% else %}
+            <table class="table" style="text-align:center">
+                <tr> <th style="text-align:center">Round</th> <th style="text-align:center">Your choice</th> <th style="text-align:center">Your payoff</th><th style="text-align:center">Max group payoff</th>  </tr>
+                {% for p in all_players %}
+                {% if p.interaction_number == player.interaction_number  %}
+                <tr>
+                    <td>{{ p.round_in_interaction }}</td>
+                    {% if p.payoff != 0 %}
+                        <td>{{ p.get_choice_display }}</td> <td>{{ p.payoff }}</td>
+                    {% else %}
+                        <td>-</td> <td>-</td>
+                    {% endif %}
+                    {% if p.round_in_interaction > Constants.info_round  %}
+                        <td>{{ p.max_pay }}</td>
+                    {% else %}
+                        <td>-</td>
+                    {% endif %}
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </table>
+        {% endif %}
+    {% else %}  {# this is the default display #}
+        <table class="table" style="text-align:center">
+            <tr> <th style="text-align:center">Round</th> <th style="text-align:center">Your choice</th> <th style="text-align:center">Your payoff</th> </tr>
+            {% for p in all_players %}
+            {% if p.interaction_number == player.interaction_number  %}
+            <tr>
+                <td>{{ p.round_in_interaction }}</td>
+                {% if p.payoff != 0 %}
+                <td>{{ p.get_choice_display }}</td> <td>{{ p.payoff }}</td>
+                {% else %}
+                <td>-</td> <td>-</td>
+                {% endif %}
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </table>
+{% endif %}
+
+
+
+
+
+

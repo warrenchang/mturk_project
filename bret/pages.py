@@ -79,8 +79,8 @@ class Decision(Page):
 class Results(Page):
 
     # only display results after all rounds have been played
-    def is_displayed(self):
-        return self.subsession.round_number == Constants.num_rounds
+    # def is_displayed(self):
+    #     return self.subsession.round_number == Constants.num_rounds
 
     # variables for use in template
     def vars_for_template(self):

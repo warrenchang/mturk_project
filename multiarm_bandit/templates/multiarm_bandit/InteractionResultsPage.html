@@ -1,0 +1,52 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+{% endblock %}
+
+
+{% block content %}
+
+
+<style>
+    #width50 {
+        width: 50%;
+    }
+
+    td {
+        border: 1px solid #ddd;
+        text-align: center;
+        padding: 8px;
+        font-size: 10pt;
+    }
+    th {
+        border: 1px solid #ddd;
+        text-align: center;
+        padding: 5px;
+        font-size: 10pt;
+    }
+    tr:nth-child(even){background-color: #f2f2f2;}
+    tr:hover {background-color: #ddd;}
+
+    table {
+        margin: auto;
+    }
+</style>
+
+<div style="text-align:center;font-size:16px">
+    <p> This is the end of this part of the experiment.  </p>
+    <p> Your earnings for this part is {{ player.cum_payoff }}.</p>
+    <p> You have made {{ player.num_decisions }} decisions and <strong> your average payoff per round is {{ player.avg_payoff }}. </strong> </p>
+    <p> Please wait for the other participants to finish their decisions in order to for the experiment to continue. </p>
+</div>
+<hr>
+
+<div style="text-align:right">
+    {% next_button %}
+</div>
+
+</br>
+{% include Constants.history_template %}
+
+{% endblock %}
+

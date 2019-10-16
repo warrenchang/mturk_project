@@ -26,5 +26,5 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    gender = models.StringField(choices=['male','female'],
+    gender = models.StringField(choices=['Male','Female'],
                               )

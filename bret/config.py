@@ -18,12 +18,12 @@ class Constants(BaseConstants):
     # if the bomb is not collected, player's payoff per round is determined by <box_value> times <boxes_collected>
     # note that the currency of any earnings is determined by the oTree settings in settings.py
     # if you set this to a decimal number, you must set POINTS_DECIMAL_PLACES in settings.py
-    box_value = Currency(10)
+    box_value = Currency(40)
 
     # number of rows and columns
     # i.e. the total number of boxes is determined by <num_rows> times <num_cols>
-    num_rows = 8
-    num_cols = 8
+    num_rows = 6
+    num_cols = 6
 
     # box height and box width in pixels
     # make sure that the size of the boxes fits the screen of the device
@@ -36,9 +36,10 @@ class Constants(BaseConstants):
 
     # determines whether all rounds played are payed-off or whether one round is randomly chosen for payment
     # if <random_payoff = True>, one round is randomly determined for payment
-    # if <random_payoff = False>, the final payoff of the task is the sum of all rounds played
+    # if <random_payoff = False>, the final payoff of the task is the payoff of the alst round
+    #  (or can alternatively set as the sum of all rounds played)
     # note that this is only of interest for the case of <num_rounds> larger than 1
-    random_payoff = True
+    random_payoff = False
 
     # if <instructions = True>, a separate template "Instructions.html" is rendered prior to the task in round 1
     # if <instructions = False>, the task starts immediately (e.g. in case of printed instructions)
@@ -64,7 +65,7 @@ class Constants(BaseConstants):
     # in case of <dynamic = True>, game play is affected by the variables <time_interval> and <random> below
     # if <dynamic = False>, subjects collect as many boxes as they want by clicking or entering the respective number
     # in case of <dynamic = False>, game play is affected by the variables <random>, <devils_game> and <undoable>
-    dynamic = True
+    dynamic = False
 
     # time interval between single boxes being collected (in seconds)
     # note that this only affects game play if <dynamic = True>

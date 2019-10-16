@@ -18,9 +18,6 @@ else:
     DEBUG = True
     APPS_DEBUG = True
 
-# DEBUG = False
-# APPS_DEBUG = False
-
 # don't share this with anybody.
 SECRET_KEY = 'xbsw&0b==_fg)5#4n)ckwgr1-na%c#z=pmt4+13yr!h-x&s=1p'
 
@@ -195,12 +192,15 @@ SESSION_CONFIGS = [
         'name': 'exploration_exploitation',
         'display_name': "exploration_exploitation",
         'num_demo_participants': 4,
-        'total_payment': 200,  ## total payment received by participants
-        'num_payment': 10,  ## the number of participants receiving payment
+        'total_payment': 150,  ## total payment received by participants
+        'num_payment': 5,  ## the number of participants receiving payment
         'real_world_currency_per_point': 1,
         'participation_fee': 0,
         'app_sequence': [
             'multiarm_bandit',
+            'risk_preferences',
+            'bret',
+            'simple_survey',
             'payment_inclass',
         ],
     },
@@ -223,6 +223,19 @@ SESSION_CONFIGS = [
             'coopetition_inclass',
             'payment_inclass',
                          ],
+    },
+        {
+        'name': 'bret',
+        'display_name': "bret",
+        'num_demo_participants': 4,
+        'total_payment': 150,  ## total payment received by participants
+        'num_payment': 5,  ## the number of participants receiving payment
+        'real_world_currency_per_point': 1,
+        'participation_fee': 0,
+        'app_sequence': [
+            'bret',
+            'payment_inclass',
+        ],
     },
     {
         'name': 'coopetition_lab_det0_60',
