@@ -189,25 +189,12 @@ SESSION_CONFIG_DEFAULTS = {
 
 SESSION_CONFIGS = [
     {
-        'name': 'aa',
-        'display_name': "test",
-        'num_demo_participants': 4,
-        'participation_fee': 1,
-        'max_payment': 6,
-        'real_world_currency_per_point': 1 / 280,
-        'treatment': 'Asm0_60',
-        'interaction_length': 15,
-        # 'debug': False,
-        'app_sequence': ['survey_online','payment_online'
-                         ],
-    },
-    {
         'name': 'coopetition_mturk_asm0_60',
         'display_name': "Coopetition Asm0_60",
         'num_demo_participants': 4,
         'participation_fee': 1,
         'max_payment': 6,
-        'real_world_currency_per_point': 1 / 280,
+        'real_world_currency_per_point': 1 / 250,
         'treatment': 'Asm0_60',
         'interaction_length': 15,
         # 'debug': False,
@@ -221,7 +208,7 @@ SESSION_CONFIGS = [
         'num_demo_participants': 4,
         'participation_fee': 1,
         'max_payment': 6,
-        'real_world_currency_per_point': 1 / 280,
+        'real_world_currency_per_point': 1 / 250,
         'treatment': 'Asm60_0',
         'interaction_length': 15,
         # 'debug': False,
