@@ -28,7 +28,7 @@
         </tr>
         <tr>
             <th>Other</th><td>\(x_2\)</td><td>\(y_2\)</td><td>\({{ player.other_endowment }}-x_2-y_2\)</td>
-            <td>\(\displaystyle \frac{y_2}{y_1 + y_2} \)</td><td>\(\displaystyle \frac{y_1}{y_1 + y_2}\frac{x_1 x_2}{2}+ {{ player.other_endowment }} -x_1-y_1\)</td>
+            <td>\(\displaystyle \frac{y_2}{y_1 + y_2} \)</td><td>\(\displaystyle \frac{y_2}{y_1 + y_2}\frac{x_1 x_2}{2}+ {{ player.other_endowment }} -x_1-y_1\)</td>
         </tr>
     </table>
     <br/>
@@ -56,7 +56,7 @@
         </tr>
         <tr>
             <th>Other</th><td>\(x_2\)</td><td>\(y_2\)</td><td>\({{ player.other_endowment }}-x_2-y_2\)</td>
-            <td>\(\displaystyle \frac{y_2}{y_1 + y_2} \)</td><td>\(\displaystyle \frac{y_1}{y_1 + y_2}(\frac{x_1 x_2}{2}+60)+ {{ player.other_endowment }} -x_1-y_1\)</td>
+            <td>\(\displaystyle \frac{y_2}{y_1 + y_2} \)</td><td>\(\displaystyle \frac{y_2}{y_1 + y_2}(\frac{x_1 x_2}{2}+60)+ {{ player.other_endowment }} -x_1-y_1\)</td>
         </tr>
     </table>
     <br/>
@@ -66,6 +66,63 @@
     </p>
 </div>
 {% endif %}
+
+{% if player.condition == "A2m" and player.A == 0 %}
+<div>
+    <p>
+        Recall that your and the other participant’s earnings can be broken down as follows:
+    </p>
+    <table>
+        <tr>
+            <th></th>
+            <th>Investment Account</th><th>Rationing Account</th><th>Kept to oneself</th>
+            <th>Total Return</th><th>Share of Total Return</th><th>Final Earnings</th>
+        </tr>
+        <tr>
+            <th>Player A</th><td>\(x_A\)</td><td>\(y_A\)</td><td>\( {{ player.endowment }}-x_A-y_A\)</td>
+            <td rowspan="2">\(\displaystyle x_Ax_B\)</td><td> \(\displaystyle \frac{2y_A}{2y_A + y_B} \)</td><td>\(\displaystyle \frac{2y_A}{2y_A + y_B}x_A x_B+ {{ player.endowment }}-x_A-y_B\)</td>
+        </tr>
+        <tr>
+            <th>Player B</th><td>\(x_B\)</td><td>\(y_B\)</td><td>\({{ player.other_endowment }}-x_B-y_B\)</td>
+            <td>\(\displaystyle \frac{y_B}{2y_A + y_B} \)</td><td>\(\displaystyle \frac{y_B}{2y_A + y_B}x_A x_B+ {{ player.other_endowment }} -x_A-y_B\)</td>
+        </tr>
+    </table>
+    <br/>
+       <p>
+        In general, putting more points in the <i>Investment Account</i> (a higher \(x_1\))  <strong>generates a higher total return</strong>
+        , while putting more points in the <i>Rationing Account</i> (a higher \(y_1\)) <strong>increases your share of the total return</strong>.
+    </p>
+</div>
+{% endif %}
+
+{% if player.condition == "A2m" and player.A == 60 %}
+<div>
+    <p>
+        Recall that your and the other participant’s earnings can be broken down as follows:
+    </p>
+    <table>
+        <tr>
+            <th></th>
+            <th>Investment Account</th><th>Rationing Account</th><th>Kept to oneself</th>
+            <th>Total Return</th><th>Share of Total Return</th><th>Final Earnings</th>
+        </tr>
+        <tr>
+            <th>Player A</th><td>\(x_A\)</td><td>\(y_A\)</td><td>\( {{ player.endowment }}-x_A-y_A\)</td>
+            <td rowspan="2">\(\displaystyle x_Ax_B + 60\)</td><td> \(\displaystyle \frac{2y_A}{2y_A + y_B} \)</td><td>\(\displaystyle \frac{2y_A}{2y_A + y_B}(x_A x_B+60)+ {{ player.endowment }}-x_A-y_B\)</td>
+        </tr>
+        <tr>
+            <th>Player B</th><td>\(x_B\)</td><td>\(y_B\)</td><td>\({{ player.other_endowment }}-x_B-y_B\)</td>
+            <td>\(\displaystyle \frac{y_B}{2y_A + y_B} \)</td><td>\(\displaystyle \frac{y_B}{2y_A + y_B}(x_A x_B+60)+ {{ player.other_endowment }} -x_A-y_B\)</td>
+        </tr>
+    </table>
+    <br/>
+       <p>
+        In general, putting more points in the <i>Investment Account</i> (a higher \(x_1\))  <strong>generates a higher total return</strong>
+        , while putting more points in the <i>Rationing Account</i> (a higher \(y_1\)) <strong>increases your share of the total return</strong>.
+    </p>
+</div>
+{% endif %}
+
 
 {% if player.condition == "Det" and player.A == 0 %}
 <div>
@@ -84,7 +141,7 @@
         </tr>
         <tr>
             <th>Other</th><td>\(x_2\)</td><td>\(y_2\)</td><td>\(10-x_2-y_2\)</td>
-            <td>\(\displaystyle \frac{y_2}{y_1 + y_2} \)</td><td>\(\displaystyle \frac{y_1}{y_1 + y_2}x_1 x_2+10-x_1-y_1\)</td>
+            <td>\(\displaystyle \frac{y_2}{y_1 + y_2} \)</td><td>\(\displaystyle \frac{y_2}{y_1 + y_2}x_1 x_2+10-x_1-y_1\)</td>
         </tr>
     </table>
     <br/>
@@ -112,7 +169,7 @@
         </tr>
         <tr>
             <th>Other</th><td>\(x_2\)</td><td>\(y_2\)</td><td>\(10-x_2-y_2\)</td>
-            <td>\(\displaystyle \frac{y_2}{y_1 + y_2} \)</td><td>\(\displaystyle \frac{y_1}{y_1 + y_2}(x_1 x_2 + 60)+10-x_1-y_1\)</td>
+            <td>\(\displaystyle \frac{y_2}{y_1 + y_2} \)</td><td>\(\displaystyle \frac{y_2}{y_1 + y_2}(x_1 x_2 + 60)+10-x_1-y_1\)</td>
         </tr>
     </table>
     <br/>

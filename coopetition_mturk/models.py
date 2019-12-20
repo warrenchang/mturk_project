@@ -64,16 +64,16 @@ class Constants(BaseConstants):
     # interaction_length = [20, 20]
 
 
-    # interactions = [
-    #     1, 1, 1,
-    #     2, 2, 2,
-    # ]
-    # round_in_interactions = [
-    #     1, 2, 3,
-    #     1, 2, 3,
-    # ]
-    #
-    # interaction_length = [3, 3]
+    interactions = [
+        1, 1, 1,
+        2, 2, 2,
+    ]
+    round_in_interactions = [
+        1, 2, 3,
+        1, 2, 3,
+    ]
+
+    interaction_length = [3, 3]
 
     num_rounds = sum(interaction_length) # change num_rounds for testing purpose, but need to make sure that number_sequence
     var_max = 110 ## maximal value for Var treatment
@@ -126,6 +126,7 @@ class Group(BaseGroup):
         p2.other_a2 = p1.a2
         p2.other_a3 = p1.a3
 
+        ## Det, Asm, A2m treatments
         ## endownment for player 1 is 20 in the asymmetric treatment
         if p1.condition =='Det':
             p1.pie = p1.a1*p2.a1 + p1.A
@@ -133,6 +134,9 @@ class Group(BaseGroup):
         elif p1.condition =='Asm':
             p1.pie = p1.a1*p2.a1/2 + p1.A
             p2.pie = p1.a1*p2.a1/2 + p2.A
+        elif p1.condition =='A2m':
+            p1.pie = p1.a1*p2.a1 + p1.A
+            p2.pie = p1.a1*p2.a1 + p2.A
         elif p1.condition =='Fix':
             p1.successful = p1.rand_num <= 100
             p2.successful = p1.successful
@@ -151,9 +155,12 @@ class Group(BaseGroup):
             else:
                 p1.pie = p1.A
                 p2.pie = p1.pie
-
-        p1.pie_share = round(get_share(p1.a2,p2.a2),2)
-        p2.pie_share = round(get_share(p2.a2,p1.a2),2)
+        if p1.condition =='A2m':
+            p1.pie_share = round(get_share(p1.a2*2,p2.a2),2)
+            p2.pie_share = round(get_share(p2.a2,p1.a2*2),2)
+        else:
+            p1.pie_share = round(get_share(p1.a2,p2.a2),2)
+            p2.pie_share = round(get_share(p2.a2,p1.a2),2)
         p1.potential_payoff = p1.pie*p1.pie_share + p1.a3
         p2.potential_payoff = p2.pie*p2.pie_share + p2.a3
         if p1.timed_out:

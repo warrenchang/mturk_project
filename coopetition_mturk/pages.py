@@ -59,7 +59,11 @@ class SettingParameters(BasePage):
             else:
                 self.player.other_endowment = 20
                 self.player.role = 'B'
-
+        if self.player.condition == "A2m":
+            if self.player.id_in_group == 1:
+                self.player.role = 'A'
+            else:
+                self.player.role = 'B'
 
 
 class StartPage(BasePage):

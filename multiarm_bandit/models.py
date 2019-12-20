@@ -8,7 +8,7 @@ import numpy as np
 author = 'Your name here'
 
 doc = """
-Simply gamble choice for risk preference elicitation
+Multiarm bandit problems for studying trade-offs between exploration and exploitation
 """
 
 
@@ -17,19 +17,20 @@ class Constants(BaseConstants):
     players_per_group = None
     history_template = 'multiarm_bandit//History.html'
     history_previous_template = 'multiarm_bandit//History_previous.html'
-    info_round = 20 ## new information is added after info_round
+
 
     deltas1 = [4,4,4,4,4]
     deltas2 = [4,4,4,4,4]
 
-
-    interaction_length = [4,4,4]
-    round_in_interactions = np.tile(np.arange(4)+1, reps=3)
-    interactions = np.tile(np.arange(3) + 1, reps=(4, 1)).T.flatten()
-
+    info_round = 20 ## new information is added after info_round
     interaction_length = [50,50,50]
     round_in_interactions = np.tile(np.arange(50)+1, reps=3)
     interactions = np.tile(np.arange(3) + 1, reps=(50, 1)).T.flatten()
+
+    # info_round = 2 ## new information is added after info_round
+    # interaction_length = [4,4,4]
+    # round_in_interactions = np.tile(np.arange(4)+1, reps=3)
+    # interactions = np.tile(np.arange(3) + 1, reps=(4, 1)).T.flatten()
 
     mus1 = np.array([
        [69. , 41. , 39. , 71. , 50. ],
@@ -351,7 +352,7 @@ class Subsession(BaseSubsession):
             group_matrix = []
             if num_players % 4 == 0:
                 for i in range(4):  ## devide participants into 4 groups
-                    group_matrix.append(players[i:i + ppg])
+                    group_matrix.append(players[i*ppg:(i+1)*ppg])
             elif num_players % 4 == 1:
                 group_matrix.append(players[:ppg+1])
                 group_matrix.append(players[ppg+1:ppg*2+1])

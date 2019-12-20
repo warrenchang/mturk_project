@@ -41,6 +41,36 @@ Results
 </div>
 {% endif %}
 
+{% if player.condition == "A2m" %}
+You are Player {{ player.role }}.
+<div>
+    <table>
+        <tr>
+            <th></th>
+            <th>Investment Account</th><th>Rationing Account</th><th>Kept to self</th>
+            <th>Total Return</th><th>Share of Total Return</th><th>Final Earnings</th>
+        </tr>
+        <tr>
+            <th>Player A</th><td>\(x_A=\){{player.a1}}</td><td>\(y_A=\){{player.a2}}</td><td>{{player.a3}}</td>
+            {% if player.A == 60 %}
+            <td rowspan="2">\(\displaystyle x_Ax_B+60={{player.pie}}\)</td>
+            {% else %}
+            <td rowspan="2">\(\displaystyle x_Ax_B={{player.pie}}\)</td>
+            {% endif %}
+
+            <td>\(\displaystyle \frac{2y_A}{2y_A + y_B} =\){{player.pie_share}}</td>
+            <td>{{player.pie_share}} \(\times\) {{player.pie}} + {{player.a3}}= {{player.potential_payoff}}</td>
+        </tr>
+        <tr>
+            <th>Player B</th><td>\(x_B=\){{player.other_a1}}</td><td>\(y_2=\){{player.other_a2}}</td><td>{{player.other_a3}}</td>
+            <td>\(\displaystyle \frac{y_B}{2y_A + y_B} =\) {{player.other_share}}</td>
+            <td>{{player.other_share}} \(\times\) {{player.pie}} + {{player.other_a3}}= {{player.other_payoff}}</td>
+        </tr>
+    </table>
+</div>
+{% endif %}
+
+
 {% if player.condition == "Det" %}
 <div>
     <table>

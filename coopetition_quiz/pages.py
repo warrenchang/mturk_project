@@ -203,6 +203,84 @@ class SomeUnderstandingQuestions(UnderstandingQuestionsPage):
                 },
             ]
 
+        elif self.session.config['treatment'] == 'A2m0_60':
+            questions = [
+                {
+                    'question': '[True/False] The more you and the other participant invest in the Investment Account, the higher the total return.',
+                    'options': ['True', 'False'],
+                    'correct': 'True',
+                },
+                {
+                    'question': '[True/False] The more you invest in the Rationing Account, the higher share you can obtain from the total return of the Investment Account',
+                    'options': ['True', 'False'],
+                    'correct': 'True',
+                },
+                {
+                    'question': "[True/False] Player A is twice as effective as Player B in capturing the share of the total return. In other words, Player A's one point in the rationing account is worth two of Player B's points in caputring the return from the Investment Account",
+                    'options': ['True', 'False'],
+                    'correct': 'True',
+                },
+                {
+                    'question': "Suppose both players put all points in the Investment Account (\(x_A=10, x_B=10, y_A=y_B=0\)). What is the total return from the Investment Account?",
+                    'options': ['10', '20', '100', '150'],
+                    'correct': '100',
+                },
+                {
+                    'question': "Suppose both players put 5 points in the Investment Account (\(x_A=x_B=5\)). What is the total return from the Investment Account?",
+                    'options': ['5', '10', '25', '50'],
+                    'correct': '25',
+                },
+                {
+                    'question': 'Suppose you put 10 points in the Investment Account, while the other put 0 point. What is the total return from the Investment Account?',
+                    'options': ['0', '10', '20', '50'],
+                    'correct': '0',
+                },
+                {
+                    'question': "Suppose Player A puts 3 points in the Rationing Account, and Player B puts 6 points in the Rationing Account. What is Player A's share of the total return from the Investment Account?",
+                    'options': ['0.4','0.5','0.6','1'],
+                    'correct': '0.5',
+                },
+            ]
+
+        elif self.session.config['treatment'] == 'A2m60_0':
+            questions = [
+                {
+                    'question': '[True/False] The more you and the other participant invest in the Investment Account, the higher the total return.',
+                    'options': ['True', 'False'],
+                    'correct': 'True',
+                },
+                {
+                    'question': '[True/False] The more you invest in the Rationing Account, the higher share you can obtain from the total return of the Investment Account',
+                    'options': ['True', 'False'],
+                    'correct': 'True',
+                },
+                {
+                    'question': "[True/False] Player A is twice as effective as Player B in capturing the share of the total return. In other words, Player A's one point in the rationing account is worth two of Player B's points in caputring the return from the Investment Account",
+                    'options': ['True', 'False'],
+                    'correct': 'True',
+                },
+                {
+                    'question': "Suppose both players put all points in the Investment Account (\(x_A=x_B=10, y_A=y_B=0\)). What is the total return from the Investment Account?",
+                    'options': ['10','20','100','160'],
+                    'correct': '160',
+                },
+                {
+                    'question': "Suppose both players put 5 points in the Investment Account (\(x_A=x_B=5\)). What is the total return from the Investment Account?",
+                    'options': ['5', '10', '25', '85'],
+                    'correct': '85',
+                },
+                {
+                    'question': 'Suppose you put 10 points in the Investment Account, while the other put 0 point. What is the total return from the Investment Account?',
+                    'options': ['0','10','20','60'],
+                    'correct': '60',
+                },
+                {
+                    'question': "Suppose Player A puts 3 points in the Rationing Account, and Player B puts 6 points in the Rationing Account. What is Player A's share of the total return from the Investment Account?",
+                    'options': ['0.4','0.5','0.6','1'],
+                    'correct': '0.5',
+                },
+            ]
+
         elif self.session.config['treatment'] == 'Fix0_60':
             questions = [
                 {

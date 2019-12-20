@@ -99,46 +99,46 @@ SURVEY_DEFINITIONS = (
 
         ]
     },
-    {
-        'page_title': 'Survey Questions',
-        'survey_fields': [
-            ('gender', {
-                'text': 'What is your gender.',
-                'field': models.CharField(choices=GENDER_CHOICES),
-            }),
-            ('age', {   # field name (which will also end up in your "Player" class and hence in your output data)
-                'text': 'What is your age?',   # survey question
-                'field': models.PositiveIntegerField(min=10, max=100),  # the same as in normal oTree model field definitions
-            }),
-            ('difficulty',
-             {
-                 'text': 'Do you consider the experiment easy to understand and follow?',
-                 'field': models.PositiveIntegerField(
-                     choices=[
-                         [1, '1. Very easy'],
-                         [2, '2. Easy'],
-                         [3, '3. Moderate'],
-                         [4, '4. Difficult'],
-                         [5, '5. Very difficult']
-                     ]),
-             }),
-            ('participate_again',
-             {
-                 'text': 'Would you like to participate in similar experiments in the future?',
-                 'field': models.IntegerField(
-                     choices=[
-                         [2, 'Yes'],
-                         [1, 'Maybe'],
-                         [0, 'No'],
-                     ]),
-             }),
-            ('experiment_comments', {  # field name (which will also end up in your "Player" class and hence in your output data)
-                'text': 'Any comments about the experiment? (What you like/dislike about the experiment? Which part is hard to follow?)',
-                'field': models.TextField(blank=True),
-            }),
-
-        ]
-    },
+    # {
+    #     'page_title': 'Survey Questions',
+    #     'survey_fields': [
+    #         ('gender', {
+    #             'text': 'What is your gender.',
+    #             'field': models.CharField(choices=GENDER_CHOICES),
+    #         }),
+    #         ('age', {   # field name (which will also end up in your "Player" class and hence in your output data)
+    #             'text': 'What is your age?',   # survey question
+    #             'field': models.PositiveIntegerField(min=10, max=100),  # the same as in normal oTree model field definitions
+    #         }),
+    #         ('difficulty',
+    #          {
+    #              'text': 'Do you consider the experiment easy to understand and follow?',
+    #              'field': models.PositiveIntegerField(
+    #                  choices=[
+    #                      [1, '1. Very easy'],
+    #                      [2, '2. Easy'],
+    #                      [3, '3. Moderate'],
+    #                      [4, '4. Difficult'],
+    #                      [5, '5. Very difficult']
+    #                  ]),
+    #          }),
+    #         ('participate_again',
+    #          {
+    #              'text': 'Would you like to participate in similar experiments in the future?',
+    #              'field': models.IntegerField(
+    #                  choices=[
+    #                      [2, 'Yes'],
+    #                      [1, 'Maybe'],
+    #                      [0, 'No'],
+    #                  ]),
+    #          }),
+    #         ('experiment_comments', {  # field name (which will also end up in your "Player" class and hence in your output data)
+    #             'text': 'Any comments about the experiment? (What you like/dislike about the experiment? Which part is hard to follow?)',
+    #             'field': models.TextField(blank=True),
+    #         }),
+    #
+    #     ]
+    # },
 
 )
 

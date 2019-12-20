@@ -72,8 +72,8 @@ class Decision(BasePage):
             p.best_mu = max(Constants.mus1[self.round_number - 1])
         else:
             p.best_mu = max(Constants.mus2[self.round_number - 1])
-        p.cum_payoff = sum([p.payoff for p in p.in_all_rounds() if p.interaction_number == p.interaction_number])
-        p.num_decisions = sum([1-p.timed_out for p in p.in_all_rounds() if p.interaction_number == p.interaction_number])
+        p.cum_payoff = sum([p0.payoff for p0 in p.in_all_rounds() if p0.interaction_number == p.interaction_number])
+        p.num_decisions = sum([1-p0.timed_out for p0 in p.in_all_rounds() if p0.interaction_number == p.interaction_number])
         if p.num_decisions == 0:
             p.avg_payoff = 0
         else:
@@ -102,7 +102,7 @@ class DecisionWaitPage(BaseWaitPage):
 class Results(BasePage):
     def get_timeout_seconds(self):
         if self.player.timed_out:
-            return 3
+            return 2
         else:
             return 8
 

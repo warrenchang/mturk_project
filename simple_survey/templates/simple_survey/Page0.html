@@ -7,14 +7,15 @@
 
 {% block content %}
 
-    <hr>
+<hr>
 
-    {% formfield player.gender label="What is your gender?" %}
+{% formfield player.gender label="What is your gender?" %}
 
-    <hr/>
-
-    <div style="text-align:right">
-        {% next_button %}
-    </div>
+<hr>
+{% formfield player.rank_estimate label="How do you estimate the ranking of your total payoff among all the participants?" %}
+<hr/>
+<div style="text-align:right">
+    {% next_button %}
+</div>
 
 {% endblock %}

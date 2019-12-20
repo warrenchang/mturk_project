@@ -26,11 +26,14 @@ Instructions: Part 1
 {% if player.condition == "Asm" %}
 <div>
     <p>
-        In this part, there will be <strong>{{ player.interaction_length }}</strong> rounds of decision-making.
+        In this part, there will be {{ player.interaction_length }} rounds of decision-making.
 
     <ul>
         <li>
-            You will be matched with another participant to play an investment game. You will play with the same participant for all rounds.
+            You will be matched with another participant to play an investment game.
+        </li>
+        <li>
+            You will play with the same participant for all rounds.
         </li>
         <li>
             There are two types of players: player A and player B.
@@ -40,8 +43,11 @@ Instructions: Part 1
             while player B receives 10 points in each round.
         </li>
         <li>
-            <strong>Your type will be randomly determined after you are matched
-                with another participant and will remain the same throughout the experiment.</strong>
+            Your type will be <strong>randomly determined after you are matched</strong>
+            with another participant.
+        </li>
+        <li>
+            Your type will <strong>remain the same</strong> throughout the experiment.
         </li>
     </ul>
 
@@ -73,13 +79,13 @@ Instructions: Part 1
     <ul>
         <li>
             Points in the <strong>Investment Account</strong> determine the size of the total return from the investment. More points
-            means larger returns.
+            mean larger returns.
         </li>
         <li>
             The total return from the investment is shared by you and the other participant.
         </li>
         <li>
-            Points in the <strong>Rationing Account</strong> determine your share of the total return. More points means bigger shares.
+            Points in the <strong>Rationing Account</strong> determine your share of the total return. More points mean bigger shares.
         </li>
         <li>
             You can also keep the points for yourself, which directly counts are part of your earnings.
@@ -150,11 +156,143 @@ Instructions: Part 1
     </p>
 </div>
 </div>
+{% elif player.condition == "A2m" %}
+<div>
+    <p>
+        In this part, there will be {{ player.interaction_length }} rounds of decision-making.
+    <ul>
+        <li>
+            You will be matched with another participant to play an investment game.
+        </li>
+        <li>
+            You will play with  <strong>the same participant</strong> for all rounds.
+        </li>
+        <li>
+            There are two types of players: Player A and Player B.
+        </li>
+        <li>
+            Your type will be <strong>randomly determined after you are matched</strong>
+            with another participant.
+        </li>
+        <li>
+            Your type will <strong>remain the same</strong> throughout the experiment.
+        </li>
+    </ul>
+
+    </p>
+    <p>
+    </p>
+
+    <p style="text-align: center">
+        <strong><u>Your decision</u></strong>
+    </p>
+    <p>
+    <ul>
+        <li>
+            In each round, both you and the the other player receive 10 pionts.
+        </li>
+        <li>
+            You can invest these points to an <strong>Investment Account</strong> and a <strong>Rationing Account</strong>,
+            or keep these points to yourself.
+        </li>
+    </ul>
+
+    <ul>
+        <li>
+            Points in <strong>Investment Account</strong> determine the total return from the investment. More points
+            mean larger returns.
+        </li>
+        <li>
+            The total return from the investment is shared by you and the other participant.
+        </li>
+        <li>
+            Points in the <strong>Rationing Account</strong> determine your share of the total return. More points mean bigger shares.
+        </li>
+        <li>
+            You can also keep the points for yourself, which directly counts are part of your earnings.
+        </li>
+    </ul>
+    <p style="text-align: center">
+        <strong><u>Your earnings</u></strong>
+    </p>
+    <p>
+        Suppose the two players (you and the other participant) have the following allocation of the points:
+    </p>
+    <table id="width50">
+        <tr>
+            <th></th>
+            <th>Investment Account</th><th>Rationing Account</th><th>Kept to oneself</th>
+        </tr>
+        <tr>
+            <th>Player A</th><td>\(x_A\)</td><td>\(y_A\)</td><td>\(10-x_A-y_B\)</td>
+        </tr>
+        <tr>
+            <th>Player B</th><td>\(x_B\)</td><td>\(y_B\)</td><td>\(10-x_A-y_B\)</td>
+        </tr>
+    </table>
+</div>
+<br/>
+<p>The earnings are calculated as follows.</p>
+<div>
+    <ul>
+        <li>
+            The total return from the investment depends on the points put in the Investment Account
+            {% if player.A == 0 %}
+            $$ \text{Total investment return} =  x_A x_B $$
+            {% endif %}
+            {% if player.A == 60 %}
+            $$ \text{Total investment return} = x_A x_B + 60 $$
+            {% endif %}
+        </li>
+        <li>
+            The share of the total return is determined by points put in the <i>Rationing Account</i>.
+        </li>
+        <li>
+            <strong>Important:</strong> Player A is twice effective as Player B in capturing the share of the total return.
+             It is as if A's points in the Rationing Account is multipled by 2 before comparing to B's points in order to determine the share:
+
+            $$ \text{A's share of the total return} =  \frac{2y_A}{2y_A + y_B} $$
+            $$ \text{B's share of the total return} =  \frac{y_B}{2y_A + y_B} $$
+        </li>
+        <li>
+                For example, if A puts 1 points in the Rationing Account while B puts 2 points (\(y_A=1,y_B=2)\), because
+                \(\frac{2\times1}{2\times1+2} = 0.5\), Player A receives 0.5 of the Total Return.
+                If A puts 2 points and B puts 6 points in the Rationing Account (\(y_A=2,y_B=6)\), then
+                A receives \(\frac{2\times2}{2\times2+6} = 0.4\) of the Total Return.
+        </li>
+        <li>
+                In case both players put 0 points in the Rationing Account (\(y_A=y_B=0\)), each player receives half of the total return.
+        </li>
+           </ul>
+    <ul>
+        <li> The final earnings can be expressed as
+
+            {% if player.A == 0 %}
+            $$\text{A's Final Earnings} =  \underbrace{\frac{2y_A}{2y_A + y_B} x_A x_B}_{\text{earnings from the investment}} +
+            \underbrace{10-x_A-y_A}_{\text{points kept for oneself}}$$
+            $$\text{B's Final Earnings} =  \underbrace{\frac{y_B}{2y_A + y_B} x_A x_B}_{\text{earnings from the investment}} +
+            \underbrace{10-x_B-y_B}_{\text{points kept for oneself}}$$
+            {% endif %}
+            {% if player.A == 60 %}
+            $$\text{A's Final Earnings} =  \underbrace{\frac{2y_A}{2y_A + y_B}(x_A x_B+60)}_{\text{earnings from the investment}} +
+            \underbrace{10-x_A-y_A}_{\text{points kept for oneself}}$$
+            $$\text{B's Final Earnings} =  \underbrace{\frac{y_B}{2y_A + y_B}(x_A x_B+60)}_{\text{earnings from the investment}} +
+            \underbrace{10-x_B-y_B}_{\text{points kept for oneself}}$$
+            {% endif %}
+        </li>
+    </ul>
+    <p>
+        In general, putting more points in the <i>Investment Account</i> (a higher \(x\))  <strong>generates a higher total return</strong>
+        , while putting more points in the <i>Rationing Account</i> (a higher \(y\)) <strong>increases your share of the total return</strong>.
+    </p>
+</div>
+</div>
 {% else %}
 <div>
     <p>
-        In this part, there will be <strong>{{ player.interaction_length }}</strong> rounds of decision-making. You will be matched with another participant to play
-        an investment game. You will play with the same participant for all rounds.
+        In this part, there will be {{ player.interaction_length }} rounds of decision-making.
+        You will be matched with another participant to play an investment game.
+        You will play with the same participant for all rounds.
     </p>
 
 
@@ -183,13 +321,13 @@ Instructions: Part 1
     <ul>
         <li>
             Points in the <strong>Investment Account</strong> determine the size of the total return from the investment. More points
-            means larger returns.
+            mean larger returns.
         </li>
         <li>
             The total return from the investment is shared by you and the other participant.
         </li>
         <li>
-            Points in the <strong>Rationing Account</strong> determine your share of the total return. More points means bigger shares.
+            Points in the <strong>Rationing Account</strong> determine your share of the total return. More points mean bigger shares.
         </li>
         <li>
             You can also keep the points for yourself, which directly counts are part of your earnings.

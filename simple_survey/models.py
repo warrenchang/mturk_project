@@ -26,5 +26,11 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    gender = models.StringField(choices=['Male','Female'],
-                              )
+    gender = models.StringField(choices=['Male','Female'],)
+    rank_estimate = models.IntegerField(choices=[
+        [1, '1 ~ 5'],
+        [2, '6 ~ 10'],
+        [3, '11 ~ 15'],
+        [4, '16 ~ 20'],
+        [5, '> 20'],]
+    )

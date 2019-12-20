@@ -52,7 +52,28 @@
 </div>
 
 
-
+{% if player.condition == "A2m" %}
+<div>
+    <p>
+        {% if player.A == 0 %}
+        $$\text{A's Final Earnings} =  \underbrace{\frac{2y_A}{2y_A + y_B} x_A x_B}_{\text{earnings from the investment}} +
+        \underbrace{10-x_A-y_A}_{\text{points kept for oneself}}$$
+        $$\text{B's Final Earnings} =  \underbrace{\frac{y_B}{2y_A + y_B} x_A x_B}_{\text{earnings from the investment}} +
+        \underbrace{10-x_B-y_B}_{\text{points kept for oneself}}$$
+        {% endif %}
+        {% if player.A == 60 %}
+        $$\text{A's Final Earnings} =  \underbrace{\frac{2y_A}{2y_A + y_B}(x_A x_B+60)}_{\text{earnings from the investment}} +
+        \underbrace{10-x_A-y_A}_{\text{points kept for oneself}}$$
+        $$\text{B's Final Earnings} =  \underbrace{\frac{y_B}{2y_A + y_B}(x_A x_B+60)}_{\text{earnings from the investment}} +
+        \underbrace{10-x_B-y_B}_{\text{points kept for oneself}}$$
+        {% endif %}
+    </p>
+    <p>
+        In general, putting more points in the <i>Investment Account</i> (a higher \(x\))  <strong>generates a higher total return</strong>
+        , while putting more points in the <i>Rationing Account</i> (a higher \(y\)) <strong>increases your share of the total return</strong>.
+    </p>
+</div>
+{% endif %}
 
 {% if player.condition == "Det" %}
 <div>

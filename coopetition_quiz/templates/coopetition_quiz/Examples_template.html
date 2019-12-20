@@ -40,7 +40,7 @@
         </li>
         <li>
             If A puts 12 points in the Investment Account while B puts 0 point (\(x_A=12,x_B=0\)),
-            the total return is only\(\frac{1}{2}×12×0=0\), the same as when A invests nothing.
+            the total return is only \(\frac{1}{2}×12×0=0\), the same as when A invests nothing.
         <li>
             Therefore, putting many points in the Investment Account is a waste if the other puts few. If you are not sure that
             the other will put points in the Investment Account, a safe option is to keep your points for yourself.
@@ -188,6 +188,184 @@
 
 </div>
 {% endif %}
+
+
+{% if player.treatment == "A2m0_60" %}
+<div>
+    <p> <strong><u>Example 1:</u></strong></p>
+    <ul>
+        <li>
+            You can generate a large investment return by putting points in the Investment Account.
+            For example, if both players invest all points in the Investment Account (\(x_A=10, x_B=10\)),
+            the total return is \(10×10=100\) points.
+        </li>
+        <li>
+            However, it is risky to put all the points in the Investment Account.
+            Suppose A puts 10 points in the Investment Account (\(x_A=10,y_A=0\)),
+            and B puts 9 points in it and 1 point in the Rationing Account (\(x_B=9,y_B=1\)),
+            the total return is \(10×9=90\) points.
+            Because all the points in the Rationing Account come from B, B receives all the 90 points,
+            while A earns nothing.
+        </li>
+    </ul>
+
+    <br/>
+    <strong><u>Example 2:</u></strong> The investment is profitable only if both players put points in the Investment Account.
+    <ul>
+        <li>
+            If A puts 6 points while B puts 6 points (\(x_A=6,x_B=6\)), the total return is \(6×6=36\) points.
+        </li>
+        <li>
+            If A puts 6 points in the Investment Account while B puts 0 point (\(x_A=6,x_B=0\)),
+            the total return is only \(6×0=0\), the same as when A invests nothing.
+        <li>
+            Therefore, putting many points in the Investment Account is a waste if the other puts few. If you are not sure that
+            the other will put points in the Investment Account, a safe option is to keep your points for yourself.
+        </li>
+    </ul>
+
+
+    <br/>
+    <p>
+        <strong><u>Example 3:</u></strong> In the following situation, A's earnings is 16.5 points and B's earnings is 15.5 points.
+    </p>
+
+    <table>
+        <tr>
+            <th>Player</th>
+            <th>Investment Account</th><th>Rationing Account</th><th>Kept to self</th>
+            <th>Total Return</th><th>Share of Total Return</th><th>Final Earnings</th>
+        </tr>
+        <tr>
+            <th>A</th><td>\(x_A=5\)</td><td>\(y_A=1\)</td><td>\(4\)</td>
+            <td rowspan="2">\(\displaystyle x_Ax_B=25\)</td>
+            <td>\(\frac{2y_A}{2y_A + y_B} =\frac{2}{2+2} = 0.5\)</td>
+            <td>\(0.5 \times 25 + 4 = 16.5\)</td>
+        </tr>
+        <tr>
+            <th>B</th><td>\(x_B=5\)</td><td>\(y_B=2\)</td><td>\(3\)</td>
+            <td>\(\frac{y_B}{2y_A + y_B} =\frac{2}{2+2} = 0.5\)</td>
+            <td>\(0.5 \times 25 + 3 = 15.5\)</td>
+        </tr>
+    </table>
+    <br/>
+    <p>
+
+    <p>
+        If B increases the investment in the Rationing Account from 2 to 3, A's earnings will be 14 points,
+    and B's earnings will be 17 points.
+    </p>
+
+    <table>
+        <tr>
+            <th>Player</th>
+            <th>Investment Account</th><th>Rationing Account</th><th>Kept to self</th>
+            <th>Total Return</th><th>Share of Total Return</th><th>Final Earnings</th>
+        </tr>
+        <tr>
+            <th>A</th><td>\(x_A=5\)</td><td>\(y_A=1\)</td><td>\(4\)</td>
+            <td rowspan="2">\(\displaystyle x_Ax_B=25\)</td>
+            <td>\(\frac{2y_A}{2y_A + y_B} =\frac{2}{2+3} = 0.4\)</td>
+            <td>\(0.4 \times 25 + 4 = 14\)</td>
+        </tr>
+        <tr>
+            <th>B</th><td>\(x_B=5\)</td><td>\(y_B=3\)</td><td>\(2\)</td>
+            <td>\(\frac{y_B}{2y_A + y_B} =\frac{3}{2+3} = 0.6\)</td>
+            <td>\(0.6 \times 25 + 2 = 17\)</td>
+        </tr>
+    </table>
+
+</div>
+{% endif %}
+
+{% if player.treatment == "A2m60_0" %}
+<div>
+    <p> <strong><u>Example 1:</u></strong></p>
+    <ul>
+        <li>
+            You can generate a large investment return by putting points in the Investment Account.
+            For example, if both players invest all points in the Investment Account (\(x_A=10, x_B=10\)),
+            the total return is \(10×10+60=160\) points.
+        </li>
+        <li>
+            However, it is risky to put all the points in the Investment Account.
+            Suppose A puts 20 points in the Investment Account (\(x_A=10,y_A=0\)),
+            and B puts 9 points in it and 1 point in the Rationing Account (\(x_B=9,y_B=1\)),
+            the total return is \(10×9+60=150\) points.
+            Because all the points in the Rationing Account come from B, B receives all the 150 points,
+            while A earns nothing.
+        </li>
+    </ul>
+
+    <br/>
+    <strong><u>Example 2:</u></strong> The investment is profitable only if both players put points in the Investment Account.
+    <ul>
+        <li>
+            If A puts 6 points while B puts 6 points (\(x_A=6,x_B=6\)), the total return is \(6×6+60=96\) points.
+        </li>
+        <li>
+            If A puts 6 points in the Investment Account while B puts 0 point (\(x_A=6,x_B=0\)),
+            the total return is only \(6×0+60=60\), the same as when A invests nothing.
+        <li>
+            Therefore, putting many points in the Investment Account is a waste if the other puts few. If you are not sure that
+            the other will put points in the Investment Account, a safe option is to keep your points for yourself.
+        </li>
+    </ul>
+
+
+    <br/>
+    <p>
+        <strong><u>Example 3:</u></strong> In the following situation, A's earnings is 50.5 points and B's earnings is 45.5 points.
+    </p>
+
+    <table>
+        <tr>
+            <th>Player</th>
+            <th>Investment Account</th><th>Rationing Account</th><th>Kept to self</th>
+            <th>Total Return</th><th>Share of Total Return</th><th>Final Earnings</th>
+        </tr>
+        <tr>
+            <th>A</th><td>\(x_A=5\)</td><td>\(y_A=1\)</td><td>\(8\)</td>
+            <td rowspan="2">\(\displaystyle x_Ax_B+60=85\)</td>
+            <td>\(\frac{2y_A}{2y_A + y_B} =\frac{2}{2+2} = 0.5\)</td>
+            <td>\(0.5 \times 85 + 4 = 50.5\)</td>
+        </tr>
+        <tr>
+            <th>B</th><td>\(x_B=5\)</td><td>\(y_B=2\)</td><td>\(3\)</td>
+            <td>\(\frac{y_B}{2y_A + y_B} =\frac{2}{2+2} = 0.5\)</td>
+            <td>\(0.5 \times 85 + 3 = 45.5\)</td>
+        </tr>
+    </table>
+    <br/>
+    <p>
+
+    <p>
+        If A increases the investment in the Rationing Account from 2 to 3, A's earnings will be 58 points,
+    and B's earnings will be 37 points.
+    </p>
+
+    <table>
+        <tr>
+            <th>Player</th>
+            <th>Investment Account</th><th>Rationing Account</th><th>Kept to self</th>
+            <th>Total Return</th><th>Share of Total Return</th><th>Final Earnings</th>
+        </tr>
+        <tr>
+            <th>A</th><td>\(x_A=5\)</td><td>\(y_A=2\)</td><td>\(3\)</td>
+            <td rowspan="2">\(\displaystyle\frac{x_Ax_B}{2}+60=85\)</td>
+            <td>\(\frac{2y_A}{2y_A + y_B} =\frac{4}{4+2} = 0.6\)</td>
+            <td>\(0.6 \times 85 + 7 = 58\)</td>
+        </tr>
+        <tr>
+            <th>B</th><td>\(x_B=5\)</td><td>\(y_B=2\)</td><td>\(3\)</td>
+            <td>\(\frac{y_B}{2y_A + y_B} =\frac{2}{4+2} = 0.4\)</td>
+            <td>\(0.4 \times 85 + 3 = 37\)</td>
+        </tr>
+    </table>
+
+</div>
+{% endif %}
+
 
 {% if player.treatment == "Det0_60" %}
 <div>
