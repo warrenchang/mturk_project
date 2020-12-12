@@ -1,10 +1,29 @@
 {% extends "global/Page.html" %}
 {% load staticfiles otree %}
 
+{% block styles %}
+    <style>
+        .otree-timer {
+            display: none;
+        }
+    </style>
+{% endblock %}
+{% block scripts %}
+    <script>
+        $(function () {
+            $('.otree-timer__time-left').on('update.countdown', function (event) {
+                if (event.offset.totalSeconds === 30) {
+                    $('.otree-timer').show();
+                }
+            });
+        });
+    </script>
+{% endblock %}
+
+
 {% block title %}
 Examples
 {% endblock %}
-
 
 {% block content %}
 <div class="card bg-light instructions">

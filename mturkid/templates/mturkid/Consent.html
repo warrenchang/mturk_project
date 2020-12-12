@@ -1,0 +1,59 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+<h4 style="text-align: center">
+    Terms and Conditions
+</h4>
+<p>
+    This experiment is designed and validated as part of academic research.
+    Participation is voluntary. You can end your participation at any time.
+</p>
+<p>
+    From the collection of these data no individual can be personally identified.
+    These data will be used for academic research.
+    The analysis of the data may be published in scientific papers.
+    These papers will contain only anonymous, aggregated data (e.g. percentages and averages) presented as
+    tables and figures. They will not contain any data on individual responses.
+</p>
+<p>
+    The processing of these data follows Article 6(1.e) of the General Data Protection Regulation (GDPR):
+    processing is necessary for the performance of a task carried out in the public interest or in the exercise of official
+    authority vested in the controller. Your data is not used for any other purposes.
+    Only fully anonymised data will be shared for the only purpose of replications of the analysis,
+    as and when it is required by scientific journals.
+</p>
+<p>
+    By checking the box below and proceeding, I acknowledge that my responses here will be kept completely private.
+    I understand that the researchers wish to receive only anonymized data and have implemented computational and physical
+    safeguards to mask my identity from themselves and any others. Data received from me will be de-identified
+    and stored on an encrypted hard drive. Any questions about the experiment, its implementation, and privacy in this project
+    may be directed to: Professor Huanren Zhang at <a href="mailto:huanren@sam.sdu.dk">huanren@sam.sdu.dk</a>
+</p>
+
+<p>
+    I agree to the terms and conditions:
+<td class="formfield">
+    <input type="checkbox" name="consent" value=True required>
+</td>
+</p>
+<p>
+    By checking the box below and proceeding, I certify that the responses I provide in this experiment are mine alone,
+    and were not reached in consultation with anyone else.
+</p>
+
+<p>
+    These responses will be my own:
+
+<td class="formfield">
+    <input type="checkbox" name="independent" value=True required>
+</td>
+
+<div style="text-align:right">
+    <button class="otree-btn-next btn btn-primary">Submit</button>
+</div>
+
+{% endblock %}

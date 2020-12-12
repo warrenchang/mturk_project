@@ -1,0 +1,50 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** TITLE *** #}
+{# ****************************************************************************************************************** #}
+{% block title %}
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** CONTENT *** #}
+{# ****************************************************************************************************************** #}
+
+{% block content %}
+<h4  style="text-align:center">
+    Coin toss task
+</h4>
+<div class="wrapper">
+    <p>
+        Please grab a coin that has both a "Heads" and a "Tails" side. We would like you to flip this coin 10 times.
+        We wil pay you {{ Constants.payment_per_incidence |c }} for every "Heads" you get .
+    </p>
+    <p>
+        Please flip the coin 10 times now, and keep track of the number of "Heads" you get.
+    </p>
+    <p style="text-align:center">
+        How many heads did you get?
+    </p>
+</div>
+
+
+</div>
+    <div class="container" style="alignment:center">
+        <div class="row">
+            <div class="col-sm-5"> </div>
+            <div class="col-sm-2">
+                {{ form.outcome }}
+            </div>
+            <div class="col-sm-5"> </div>
+        </div>
+    </div>
+</br>
+<div style="text-align:right">
+    <button class="otree-btn-next btn btn-primary">Submit</button>
+</div>
+
+
+{% endblock %}

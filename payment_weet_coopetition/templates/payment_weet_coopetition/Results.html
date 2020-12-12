@@ -1,0 +1,141 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block styles %}
+    <style>
+        .otree-timer {
+            display: none;
+        }
+    </style>
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** TITLE *** #}
+{# ****************************************************************************************************************** #}
+{% block title %}
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** CONTENT *** #}
+{# ****************************************************************************************************************** #}
+{% block content %}
+<p>This is the end of the experiment. Thank you for your participation.</p>
+<p><strong>IMPORTANT:</strong> Please provide the following Participation Code to the MTurk HIT in order to receive credit for
+    taking the experiment. </p>
+<p style="text-align:center"> <strong> Your Participation Code: {{ participant.code }}</strong> </p>
+
+<hr>
+<h4 style="text-align:center">Results of Allocation Task </h4>
+
+        <div class="card-body">
+            For the allocation task,
+            <strong>
+                {% if id_in_group == id_to_pay %} you {% else %} the other participant {% endif %}
+            </strong>
+            has been selected as the Proposer, and the following decision problem has been randomly chosen:
+
+        <div class="h4" style="text-align: center">
+            {% if id_in_group == id_to_pay %}
+                     Your Decision
+            {% else %}
+                    Other's Decision
+            {% endif %}
+        </div>
+
+        <div class="card">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th colspan="2">Option 'Left'</th>
+                        <th></th>
+                        <th colspan="2">Option 'Right'</th>
+                    </tr>
+                    <tr>
+                            {% if id_in_group == id_to_pay %}
+                                <th>Your Payoff</th>
+                                <th>Other's Payoff</th>
+                                <th></th>
+                                <th>Your Payoff</th>
+                                <th>Other's Payoff</th>
+                            {% else %}
+                                <th>Other's Payoff</th>
+                                <th>Your Payoff</th>
+                                <th></th>
+                                <th>Other's Payoff</th>
+                                <th>Your Payoff</th>
+                            {% endif %}
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <!-- option "left" -->
+                        <td>{{ p1_payoffL |c }}</td>
+                        <td>{{ p2_payoffL |c }}</td>
+
+                        <!-- radio select form fields -->
+                        <td class="formfield">
+                            {% if decision == 'L' %}
+                            <input type="radio" style="pointer-events: none;" checked="checked">
+                            <input type="radio" style="pointer-events: none;" disabled>
+                            {% elif decision == 'R' %}
+                            <input type="radio" style="pointer-events: none;" disabled>
+                            <input type="radio" style="pointer-events: none;" checked="checked">
+                            {% endif %}
+                        </td>
+
+                        <!-- option "right" -->
+                        <td>{{ p1_payoffR |c }}</td>
+                        <td>{{ p2_payoffR |c }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+            <div class="card-body">
+                    <!-- ------------------------------------------------------------------------------------------- -->
+                    <!-- payoff info shown to active players -->
+                    <!-- ------------------------------------------------------------------------------------------- -->
+                    {% if id_in_group == id_to_pay %}
+
+                        <!-- if choice = left -->
+                        {% if decision == 'L' %}
+                                You chose option "Left". <br/>
+                                Thus, you receive  <b>{{ p1_payoffL }}</b>
+                                and the other receives <b>{{ p2_payoffL }}</b>.
+
+                        <!-- if choice = right -->
+                        {% elif decision == 'R' %}
+                                You chose option "Right". <br/>
+                                Thus, both you and the other receive <b>{{ p1_payoffR }}</b>.
+                        {% endif %}
+
+                    <!-- ------------------------------------------------------------------------------------------- -->
+                    <!-- payoff info shown to passive players -->
+                    <!-- ------------------------------------------------------------------------------------------- -->
+                    {% elif id_in_group != id_to_pay %}
+
+                        <!-- if choice = left -->
+                        {% if decision == 'L' %}
+                                The other participant chose option "Left". <br/>
+                                Accordingly, your payoff amounts to <b>{{ p2_payoffL }}</b> and the other participant
+                                receives a payoff equal to <b>{{ p1_payoffL }}</b>.
+
+                        <!-- if choice = LEFT -->
+                        {% elif decision == 'R'  %}
+                                The other participant chose option "Right". <br/>
+                                Accordingly, both the other participant and you receive <b>{{ p1_payoffR }}</b>.
+                        {% endif %}
+
+                    {% endif %}
+
+            </div>
+
+        </div>
+<div style="text-align:center">
+    {% next_button %}
+</div>
+
+{% endblock %}

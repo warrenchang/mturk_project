@@ -1,0 +1,17 @@
+{% load otree staticfiles %}
+
+<div class="instructions well well-lg">
+    <div style="text-font:16px">
+        <p >
+            As the next task, you will be presented with {{ Constants.num_rounds }} puzzles,
+            each showing a pattern with a part cut out of it.
+            Look at the pattern, think what piece is needed to complete the pattern correctly.
+        </p>
+        <p >
+            {% if ravens_payoff_per_question > 0 %}
+            You will be paid {{ ravens_payoff_per_question }} points for each puzzle you solve correctly.
+            {% endif %}
+            You have up to 8 minutes to solve all the puzzles.
+        </p>
+    </div>
+</div>

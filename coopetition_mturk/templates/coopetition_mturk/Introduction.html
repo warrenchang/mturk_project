@@ -5,8 +5,27 @@
 Introduction: Part 2
 {% endblock %}
 
-{% block content %}
+{% block styles %}
+    <style>
+        .otree-timer {
+            display: none;
+        }
+    </style>
+{% endblock %}
+{% block scripts %}
+    <script>
+        $(function () {
+            $('.otree-timer__time-left').on('update.countdown', function (event) {
+                if (event.offset.totalSeconds == 30) {
+                    $('.otree-timer').show();
+                }
+            });
+        });
+    </script>
+{% endblock %}
 
+
+{% block content %}
 <p>
     This is the start of Part 2 of the experiment.
     There will be {{ Constants.interaction_length.1 }} rounds of decision-making.

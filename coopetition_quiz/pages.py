@@ -7,6 +7,16 @@ from otreeutils.pages import AllGroupsWaitPage, ExtendedPage, UnderstandingQuest
 import math
 
 
+def vars_for_all_templates(self):
+    if 'quiz_bonus' in self.session.config:
+        quiz_bonus = self.session.config['quiz_bonus']
+    else:
+        quiz_bonus = 0
+    return {
+        'quiz_bonus':  quiz_bonus,
+    }
+
+
 class StartPage(Page):
     timeout_seconds = 300
 
@@ -20,6 +30,7 @@ class StartPage(Page):
             'exchange_rate': int(round(1/self.session.config['real_world_currency_per_point'])),
             'max_payment': self.session.config['max_payment'],
         }
+
 
 class SettingParameters(Page):
     ## this page is used to set parameters for players
@@ -54,7 +65,7 @@ class SomeUnderstandingQuestions(UnderstandingQuestionsPage):
     # set_correct_answers = False  # do not fill out the correct answers in advance (this is for fast skipping through pages)
     form_model = 'player'
     form_field_n_wrong_attempts = 'wrong_attempts'
-    timeout_seconds = 480
+    timeout_seconds = 60*8
 
     def get_questions(self):
         if self.session.config['treatment'] == 'Det0_60':
@@ -182,6 +193,11 @@ class SomeUnderstandingQuestions(UnderstandingQuestionsPage):
                     'correct': 'True',
                 },
                 {
+                    'question': 'Suppose you put 10 points in the Investment Account, while the other put 0 point. What is the total return from the Investment Account?',
+                    'options': ['0', '10', '20', '60'],
+                    'correct': '60',
+                },
+                {
                     'question': "Suppose both players put all points in the Investment Account (\(x_A=20, x_B=10, y_A=y_B=0\)). What is the total return from the Investment Account?",
                     'options': ['10','20','100','160'],
                     'correct': '160',
@@ -190,11 +206,6 @@ class SomeUnderstandingQuestions(UnderstandingQuestionsPage):
                     'question': "Suppose both players put 10 points in the Investment Account (\(x_A=x_B=10\)). What is the total return from the Investment Account?",
                     'options': ['10','20','50','110'],
                     'correct': '110',
-                },
-                {
-                    'question': 'Suppose you put 10 points in the Investment Account, while the other put 0 point. What is the total return from the Investment Account?',
-                    'options': ['0','10','20','60'],
-                    'correct': '60',
                 },
                 {
                     'question': "Suppose you put 3 points in the Rationing Account, and the other participant put 2 points in the Rationing Account. What is your share of the total return from the Investment Account?",
@@ -411,7 +422,6 @@ class SomeUnderstandingQuestions(UnderstandingQuestionsPage):
             ]
 
         elif self.session.config['treatment'] == 'Var60_0':
-
             questions = [
                 {
                     'question': '[True/False] The more you and the other participant invest in the Investment Account, the more likely that the investment is a success.',
@@ -444,7 +454,6 @@ class SomeUnderstandingQuestions(UnderstandingQuestionsPage):
                     'correct': '0.6',
                 },
             ]
-
         return questions
 
     def before_next_page(self):
@@ -454,7 +463,10 @@ class SomeUnderstandingQuestions(UnderstandingQuestionsPage):
         if self.timeout_happened:
             self.participant.vars['qualified'] = False
         else:
-            self.participant.vars['qualified'] = self.player.wrong_attempts < 3
+            self.participant.vars['qualified'] = self.player.wrong_attempts < Constants.max_attempts
+        if self.participant.vars['qualified']:
+            if 'quiz_bonus' in self.session.config:
+                self.player.payoff = self.session.config['quiz_bonus']/self.session.config['real_world_currency_per_point']
 
 
 class QuizResults(Page):
@@ -466,18 +478,6 @@ class QuizResults(Page):
             'max_payment': self.session.config['max_payment'],
         }
 
-class WorkerID(Page):
-    timeout_seconds = 60
-
-    form_model = 'player'
-    form_fields = ['workerid']
-
-    def is_displayed(self):
-        return self.participant.vars['qualified']
-
-    def before_next_page(self):
-        self.participant.vars['workerid'] = self.player.workerid
-
 
 page_sequence = [
     StartPage,
@@ -486,5 +486,4 @@ page_sequence = [
     Examples,
     SomeUnderstandingQuestions,
     QuizResults,
-    WorkerID,
 ]

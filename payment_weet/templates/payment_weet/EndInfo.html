@@ -1,0 +1,43 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+<p>This is the end of the experiment. Thank you for your participation.</p>
+<p><strong>IMPORTANT:</strong> Please provide the following Participation Code to the MTurk HIT in order to receive credit for
+    taking the experiment. </p>
+<p style="text-align:center"> <strong> Your Participation Code: {{ participant.code }}</strong> </p>
+
+<hr>
+<p style="text-align: center"> <strong> Payment Information </strong> </p>
+<div style="text-align: center">
+    <p>Your flat participation fee is {{ participation_fee }}.</p>
+    <p>Your bonus earnings in the experiment is {{ payoff_in_points }}, which is {{ bonus_payment }}.</p>
+    <p><strong>Your total payment of the experiment is {{final_payment}}</strong> </p>
+    <p>You should receive your participation fee and bonus payment within 24 hours.</p>
+
+    <p>Your earnings for each task is shown below.</p>
+    <table>
+
+        {% for info,payoff in payoff_info %}
+        <tr>
+            <td class="lottery">
+                {{ info }}
+            </td>
+            <td class="sure_payoff">
+                {{ payoff }}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+
+
+{% endblock %}
+
+{% block form %}
+
+{% endblock %}

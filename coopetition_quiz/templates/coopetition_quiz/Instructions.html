@@ -6,12 +6,25 @@ Instructions: Part 1
 {% endblock %}
 
 {% block styles %}
-<style>
-    .otree-timer {
-        display: none;
-    }
-</style>
+    <style>
+        .otree-timer {
+            display: none;
+        }
+    </style>
 {% endblock %}
+{% block scripts %}
+    <script>
+        $(function () {
+            $('.otree-timer__time-left').on('update.countdown', function (event) {
+                if (event.offset.totalSeconds === 180) {
+                    $('.otree-timer').show();
+                }
+            });
+        });
+    </script>
+{% endblock %}
+
+
 
 {% block content %}
 <!--The following includes mathjax, the support for LaTex expressions.-->
@@ -249,7 +262,7 @@ Instructions: Part 1
         </li>
         <li>
             <strong>Important:</strong> Player A is twice effective as Player B in capturing the share of the total return.
-             It is as if A's points in the Rationing Account is multipled by 2 before comparing to B's points in order to determine the share:
+             It is as if A's points in the Rationing Account is multiplied by 2 before comparing to B's points in order to determine the share:
 
             $$ \text{A's share of the total return} =  \frac{2y_A}{2y_A + y_B} $$
             $$ \text{B's share of the total return} =  \frac{y_B}{2y_A + y_B} $$

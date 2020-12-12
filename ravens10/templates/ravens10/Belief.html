@@ -1,0 +1,48 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{# ****************************************************************************************************************** #}
+{# *** TITLE *** #}
+{# ****************************************************************************************************************** #}
+{% block title %}
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** CONTENT *** #}
+{# ****************************************************************************************************************** #}
+
+{% block content %}
+
+<div class="wrapper">
+    <p>
+        How many of the {{ Constants.num_rounds}} puzzles do you think you solved correctly?
+    </p>
+    <div class="row">
+        <div class="col-sm-5"> </div>
+        <div class="col-sm-2">
+            {{ form.belief1 }}
+        </div>
+        <div class="col-sm-5"> </div>
+    </div>
+
+
+    <p>
+        Out of 100 other randomly selected participants, how many do you think solve more puzzles correctly than you?
+    </p>
+    <div class="row">
+        <div class="col-sm-5"> </div>
+        <div class="col-sm-2">
+            {{ form.belief2 }}
+        </div>
+        <div class="col-sm-5"> </div>
+    </div>
+</div>
+
+</br>
+<div style="text-align:right">
+    {% next_button %}
+</div>
+
+
+{% endblock %}

@@ -1,6 +1,6 @@
-{% extends extended_page_tpl %}
+{% extends 'otreeutils/ExtendedPage.html' %}
 
-{% load staticfiles otree %}
+{% load staticfiles otree_tags %}
 
 {% block app_styles %}
 <link href="{% static 'otreeutils/understanding.css' %}" rel="stylesheet" type="text/css">
@@ -18,22 +18,23 @@
 </head>
 {% endblock %}
 
-
 {% block title %}
 {{ page_title }}
 {% endblock %}
+
 
 {% block content %}
 
 <div class="card bg-light instructions">
     <div class="card-body">
         {% if quiz_info != '' %}
-        {% include quiz_info  %}
+            {% include quiz_info  %}
         {% endif %}
     </div>
 </div>
 
 <br/>
+
 <ul class="questions">
     {{ questions_form.as_ul }}
 </ul>
@@ -43,23 +44,23 @@
 </div>
 
 <div class="fake-next">
-    <input class="btn btn-primary btn-large btn-primary" type="button" value="Check my answers"
+    <input class="btn btn-primary btn-large btn-primary" type="button" value="Next"
            onclick="checkUnderstandingQuestionsForm()">
 </div>
 
 <br/>
-<div class="card bg-light instructions">
-    <div class="card-body">
-        {% if extra_template != '' %}
+<!--<div class="card bg-light instructions">-->
+    <!--<div class="card-body">-->
+    {% if extra_template != '' %}
         {% include extra_template  %}
-        {% endif %}
+    <!--{% endif %}-->
     </div>
-</div>
+<!--</div>-->
 
 <script>
-    $(function() {
-        setupUnderstandingQuestionsForm({{ n_questions }}, "{{ hint_empty }}", "{{ form_field_n_wrong_attempts }}", {{ set_correct_answers }});
-    });
+$(function() {
+    setupUnderstandingQuestionsForm({{ n_questions }}, "{{ hint_empty }}", "{{ form_field_n_wrong_attempts }}", {{ set_correct_answers }});
+});
 </script>
 {% endblock %}
 

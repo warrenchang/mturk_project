@@ -4,21 +4,27 @@
 <p>
 Please complete the following quiz questions based on the above information.
 You have three chances to answer all the questions correctly.
-If it takes you more than 3 attempts, you will not be allowed to participate in
+If it takes you more than {{ Constants.max_attempts }} attempts, you will not be allowed to participate in
 the experiment and will not receive any payment for the HIT.
 </p>
 
 <p>
     Please provide your answers before clicking "Check my answers", then the answers that are incorrect will be marked in red.
     Check and correct the wrong answers before checking your answers again.
-    Note that <strong>each time you click "Check my answer" would count as one of your attempts.</strong>
+    <strong>Each time you click "Check my answer" would count as one of your attempts.</strong>
 </p>
 <p>The information and examples of the experiment are shown below to help you complete the quiz.</p>
 
 <p>
-<strong>You have at most 8 minutes to finish the quiz.</strong> You will not be able to participate in the experiment if you
-    do not get all the answers correct in 8 minutes.
+<strong>You have at most {{ Constants.quiz_minutes }} minutes to finish the quiz.</strong>
+    You will not be able to participate in the new task if you
+    do not get all the answers correct.
 </p>
+
+<p>
+    The instructions of the task are shown below the questions to help you complete the quiz.
+</p>
+
 {% endblock %}
 
 

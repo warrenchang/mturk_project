@@ -1,0 +1,29 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+
+<h4 style="text-align: center">
+    Solving puzzles
+</h4>
+    {% include Constants.instructions_template %}
+
+    <p style="text-align: center">
+        For example, for the following matrix, the correct pattern is 8.
+    </p>
+
+    <div style="text-align:center">
+    <img src="{% static image_path %}"/>
+    </div>
+
+
+<br/>
+    <div style="text-align:center">
+        <p > Click next to start solving the problems. </p>
+    {% next_button %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+{% load i18n %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** STYLES *** #}
+{# ****************************************************************************************************************** #}
+{% block styles %}
+<link href="{% static 'cem/css/custom.css' %}" rel="stylesheet"/>
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** TITLE *** #}
+{# ****************************************************************************************************************** #}
+{% block title %}
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** CONTENT *** #}
+{# ****************************************************************************************************************** #}
+{% block content %}
+
+<h4  style="text-align:center">
+    Urn Gamble
+</h4>
+
+{% if player.set_number == 1 %}
+<p>
+    The following task involves an urn containing 20 balls, some are white and some are black.
+    <strong>You don't know how many balls are white and how many balls are black</strong>. Any combination is possible:
+    There might be from 0 to 20 white balls, with the remaining balls being black.
+</p>
+<div style="text-align:center">
+    <img src="{% static "ambiguity_cem/urn.png" %}" width="300" height="330" />
+</div>
+<p>
+    The payoff of the urn gamble will be determined by the computer.
+    The computer will randomly draw a ball from the urn, and if the ball has the color you have selected,
+    the gamble pays a bonus of {{ lottery_x }}. If the other color is drawn, it pays {{ lottery_y }}.
+</p>
+
+
+<p style="text-align:center">
+    Choose the color of the ball that pays the bonus.
+</p>
+
+</div>
+<div class="container" style="alignment:center">
+    <div class="row">
+        <div class="col-sm-5"> </div>
+        <div class="col-sm-2">
+            {{ form.ball_color }}
+        </div>
+        <div class="col-sm-5"> </div>
+    </div>
+</div>
+</br>
+
+{% elif player.set_number == 2 %}
+<p>
+    The next task involves <strong> the same urn </strong> containing 20 balls.
+    The only difference is that  <strong>the Urn Gamble could incur a loss</strong>.
+</p>
+<div style="text-align:center">
+    <img src="{% static "ambiguity_cem/urn.png" %}" width="300" height="330" />
+</div>
+<p>
+    The computer will randomly draw a ball from the urn, and if the ball has the color you have selected,
+    the gamble pays {{ lottery_x }}. If the other color is drawn, it pays {{ lottery_y }}.
+</p>
+<p>
+    The following table shows the decisions you need to make. For each decision, you need to choose whether you want
+    to play the Urn Gamble (Option A) or receive a sure loss (Option B).
+</p>
+<p style="text-align:center">
+    Choose the color of the ball that <strong>prevents</strong> you from the loss.
+</p>
+
+</div>
+<div class="container" style="alignment:center">
+    <div class="row">
+        <div class="col-sm-5"> </div>
+        <div class="col-sm-2">
+            {{ form.ball_color }}
+        </div>
+        <div class="col-sm-5"> </div>
+    </div>
+</div>
+</br>
+
+{% endif %}
+
+{% next_button %}
+
+{% endblock %}

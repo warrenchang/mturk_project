@@ -1,0 +1,110 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{# ****************************************************************************************************************** #}
+{# *** SCRIPTS *** #}
+{# ****************************************************************************************************************** #}
+{% block scripts %}
+<script>
+    function myFunction() {
+        var x = document.getElementById("myDIV");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>
+{% endblock %}
+
+
+
+{# ****************************************************************************************************************** #}
+{# *** TITLE *** #}
+{# ****************************************************************************************************************** #}
+{% block title %}
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** CONTENT *** #}
+{# ****************************************************************************************************************** #}
+
+{% block content %}
+<h4  style="text-align:center">
+    Number Guessing Task
+</h4>
+<div class="wrapper">
+    The computer has randomly generated a number between 1 and 100. Before seeing the number,
+    you will be asked to guess the number you are about to see (a number between 1-100).
+    Your bonus for this task will be paid as follows:
+
+    <ul>
+        <li>
+            If your guess is correct, you will earn {{ guess_bonus |c }}.
+        </li>
+        <li>
+            For every number by which you are off, you will earn {{ deduction |c }} less.
+        </li>
+        <li>
+            If you are off by 20 or more, you earn nothing.
+        </li>
+    </ul>
+
+    In other words, a more accurate guess gives a higher payoff.
+    As an example, suppose the random number is 60.
+    <ul>
+        <li>
+            If your guess is 60, you will earn {{ guess_bonus |c }}.
+        </li>
+        <li>
+            If your guess is 50, you will earn {{ bonus_off10 |c }}.
+        </li>
+        <li>
+            If your guess is more than 80 or less than 40, you earn nothing.
+        </li>
+    </ul>
+    <p>
+        Please guess the number. You need to submit your guess after you see the actual number.
+    </p>
+
+    <p>
+        Click "Reveal the Number" to see the actual number
+        and submit your guess.
+    </p>
+
+    <div style="text-align:center">
+        <button onclick="myFunction()">Reveal the Number</button>
+    </div>
+    </br>
+
+
+
+    <div id="myDIV" style="display:none">
+
+        <div style="text-align:center">
+        <p>The actual number is 27. The closer your number is to 27, the higher payoff you receive in this task.</p>
+        <p>Please indicate the number you have guessed.</p>
+        </div>
+        <div class="container" style="alignment:center">
+            <div class="row">
+                <div class="col-sm-5"> </div>
+                <div class="col-sm-2">
+                    {{ form.outcome }}
+                </div>
+                <div class="col-sm-5"> </div>
+            </div>
+        </div>
+
+        </br>
+    </div>
+
+</div>
+
+</br>
+<div style="text-align:right">
+    <button class="otree-btn-next btn btn-primary">Submit</button>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Solving puzzles
+{% endblock %}
+
+{% block content %}
+
+    {% include Constants.instructions_template %}
+
+    <p>
+        For example, for the following matrix, the correct pattern is 8.
+    </p>
+    <br/>
+
+
+    <div style="text-align:center">
+    <img src="{% static "ravens16/example.png" %}"/>
+    </div>
+
+
+    <div style="text-align:right">
+        <p > Click next to start solving the problems. </p>
+        <br/>
+    {% next_button %}
+    </div>
+
+{% endblock %}

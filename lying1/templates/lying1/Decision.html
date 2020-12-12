@@ -1,0 +1,52 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{# ****************************************************************************************************************** #}
+{# *** TITLE *** #}
+{# ****************************************************************************************************************** #}
+{% block title %}
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** CONTENT *** #}
+{# ****************************************************************************************************************** #}
+
+{% block content %}
+<h4  style="text-align:center">
+    Coin toss task
+</h4>
+<div class="wrapper">
+    <p>
+        Please grab a coin that has both a "Heads" (H) and a "Tails" (T) side as well as a piece of paper and something to write with.
+        We would like you to flip this coin {{ Constants.num_trials }} times and write down the outcome of these tosses in sequence.
+        Whenever two consecutive tosses lead to different results ("H" and then "T" or vice versa),
+        we will call it a "switch".
+    </p>
+    <p>
+        For example, in the sequence (H, H, T, H, H) there are two switches; In the sequence (T, H, T, H, H) there are three switches.
+        We wil pay you {{ Constants.payment_per_incidence |c }}  for every "switch" you get .
+    </p>
+    <p>
+        Please flip the coin 10 times now, and keep track of the number of switches you get.
+    </p>
+    <p style="text-align:center">
+        How many switches did you get?
+    </p>
+
+</div>
+    <div class="container" style="alignment:center">
+        <div class="row">
+            <div class="col-sm-5"> </div>
+            <div class="col-sm-2">
+                {{ form.outcome }}
+            </div>
+            <div class="col-sm-5"> </div>
+        </div>
+    </div>
+</br>
+<div style="text-align:right">
+    <button class="otree-btn-next btn btn-primary">Submit</button>
+</div>
+
+{% endblock %}

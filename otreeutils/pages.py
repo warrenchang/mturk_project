@@ -1,18 +1,18 @@
+"""
+oTree page extensions.
+
+Sept. 2018, Markus Konrad <markus.konrad@wzb.eu>
+"""
+
+
 import settings
-from distutils.version import StrictVersion
-from otree_mturk_utils.pages import CustomMturkPage, CustomMturkWaitPage
 
 from django import forms
 from django.utils.translation import ugettext as _
 
-import otree
 from otree.api import Page, WaitPage
 
 APPS_DEBUG = getattr(settings, 'APPS_DEBUG', False)
-DEBUG_FOR_TPL = str(APPS_DEBUG).lower()
-
-otree_base_version = 1 if StrictVersion(otree.__version__) < StrictVersion('2.0') else 2
-extended_page_tpl = 'otreeutils/ExtendedPage%d.html' % otree_base_version
 
 
 class AllGroupsWaitPage(WaitPage):
@@ -23,10 +23,39 @@ class AllGroupsWaitPage(WaitPage):
 class ExtendedPage(Page):
     """Base page class with extended functionality."""
     page_title = ''
-    quiz_info = ''
+    custom_name_in_url = None
     timer_warning_text = None
     timeout_warning_seconds = None    # set this to enable a timeout warning -- no form submission, just a warning
     timeout_warning_message = 'Please hurry up, the time is over!'
+    debug = APPS_DEBUG
+    debug_fill_forms_randomly = False
+
+    @classmethod
+    def url_pattern(cls, name_in_url):
+        if cls.custom_name_in_url:
+            return r'^p/(?P<participant_code>\w+)/{}/{}/(?P<page_index>\d+)/$'.format(
+                name_in_url,
+                cls.custom_name_in_url,
+            )
+        else:
+            return super().url_pattern(name_in_url)
+
+    @classmethod
+    def get_url(cls, participant_code, name_in_url, page_index):
+        if cls.custom_name_in_url:
+            return r'/p/{pcode}/{name_in_url}/{custom_name_in_url}/{page_index}/'.format(
+                pcode=participant_code, name_in_url=name_in_url,
+                custom_name_in_url=cls.custom_name_in_url, page_index=page_index
+            )
+        else:
+            return super().get_url(participant_code, name_in_url, page_index)
+
+    # @classmethod
+    # def url_name(cls):
+    #     if cls.custom_name_in_url:
+    #         return cls.custom_name_in_url.replace('.', '-')
+    #     else:
+    #         return super().url_name()
 
     @classmethod
     def has_timeout_warning(cls):
@@ -34,7 +63,7 @@ class ExtendedPage(Page):
 
     def get_template_names(self):
         if self.__class__ is ExtendedPage:
-            return [extended_page_tpl]
+            return ['otreeutils/ExtendedPage.html']
         else:
             return super().get_template_names()
 
@@ -42,27 +71,16 @@ class ExtendedPage(Page):
         """Override this method for a dynamic page title"""
         return self.page_title
 
-    def get_extra_template(self):
-        """Override this method for a dynamic page content"""
-        return self.extra_template
-
-    def get_quiz_info(self):
-        """Override this method for a dynamic page title"""
-        return self.quiz_info
-
     def get_context_data(self, **kwargs):
         ctx = super(ExtendedPage, self).get_context_data(**kwargs)
         default_timer_warning_text = getattr(self, 'timer_text', _("Time left to complete this page:"))
         ctx.update({
             'page_title': self.get_page_title(),
-            'quiz_info': self.get_quiz_info(),
             'timer_warning_text': self.timer_warning_text or default_timer_warning_text,
             'timeout_warning_seconds': self.timeout_warning_seconds,
             'timeout_warning_message': self.timeout_warning_message,
-            'debug': DEBUG_FOR_TPL,   # allows to retrieve a debug state in the templates
-            'otree_base_version': otree_base_version,
-            'extended_page_tpl': extended_page_tpl,
-            'use_legacy_timer_code': StrictVersion(otree.__version__) < StrictVersion('1.4'),
+            'debug': int(self.debug),   # allows to retrieve a debug state in the templates
+            'debug_fill_forms_randomly': int(self.debug and self.debug_fill_forms_randomly)
         })
 
         return ctx
@@ -74,12 +92,14 @@ class UnderstandingQuestionsPage(ExtendedPage):
     Displays questions as defined in "questions" list.
     Optionally record the number of unsuccessful attempts for solving the questions.
     """
+    quiz_info = ''
     extra_template = ''
     default_hint = 'This is wrong. Please reconsider.'
     default_hint_empty = 'Please fill out this answer.'
     questions = []  # define the understanding questions here. add dicts with the following keys: "question", "options", "correct"
-    set_correct_answers = APPS_DEBUG   # useful for skipping pages during development
-    template_name = 'otreeutils/UnderstandingQuestionsPage.html'   # reset to None to use your own template the extends this one
+    set_correct_answers = True         # useful for skipping pages during development
+    debug_fill_forms_randomly = False  # not used -- use set_correct_answers
+    template_name = 'otreeutils/UnderstandingQuestionsPage.html'   # reset to None to use your own template that extends this one
     form_field_n_wrong_attempts = None   # optionally record number of wrong attempts in this field (set form_model then, too!)
     form_fields = []   # no need to change this
     form_model = None
@@ -123,11 +143,12 @@ class UnderstandingQuestionsPage(ExtendedPage):
 
         return {
             'questions_form': form,
-            'extra_template': self.get_extra_template(),
+            'quiz_info': self.quiz_info,
+            'extra_template': self.extra_template,
             'n_questions': len(questions),
             'hint_empty': self.default_hint_empty,
             'form_field_n_wrong_attempts': self.form_field_n_wrong_attempts or '',
-            'set_correct_answers': str(self.set_correct_answers).lower(),
+            'set_correct_answers': str(self.set_correct_answers and self.debug).lower(),
         }
 
 

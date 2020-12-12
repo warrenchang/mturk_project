@@ -1,13 +1,8 @@
 {% extends "otree/Page.html" %}
 {% load staticfiles otree %}
 
-{% comment %}
-    this file used to be called Base.html
-    If your app's templates contain this line:
-    {% extends "global/Base.html" %}
-    You should change it to:
-    {% extends "global/Page.html" %}
-{% endcomment %}
+
+
 
 {% block global_styles  %}
 <style>
@@ -37,24 +32,4 @@
 
 {% endblock %}
 
-{% block global_scripts  %}
-{% block styles %}
-    <style>
-        .otree-timer {
-            display: none;
-        }
-    </style>
-{% endblock %}
 
-{% block scripts %}
-    <script>
-        $(function () {
-            $('.otree-timer__time-left').on('update.countdown', function (event) {
-                if (event.offset.totalSeconds === 10) {
-                    $('.otree-timer').show();
-                }
-            });
-        });
-    </script>
-{% endblock %}
-{% endblock %}

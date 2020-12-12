@@ -13,6 +13,7 @@
         display: none;
     }
 </style>
+
 {% endblock %}
 {% block content %}
 <!--<div class="your-clock"></div>-->
@@ -29,10 +30,9 @@
     You are being matched with another participant to continue with the experiment.
 </p>
 <p>
-    In the rare event that there are no other participants and the system cannot find a matching for you in {{waiting_time}} minutes,
-    you can choose to exit the experiment and receive the {{flat_payment}} flat payment, or wait a bit longer to have the opportunity
-    to receive more bonus. Depending on your and the other participant's decision,
-    you can also earn up to ${{max_payment}} as additional bonus for the rest of the experiment.
+    In the event that no other participants show up in {{waiting_time}} minutes,
+    you can choose to exit the experiment and receive your current earnings, or wait a bit longer to have the opportunity
+    to receive more bonus.
 </p>
 
 <div id="otree-timeout-warning" class="alert alert-warning" style="display:block;">

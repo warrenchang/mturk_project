@@ -2,35 +2,32 @@
 {% load staticfiles otree %}
 
 {% block title %}
-   Quiz results
+<h4 style="text-align: center">Quiz Results</h4>
 {% endblock %}
 
 {% block content %}
-
     <div style="text-align:center;font-size:20px">
     <p>You had {{ player.wrong_attempts }} wrong attempt(s) before getting all the answers correct.</p>
     </div>
 
     {% if qualified  %}
     <div style="text-align:center;font-size:18px">
+        {% if quiz_bonus > 0 %}
         <p>
-            You are qualified to participate in the experiment.
+            You have received ${{quiz_bonus}} for completing the quiz, and you are qualified to participate in the next task.
         </p>
+        {% endif %}
     <p>
         Click "Next", and you will be matched with another participant to continue with the experiment.
-    </p>
-    <p>
-        If you successfully complete the experiment, you will for sure receive $1 as your payment.
-        Depending on your and the other participant's decision, you can also earn up to ${{ max_payment }} as additional bonus.
     </p>
     </div>
     {% else  %}
     <div style="text-align:center;font-size:16px">
-        <p>Unfortunately, you are qualified to participate in the experiment, either
+        <p>Unfortunately, you are not qualified to participate in the experiment, either
             because you have tried too many times to get all the answers correct, or
             you are unresponsive for too long.
 
-            Click "Next" to exit.</p>
+            Click "Next" to continue.</p>
     </div>
     {% endif %}
 

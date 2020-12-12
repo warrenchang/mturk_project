@@ -1,5 +1,23 @@
 {% extends "global/Page.html" %}
 {% load staticfiles otree %}
+{% block styles %}
+    <style>
+        .otree-timer {
+            display: none;
+        }
+    </style>
+{% endblock %}
+{% block scripts %}
+    <script>
+        $(function () {
+            $('.otree-timer__time-left').on('update.countdown', function (event) {
+                if (event.offset.totalSeconds == 30) {
+                    $('.otree-timer').show();
+                }
+            });
+        });
+    </script>
+{% endblock %}
 
 {% block title %}
 {% endblock %}
@@ -11,7 +29,7 @@
     </p>
     <p>
 
-            You will interact with the same participant for {{ Constants.interaction_length.0 }} rounds in this part.
+        You will interact with the same participant for {{ Constants.interaction_length.0 }} rounds in this part.
     </p>
     <p>
         <strong>

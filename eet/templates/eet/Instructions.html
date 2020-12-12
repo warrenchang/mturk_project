@@ -1,0 +1,108 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+{% load i18n %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** STYLES *** #}
+{# ****************************************************************************************************************** #}
+{% block styles %}
+<link href="{% static 'eet/css/styles.css' %}" rel="stylesheet"/>
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** TITLE *** #}
+{# ****************************************************************************************************************** #}
+{% block title %}
+{% trans "Allocation Task" %}
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** CONTENT *** #}
+{# ****************************************************************************************************************** #}
+{% block content %}
+
+<div class="card">
+    <div class="card-body">
+        <p>
+            {% blocktrans trimmed with n=num_choices %}
+            In the next task, you are asked to make a series of {{ n }} decisions that influence not only your own earnings
+            but also the earnings of another, randomly chosen, experiment participant.
+            {% endblocktrans %}
+        </p>
+        <p>
+            {% blocktrans trimmed %}
+            In each of the decision problems, you are asked to decide between two alternatives which are referred to
+            as "Left" and "Right". Each alternative implies earnings for you and the other participant.
+            {% endblocktrans %}
+        </p>
+
+        <p>
+            {% blocktrans trimmed with n=num_choices %}
+            As an example, in the following decision problem, you can either choose "Left"
+            (so that you receive 55 points and the other receive 75 points), or choose "Right" (so that
+            both of you receive 50 points).
+            {% endblocktrans %}
+        </p>
+
+        <div class="card" id="x-list">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th colspan="2">{% trans "Option 'Left'" %}</th>
+                    <th></th>
+                    <th colspan="2">{% trans "Option 'Right'" %}</th>
+                </tr>
+                <tr>
+                    <th>{% trans "Your Payoff" %}</th>
+                    <th>{% trans "Other's Payoff" %}</th>
+                    <th></th>
+                    <th>{% trans "Your Payoff" %}</th>
+                    <th>{% trans "Other's Payoff" %}</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <!-- option "left" -->
+                    <td>{{ 55|c }}</td>
+                    <td>{{ 75|c }}</td>
+
+                    <!-- radio select form fields -->
+                    <td class="formfield">
+                        <input type="radio" style="pointer-events: none;" disabled>
+                        <input type="radio" style="pointer-events: none;" disabled>
+                    </td>
+
+                    <!-- option "right" -->
+                    <td>{{ 50|c }}</td>
+                    <td>{{ 50|c }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        {% blocktrans trimmed with n=num_choices %}
+
+        <p>
+            At the end of the experiment, you will be matched with another participant.
+            The computer will randomly choose you or the other participant as the "Proposer",
+            whose decisions will be implemented.
+        </p>
+        <p>
+            One of the {{ n }} decision problems will be randomly selected as the payoff-relevant choice.
+            The actual earnings of you and the other participant will depend on the Proposer's choice
+            ("Left" or "Right") in the randomly selected decision problem.
+        </p>
+        {% endblocktrans %}
+    </div>
+</div>
+
+
+
+
+{% next_button %}
+
+{% endblock %}

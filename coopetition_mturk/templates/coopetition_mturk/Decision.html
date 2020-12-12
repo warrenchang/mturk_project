@@ -4,6 +4,27 @@
 {% block title %}
 {% endblock %}
 
+{% block styles %}
+    <style>
+        .otree-timer {
+            display: none;
+        }
+    </style>
+{% endblock %}
+{% block scripts %}
+    <script>
+        $(function () {
+            $('.otree-timer__time-left').on('update.countdown', function (event) {
+                if (event.offset.totalSeconds == 30) {
+                    $('.otree-timer').show();
+                }
+            });
+        });
+    </script>
+{% endblock %}
+
+
+
 {% block content %}
 <p style="font-size:16px">Round {{ player.round_in_interaction }} </p>
 
@@ -47,8 +68,7 @@
         you will not get paid for that round.</strong>
 </p>
 <p style="text-align:center">
-    <strong>Remember to submit once you reach your decision.
-        Your decision is submitted only after you click "Submit".</strong>
+    <strong>Remember that your decision is submitted only after you click "Submit".</strong>
 </p>
 {% endif%}
 

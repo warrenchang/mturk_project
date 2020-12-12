@@ -75,6 +75,19 @@ class Constants(BaseConstants):
     #
     # interaction_length = [3, 3]
 
+
+    # interactions = [
+    #     1,
+    #     2,
+    # ]
+    # round_in_interactions = [
+    #     1,
+    #     1,
+    # ]
+    #
+    # interaction_length = [1, 1]
+
+
     num_rounds = sum(interaction_length) # change num_rounds for testing purpose, but need to make sure that number_sequence
     var_max = 110 ## maximal value for Var treatment
 
@@ -175,7 +188,7 @@ class Group(BaseGroup):
         p1.cum_payoff = sum([p.payoff for p in p1.in_all_rounds()
                                       if p.interaction_number == p1.interaction_number])
         p2.cum_payoff = sum([p.payoff for p in p2.in_all_rounds()
-                             if p.interaction_number == p1.interaction_number])
+                             if p.interaction_number == p2.interaction_number])
 
         p1.other_payoff = p2.potential_payoff
         p2.other_payoff = p1.potential_payoff

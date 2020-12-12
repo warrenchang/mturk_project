@@ -1,0 +1,22 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+<p>Question {{ player.round_number }} of {{ Constants.num_rounds }} </p>
+
+{% include Constants.instructions_template %}
+
+<div style="text-align:center">
+    <img src="{% static image_path %}" height="400" width="380"/>
+    <!--<img src="{% static "ravens10/example.png" %}"/>-->
+
+    {% formfield player.answer label='Please choose an item that best fits the pattern:' %}
+</div>
+
+<div style="text-align:center">
+    {% next_button %}
+</div>
+{% endblock %}

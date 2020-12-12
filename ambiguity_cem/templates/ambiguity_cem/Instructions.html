@@ -1,0 +1,91 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+{% load i18n %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** STYLES *** #}
+{# ****************************************************************************************************************** #}
+{% block styles %}
+<link href="{% static 'cem/css/custom.css' %}" rel="stylesheet"/>
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** TITLE *** #}
+{# ****************************************************************************************************************** #}
+{% block title %}
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** CONTENT *** #}
+{# ****************************************************************************************************************** #}
+{% block content %}
+
+<h4  style="text-align:center">
+    Urn Gamble
+</h4>
+
+<p>
+    The following table shows the decisions you need to make. For each decision, you need to choose whether you want
+    to play the Urn Gamble (Option A) or receive a
+    {% if player.set_number == 1 %}
+        sure amount (Option B).
+    {% elif player.set_number == 2 %}
+        <strong>sure loss</strong> (Option B).
+    {% endif %}
+</p>
+
+
+<div class="wrapper">
+    <table class="table table-bordered">
+        <thead>
+        <tr class="header">
+            <th class="lottery">{% trans "Option A" %}</th>
+            <th class="formfield"></th>
+            <th class="sure_payoff">{% trans "Option B" %}</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for sure_payoff in sure_payoffs %}
+        <tr>
+            <!-- lotteries -->
+            <td class="lottery">
+                Urn gamble
+            </td>
+
+            <!-- radio select form fields -->
+            <td class="formfield">
+                <input type="radio" disabled>
+                <input type="radio" disabled>
+            </td>
+            <!-- sure payoff -->
+            <td class="sure_payoff">
+                {{ sure_payoff | c }} for sure
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<p>
+    At the end of the experiment, the computer will randomly select a row from the table, and
+    your payoff will be determined by your decision on that row.
+</p>
+<p>
+    If you chose "Option A" in this decision, your payoff will be determined by the color of the ball drawn from the urn.
+    If you chose "Option B", you will receive the corresponding sure amount.
+</p>
+<p>
+    You will not know in advance which decision will be used, so you should treat each decision seriously
+    because each decision has an equal chance of being chosen to determine your payoff.
+</p>
+<p style="text-align:center">
+    Click Next to start making your decisions.
+</p>
+
+{% next_button %}
+
+{% endblock %}

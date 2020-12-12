@@ -1,0 +1,51 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+Welcome to the experiment of decision-making.
+{% endblock %}
+
+{% block content %}
+<div class="card bg-light instructions">
+
+    <ul>
+        <li>
+            In this experiment, you will complete a number of tasks, many of which can earn you money.
+        </li>
+        <li>
+            You will be rewarded for the quality of your decisions, so please pay close attention to each question.
+        </li>
+        <li>
+            Earnings in the experiment are denominated in Points.
+        </li>
+        <li>
+            At the end of the experiment, points will be converted at the exchange rate of <strong> {{ exchange_rate }} Points = $1.</strong>
+        </li>
+        <li>
+            As required by the research protocol, no deception exists in this study: you can be assured that
+            <strong>all the information provided in the experiment is truthful.</strong>
+        </li>
+        <li>
+            This experiment will take approximately 30 minutes.
+        </li>
+        <li>
+            You can earn a considerable amount of bonus (up to ${{ max_payment }}) depending on the quality of your decisions
+        </li>
+        <li>
+            After successfully completing the experiment, you receive {{ participation_fee }} for sure.
+        </li>
+        <li>
+            Participants of this experiment on average earn about ${{ avg_payment }} as additional bonus.
+        </li>
+        <li>
+            <strong>Please copy the url in the address bar and save it somewhere.</strong> In case you close the browser
+                by accident, you can use the url to get back to the experiment.
+        </li>
+    </ul>
+</div>
+
+    <div style="text-align:right">
+    {% next_button %}
+    </div>
+
+{% endblock %}

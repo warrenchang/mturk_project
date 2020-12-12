@@ -1,2 +1,3 @@
-otree<2.3
+otree==2.2.4
 numpy>=1.15.2
+boto3>=1.6.25

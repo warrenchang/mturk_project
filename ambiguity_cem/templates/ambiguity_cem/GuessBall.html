@@ -1,0 +1,64 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+{% load i18n %}
+
+{# ****************************************************************************************************************** #}
+{# *** STYLES *** #}
+{# ****************************************************************************************************************** #}
+{% block styles %}
+<link href="{% static 'cem/css/custom.css' %}" rel="stylesheet">
+{% endblock %}
+
+{# ****************************************************************************************************************** #}
+{# *** TITLE *** #}
+{# ****************************************************************************************************************** #}
+{% block title %}
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** CONTENT *** #}
+{# ****************************************************************************************************************** #}
+
+{% block content %}
+<h4  style="text-align:center">
+    Guess the number of  {{ player.ball_color }} balls
+</h4>
+    Please make a guess on the number of {{ player.ball_color }} balls in the urn.
+    Your bonus for this task will be paid as follows:
+    <ul>
+        <li>
+            If your guess is correct, you will earn {{ guess_bonus |c }}.
+        </li>
+        <li>
+            For every number by which you are off, you will earn {{ deduction |c }} less.
+        </li>
+        <li>
+            If you are off by 10 or more, you earn nothing.
+        </li>
+    </ul>
+
+
+<div style="text-align:center">
+    <img src="{% static "ambiguity_cem/urn.png" %}" width="200" height="220" />
+</div>
+<div class="wrapper">
+    <p style="text-align:center">
+        Out of the 20 balls in the urn, how many do you think are {{ player.ball_color }}:
+
+    <div class="container" style="alignment:center">
+        <div class="row">
+            <div class="col-sm-5"> </div>
+            <div class="col-sm-2">
+                {{ form.guess_ball }}
+            </div>
+            <div class="col-sm-5"> </div>
+        </div>
+    </div>
+    </p>
+</div>
+
+
+{% next_button %}
+
+{% endblock %}

@@ -89,7 +89,6 @@ class Introduction(BasePage):
                 self.player.interaction_number == 2)
 
 
-
 class Decision(BasePage):
     form_model = 'player'
     form_fields = ['a1','a2']
@@ -144,6 +143,8 @@ class Results(BasePage):
     def before_next_page(self):
         self.player.cum_payoff = sum([p.payoff for p in self.player.in_all_rounds()
                                       if p.interaction_number == self.player.interaction_number])
+        if self.player.round_number == Constants.num_rounds:
+            self.participant.vars['coopetition_payoff'] = sum([p.payoff for p in self.player.in_all_rounds()])
 
 
 class InteractionResults(BasePage):

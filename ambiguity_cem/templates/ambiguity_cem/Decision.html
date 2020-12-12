@@ -1,0 +1,103 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+{% load i18n %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** STYLES *** #}
+{# ****************************************************************************************************************** #}
+{% block styles %}
+<link href="{% static 'cem/css/custom.css' %}" rel="stylesheet">
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** SCRIPTS *** #}
+{# ****************************************************************************************************************** #}
+{% block scripts %}
+{% if Constants.enforce_consistency == True %}
+<script src="{% static 'cem/js/consistency.js' %}"></script>
+{% endif %}
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** TITLE *** #}
+{# ****************************************************************************************************************** #}
+{% block title %}
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** CONTENT *** #}
+{# ****************************************************************************************************************** #}
+
+{% block content %}
+<h4  style="text-align:center">
+    Make Your Decisions
+</h4>
+<div class="wrapper instructions">
+    <p>
+        The urn contains <strong>20 balls</strong>, some are white and some are black.
+        Please indicate whether you prefer the Urn Gamble or the sure amount.
+    </p>
+    <div style="text-align:center">
+    <img src="{% static "ambiguity_cem/urn.png" %}" width="200" height="220" />
+</div>
+    <p>
+        If you choose the Urn Gamble, a ball will be drawn
+        from the urn. The Gamble pays
+
+                <p style="text-align:center">
+        <strong>
+                    {{ lottery_x }} if the ball is {{ player.ball_color }},
+                    {{ lottery_y }} otherwise
+        </strong>
+        </p>
+    </p>
+
+</div>
+<div class="wrapper">
+    <div class="card">
+        <table class="table table-bordered">
+            <thead>
+            <tr class="header">
+                <th class="lottery">{% trans "Option A" %}</th>
+                <th class="formfield"></th>
+                <th class="sure_payoff">{% trans "Option B" %}</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for f,sure_payoff in choices %}
+            <tr>
+                <!-- lotteries -->
+                <td class="lottery">
+                    Urn Gamble
+                </td>
+
+                <!-- radio select form fields -->
+                <td class="formfield">
+                    <input type="radio" name="{{ f }}" value="A" required>
+                    <input type="radio" name="{{ f }}" value="B" required>
+                </td>
+
+                <!-- sure payoff -->
+                <td class="sure_payoff">
+                    {{ sure_payoff | c }} for sure
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <br/>
+    <p>
+        Once you click on an option, we will fill in the rest of the
+        choices so that they make sense (this will save you time).
+    </p>
+</div>
+
+{% next_button %}
+
+{% endblock %}

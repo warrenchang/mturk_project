@@ -21,6 +21,8 @@ class Constants(BaseConstants):
     examples_template = 'coopetition_quiz/Examples_template.html'
     quiz_info = 'coopetition_quiz/QuizInfo.html'
     extra_info = 'coopetition_quiz/ExtraInfo.html'
+    max_attempts = 5 # maximum number of attempts in the quiz quesitons
+    quiz_minutes = 8 # minutes allowed in finishing the quiz quesitons
 
 
 class Subsession(BaseSubsession):

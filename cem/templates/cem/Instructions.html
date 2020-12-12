@@ -1,0 +1,147 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+{% load i18n %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** STYLES *** #}
+{# ****************************************************************************************************************** #}
+{% block styles %}
+<link href="{% static 'cem/css/custom.css' %}" rel="stylesheet"/>
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** TITLE *** #}
+{# ****************************************************************************************************************** #}
+{% block title %}
+Lottery Task {% if player.set_number > 1 %} {{ player.set_number }} {% endif %}
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** CONTENT *** #}
+{# ****************************************************************************************************************** #}
+{% block content %}
+
+{% if player.set_number == 1%}
+<p>
+    In the following task, you'll make decisions related to a set of {{ Constants.num_rounds_in_set }} lotteries.
+    For each lottery, you will make {{ Constants.num_choices }} decisions on whether you want to play the lottery or
+    receive a sure amount.
+
+<p>
+    The following table shows an example of decisions related to one lottery.
+    For each decision, you need to choose whether you want to play the lottery (Option A)
+    or receive a sure amount (Option B).
+</p>
+<p>
+    The actual payoff from the lottery will be determined by the computer.
+    The computer will randomly drawn a number between 1 and 100 with equal probability.
+    For this specific lottery, if the number drawn is less than or equal to {{ lottery_px }},
+    you will receive {{ lottery_x }}; if the number is greater
+    than {{ lottery_px }}, you wil receive {{ lottery_y }}.
+</p>
+
+<div class="wrapper">
+    <table class="table table-bordered">
+        <thead>
+        <tr class="header">
+            <th class="lottery">{% trans "Option A" %}</th>
+            <th class="formfield"></th>
+            <th class="sure_payoff">{% trans "Option B" %}</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for sure_payoff in sure_payoffs %}
+        <tr>
+            <!-- lotteries -->
+            <td class="lottery">
+                {{ lottery_px }}% chance of {{ lottery_x }}<br/>
+                {{ lottery_py }}% chance of {{ lottery_y }}
+            </td>
+
+            <!-- radio select form fields -->
+            <td class="formfield">
+                <input type="radio" disabled>
+                <input type="radio" disabled>
+            </td>
+            <!-- sure payoff -->
+            <td class="sure_payoff">
+                {{ sure_payoff | c }} for sure
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<p>
+    Even though you will make decisions for {{ Constants.num_rounds_in_set }} lotteries,
+    only {{ Constants.num_paying_rounds }} of these lotteries will be randomly selected as payoff relevant.
+
+
+    For a payoff relevant lottery, one of the decisions made to that lottery (one row in the table) will be randomly chosen to determine your payment.
+</p>
+<p>
+    You will not know in advance which decision will be used, so you should treat each decision seriously
+    because each decision has an equal chance of being chosen to determine your payoff.
+</p>
+{% else %}
+<p>
+    This is Lottery Task {{ player.set_number }}. This task is similar to the previous one: you'll make decisions related to another set of
+    {{ Constants.num_rounds_in_set }} lotteries. <strong> The lotteries could incur a loss. </strong>
+    For each lottery, you will make {{ Constants.num_choices }} decisions on whether you want to play the lottery or
+    take a sure loss.
+</p>
+
+<p>
+    The following table shows an example.
+</p>
+
+
+<div class="wrapper">
+    <table class="table table-bordered">
+        <thead>
+        <tr class="header">
+            <th class="lottery">{% trans "Option A" %}</th>
+            <th class="formfield"></th>
+            <th class="sure_payoff">{% trans "Option B" %}</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for sure_payoff in sure_payoffs %}
+        <tr>
+            <!-- lotteries -->
+            <td class="lottery">
+                {{ lottery_px }}% chance of {{ lottery_x }}<br/>
+                {{ lottery_py }}% chance of {{ lottery_y }}
+            </td>
+
+            <!-- radio select form fields -->
+            <td class="formfield">
+                <input type="radio" disabled>
+                <input type="radio" disabled>
+            </td>
+            <!-- sure payoff -->
+            <td class="sure_payoff">
+                {{ sure_payoff | c }} for sure
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<p>
+    At the end of the experiment, {{ Constants.num_paying_rounds }} lotteries will be randomly chosen as payoff relevant.
+    For the payoff relevant lotteries, then one of the decisions made to that lottery will be randomly chosen to determine your payment.
+</p>
+
+<p style="text-align: center">Click next when you are ready to start Lottery Task {{player.set_number}}</p>
+{% endif %}
+
+{% next_button %}
+
+
+{% endblock %}

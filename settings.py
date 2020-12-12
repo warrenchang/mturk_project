@@ -6,36 +6,18 @@ from boto.mturk import qualification
 
 import otree.settings
 
-
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # the environment variable OTREE_PRODUCTION controls whether Django runs in
 # DEBUG mode. If OTREE_PRODUCTION==1, then DEBUG=False
 if environ.get('OTREE_PRODUCTION') not in {None, '', '0'}:
-    DEBUG = False
     APPS_DEBUG = False
 else:
-    DEBUG = True
     APPS_DEBUG = True
 
 # don't share this with anybody.
 SECRET_KEY = 'xbsw&0b==_fg)5#4n)ckwgr1-na%c#z=pmt4+13yr!h-x&s=1p'
 
-
-DATABASES = {
-    'default': dj_database_url.config(
-        # Rather than hardcoding the DB parameters here,
-        # it's recommended to set the DATABASE_URL environment variable.
-        # This will allow you to use SQLite locally, and postgres/mysql
-        # on the server
-        # Examples:
-        # export DATABASE_URL=postgres://USER:PASSWORD@HOST:PORT/NAME
-        # export DATABASE_URL=mysql://USER:PASSWORD@HOST:PORT/NAME
-
-        # fall back to SQLite if the DATABASE_URL env var is missing
-        default='sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
-    )
-}
 
 # AUTH_LEVEL:
 # this setting controls which parts of your site are freely accessible,
@@ -49,17 +31,24 @@ DATABASES = {
 
 # for flexibility, you can set it in the environment variable OTREE_AUTH_LEVEL
 AUTH_LEVEL = environ.get('OTREE_AUTH_LEVEL')
-AUTH_LEVEL = 'STUDY'
+AUTH_LEVEL = 'DEMO'
 
-ADMIN_USERNAME = 'admin'
+ADMIN_USERNAME = environ.get('OTREE_ADMIN_USERNAME')
 # for security, best to set admin password in an environment variable
 ADMIN_PASSWORD = environ.get('OTREE_ADMIN_PASSWORD')
-ADMIN_PASSWORD = 'econexperiment'
+
 
 
 # setting for integration with AWS Mturk
 AWS_ACCESS_KEY_ID = environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = environ.get('AWS_SECRET_ACCESS_KEY')
+
+Qid_preferences = '3KVW4MB3P584GRBMDJDG682UC8SXJD' # Qualification ID of Preferences
+Qid_coopetition = '355NDHMUE4408REV3XQ8DXPSH6SCF1'  # Qualification ID of Coopetition
+Qid_coopetition_sandbox = '3KPASCSMA0FIAKFOHBY5SS3J0R98H3'
+Qid_preferences_sandbox = '3F97VQZTZ52G8HM1KEZAOKL8XI1HUS'
+Test_workerids = ['A2J47PTIYO03TZ','A38IOZBVC9FXFJ']
+
 
 
 # e.g. EUR, CAD, GBP, CHF, CNY, JPY
@@ -68,7 +57,7 @@ REAL_WORLD_CURRENCY_CODE = 'RMB '
 REAL_WORLD_CURRENCY_CODE = '$'
 USE_POINTS = True
 # POINTS_CUSTOM_NAME = '$'
-REAL_WORLD_CURRENCY_DECIMAL_PLACES = 0
+REAL_WORLD_CURRENCY_DECIMAL_PLACES = 2
 POINTS_DECIMAL_PLACES = 0
 
 # e.g. en, de, fr, it, ja, zh-hans
@@ -80,34 +69,15 @@ INSTALLED_APPS = [
     'otree',
     'otreeutils',
     'otree_mturk_utils',
-    # 'otree_tools',
 ]
 EXTENSION_APPS  = [
     'otree_mturk_utils',
-    # 'otree_tools',
 ]
 
 # SENTRY_DSN = ''
 SENTRY_DSN = 'http://08e879c62c554e08b7b637e7172b5ba7:daa025e5010e414f98c785f2c04a74f9@sentry.otree.org/150'
 
-DEMO_PAGE_INTRO_TEXT = """
-<ul>
-    <li>
-        <a href="https://github.com/oTree-org/otree" target="_blank">
-            oTree on GitHub
-        </a>.
-    </li>
-    <li>
-        <a href="http://www.otree.org/" target="_blank">
-            oTree homepage
-        </a>.
-    </li>
-</ul>
-<p>
-    Here are various games implemented with oTree. These games are all open
-    source, and you can modify them as you wish.
-</p>
-"""
+DEMO_PAGE_INTRO_TEXT = ""
 
 ROOMS = [
     {
@@ -123,98 +93,158 @@ ROOMS = [
 ]
 
 
-# from here on are qualifications requirements for workers
-# see description for requirements on Amazon Mechanical Turk website:
-# http://docs.aws.amazon.com/AWSMechTurk/latest/AWSMturkAPI/ApiReference_QualificationRequirementDataStructureArticle.html
-# and also in docs for boto:
-# https://boto.readthedocs.org/en/latest/ref/mturk.html?highlight=mturk#module-boto.mturk.qualification
-
-mturk_hit_settings = {
-    'keywords': ['bonus', 'choice', 'study'],
-    'title': 'experiment on decision-making',
-    'description': 'interaction with other MTurk workers',
-    'frame_height': 500,
-    'preview_template': 'global/MTurkPreview.html',
-    'minutes_allotted_per_assignment': 60,
-    'expiration_hours': 1, # 7 days
-    'grant_qualification_id': '38TZ8V8N0DM053SXV290O3KU9JSIPY',
-    #'grant_qualification_id': 'YOUR_QUALIFICATION_ID_HERE',# to prevent retakes
-    'qualification_requirements': [
-        # { # to prevent retakes
-        #     'QualificationTypeId': "YOUR_QUALIFICATION_ID_HERE",
-        #     'Comparator': "DoesNotExist",
-        # },
-        { # to prevent retakes
-            'QualificationTypeId': '38TZ8V8N0DM053SXV290O3KU9JSIPY',
-            'Comparator': "DoesNotExist",
-        },
-        { #Worker_Locale
-            'QualificationTypeId': "00000000000000000071",
-            'Comparator': "EqualTo",
-            'LocaleValues': [{'Country': "US"}]
-        },
-
-        { # Worker_​NumberHITsApproved
-            'QualificationTypeId': "00000000000000000040",
-            'Comparator': "GreaterThan",
-            'IntegerValues': [100]
-        },
-        { # Worker_​NumberHITsApproved
-            'QualificationTypeId': "000000000000000000L0",
-            'Comparator': "GreaterThan",
-            'IntegerValues': [85]
-        },
-        # qualification.LocaleRequirement("EqualTo", "US"),
-        # qualification.PercentAssignmentsApprovedRequirement("GreaterThanOrEqualTo", 50),
-        # qualification.NumberHitsApprovedRequirement("GreaterThanOrEqualTo", 5),
-        # qualification.Requirement('YOUR_QUALIFICATION_ID_HERE', 'DoesNotExist')
-    ]
-}
-
-MTURK_NUM_PARTICIPANTS_MULTIPLE = 3
-
-
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
 # in SESSION_CONFIGS, except those that explicitly override it.
 # the session config can be accessed from methods in your apps as self.session.config,
 # e.g. self.session.config['participation_fee']
 
 SESSION_CONFIG_DEFAULTS = {
-    'real_world_currency_per_point': 1 / 300,
+    'real_world_currency_per_point': 1 / 100,
     'participation_fee': 0,
-    'debug': DEBUG,
+    'debug': APPS_DEBUG,
     'doc': "",
-    'mturk_hit_settings': mturk_hit_settings,
 }
 
+
 SESSION_CONFIGS = [
+    {
+        'name': 'test',
+        'display_name': "Testing Group Matching",
+        'num_demo_participants': 4,
+        'app_sequence': [
+            'test_app0',
+            'test_app'
+        ],
+    },
+    {
+        'name': 'survey_preference',
+        'display_name': "Preference Elicitation Experiment",
+        'num_demo_participants': 2,
+        'participation_fee': 2,
+        'avg_payment': 4,
+        'max_payment': 6,
+        'crt_payoff_per_question': 20,  # points for each correct answer
+        'ravens_payoff_per_question': 10,  # points for each correct answer
+        'real_world_currency_per_point': 1 / 100,
+        'access_key_id' : AWS_ACCESS_KEY_ID,
+        'secret_access_key': AWS_SECRET_ACCESS_KEY,
+        'debug': False,
+        'sandbox': False,
+        'Qid': Qid_preferences,
+        'Qid_sandbox': Qid_preferences_sandbox,
+        'app_sequence': [
+            'mturkid',  'survey_questions',
+            'eet',
+            'cem',
+            'ambiguity_cem','ravens10',
+            'crt','end_questions',
+            'payment_preference','payment_weet'
+            # 'lying1', # 'lying2', # 'lying3',
+        ],
+    },
     {
         'name': 'coopetition_mturk_asm0_60',
         'display_name': "Coopetition Asm0_60",
         'num_demo_participants': 4,
-        'participation_fee': 1,
+        'participation_fee': 1.2,
+        'quiz_bonus': 0.6,
+        'avg_payment': 4,
         'max_payment': 6,
         'real_world_currency_per_point': 1 / 250,
+        'eet_scale': 2, # scaling of EET payoffs for saliency
+        'access_key_id': AWS_ACCESS_KEY_ID,
+        'secret_access_key': AWS_SECRET_ACCESS_KEY,
+        'debug': False,
+        'sandbox': False,
+        'Qid': Qid_coopetition,
+        'Qid2': Qid_preferences,
+        'Qid_sandbox': Qid_coopetition_sandbox,
+        'Qid2_sandbox': Qid_preferences_sandbox,
         'treatment': 'Asm0_60',
         'interaction_length': 15,
+        'attempts_allowed': 8,  # how many attempts allowed for the subjects
+        'quiz_time': 5,  # max time allowed for the quiz in mimutes
         # 'debug': False,
-        'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
-                         'survey_online', 'payment_online'
+        'app_sequence': ['mturkid', 'survey_questions', 'eet', 'coopetition_quiz', 'coopetition_mturk',
+                         'end_questions_coopetition', 'payment_coopetition','payment_weet_coopetition'
                          ],
     },
     {
         'name': 'coopetition_mturk_asm60_0',
         'display_name': "Coopetition Asm60_0",
         'num_demo_participants': 4,
-        'participation_fee': 1,
+        'participation_fee': 1.2,
+        'quiz_bonus': 0.6,
+        'avg_payment': 4,
         'max_payment': 6,
         'real_world_currency_per_point': 1 / 250,
+        'eet_scale': 2, # scaling of EET payoffs for saliency
+        'access_key_id': AWS_ACCESS_KEY_ID,
+        'secret_access_key': AWS_SECRET_ACCESS_KEY,
+        'debug': False,
+        'sandbox': False,
+        'Qid': Qid_coopetition,
+        'Qid2': Qid_preferences,
+        'Qid_sandbox': Qid_coopetition_sandbox,
+        'Qid2_sandbox': Qid_preferences_sandbox,
         'treatment': 'Asm60_0',
         'interaction_length': 15,
+        'attempts_allowed': 8,  # how many attempts allowed for the subjects
+        'quiz_time': 8,  # max time allowed for the quiz in mimutes
         # 'debug': False,
-        'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
-                         'survey_online', 'payment_online'
+        'app_sequence': ['mturkid', 'survey_questions', 'eet', 'coopetition_quiz', 'coopetition_mturk',
+                         'end_questions_coopetition', 'payment_coopetition','payment_weet_coopetition'
                          ],
+    },
+    {
+        'name': 'ambiguity',
+        'display_name': "Urn Gamble",
+        'num_demo_participants': 4,
+        'participation_fee': 2,
+        'avg_payment': 4,
+        'eet_scale': 4,  # scaling of EET payoffs for saliency
+        'crt_payoff_per_question': 20,  # points for each correct answer
+        'ravens_payoff_per_question': 10,  # points for each correct answer
+        'real_world_currency_per_point': 1 / 100,
+        'debug': False,
+        'sandbox': True,
+        'app_sequence': [
+            'survey_questions','cem','ambiguity_cem',
+        ],
+    },
+    {
+        'name': 'eet',
+        'display_name': "Equality Equivalence Test",
+        'num_demo_participants': 4,
+        'participation_fee': 2,
+        'avg_payment': 4,
+        'eet_scale': 4, # scaling of EET payoffs for saliency
+        'crt_payoff_per_question': 20,  # points for each correct answer
+        'ravens_payoff_per_question': 10,  # points for each correct answer
+        'real_world_currency_per_point': 1 / 100,
+        'debug': True,
+        'sandbox': True,
+        'app_sequence': [
+            'eet', 'payment_weet'
+        ],
+    },
+    {
+        'name': 'mturk_id',
+        'display_name': "Input MTurk ID",
+        'num_demo_participants': 4,
+        'avg_payment': 4,
+        'max_payment': 6,
+        'participation_fee': 1.5,
+        'debug': False,
+        'sandbox': True,
+        'access_key_id': AWS_ACCESS_KEY_ID,
+        'secret_access_key': AWS_SECRET_ACCESS_KEY,
+        'Qid': Qid_preferences,
+        'Qid_sandbox': Qid_preferences_sandbox,
+        # 'debug': False,
+        'app_sequence': [
+            'mturkid',  # remember to change qualified and matched in survey_online for real mturk experiment
+        ],
     },
     {
         'name': 'coopetition_mturk_a2m0_60',
@@ -226,8 +256,8 @@ SESSION_CONFIGS = [
         'treatment': 'A2m0_60',
         'interaction_length': 15,
         # 'debug': False,
-        'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
-                         'survey_online', 'payment_online'
+        'app_sequence': ['coopetition_quiz', 'coopetition_mturk',
+                         'end_questions', 'payment_coopetition'
                          ],
     },
     {
@@ -240,163 +270,10 @@ SESSION_CONFIGS = [
         'treatment': 'A2m60_0',
         'interaction_length': 15,
         # 'debug': False,
-        'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
-                         'survey_online', 'payment_online'
+        'app_sequence': ['coopetition_quiz', 'coopetition_mturk',
+                         'end_questions', 'payment_coopetition'
                          ],
     },
-
-    {
-        'name': 'exploration_exploitation',
-        'display_name': "exploration_exploitation",
-        'num_demo_participants': 4,
-        'total_payment': 200,  ## total payment received by participants
-        'num_payment': 10,  ## the number of participants receiving payment
-        'real_world_currency_per_point': 1,
-        'participation_fee': 0,
-        'app_sequence': [
-            'multiarm_bandit',
-            'simple_survey',
-            'risk_preferences',
-            'bret',
-            'payment_inclass',
-        ],
-    },
-    {
-        'name': 'innovation_mamagement',
-        'display_name': "Innovation Managment in-class experiment",
-        'num_demo_participants': 4,
-        'total_payment': 200,  ## total payment received by participants
-        'num_payment': 10,  ## the number of participants receiving payment
-        'treatment': 'Det0_60',
-        'language': 'EN',  # language can be EN, CN, or empty string (both)
-        'real_world_currency_per_point': 1,
-        'participation_fee': 0,
-        'decision_time': 45,
-        'app_sequence': [
-            'payoff_matrix_quiz',
-            'repeated_game_PD',
-            'repeated_game_randpay',
-            'coopetition_inclass_quiz',
-            'coopetition_inclass',
-            'payment_inclass',
-                         ],
-    },
-        {
-        'name': 'bret',
-        'display_name': "bret",
-        'num_demo_participants': 4,
-        'total_payment': 150,  ## total payment received by participants
-        'num_payment': 5,  ## the number of participants receiving payment
-        'real_world_currency_per_point': 1,
-        'participation_fee': 0,
-        'app_sequence': [
-            'bret',
-            'payment_inclass',
-        ],
-    },
-    {
-        'name': 'coopetition_lab_det0_60',
-        'display_name': "Coopetition lab Det0_60",
-        'num_demo_participants': 4,
-        'participation_fee': 0,
-        'min_payment': 30,
-        'max_payment': 100,
-        'decision_time': 45,
-        'treatment': 'Det0_60',
-        'interaction_length': 15,
-        'language': 'CN',  # language can be EN, CN, or empty string (both)
-        # 'debug': False,
-        'app_sequence': ['coopetition_lab_quiz', 'coopetition_lab',
-                         'coopetition_lab_survey', 'coopetition_lab_payment',
-                         ],
-    },
-    {
-        'name': 'coopetition_lab_det60_0',
-        'display_name': "Coopetition lab Det60_0",
-        'num_demo_participants': 4,
-        'participation_fee': 0,
-        'min_payment': 30,
-        'max_payment': 100,
-        'decision_time': 45,
-        'treatment': 'Det60_0',
-        'interaction_length': 15,
-        'language': 'CN',  # language can be EN, CN, or empty string (both)
-        # 'debug': False,
-        'app_sequence': ['coopetition_lab_quiz', 'coopetition_lab',
-                         'coopetition_lab_survey', 'coopetition_lab_payment'
-                         ],
-    },
-    {
-        'name': 'coopetition_lab_asm0_60',
-        'display_name': "Coopetition lab Asm0_60",
-        'num_demo_participants': 4,
-        'participation_fee': 0,
-        'min_payment': 30,
-        'max_payment': 100,
-        'decision_time': 45,
-        'treatment': 'Asm0_60',
-        'interaction_length': 15,
-        'language': 'CN',  # language can be EN, CN, or empty string (both)
-        # 'debug': False,
-        'app_sequence': ['coopetition_lab_quiz', 'coopetition_lab',
-                         'coopetition_lab_survey', 'coopetition_lab_payment'
-                         ],
-    },
-    {
-        'name': 'coopetition_lab_asm60_0',
-        'display_name': "Coopetition lab Asm60_0",
-        'num_demo_participants': 4,
-        'participation_fee': 0,
-        'min_payment': 30,
-        'max_payment': 100,
-        'decision_time': 45,
-        'treatment': 'Asm60_0',
-        'interaction_length': 15,
-        'language': 'CN',  # language can be EN, CN, or empty string (both)
-        # 'debug': False,
-        'app_sequence': ['coopetition_lab_quiz', 'coopetition_lab',
-                         'coopetition_lab_survey', 'coopetition_lab_payment'
-                         ],
-    },
-    {
-        'name': 'in_class',
-        'display_name': "In class experiment ",
-        'num_demo_participants': 4,
-        'real_world_currency_per_point': 1/7,
-        'participation_fee': 0,
-        'app_sequence': ['pure_coordination','meeting_place','guess_number','repeated_game_PD','repeated_game_randpay',
-                         'simple_survey','payment_simple'
-                         ],
-    },
-    {
-        'name': 'coopetition_inclass_det0_60',
-        'display_name': "Coopetition inclass Det0_60",
-        'num_demo_participants': 4,
-        'participation_fee': 0,
-        'real_world_currency_per_point': 1/150,
-        'treatment': 'Det0_60',
-        'interaction_length': 15,
-        'language': 'CN',  # language can be EN, CN, or empty string (both)
-        # 'debug': False,
-        'app_sequence': ['coopetition_inclass_quiz', 'coopetition_inclass',
-                         'payment_online',
-                         ],
-    },
-    {
-        'name': 'coopetition_inclass_asm0_60',
-        'display_name': "Coopetition inclass Asm0_60",
-        'num_demo_participants': 4,
-        'participation_fee': 0,
-        'real_world_currency_per_point': 1 /150,
-        'treatment': 'Asm0_60',
-        'interaction_length': 15,
-        'language': 'CN',  # language can be EN, CN, or empty string (both)
-        # 'debug': False,
-        'app_sequence': ['coopetition_inclass_quiz', 'coopetition_inclass',
-                         'payment_online',
-                         ],
-    },
-
     {
         'name': 'coopetition_mturk_det0_60',
         'display_name': "Coopetition Det0_60",
@@ -407,7 +284,7 @@ SESSION_CONFIGS = [
         'interaction_length': 15,
         # 'debug': False,
         'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
-                         'risk_preferences','survey_online', 'payment_online',
+                         'end_questions', 'payment_coopetition'
                          ],
     },
     {
@@ -420,50 +297,7 @@ SESSION_CONFIGS = [
         'interaction_length': 15,
         # 'debug': False,
         'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
-                     'risk_preferences','survey_online', 'payment_online'
-                         ],
-    },
-
-        {
-        'name': 'behavioral_econ_experiment',
-        'display_name': "Behavioral Econ Experiment",
-        'num_demo_participants': 4,
-        'real_world_currency_per_point': 1,
-        'participation_fee': 0,
-        # 'debug': False,
-        'app_sequence': ['questions'
-                         ],
-    },
-    {
-        'name': 'risk_preferences',
-        'display_name': "risk preferences",
-        'num_demo_participants': 6,
-        'real_world_currency_per_point': 1,
-        'participation_fee': 0,
-        'debug': False,
-        'app_sequence': ['bret', 'risk_preferences', 'russian_roulette'
-                         ],
-    },
-    {
-        'name': 'russian',
-        'display_name': "russian",
-        'num_demo_participants': 6,
-        'real_world_currency_per_point': 1,
-        'participation_fee': 0,
-        'debug': False,
-        'app_sequence': ['russian_roulette'
-                         ],
-    },
-    {
-        'name': 'coopetition_mturk_fix0_60',
-        'display_name': "Coopetition Fix0_60",
-        'num_demo_participants': 4,
-        'participation_fee': 1,
-        'max_payment': 7,
-        'treatment': 'Fix0_60',
-        # 'debug': False,
-        'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
-                         'risk_preferences','survey_online', 'payment_online'
+                         'end_questions', 'payment_coopetition'
                          ],
     },
     {
@@ -475,7 +309,7 @@ SESSION_CONFIGS = [
         'treatment': 'Fix60_0',
         # 'debug': False,
         'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
-                         'risk_preferences','survey_online', 'payment_online'
+                         'end_questions', 'payment_coopetition'
                          ],
     },
     {
@@ -487,23 +321,9 @@ SESSION_CONFIGS = [
         'treatment': 'Var0_60',
         # 'debug': False,
         'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
-                         'risk_preferences','survey_online', 'payment_online'
+                         'end_questions', 'payment_coopetition'
                          ],
     },
-    {
-        'name': 'coopetition_mturk_var60_0',
-        'display_name': "Coopetition Var60_0",
-        'num_demo_participants': 4,
-        'participation_fee': 1,
-        'max_payment': 7,
-        'treatment': 'Var60_0',
-        # 'debug': False,
-        'app_sequence': ['coopetition_quiz', 'coopetition_mturk', 'coopetition_oneshot',
-                         'risk_preferences','survey_online', 'payment_online'
-                         ],
-    },
-
-
 ]
 
 # anything you put after the below line will override

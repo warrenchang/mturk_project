@@ -1,46 +1,60 @@
 {% extends "global/Page.html" %}
 {% load staticfiles otree %}
 
+{% block styles %}
+    <style>
+        .otree-timer {
+            display: none;
+        }
+    </style>
+{% endblock %}
+{% block scripts %}
+    <script>
+        $(function () {
+            $('.otree-timer__time-left').on('update.countdown', function (event) {
+                if (event.offset.totalSeconds === 30) {
+                    $('.otree-timer').show();
+                }
+            });
+        });
+    </script>
+{% endblock %}
+
+
 {% block title %}
-   Welcome to the experiment of decision-making.
+You are about to start a new task.
 {% endblock %}
 
 {% block content %}
     <ul>
         <li>
-            The amount of money you earn depends on your decisions.
+            In the next task, you will be matched with a new participant (different from the one in the previous allocation task)
+            and interact in real time.
         </li>
         <li>
-            You earn Points throughout the experiment; Points will be converted at
-            the exchange rate of <strong> {{ exchange_rate }} Points = $1.</strong>
+            There is a quiz at the end of the task instructions.
         </li>
         <li>
-            This experiment consists of several part and will take approximately 30 minutes.
+
+            You have <strong>{{ Constants.max_attempts}} chances</strong> to answer all the questions correctly.
         </li>
+        {% if quiz_bonus != 0 %}
         <li>
-            There is a quiz at the end of the instructions. You have <strong>three chances</strong> to answer all the questions correctly.
+            You receive ${{ quiz_bonus }} for passing the quiz, and you can earn additional bonus in the new task.
         </li>
+        {% endif %}
         <li>
-            <strong>If you fail to correctly answer the questions, you are will not be able to participate or receive any payment.</strong>
+            <strong>If you fail to pass the quiz, you are will not be able to participate in the new task of the experiment.</strong>
         </li>
-        <li>
-            You receive $1 for sure after successfully completing the experiment.
-        </li>
-        <li>
-            Depending on your and other participants' decisions, you can also earn up to ${{ max_payment }} as additional bonus.
-        </li>
+
     </ul>
 
-
-    <p style="font-size:16px">
-
+    <p style="text-align: center">
+        Click "Next" to start reading the instructions of the new task.
     </p>
 
 
-
-    </p>
-
-    <div style="text-align:right">
+    <div style="text-align:center">
     {% next_button %}
     </div>
 
